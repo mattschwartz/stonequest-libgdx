@@ -17,6 +17,7 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Equippable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Player;
+import java.awt.event.MouseEvent;
 
 public class EquipmentSlotArea extends InventorySlotArea {
 
@@ -94,10 +95,10 @@ public class EquipmentSlotArea extends InventorySlotArea {
     } // useItem
 
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+    public void mouseClicked(MouseEvent e) {
         Item item, cursorItem;
 
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             cursorItem = delegate.getItemOnCursor();
 
             if (cursorItem != null) {

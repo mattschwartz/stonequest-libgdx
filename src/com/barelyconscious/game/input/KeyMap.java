@@ -16,6 +16,7 @@
 package com.barelyconscious.game.input;
 
 import com.barelyconscious.game.Game;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.gui.windows.BrewingWindow;
 import com.barelyconscious.game.graphics.gui.windows.CharacterWindow;
 import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
@@ -24,6 +25,7 @@ import com.barelyconscious.game.graphics.gui.windows.JournalWindow;
 import com.barelyconscious.game.graphics.gui.windows.SalvageWindow;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
 import com.barelyconscious.game.graphics.gui.windows.UpgradeItemWindow;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -54,64 +56,64 @@ public abstract class KeyMap {
     public static final KeyAction PLAYER_MOVE_UP = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveUp();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveUp();
+            World.INSTANCE.tick();
         } // action
     };
     public static final KeyAction PLAYER_MOVE_DOWN = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveDown();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveDown();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_LEFT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveLeft();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveLeft();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_RIGHT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveRight();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveRight();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_UP_LEFT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveUpLeft();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveUpLeft();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_UP_RIGHT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveUpRight();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveUpRight();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_DOWN_LEFT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveDownLeft();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveDownLeft();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_MOVE_DOWN_RIGHT = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.getCurrentPlayer().moveDownRight();
-            Game.getWorld().tick();
+            World.INSTANCE.getPlayer().moveDownRight();
+            World.INSTANCE.tick();
         }
     };
     public static final KeyAction PLAYER_SKIP_TURN = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
             TextLog.INSTANCE.append("You twiddle your thumbs.");
-            Game.getWorld().tick();
+            World.INSTANCE.tick();
         }
     };
     // Interface-related actions
@@ -160,7 +162,7 @@ public abstract class KeyMap {
     public static final KeyAction PRINT_SCREEN_BUTTON = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            Game.screen.saveScreenshot();
+            SceneService.INSTANCE.saveScreenshot();
         }
     };
     private static Map<Integer, KeyAction> keyBindings = new HashMap<Integer, KeyAction>();

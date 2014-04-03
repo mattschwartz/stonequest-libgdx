@@ -28,6 +28,7 @@ import com.barelyconscious.util.StringHelper;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 
 public class CharacterWindow extends Window implements ButtonAction {
 
@@ -89,72 +90,72 @@ public class CharacterWindow extends Window implements ButtonAction {
 
     public CharacterWindow() {
         this.player = InterfaceDelegate.getInstance().getPlayer();
-        width = CHARACTER_WINDOW_BACKGROUND.getWidth();
-        height = CHARACTER_WINDOW_BACKGROUND.getHeight();
+        setWidth(CHARACTER_WINDOW_BACKGROUND.getWidth());
+        setHeight(CHARACTER_WINDOW_BACKGROUND.getHeight());
 
         closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
-        detailedStatsTextArea = new JustifiedTextArea(windowOffsX + 43, windowOffsY + 409, 280, 166);
-        attributeInformationTextArea = new TextArea(windowOffsX + 43, windowOffsY + 409, 280, 166);
+        detailedStatsTextArea = new JustifiedTextArea(getX() + 43, getY() + 409, 280, 166);
+        attributeInformationTextArea = new TextArea(getX() + 43, getY() + 409, 280, 166);
 
         setAttributeMouseRegions();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
 
     private void setAttributeMouseRegions() {
-        attributesMouseRegion = new Rectangle(windowOffsX + 43, windowOffsY + 153, 280, 190);
-        hitpointsAttributeMouseRegion = new Rectangle(windowOffsX + HITPOINTS_ATTRIBUTE_OFFS_X, windowOffsY + HITPOINTS_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        strengthAttributeMouseRegion = new Rectangle(windowOffsX + STRENGTH_ATTRIBUTE_OFFS_X, windowOffsY + STRENGTH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        accuracyAttributeMouseRegion = new Rectangle(windowOffsX + ACCURACY_ATTRIBUTE_OFFS_X, windowOffsY + ACCURACY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        defenseAttributeMouseRegion = new Rectangle(windowOffsX + DEFENSE_ATTRIBUTE_OFFS_X, windowOffsY + DEFENSE_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        agilityAttributeMouseRegion = new Rectangle(windowOffsX + AGILITY_ATTRIBUTE_OFFS_X, windowOffsY + AGILITY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        fireMagicAttributeMouseRegion = new Rectangle(windowOffsX + FIRE_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + FIRE_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        frostMagicAttributeMouseRegion = new Rectangle(windowOffsX + FROST_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + FROST_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        holyMagicAttributeMouseRegion = new Rectangle(windowOffsX + HOLY_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + HOLY_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        chaosMagicAttributeMouseRegion = new Rectangle(windowOffsX + CHAOS_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        faithAttributeMouseRegion = new Rectangle(windowOffsX + FAITH_ATTRIBUTE_OFFS_X, windowOffsY + FAITH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        attributesMouseRegion = new Rectangle(getX() + 43, getY() + 153, 280, 190);
+        hitpointsAttributeMouseRegion = new Rectangle(getX() + HITPOINTS_ATTRIBUTE_OFFS_X, getY() + HITPOINTS_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        strengthAttributeMouseRegion = new Rectangle(getX() + STRENGTH_ATTRIBUTE_OFFS_X, getY() + STRENGTH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        accuracyAttributeMouseRegion = new Rectangle(getX() + ACCURACY_ATTRIBUTE_OFFS_X, getY() + ACCURACY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        defenseAttributeMouseRegion = new Rectangle(getX() + DEFENSE_ATTRIBUTE_OFFS_X, getY() + DEFENSE_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        agilityAttributeMouseRegion = new Rectangle(getX() + AGILITY_ATTRIBUTE_OFFS_X, getY() + AGILITY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        fireMagicAttributeMouseRegion = new Rectangle(getX() + FIRE_MAGIC_ATTRIBUTE_OFFS_X, getY() + FIRE_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        frostMagicAttributeMouseRegion = new Rectangle(getX() + FROST_MAGIC_ATTRIBUTE_OFFS_X, getY() + FROST_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        holyMagicAttributeMouseRegion = new Rectangle(getX() + HOLY_MAGIC_ATTRIBUTE_OFFS_X, getY() + HOLY_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        chaosMagicAttributeMouseRegion = new Rectangle(getX() + CHAOS_MAGIC_ATTRIBUTE_OFFS_X, getY() + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        faithAttributeMouseRegion = new Rectangle(getX() + FAITH_ATTRIBUTE_OFFS_X, getY() + FAITH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
     } // setAttributeMouseRegions
 
     /**
      * Resize elements as necessary when the application is resized.
      *
-     * @param artworkWindowOffsX the new windowOffsX position of the artwork
+     * @param artworkWindowOffsX the new getX() position of the artwork
      * interface window
-     * @param artworkWindowOffsY the new windowOffsY position of the artwork
+     * @param artworkWindowOffsY the new getY() position of the artwork
      * interface window
-     * @param windowButtonX the new windowOffsX position of the upgrade item
-     * window's button
-     * @param windowButtonY the new windowOffsY position of the upgrade item
-     * window's button
+     * @param windowButtonX the new getX() position of the upgrade item window's
+     * button
+     * @param windowButtonY the new getY() position of the upgrade item window's
+     * button
      */
     public void resize(int gameWidth, int artworkWindowOffsY, int windowButtonX, int windowButtonY) {
-        windowOffsX = gameWidth - width;
-        windowOffsY = artworkWindowOffsY - height;
+        setX(gameWidth - getWidth());
+        setY(artworkWindowOffsY - getHeight());
 
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
         closeWindowButton.setX(gameWidth - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
-        closeWindowButton.setY(windowOffsY + 10);
+        closeWindowButton.setY(getY() + 10);
 
-        detailedStatsTextArea.resize(windowOffsX + 43, windowOffsY + 409);
-        attributeInformationTextArea.resize(windowOffsX + 43, windowOffsY + 409);
+        detailedStatsTextArea.resize(getX() + 43, getY() + 409);
+        attributeInformationTextArea.resize(getX() + 43, getY() + 409);
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
 
-        attributesMouseRegion = new Rectangle(windowOffsX + 43, windowOffsY + 153, 280, 190);
-        hitpointsAttributeMouseRegion = new Rectangle(windowOffsX + HITPOINTS_ATTRIBUTE_OFFS_X, windowOffsY + HITPOINTS_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        strengthAttributeMouseRegion = new Rectangle(windowOffsX + STRENGTH_ATTRIBUTE_OFFS_X, windowOffsY + STRENGTH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        accuracyAttributeMouseRegion = new Rectangle(windowOffsX + ACCURACY_ATTRIBUTE_OFFS_X, windowOffsY + ACCURACY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        defenseAttributeMouseRegion = new Rectangle(windowOffsX + DEFENSE_ATTRIBUTE_OFFS_X, windowOffsY + DEFENSE_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        agilityAttributeMouseRegion = new Rectangle(windowOffsX + AGILITY_ATTRIBUTE_OFFS_X, windowOffsY + AGILITY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        fireMagicAttributeMouseRegion = new Rectangle(windowOffsX + FIRE_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + FIRE_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        frostMagicAttributeMouseRegion = new Rectangle(windowOffsX + FROST_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + FROST_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        holyMagicAttributeMouseRegion = new Rectangle(windowOffsX + HOLY_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + HOLY_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        chaosMagicAttributeMouseRegion = new Rectangle(windowOffsX + CHAOS_MAGIC_ATTRIBUTE_OFFS_X, windowOffsY + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
-        faithAttributeMouseRegion = new Rectangle(windowOffsX + FAITH_ATTRIBUTE_OFFS_X, windowOffsY + FAITH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        attributesMouseRegion = new Rectangle(getX() + 43, getY() + 153, 280, 190);
+        hitpointsAttributeMouseRegion = new Rectangle(getX() + HITPOINTS_ATTRIBUTE_OFFS_X, getY() + HITPOINTS_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        strengthAttributeMouseRegion = new Rectangle(getX() + STRENGTH_ATTRIBUTE_OFFS_X, getY() + STRENGTH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        accuracyAttributeMouseRegion = new Rectangle(getX() + ACCURACY_ATTRIBUTE_OFFS_X, getY() + ACCURACY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        defenseAttributeMouseRegion = new Rectangle(getX() + DEFENSE_ATTRIBUTE_OFFS_X, getY() + DEFENSE_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        agilityAttributeMouseRegion = new Rectangle(getX() + AGILITY_ATTRIBUTE_OFFS_X, getY() + AGILITY_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        fireMagicAttributeMouseRegion = new Rectangle(getX() + FIRE_MAGIC_ATTRIBUTE_OFFS_X, getY() + FIRE_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        frostMagicAttributeMouseRegion = new Rectangle(getX() + FROST_MAGIC_ATTRIBUTE_OFFS_X, getY() + FROST_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        holyMagicAttributeMouseRegion = new Rectangle(getX() + HOLY_MAGIC_ATTRIBUTE_OFFS_X, getY() + HOLY_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        chaosMagicAttributeMouseRegion = new Rectangle(getX() + CHAOS_MAGIC_ATTRIBUTE_OFFS_X, getY() + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
+        faithAttributeMouseRegion = new Rectangle(getX() + FAITH_ATTRIBUTE_OFFS_X, getY() + FAITH_ATTRIBUTE_OFFS_Y, ATTRIBUTE_HOVER_AREA_WIDTH, ATTRIBUTE_HOVER_AREA_HEIGHT);
     } // resize
 
     private void setComponentsEnabled(boolean enabled) {
@@ -237,49 +238,48 @@ public class CharacterWindow extends Window implements ButtonAction {
     } // writeAttributeInformation
 
     @Override
-    public void mouseMoved(int x, int y) {
+    public void mouseMoved(MouseEvent e) {
         attributeHoverOver = -1;
-        if (!attributesMouseRegion.contains(x, y)) {
+        if (!attributesMouseRegion.contains(e.getX(), e.getY())) {
             return;
         } // if
 
         // Is mouse hovering over the hitpoints attribute?
-        if (hitpointsAttributeMouseRegion.contains(x, y)) {
+        if (hitpointsAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.HEALTH_ATTRIBUTE;
         } // if
-        else if (strengthAttributeMouseRegion.contains(x, y)) {
+        else if (strengthAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.STRENGTH_ATTRIBUTE;
         } // else if
-        else if (accuracyAttributeMouseRegion.contains(x, y)) {
+        else if (accuracyAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.ACCURACY_ATTRIBUTE;
         } // else if
-        else if (defenseAttributeMouseRegion.contains(x, y)) {
+        else if (defenseAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.DEFENSE_ATTRIBUTE;
         } // else if
-        else if (agilityAttributeMouseRegion.contains(x, y)) {
+        else if (agilityAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.EVASION_ATTRIBUTE;
         } // else if
-        else if (fireMagicAttributeMouseRegion.contains(x, y)) {
+        else if (fireMagicAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.FIRE_MAGIC_ATTRIBUTE;
         } // else if
-        else if (frostMagicAttributeMouseRegion.contains(x, y)) {
+        else if (frostMagicAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.FROST_MAGIC_ATTRIBUTE;
         } // else if
-        else if (holyMagicAttributeMouseRegion.contains(x, y)) {
+        else if (holyMagicAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.HOLY_MAGIC_ATTRIBUTE;
         } // else if
-        else if (chaosMagicAttributeMouseRegion.contains(x, y)) {
+        else if (chaosMagicAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.CHAOS_MAGIC_ATTRIBUTE;
         } // else if
-        else if (faithAttributeMouseRegion.contains(x, y)) {
+        else if (faithAttributeMouseRegion.contains(e.getX(), e.getY())) {
             attributeHoverOver = Entity.FAITH_ATTRIBUTE;
         } // else if
     } // mouseMoved
 
     @Override
-    public void mouseDragged(int x, int y) {
+    public void mouseDragged(MouseEvent e) {
         attributeHoverOver = -1;
-        super.mouseDragged(x, y);
     } // mouseDragged
 
     @Override
@@ -290,7 +290,7 @@ public class CharacterWindow extends Window implements ButtonAction {
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().inventoryWindow.isVisible) {
+        if (InterfaceDelegate.getInstance().inventoryWindow.isVisible()) {
             InterfaceDelegate.getInstance().inventoryWindow.hide();
         } // if
 
@@ -328,7 +328,7 @@ public class CharacterWindow extends Window implements ButtonAction {
         } // if
 
         if (caller == windowButton) {
-            if (isVisible) {
+            if (isVisible()) {
                 InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Character\nWindow");
             } // if
             else {
@@ -339,20 +339,20 @@ public class CharacterWindow extends Window implements ButtonAction {
             InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Character\nWindow");
         } // else if
     } // hoverOverAction
-    
+
     @Override
     public void render(Screen screen) {
         windowButton.render(screen);
 
-        if (!isVisible) {
+        if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), windowOffsY);
+        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
 
-        CHARACTER_WINDOW_BACKGROUND.render(screen, windowOffsX, animationY);
+        CHARACTER_WINDOW_BACKGROUND.render(screen, getX(), animationY);
 
-        if (animationY == windowOffsY) {
+        if (animationY == getY()) {
             renderSubtitleText(screen);
             renderPlayerAttributes(screen);
             closeWindowButton.render(screen);
@@ -374,8 +374,8 @@ public class CharacterWindow extends Window implements ButtonAction {
      * @param screen the screen to render to
      */
     private void renderPlayerAttributes(Screen screen) {
-        int textOffsX = windowOffsX + ATTRIBUTE_TEXT_OFFS_X;
-        int textOffsY = windowOffsY + ATTRIBUTE_TEXT_OFFS_Y + 17;
+        int textOffsX = getX() + ATTRIBUTE_TEXT_OFFS_X;
+        int textOffsY = getY() + ATTRIBUTE_TEXT_OFFS_Y + 17;
         String attributeValue;
 
         attributeValue = "" + (int) player.getAttribute(Entity.HEALTH_ATTRIBUTE);
@@ -415,8 +415,8 @@ public class CharacterWindow extends Window implements ButtonAction {
         String attributeDetailsTitle;
 
         // Render the player's name
-        textOffsX = windowOffsX + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - Font.getStringWidth(screen, player.getName())) / 2;
-        textOffsY = windowOffsY + PLAYER_NAME_TEXT_OFFS_Y + (PLAYER_NAME_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
+        textOffsX = getX() + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - Font.getStringWidth(screen, player.getName())) / 2;
+        textOffsY = getY() + PLAYER_NAME_TEXT_OFFS_Y + (PLAYER_NAME_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
         Font.drawFont(screen, player.getName(), PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
 
         // Render the attribute details title
@@ -427,8 +427,8 @@ public class CharacterWindow extends Window implements ButtonAction {
             attributeDetailsTitle = "Details";
         } // else
 
-        textOffsX = windowOffsX + DETAILS_TITLE_TEXT_OFFS_X + (DETAILS_TITLE_TEXT_WIDTH - Font.getStringWidth(screen, attributeDetailsTitle)) / 2;
-        textOffsY = windowOffsY + DETAILS_TITLE_TEXT_OFFS_Y + (DETAILS_TITLE_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
+        textOffsX = getX() + DETAILS_TITLE_TEXT_OFFS_X + (DETAILS_TITLE_TEXT_WIDTH - Font.getStringWidth(screen, attributeDetailsTitle)) / 2;
+        textOffsY = getY() + DETAILS_TITLE_TEXT_OFFS_Y + (DETAILS_TITLE_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
         Font.drawFont(screen, attributeDetailsTitle, PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
     } // renderPlayerName
 } // CharacterWindow

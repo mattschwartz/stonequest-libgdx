@@ -12,14 +12,13 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Game;
-import static com.barelyconscious.game.Game.screen;
+import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.services.InputHandler;
+import com.barelyconscious.game.services.SceneService;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class Cursors {
 
@@ -35,23 +34,23 @@ public class Cursors {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         BufferedImage image;
 
-        try {
-            image = ImageIO.read(Game.class.getResourceAsStream(pathToCursor));
-            Cursor c = toolkit.createCustomCursor(image, new Point(screen.getX(),
-                    screen.getY()), "img");
-
-            return c;
-        } catch (IOException ex) {
-            System.err.println("Error loading cursor: " + ex);
+        image = UIElement.loadImage(pathToCursor);
+        if (image == null) {
+            // error
             return null;
-        }
+        } // if
+
+        Cursor c = toolkit.createCustomCursor(image, new Point(InputHandler.INSTANCE.getMouseX(),
+                InputHandler.INSTANCE.getMouseY()), "img");
+
+        return c;
     } // createCursor
 
     public static void setCursor(Cursor newCursor) {
-        if (screen.getCursor() == newCursor) {
+        if (SceneService.INSTANCE.getCursor() == newCursor) {
             return;
         } // if
-        
-        screen.setCursor(newCursor);
+
+        SceneService.INSTANCE.setCursor(newCursor);
     } // setCursor
 } // Cursors

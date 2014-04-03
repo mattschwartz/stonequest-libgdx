@@ -66,8 +66,8 @@ public class UIElement {
         if (loadedAssets.containsKey(imageFile)) {
             return loadedAssets.get(imageFile);
         } // if
-        
-        newElement =  new UIElement(imageFile);
+
+        newElement = new UIElement(imageFile);
         loadedAssets.put(imageFile, newElement);
         return newElement;
     } // createUIElement

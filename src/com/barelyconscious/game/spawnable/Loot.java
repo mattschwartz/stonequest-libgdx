@@ -12,7 +12,7 @@
  **************************************************************************** */
 package com.barelyconscious.game.spawnable;
 
-import com.barelyconscious.game.Game;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.item.Item;
 
@@ -23,13 +23,13 @@ public class Loot extends Sprite {
     private boolean pickupOnWalkOver;
 
     public Loot(Item item) {
-        super(item.getName(), Game.getCurrentPlayer().getX(), Game.getCurrentPlayer().getY(), false, LOOT_ICON);
+        super(item.getName(), World.INSTANCE.getPlayer().getX(), World.INSTANCE.getPlayer().getY(), false, LOOT_ICON);
         this.item = item;
         pickupOnWalkOver = false;
     } // constructor
 
     public Loot(Item item, boolean pickupOnWalkOver) {
-        super(item.getName(), Game.getCurrentPlayer().getX(), Game.getCurrentPlayer().getY(), false, LOOT_ICON);
+        super(item.getName(), World.INSTANCE.getPlayer().getX(), World.INSTANCE.getPlayer().getY(), false, LOOT_ICON);
         this.item = item;
         this.pickupOnWalkOver = pickupOnWalkOver;
     } // constructor

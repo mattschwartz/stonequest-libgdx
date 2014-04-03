@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.game.services;
 
+import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.input.KeyHandler;
 import com.barelyconscious.game.input.MouseHandler;
 
@@ -36,6 +37,22 @@ public class InputHandler implements Service {
         scene.addMouseMotionListener(mouseHandler);
         scene.addMouseWheelListener(mouseHandler);
     } // addListeners
+    
+    public void addMouseListener(Interactable interactableObject, int zLevel) {
+        mouseHandler.addInteractable(interactableObject, zLevel);
+    } // addMouseListener
+    
+    public void removeMouseListener(Interactable interactableObject) {
+        mouseHandler.removeInteractable(interactableObject);
+    } // removeMouseListener
+    
+    public int getMouseX() {
+        return mouseHandler.getMouseX();
+    } // getMouseX
+    
+    public int getMouseY() {
+        return mouseHandler.getMouseY();
+    } // getMouseY
 
     @Override
     public void start() {

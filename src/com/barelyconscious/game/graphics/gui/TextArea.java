@@ -19,6 +19,7 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.util.StringHelper;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -161,24 +162,22 @@ public class TextArea extends Interactable implements Component {
     } // append
 
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             mouseWheelDown();
         } // if
-        else if (buttonClicked == Interactable.MOUSE_RIGHT_CLICK) {
+        else if (e.getButton() == Interactable.MOUSE_RIGHT_CLICK) {
             mouseWheelUp();
         }
     }
 
     @Override
-    public void mouseDragged(int x, int y) {
-        if (mouseY - 8 > y) {
+    public void mouseDragged(MouseEvent e) {
+        if (e.getY() - 8 > y) {
             mouseWheelUp();
-            mouseY = y;
         }
-        else if (mouseY + 8 < y) {
+        else if (e.getY() + 8 < y) {
             mouseWheelDown();
-            mouseY = y;
         }
     }
     

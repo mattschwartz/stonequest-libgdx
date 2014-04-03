@@ -67,15 +67,15 @@ public class InventoryWindow extends Window implements ButtonAction {
     private InventorySlotArea[] equipmentSlots;
     
     public InventoryWindow() {
-        width = INVENTORY_WINDOW_BACKGROUND.getWidth();
-        height = INVENTORY_WINDOW_BACKGROUND.getHeight();
+        setWidth(INVENTORY_WINDOW_BACKGROUND.getWidth());
+        setHeight(INVENTORY_WINDOW_BACKGROUND.getHeight());
 
         closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
 
         createItemSlots();
         resizeItemSlots();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
@@ -96,34 +96,34 @@ public class InventoryWindow extends Window implements ButtonAction {
     /**
      * Resize elements as necessary when the application is resized.
      *
-     * @param artworkWindowOffsX the new windowOffsX position of the artwork
+     * @param artworkWindowOffsX the new getX() position of the artwork
      * interface window
-     * @param artworkWindowOffsY the new windowOffsY position of the artwork
+     * @param artworkWindowOffsY the new getY() position of the artwork
      * interface window
-     * @param windowButtonX the new windowOffsX position of the upgrade item
+     * @param windowButtonX the new getX() position of the upgrade item
      * window's button
-     * @param windowButtonY the new windowOffsY position of the upgrade item
+     * @param windowButtonY the new getY() position of the upgrade item
      * window's button
      */
     public void resize(int gameWidth, int artworkWindowOffsY, int windowButtonX, int windowButtonY) {
-        windowOffsX = gameWidth - width;
-        windowOffsY = artworkWindowOffsY - height;
+        setX(gameWidth - getWidth());
+        setY(artworkWindowOffsY - getHeight());
 
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
         closeWindowButton.setX(gameWidth - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
-        closeWindowButton.setY(windowOffsY + 10);
+        closeWindowButton.setY(getY() + 10);
 
         resizeItemSlots();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
     } // resize
 
     private void resizeItemSlots() {
         int i = 0;
-        int xOffs = windowOffsX + INVENTORY_SLOT_OFFS_X;
-        int yOffs = windowOffsY + INVENTORY_SLOT_OFFS_Y;
+        int xOffs = getX() + INVENTORY_SLOT_OFFS_X;
+        int yOffs = getY() + INVENTORY_SLOT_OFFS_Y;
 
         // Set item slot values
         for (int y = 0; y < INVENTORY_SLOT_ROWS; y++) {
@@ -133,16 +133,16 @@ public class InventoryWindow extends Window implements ButtonAction {
         } // for
 
         // Set equipment item slot values
-        equipmentSlots[Entity.HELMET_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_HELMET_OFFS_X, windowOffsY + EQUIPMENT_SLOT_HELMET_OFFS_Y);
-        equipmentSlots[Entity.CHEST_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_CHEST_OFFS_X, windowOffsY + EQUIPMENT_SLOT_CHEST_OFFS_Y);
-        equipmentSlots[Entity.GREAVES_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_GREAVES_OFFS_X, windowOffsY + EQUIPMENT_SLOT_GREAVES_OFFS_Y);
-        equipmentSlots[Entity.BELT_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_BELT_OFFS_X, windowOffsY + EQUIPMENT_SLOT_BELT_OFFS_Y);
-        equipmentSlots[Entity.NECK_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_NECKLACE_OFFS_X, windowOffsY + EQUIPMENT_SLOT_NECKLACE_OFFS_Y);
-        equipmentSlots[Entity.EARRING_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_EARRING_OFFS_X, windowOffsY + EQUIPMENT_SLOT_EARRING_OFFS_Y);
-        equipmentSlots[Entity.RING_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_RING_OFFS_X, windowOffsY + EQUIPMENT_SLOT_RING_OFFS_Y);
-        equipmentSlots[Entity.BOOTS_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_BOOTS_OFFS_X, windowOffsY + EQUIPMENT_SLOT_BOOTS_OFFS_Y);
-        equipmentSlots[Entity.MAIN_HAND_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_MAIN_HAND_OFFS_X, windowOffsY + EQUIPMENT_SLOT_MAIN_HAND_OFFS_Y);
-        equipmentSlots[Entity.OFF_HAND_SLOT_ID].resize(windowOffsX + EQUIPMENT_SLOT_OFF_HAND_OFFS_X, windowOffsY + EQUIPMENT_SLOT_OFF_HAND_OFFS_Y);
+        equipmentSlots[Entity.HELMET_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_HELMET_OFFS_X, getY() + EQUIPMENT_SLOT_HELMET_OFFS_Y);
+        equipmentSlots[Entity.CHEST_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_CHEST_OFFS_X, getY() + EQUIPMENT_SLOT_CHEST_OFFS_Y);
+        equipmentSlots[Entity.GREAVES_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_GREAVES_OFFS_X, getY() + EQUIPMENT_SLOT_GREAVES_OFFS_Y);
+        equipmentSlots[Entity.BELT_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_BELT_OFFS_X, getY() + EQUIPMENT_SLOT_BELT_OFFS_Y);
+        equipmentSlots[Entity.NECK_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_NECKLACE_OFFS_X, getY() + EQUIPMENT_SLOT_NECKLACE_OFFS_Y);
+        equipmentSlots[Entity.EARRING_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_EARRING_OFFS_X, getY() + EQUIPMENT_SLOT_EARRING_OFFS_Y);
+        equipmentSlots[Entity.RING_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_RING_OFFS_X, getY() + EQUIPMENT_SLOT_RING_OFFS_Y);
+        equipmentSlots[Entity.BOOTS_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_BOOTS_OFFS_X, getY() + EQUIPMENT_SLOT_BOOTS_OFFS_Y);
+        equipmentSlots[Entity.MAIN_HAND_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_MAIN_HAND_OFFS_X, getY() + EQUIPMENT_SLOT_MAIN_HAND_OFFS_Y);
+        equipmentSlots[Entity.OFF_HAND_SLOT_ID].resize(getX() + EQUIPMENT_SLOT_OFF_HAND_OFFS_X, getY() + EQUIPMENT_SLOT_OFF_HAND_OFFS_Y);
 
     } // resizeItemSlots
 
@@ -160,7 +160,7 @@ public class InventoryWindow extends Window implements ButtonAction {
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().characterWindow.isVisible) {
+        if (InterfaceDelegate.getInstance().characterWindow.isVisible()) {
             InterfaceDelegate.getInstance().characterWindow.hide();
         } // if
 
@@ -198,7 +198,7 @@ public class InventoryWindow extends Window implements ButtonAction {
         } // if
 
         if (caller == windowButton) {
-            if (isVisible) {
+            if (isVisible()) {
                 InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Inventory\nWindow");
             } // if
             else {
@@ -215,20 +215,20 @@ public class InventoryWindow extends Window implements ButtonAction {
         String playerGold;
         windowButton.render(screen);
 
-        if (!isVisible) {
+        if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), windowOffsY);
+        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
 
-        INVENTORY_WINDOW_BACKGROUND.render(screen, windowOffsX, animationY);
+        INVENTORY_WINDOW_BACKGROUND.render(screen, getX(), animationY);
 
-        if (animationY == windowOffsY) {
+        if (animationY == getY()) {
             closeWindowButton.render(screen);
 
             // Draw gold text
             playerGold = InterfaceDelegate.getInstance().getPlayerInventory().getGold() + " g";
-            Font.drawFont(screen, playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, windowOffsX + goldTextOffsX + goldTextAreaWidth - Font.getStringWidth(screen, playerGold), windowOffsY + goldTextOffsY);
+            Font.drawFont(screen, playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, getX() + goldTextOffsX + goldTextAreaWidth - Font.getStringWidth(screen, playerGold), getY() + goldTextOffsY);
             renderItemSlots(screen);
         } // if
     } // render

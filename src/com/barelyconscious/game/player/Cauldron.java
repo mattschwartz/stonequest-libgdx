@@ -14,7 +14,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.player;
 
-import static com.barelyconscious.game.Game.world;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.item.salvage.Salvage;

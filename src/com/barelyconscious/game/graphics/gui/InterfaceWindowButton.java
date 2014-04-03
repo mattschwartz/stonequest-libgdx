@@ -36,10 +36,10 @@ public class InterfaceWindowButton extends Button {
     
     @Override
     public void render(Screen screen) {
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             buttonImage.renderShaded(screen, x, y);
         } // if
-        else if (mouseInFocus) {
+        else if (isMouseInFocus()) {
             renderHighlighted(screen);
         } // if
         else {

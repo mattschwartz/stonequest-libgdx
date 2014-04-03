@@ -48,18 +48,18 @@ public class BrewingWindow extends Window implements ButtonAction {
 
     public BrewingWindow() {
         this.cauldron = World.INSTANCE.getPlayer().cauldron;
-        width = BREWING_WINDOW_BACKGROUND.getWidth();
-        height = BREWING_WINDOW_BACKGROUND.getHeight();
+        setWidth(BREWING_WINDOW_BACKGROUND.getWidth());
+        setHeight(BREWING_WINDOW_BACKGROUND.getHeight());
 
         closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
 
-        brewPotionButton = new Button("Mix", windowOffsX + MIX_BUTTON_OFFS_X, windowOffsY + MIX_BUTTON_OFFS_Y, MIX_BUTTON_WIDTH, MIX_BUTTON_HEIGHT, true);
+        brewPotionButton = new Button("Mix", getY() + MIX_BUTTON_OFFS_X, getY() + MIX_BUTTON_OFFS_Y, MIX_BUTTON_WIDTH, MIX_BUTTON_HEIGHT, true);
         brewPotionButton.setCallbackFunction(this);
 
         createItemSlots();
         resizeItemSlots();
 
-        super.setRegion(windowOffsX + MIX_BUTTON_OFFS_X, windowOffsY + MIX_BUTTON_OFFS_Y, width, height);
+        super.setRegion(getX() + MIX_BUTTON_OFFS_X, getY() + MIX_BUTTON_OFFS_Y, getWidth(), getHeight());
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
@@ -77,20 +77,20 @@ public class BrewingWindow extends Window implements ButtonAction {
      * window's button
      */
     public void resize(int gameWidth, int artworkWindowOffsY, int windowButtonX, int windowButtonY) {
-        windowOffsX = (gameWidth - BREWING_WINDOW_BACKGROUND.getWidth()) / 2;
-        windowOffsY = (artworkWindowOffsY - BREWING_WINDOW_BACKGROUND.getHeight()) / 2;
+        setX((gameWidth - BREWING_WINDOW_BACKGROUND.getWidth()) / 2);
+        setY((artworkWindowOffsY - BREWING_WINDOW_BACKGROUND.getHeight()) / 2);
 
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
-        closeWindowButton.setX(windowOffsX + BREWING_WINDOW_BACKGROUND.getWidth() - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 19);
-        closeWindowButton.setY(windowOffsY + 10);
+        closeWindowButton.setX(getX() + BREWING_WINDOW_BACKGROUND.getWidth() - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 19);
+        closeWindowButton.setY(getY() + 10);
 
-        brewPotionButton.setX(windowOffsX + MIX_BUTTON_OFFS_X);
-        brewPotionButton.setY(windowOffsY + MIX_BUTTON_OFFS_Y);
+        brewPotionButton.setX(getX() + MIX_BUTTON_OFFS_X);
+        brewPotionButton.setY(getY() + MIX_BUTTON_OFFS_Y);
         resizeItemSlots();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
     } // resize
 
     private void setComponentsEnabled(boolean enabled) {
@@ -109,15 +109,15 @@ public class BrewingWindow extends Window implements ButtonAction {
     } // createItemSlots
 
     private void resizeItemSlots() {
-        int xOffs = windowOffsX + INGREDIENT_OFFS_X;
-        int yOffs = windowOffsY + INGREDIENT_OFFS_Y;
+        int xOffs = getX() + INGREDIENT_OFFS_X;
+        int yOffs = getY() + INGREDIENT_OFFS_Y;
 
         ingredientSlots[0].resize(xOffs, yOffs);
         ingredientSlots[1].resize(xOffs + INGREDIENT_STEP_X, yOffs);
         ingredientSlots[2].resize(xOffs, yOffs + INGREDIENT_STEP_Y);
         ingredientSlots[3].resize(xOffs + INGREDIENT_STEP_X, yOffs + INGREDIENT_STEP_Y);
 
-        resultSlot.resize(windowOffsX + RESULT_OFFS_X, windowOffsY + RESULT_OFFS_Y);
+        resultSlot.resize(getX() + RESULT_OFFS_X, getY() + RESULT_OFFS_Y);
     } // resizeItemSlots
 
     @Override
@@ -170,7 +170,7 @@ public class BrewingWindow extends Window implements ButtonAction {
         } // if
 
         if (caller == windowButton) {
-            if (isVisible) {
+            if (isVisible()) {
                 InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Brewing\nWindow");
             } // if
             else {
@@ -189,15 +189,15 @@ public class BrewingWindow extends Window implements ButtonAction {
     public void render(Screen screen) {
         windowButton.render(screen);
 
-        if (!isVisible) {
+        if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), windowOffsY);
+        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
 
-        BREWING_WINDOW_BACKGROUND.render(screen, windowOffsX, animationY);
+        BREWING_WINDOW_BACKGROUND.render(screen, getX(), animationY);
 
-        if (animationY == windowOffsY) {
+        if (animationY == getY()) {
             closeWindowButton.render(screen);
             brewPotionButton.render(screen);
             renderItemSlots(screen);

@@ -12,8 +12,8 @@
  **************************************************************************** */
 package com.barelyconscious.game.player;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
 import com.barelyconscious.game.item.Scroll;
@@ -185,23 +185,23 @@ class PathFinder implements Runnable {
         for (int x = 0; x < Math.abs(deltaX); x++) {
             try {
                 if (deltaX > 0) {
-                    if (!Game.getWorld().canMove(entity.getX() + 1, entity.getY())) {
+                    if (!World.INSTANCE.canMove(entity.getX() + 1, entity.getY())) {
                         entity.moveRight();
-                        Game.getWorld().tick();
+                        World.INSTANCE.tick();
                         return;
                     }
                     entity.moveRight();
                 } // if
                 else {
-                    if (!Game.getWorld().canMove(entity.getX() - 1, entity.getY())) {
+                    if (!World.INSTANCE.canMove(entity.getX() - 1, entity.getY())) {
                         entity.moveLeft();
-                        Game.getWorld().tick();
+                        World.INSTANCE.tick();
                         return;
                     }
                     entity.moveLeft();
                 } // else
 
-                Game.getWorld().tick();
+                World.INSTANCE.tick();
                 Thread.sleep(30);
             } // for
             catch (InterruptedException ex) {
@@ -212,22 +212,22 @@ class PathFinder implements Runnable {
         for (int y = 0; y < Math.abs(deltaY); y++) {
             try {
                 if (deltaY > 0) {
-                    if (!Game.getWorld().canMove(entity.getX(), entity.getY() + 1)) {
+                    if (!World.INSTANCE.canMove(entity.getX(), entity.getY() + 1)) {
                         entity.moveDown();
-                        Game.getWorld().tick();
+                        World.INSTANCE.tick();
                         return;
                     }
                     entity.moveDown();
                 } else {
-                    if (!Game.getWorld().canMove(entity.getX(), entity.getY() - 1)) {
+                    if (!World.INSTANCE.canMove(entity.getX(), entity.getY() - 1)) {
                         entity.moveUp();
-                        Game.getWorld().tick();
+                        World.INSTANCE.tick();
                         return;
                     }
                     entity.moveUp();
                 }
 
-                Game.getWorld().tick();
+                World.INSTANCE.tick();
 
                 Thread.sleep(30);
             } // for

@@ -12,13 +12,15 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.Font;
 import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.services.InputHandler;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.StringHelper;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class DialogPane extends Interactable implements Component, ButtonAction {
@@ -44,7 +46,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         y = Math.max(0, startY);
         this.title = title;
         this.message = message;
-        determineDimensions(Game.screen);
+        determineDimensions();
 
         messageTextArea = new TextArea(x, y, width, height);
         messageTextArea.setBackgroundColor(new Color(107, 107, 107).getRGB());
@@ -63,7 +65,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         super.addMouseListener(Interactable.Z_DIALOG_PANE);
     } // constructor
 
-    private void determineDimensions(Screen screen) {
+    private void determineDimensions() {
         int maxLineWidth = 0;
         int lineLength;
         List<String> lines = StringHelper.splitStringAlongWords(message, MAX_LINE_LENGTH);
@@ -77,21 +79,22 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
             } // if
         } // for
 
-        width = Font.getMaxStringWidth(screen, lines) + Font.CHAR_WIDTH * 2;
+        // Find a better way to do this...
+//        width = Font.getMaxStringWidth(screen, lines) + Font.CHAR_WIDTH * 2;
         height = (lines.size() + 1) * Font.CHAR_HEIGHT + BUTTON_MARGIN + Button.DEFAULT_HEIGHT;
     } // determineDimensions
 
     @Override
-    public void mouseReleased() {
-        super.mouseReleased();
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
         moveCursorSet = false;
         Cursors.setCursor(Cursors.DEFAULT_CURSOR);
     } // mouseReleased
 
     @Override
-    public void mouseDragged(int x, int y) {
-        int diffX = mouseX - x;
-        int diffY = mouseY - y;
+    public void mouseDragged(MouseEvent e) {
+        int diffX = e.getX() - InputHandler.INSTANCE.getMouseX();
+        int diffY = e.getY() - InputHandler.INSTANCE.getMouseY();
         int newX, newY;
 
         if (!moveCursorSet) {
@@ -99,9 +102,8 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
             moveCursorSet = true;
         } // if
 
-        super.mouseDragged(x, y);
-        newX = Math.min(Game.getGameWidth() - (width + BORDER_WIDTH * 4), Math.max(BORDER_WIDTH, this.x - diffX));
-        newY = Math.min(Game.getGameHeight() - (BORDER_WIDTH + height + BORDER_WIDTH + TOP_BORDER_HEIGHT + 2 + BORDER_WIDTH + 3), Math.max(TOP_BORDER_HEIGHT, this.y - diffY));
+        newX = Math.min(SceneService.INSTANCE.getWidth() - (width + BORDER_WIDTH * 4), Math.max(BORDER_WIDTH, this.x - diffX));
+        newY = Math.min(SceneService.INSTANCE.getHeight() - (BORDER_WIDTH + height + BORDER_WIDTH + TOP_BORDER_HEIGHT + 2 + BORDER_WIDTH + 3), Math.max(TOP_BORDER_HEIGHT, this.y - diffY));
 
         setX(newX);
         setY(newY);

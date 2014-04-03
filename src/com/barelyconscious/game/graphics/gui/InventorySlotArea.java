@@ -23,6 +23,7 @@ import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Inventory;
 import com.barelyconscious.util.ColorHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 public class InventorySlotArea extends Interactable implements Component {
 
@@ -143,9 +144,8 @@ public class InventorySlotArea extends Interactable implements Component {
     } // shouldRemove
 
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+    public void mouseClicked(MouseEvent e) {
         Item item, cursorItem;
-        super.mouseClicked(buttonClicked, clickCount, x, y);
 
         if (delegate.isSalvageActive()) {
             TextLog.INSTANCE.append(getItem() + " salvaged.");
@@ -153,7 +153,7 @@ public class InventorySlotArea extends Interactable implements Component {
             return;
         } // if
 
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK && KeyHandler.isShiftKeyDown) {
+        if ((e.getButton() == Interactable.MOUSE_LEFT_CLICK) && KeyHandler.isShiftKeyDown) {
             cursorItem = delegate.getItemOnCursor();
             item = getItem();
 
@@ -178,7 +178,7 @@ public class InventorySlotArea extends Interactable implements Component {
                 delegate.putItemOnCursor(cursorItem);
             } // if
         } // if
-        else if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        else if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             if (stackItem()) {
                 return;
             } // if
@@ -255,7 +255,7 @@ public class InventorySlotArea extends Interactable implements Component {
                 Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
             } // if
 
-            if (mouseInFocus) {
+            if (isMouseInFocus()) {
                 screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
             } // if
         } // if
@@ -266,7 +266,7 @@ public class InventorySlotArea extends Interactable implements Component {
         item = delegate.getItemOnCursor();
 
         if (item != null) {
-            if (mouseInFocus) {
+            if (isMouseInFocus()) {
                 if (itemGoesHere(item)) {
                     screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
                 } // if

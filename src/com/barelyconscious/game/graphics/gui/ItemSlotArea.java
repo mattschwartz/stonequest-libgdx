@@ -19,10 +19,14 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.util.ColorHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemSlotArea extends InventorySlotArea {
 
     private Item slottedItem;
+    public List<Item> allowedItems = new ArrayList<Item>();
 
     public ItemSlotArea() {
         delegate = InterfaceDelegate.getInstance();
@@ -65,10 +69,10 @@ public class ItemSlotArea extends InventorySlotArea {
     } // removeItem
 
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+    public void mouseClicked(MouseEvent e) {
         Item item, cursorItem;
 
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             if (stackItem()) {
                 return;
             } // if
@@ -109,7 +113,7 @@ public class ItemSlotArea extends InventorySlotArea {
                 Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
             } // if
 
-            if (mouseInFocus) {
+            if (isMouseInFocus()) {
                 screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
             } // if
         } // if
@@ -120,7 +124,7 @@ public class ItemSlotArea extends InventorySlotArea {
         item = delegate.getItemOnCursor();
 
         if (item != null) {
-            if (mouseInFocus) {
+            if (isMouseInFocus()) {
                 if (itemGoesHere(item)) {
                     screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
                 } // if

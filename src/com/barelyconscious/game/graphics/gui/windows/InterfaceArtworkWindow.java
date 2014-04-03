@@ -48,8 +48,8 @@ public class InterfaceArtworkWindow extends Window {
         textLogOffsY = bottomLeftFrameOffsY;
         textLogWidth = bottomRightFrameOffsX - textLogOffsX;
 
-        windowOffsX = bottomLeftFrameOffsX;
-        windowOffsY = bottomLeftFrameOffsY;
+        setX(bottomLeftFrameOffsX);
+        setY(bottomLeftFrameOffsY);
     } // constructor
 
     /**
@@ -72,7 +72,7 @@ public class InterfaceArtworkWindow extends Window {
 
     /**
      * Reposition and resize the elements as the game application is resized.
-     * The left and right sides of the frame require their windowOffsX and windowOffsY coordinates
+     * The left and right sides of the frame require their getX() and getY() coordinates
      * to be redetermined and from these values should be derived the width of
      * the text log.
      *
@@ -88,7 +88,7 @@ public class InterfaceArtworkWindow extends Window {
         textLogOffsY = bottomLeftFrameOffsY;
         textLogWidth = bottomRightFrameOffsX - textLogOffsX;
 
-        windowOffsY = bottomLeftFrameOffsY;
+        setY(bottomLeftFrameOffsY);
     } // resize
     
     public int getTextLogOffsX() {

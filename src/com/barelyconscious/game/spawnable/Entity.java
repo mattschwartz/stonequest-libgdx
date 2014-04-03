@@ -15,8 +15,8 @@
  **************************************************************************** */
 package com.barelyconscious.game.spawnable;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
 import com.barelyconscious.game.item.Equippable;
@@ -429,7 +429,7 @@ public class Entity extends Sprite {
      */
     @Override
     public void render(Screen screen, int xOffs, int yOffs) {
-        setVisible(Game.world.isTileLit(x, y));
+        setVisible(World.INSTANCE.isTileLit(x, y));
         super.render(screen, xOffs, yOffs);
 
         if (!isVisible) {
@@ -455,8 +455,8 @@ public class Entity extends Sprite {
     public void moveUp() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x, y - 1)) {
-            sprite = Game.getWorld().getSpriteAt(x, y - 1);
+        if (hasCollision && !World.INSTANCE.canMove(x, y - 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x, y - 1);
 
             if (sprite != null) {
                 interact(sprite);
@@ -474,8 +474,8 @@ public class Entity extends Sprite {
     public void moveDown() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x, y + 1)) {
-            sprite = Game.getWorld().getSpriteAt(x, y + 1);
+        if (hasCollision && !World.INSTANCE.canMove(x, y + 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x, y + 1);
 
             if (sprite != null) {
                 interact(sprite);
@@ -493,8 +493,8 @@ public class Entity extends Sprite {
     public void moveLeft() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x - 1, y)) {
-            sprite = Game.getWorld().getSpriteAt(x - 1, y);
+        if (hasCollision && !World.INSTANCE.canMove(x - 1, y)) {
+            sprite = World.INSTANCE.getSpriteAt(x - 1, y);
 
             if (sprite != null) {
                 interact(sprite);
@@ -512,8 +512,8 @@ public class Entity extends Sprite {
     public void moveRight() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x + 1, y)) {
-            sprite = Game.getWorld().getSpriteAt(x + 1, y);
+        if (hasCollision && !World.INSTANCE.canMove(x + 1, y)) {
+            sprite = World.INSTANCE.getSpriteAt(x + 1, y);
 
             if (sprite != null) {
                 interact(sprite);
@@ -531,8 +531,8 @@ public class Entity extends Sprite {
     public void moveUpLeft() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x - 1, y - 1)) {
-            sprite = Game.getWorld().getSpriteAt(x - 1, y - 1);
+        if (hasCollision && !World.INSTANCE.canMove(x - 1, y - 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x - 1, y - 1);
 
             if (sprite != null) {
                 interact(sprite);
@@ -551,8 +551,8 @@ public class Entity extends Sprite {
     public void moveUpRight() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x + 1, y - 1)) {
-            sprite = Game.getWorld().getSpriteAt(x + 1, y - 1);
+        if (hasCollision && !World.INSTANCE.canMove(x + 1, y - 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x + 1, y - 1);
 
             if (sprite != null) {
                 interact(sprite);
@@ -571,8 +571,8 @@ public class Entity extends Sprite {
     public void moveDownLeft() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x - 1, y + 1)) {
-            sprite = Game.getWorld().getSpriteAt(x - 1, y + 1);
+        if (hasCollision && !World.INSTANCE.canMove(x - 1, y + 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x - 1, y + 1);
 
             if (sprite != null) {
                 interact(sprite);
@@ -591,8 +591,8 @@ public class Entity extends Sprite {
     public void moveDownRight() {
         Sprite sprite;
 
-        if (hasCollision && !Game.getWorld().canMove(x + 1, y + 1)) {
-            sprite = Game.getWorld().getSpriteAt(x + 1, y + 1);
+        if (hasCollision && !World.INSTANCE.canMove(x + 1, y + 1)) {
+            sprite = World.INSTANCE.getSpriteAt(x + 1, y + 1);
 
             if (sprite != null) {
                 interact(sprite);
