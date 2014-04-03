@@ -1,0 +1,133 @@
+/* *****************************************************************************
+ *   Project:        StoneQuest
+ *   File name:      ItemSlotArea.java
+ *   Author:         Matt Schwartz
+ *   Date:           12.14.2013
+ *   License:        You are free to use, reuse, and edit any of the text in
+ *                   this file.  You are not allowed to take credit for code
+ *                   that was not written fully by yourself, or to remove 
+ *                   credit from code that was not written fully by yourself.  
+ *                   Please email mattschwartz@utexas.edu for issues or concerns.
+ *   Description:    
+ **************************************************************************** */
+package com.barelyconscious.game.graphics.gui;
+
+import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
+import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.item.Item;
+import com.barelyconscious.util.ColorHelper;
+import java.awt.Color;
+
+public class ItemSlotArea extends InventorySlotArea {
+
+    private Item slottedItem;
+
+    public ItemSlotArea() {
+        delegate = InterfaceDelegate.getInstance();
+
+        width = ITEM_SLOT_BACKGROUND.getWidth();
+        height = ITEM_SLOT_BACKGROUND.getHeight();
+
+        super.setRegion(x, y, width, height);
+        super.addMouseListener(Interactable.Z_TEXT_AREA);
+    } // constructor
+
+    @Override
+    public boolean itemGoesHere(Item item) {
+        return true;
+    } // itemGoesHere
+
+    @Override
+    public Item getItem() {
+        return slottedItem;
+    } // getItem
+
+    @Override
+    public Item setItem(Item item) {
+        Item oldItem = slottedItem;
+
+        slottedItem = item;
+
+        return oldItem;
+    } // setItem
+
+    public void onHide() {
+        delegate.getPlayerInventory().addItem(removeItem());
+    } // onHide
+
+    @Override
+    public Item removeItem() {
+        Item oldItem = slottedItem;
+        slottedItem = null;
+        return oldItem;
+    } // removeItem
+
+    @Override
+    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+        Item item, cursorItem;
+
+        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+            if (stackItem()) {
+                return;
+            } // if
+
+            cursorItem = delegate.getItemOnCursor();
+
+            if (cursorItem != null) {
+                if (itemGoesHere(cursorItem)) {
+                    item = removeItem();
+                    delegate.putItemOnCursor(item);
+                    setItem(cursorItem);
+                } // if
+            } // if
+            else {
+                item = removeItem();
+                delegate.putItemOnCursor(item);
+            } // else
+        } // else
+        else {
+            item = getItem();
+            if (delegate.getPlayerInventory().addItem(item)) {
+                removeItem();
+            } // if
+        } // else
+    } // mouseClicked
+
+    @Override
+    public void render(Screen screen) {
+        String stack;
+        Item item = getItem();
+
+        if (item != null) {
+            item.render(screen, x, y);
+
+            if (item.getStackSize() > 1) {
+                stack = "" + item.getStackSize();
+                screen.fillTransluscentRectangle(x + width - Font.getStringWidth(screen, stack) - 2, y + height - Font.CHAR_HEIGHT + 3, Font.getStringWidth(screen, stack), Font.CHAR_HEIGHT - 5);
+                Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
+            } // if
+
+            if (mouseInFocus) {
+                screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+            } // if
+        } // if
+        else {
+            ITEM_SLOT_BACKGROUND.render(screen, x, y);
+        } // else
+
+        item = delegate.getItemOnCursor();
+
+        if (item != null) {
+            if (mouseInFocus) {
+                if (itemGoesHere(item)) {
+                    screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+                } // if
+                else {
+                    screen.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, width, height);
+                }
+            } // if
+        } // if 
+    } // render
+} // ItemSlotArea
