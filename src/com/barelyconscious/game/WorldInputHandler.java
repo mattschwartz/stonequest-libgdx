@@ -56,8 +56,8 @@ public class WorldInputHandler extends Interactable {
 
         super.mouseClicked(buttonClicked, clickCount, x, y);
 
-        x = mouseX / Screen.TILE_SIZE - world.getTileOffsX();
-        y = mouseY / Screen.TILE_SIZE - world.getTileOffsY();
+        x = getMouseX() / Screen.TILE_SIZE - world.getTileOffsX();
+        y = getMouseY() / Screen.TILE_SIZE - world.getTileOffsY();
 
         if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
             if ((sprite = world.getSpriteAt(x, y)) != null) {
@@ -120,14 +120,14 @@ public class WorldInputHandler extends Interactable {
         Tile tile;
         Sprite sprite;
 
-        if (!mouseInFocus) {
+        if (!isMouseInFocus()) {
             return;
         } // if
 
-        x = mouseX - (mouseX % Screen.TILE_SIZE);
-        y = mouseY - (mouseY % Screen.TILE_SIZE);
+        x = getMouseX() - (getMouseX() % Screen.TILE_SIZE);
+        y = getMouseY() - (getMouseY() % Screen.TILE_SIZE);
 
-        sprite = world.getSpriteAt(mouseX / Screen.TILE_SIZE - world.getTileOffsX(), mouseY / Screen.TILE_SIZE - world.getTileOffsY());
+        sprite = world.getSpriteAt(getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
 
         if (sprite != null) {
             if (sprite instanceof Player) {
@@ -159,7 +159,7 @@ public class WorldInputHandler extends Interactable {
             return;
         } // if
 
-        tile = world.getTileAt(mouseX / Screen.TILE_SIZE - world.getTileOffsX(), mouseY / Screen.TILE_SIZE - world.getTileOffsY());
+        tile = world.getTileAt(getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
 
         if (tile != null) {
             if (tile.hasCollision()) {

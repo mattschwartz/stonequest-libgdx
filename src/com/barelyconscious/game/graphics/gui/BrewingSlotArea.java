@@ -17,6 +17,7 @@ import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Cauldron;
+import java.awt.event.MouseEvent;
 
 public class BrewingSlotArea extends ItemSlotArea {
 
@@ -79,10 +80,10 @@ public class BrewingSlotArea extends ItemSlotArea {
     } // removeItem
 
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+    public void mouseClicked(MouseEvent e) {
         Item item, cursorItem;
 
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             if (stackItem()) {
                 return;
             } // if

@@ -44,11 +44,11 @@ public class QuestButton extends Button {
             renderSelected(screen);
         } // if
 
-        if (mouseInFocus || buttonSelected) {
+        if (isMouseInFocus() || buttonSelected) {
             renderHighlighted(screen);
         } // if
         else {
-            if (enabled) {
+            if (isEnabled()) {
                 QUEST_BUTTON_BACKGROUND.render(screen, x, y);
             } // if
             else {
@@ -73,7 +73,7 @@ public class QuestButton extends Button {
         int questNumberOffsX;
         int questNumberOffsY = y + (height) / 2 + 9;
 
-        if (enabled) {
+        if (isEnabled()) {
             if (buttonSelected) {
                 questNumberOffsX = x + (width - Font.getStringWidth(screen, title, true, QUEST_NUMBER_FONT_SIZE)) / 2;
                 Font.drawFont(screen, title, QUEST_NUMBER_SELECTED_COLOR, true, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);

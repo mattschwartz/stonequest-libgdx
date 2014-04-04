@@ -35,7 +35,7 @@ public class SewerRatEntity extends Entity {
         super.setHealth(10f * (level * 0.76f));
         minimumDamage *= 1 + (level * 1.05);
         maximumDamage *= 1 + (level * 1.55);
-        world = Game.getWorld();
+        world = World.INSTANCE;
     } // constructor
 
     @Override

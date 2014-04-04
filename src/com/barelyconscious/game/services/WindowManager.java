@@ -14,6 +14,7 @@
 
 package com.barelyconscious.game.services;
 
+import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.BrewingWindow;
 import com.barelyconscious.game.graphics.gui.windows.CharacterWindow;
 import com.barelyconscious.game.graphics.gui.windows.InventoryWindow;
@@ -34,6 +35,14 @@ public class WindowManager implements Service {
     public static final JournalWindow JOURNAL_WINDOW = new JournalWindow();
     public static final SalvageWindow SALVAGE_WINDOW = new SalvageWindow();
     public static final UpgradeItemWindow UPGRADE_ITEM_WINDOW = new UpgradeItemWindow();
+    // Buttons
+    public static final UIElement INTERFACE_WINDOW_CLOSE_BUTTON = UIElement.createUIElement("/gfx/gui/components/button/closeWindowButton.png");
+    public static final UIElement UPGRADE_ITEM_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/upgradeItem/upgradeItemButton.png");
+    public static final UIElement INVENTORY_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/inventory/inventoryButton.png");
+    public static final UIElement CHARACTER_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/character/characterButton.png");
+    public static final UIElement BREWING_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/brewing/brewingButton.png");
+    public static final UIElement JOURNAL_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/journal/journalButton.png");
+    public static final UIElement SALVAGE_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/salvage/salvageButton.png");
 
     private WindowManager() {
         if (INSTANCE != null) {

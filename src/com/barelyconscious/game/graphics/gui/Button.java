@@ -12,13 +12,13 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.Font;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Button extends Interactable implements Component {
@@ -51,7 +51,7 @@ public class Button extends Interactable implements Component {
      * @param startY the y starting location of the button
      */
     public Button(String title, int startX, int startY, boolean hasBorder) {
-        this(title, startX, startY, Font.getStringWidth(Game.screen, title) + MARGIN * 2, -1, hasBorder);
+        this(title, startX, startY, 50, 25, hasBorder);
     } // constructor
 
     /**
@@ -63,7 +63,7 @@ public class Button extends Interactable implements Component {
      * @param hasBorder
      */
     public Button(ButtonAction callback, String title, int zLevel, int startX, int startY, boolean hasBorder) {
-        this(title, zLevel, startX, startY, Font.getStringWidth(Game.screen, title) + MARGIN * 2, -1, hasBorder);
+        this(title, zLevel, startX, startY, 50, 25, hasBorder);
         callbackFunction = callback;
     } // constructor
 
@@ -94,7 +94,8 @@ public class Button extends Interactable implements Component {
 
         this.title = title;
 
-        titleOffsX = x + MARGIN + (width - MARGIN * 2 - Font.getStringWidth(Game.screen, title)) / 2;
+        // Find a better way to do this
+//        titleOffsX = x + MARGIN + (width - MARGIN * 2 - Font.getStringWidth(Game.screen, title)) / 2;
         titleOffsY = y + Font.CHAR_HEIGHT;
 
         this.hasBorder = hasBorder;
@@ -140,48 +141,19 @@ public class Button extends Interactable implements Component {
     } // setEnabled
 
     @Override
-    public void mouseMoved(int x, int y) {
-        if (!enabled) {
+    public void mouseClicked(MouseEvent e) {
+        if (!isEnabled()) {
             return;
         } // if
 
-        super.mouseMoved(x, y); //To change body of generated methods, choose Tools | Templates.
-    } // mouseMoved
-
-    @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
-        if (!enabled) {
-            return;
-        } // if
-
-        super.mouseClicked(buttonClicked, clickCount, x, y);
-
-        if (callbackFunction != null && buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        if (callbackFunction != null && e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             callbackFunction.action(this);
         } // if
     } // mouseClicked
 
     @Override
-    public void mousePressed() {
-        if (!enabled) {
-            return;
-        } // if
-
-        super.mousePressed();
-    } // mousePressed
-
-    @Override
-    public void mouseReleased() {
-        if (!enabled) {
-            return;
-        } // if
-
-        super.mouseReleased();
-    } // mouseReleased
-
-    @Override
     public void mouseEntered() {
-        if (!enabled) {
+        if (!isEnabled()) {
             return;
         } // if
 
@@ -194,7 +166,7 @@ public class Button extends Interactable implements Component {
 
     @Override
     public void mouseExited() {
-        if (!enabled) {
+        if (!isEnabled()) {
             return;
         } // if
 
@@ -271,12 +243,12 @@ public class Button extends Interactable implements Component {
         int xOffs = x;
         int yOffs = y;
 
-        if (mouseInFocus) {
+        if (isMouseInFocus()) {
             renderHighlighted(screen);
             return;
         } // if
 
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             xOffs++;
             yOffs++;
         } // if
@@ -305,7 +277,7 @@ public class Button extends Interactable implements Component {
         int xOffs = x;
         int yOffs = y;
 
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             xOffs++;
             yOffs++;
         } // if
@@ -331,7 +303,7 @@ public class Button extends Interactable implements Component {
         int offsX = titleOffsX;
         int offsY = titleOffsY;
 
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             offsX++;
             offsY++;
             Font.drawFont(screen, title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, offsX, offsY);
@@ -345,7 +317,7 @@ public class Button extends Interactable implements Component {
         int xOffs = x;
         int yOffs = y;
 
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             xOffs++;
             yOffs++;
             screen.drawLine(borderShadowColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);

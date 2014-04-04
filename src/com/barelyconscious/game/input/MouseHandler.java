@@ -26,7 +26,8 @@ import java.util.TreeMap;
 
 public class MouseHandler implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-    private int mouseX, mouseY;
+    private int mouseX;
+    private int mouseY;
     private SortedMap<Integer, List<Interactable>> interactableObjects = new TreeMap<Integer, List<Interactable>>();
 
     public void addInteractable(Interactable interactableObject, int zLevel) {
@@ -82,7 +83,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
                         interactable.mouseEntered();
                     } // if
 
-                    interactable.mouseClicked(e.getButton(), e.getClickCount(), e.getX(), e.getY());
+                    interactable.mouseClicked(e);
                     return;
                 } // if
             } // for
@@ -108,7 +109,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
                         interactable.mouseEntered();
                     } // if
 
-                    interactable.mousePressed();
+                    interactable.mousePressed(e);
 //                    return;
                     found = true;
                 } // if
@@ -132,7 +133,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
                     continue;
                 } // if
 
-                interactable.mouseReleased();
+                interactable.mouseReleased(e);
 
                 if (interactable.contains(e.getX(), e.getY())) {
                     if (interactable.isMouseInFocus()) {
@@ -174,7 +175,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
                             interactable.mouseEntered();
                         } // if
 
-                        interactable.mouseMoved(e.getX(), e.getY());
+                        interactable.mouseMoved(e);
 
                     found = true;
                     } // if
@@ -207,7 +208,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
                         interactable.mouseEntered();
                     } // if
 
-                    interactable.mouseDragged(e.getX(), e.getY());
+                    interactable.mouseDragged(e);
 
                     found = true;
                 } // if

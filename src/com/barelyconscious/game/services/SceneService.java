@@ -23,14 +23,24 @@
  ************************************************************************** */
 package com.barelyconscious.game.services;
 
+import com.barelyconscious.game.file.FileHandler;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.graphics.WelcomeView;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.graphics.gui.Cursors;
+import java.awt.AWTException;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class SceneService extends JFrame implements Service {
@@ -50,6 +60,40 @@ public class SceneService extends JFrame implements Service {
             throw new IllegalStateException("Only one Scene may exist during runtime.");
         } // if
     } // constructor
+    
+    public void saveScreenshot() {
+        String hour, minute, second, day, month, year;
+        String date;
+        File file = FileHandler.INSTANCE.getScreenshotDir();
+        Robot robot;
+        Rectangle bounds = new Rectangle();
+        BufferedImage capture;
+        Calendar cal = Calendar.getInstance();
+
+        hour = cal.get(Calendar.HOUR_OF_DAY) < 10 ? "0" + cal.get(Calendar.HOUR_OF_DAY) : "" + cal.get(Calendar.HOUR_OF_DAY);
+        minute = cal.get(Calendar.MINUTE) < 10 ? "0" + cal.get(Calendar.MINUTE) : "" + cal.get(Calendar.MINUTE);
+        second = cal.get(Calendar.SECOND) < 10 ? "0" + cal.get(Calendar.SECOND) : "" + cal.get(Calendar.SECOND);
+        month = (cal.get(Calendar.MONTH) + 1) < 10 ? "0" + (cal.get(Calendar.MONTH) + 1) : "" + (cal.get(Calendar.MONTH) + 1);
+        day = cal.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + cal.get(Calendar.DAY_OF_MONTH) : "" + cal.get(Calendar.DAY_OF_MONTH);
+        year = "" + cal.get(Calendar.YEAR);
+
+        date = day + month + year + "_" + hour + minute + second;
+
+        file = new File(file.getAbsolutePath() + FileHandler.delimiter + "screenshot" + date + ".png");
+
+        System.err.println(" [NOTIFY] Saving screenshot at '" + file.getAbsolutePath() + "'.");
+
+        try {
+            robot = new Robot();
+            bounds.setBounds(getLocationOnScreen().x, getLocationOnScreen().y, getWidth(), getHeight());
+            capture = robot.createScreenCapture(bounds);
+            ImageIO.write(capture, "png", file);
+        } catch (IOException ex) {
+            System.err.println("Error: " + ex);
+        } catch (AWTException ex) {
+            System.err.println("Error: " + ex);
+        } // try-catch
+    } // saveScreenshot
 
     /**
      * Changes the current View to <code>view</code> which must be non-null. The
@@ -74,6 +118,10 @@ public class SceneService extends JFrame implements Service {
     public View getView() {
         return view;
     } // getView
+    
+    public Graphics2D getCurrentGraphics() {
+        return view.getGraphics();
+    } // getCurrentGraphics
 
     /**
      * The height of a View is used for relative positioning of elements and

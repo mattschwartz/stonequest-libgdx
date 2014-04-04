@@ -29,10 +29,10 @@ public class CloseWindowButton extends Button {
 
     @Override
     public void render(Screen screen) {
-        if (mouseButtonDown) {
+        if (isMouseButtonDown()) {
             renderMouseButtonDown(screen);
         } // if
-        else if (mouseInFocus) {
+        else if (isMouseInFocus()) {
             buttonImage.renderHighlighted(screen, x, y);
         } // else if
         else {

@@ -13,10 +13,12 @@
 
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
+import com.barelyconscious.game.services.InputHandler;
+import com.barelyconscious.game.services.SceneService;
+import java.awt.event.MouseEvent;
 
 public class ItemDraggable extends Interactable implements Component {
     private final int ITEM_WIDTH = 47;
@@ -54,15 +56,14 @@ public class ItemDraggable extends Interactable implements Component {
      * place it.
      */
     @Override
-    public void mouseReleased() {
-        super.mouseReleased(); //To change body of generated methods, choose Tools | Templates.
+    public void mouseReleased(MouseEvent e) {
     } // mouseReleased
 
     @Override
     public void render(Screen screen) {
         int x, y;
-        x = Math.max(0, Math.min(Game.getGameWidth() - ITEM_WIDTH, Game.mouseHandler.getMouseX()));
-        y = Math.max(0, Math.min(Game.getGameHeight() - ITEM_HEIGHT, Game.mouseHandler.getMouseY()));
+        x = Math.max(0, Math.min(SceneService.INSTANCE.getWidth() - ITEM_WIDTH, InputHandler.INSTANCE.getMouseX()));
+        y = Math.max(0, Math.min(SceneService.INSTANCE.getHeight()- ITEM_HEIGHT, InputHandler.INSTANCE.getMouseY()));
         
         screen.fillTransluscentRectangle(x + 5, y + 5, ITEM_WIDTH, ITEM_HEIGHT);
         

@@ -49,12 +49,20 @@ public class Window extends Interactable implements Component {
     public void hide() {
         isVisible = false;
     } // hide
+    
+    public boolean isVisible() {
+        return isVisible;
+    } // isVisible
+    
+    public void setVisible(boolean isVisible) {
+        this.isVisible = isVisible;
+    } // setVisible
 
     @Override
     public int getX() {
         return windowOffsX;
     } // getX
-
+    
     @Override
     public int getY() {
         return windowOffsY;
@@ -74,11 +82,19 @@ public class Window extends Interactable implements Component {
     public int getWidth() {
         return width;
     } // getWidth
+    
+    public void setWidth(int newWidth) {
+        this.width = newWidth;
+    } // setWidth
 
     @Override
     public int getHeight() {
         return height;
     } // getHeight
+    
+    public void setHeight(int newHeight) {
+        this.height = newHeight;
+    } // setHeight
 
     /**
      * Renders the Window to the screen. This method does nothing and should be

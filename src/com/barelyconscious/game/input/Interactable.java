@@ -14,8 +14,9 @@
  **************************************************************************** */
 package com.barelyconscious.game.input;
 
-import com.barelyconscious.game.Game;
+import com.barelyconscious.game.services.InputHandler;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 
 public class Interactable {
 
@@ -29,13 +30,11 @@ public class Interactable {
     public static final int Z_BACKGROUND = 6;
     public static final int Z_WORLD = Integer.MAX_VALUE;
     // Button clicks
-    public static final int MOUSE_LEFT_CLICK = 1;
-    public static final int MOUSE_MIDDLE_CLICK = 1;
-    public static final int MOUSE_RIGHT_CLICK = 3;
+    public static final int MOUSE_LEFT_CLICK = MouseEvent.BUTTON1;
+    public static final int MOUSE_MIDDLE_CLICK = MouseEvent.BUTTON2;
+    public static final int MOUSE_RIGHT_CLICK = MouseEvent.BUTTON3;
     private boolean mouseInFocus = false;
     private boolean mouseButtonDown = false;
-    private int mouseX;
-    private int mouseY;
     private Rectangle region;
     private boolean enabled;
 
@@ -65,12 +64,12 @@ public class Interactable {
     } // isMouseButtonDown
 
     public void addMouseListener(int zLevel) {
-        Game.mouseHandler.addInteractable(this, zLevel);
+        InputHandler.INSTANCE.addMouseListener(this, zLevel);
         enabled = true;
     } // addMouseListener
 
     public void removeMouseListener() {
-        Game.mouseHandler.removeInteractable(this);
+        InputHandler.INSTANCE.removeMouseListener(this);
         enabled = false;
     } // removeMouseListener
 
@@ -107,27 +106,20 @@ public class Interactable {
         mouseButtonDown = false;
     } // mouseExited
 
-    public void mouseMoved(int x, int y) {
-        mouseX = x;
-        mouseY = y;
+    public void mouseMoved(MouseEvent e) {
     } // mouseMoved
 
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
-        mouseX = x;
-        mouseY = y;
+    public void mouseClicked(MouseEvent e) {
     } // mouseClicked
 
-    public void mousePressed() {
+    public void mousePressed(MouseEvent e) {
         mouseButtonDown = true;
     } // mousePressed
 
-    public void mouseReleased() {
-        mouseButtonDown = false;
+    public void mouseReleased(MouseEvent e) {
     } // mouseReleased
 
-    public void mouseDragged(int x, int y) {
-        mouseX = x;
-        mouseY = y;
+    public void mouseDragged(MouseEvent e) {
     } // mouseDragged
 
     public void mouseWheelUp() {
