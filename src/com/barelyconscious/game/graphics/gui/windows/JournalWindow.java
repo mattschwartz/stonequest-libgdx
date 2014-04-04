@@ -13,6 +13,7 @@
 package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.Font;
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
@@ -26,9 +27,11 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Journal;
 import com.barelyconscious.game.player.JournalEntry;
+import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.StringHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 public class JournalWindow extends Window implements ButtonAction {
 
@@ -64,12 +67,12 @@ public class JournalWindow extends Window implements ButtonAction {
     private ItemSlotArea[] itemRewards;
 
     public JournalWindow() {
-        width = JOURNAL_WINDOW_BACKGROUND.getWidth();
-        height = JOURNAL_WINDOW_BACKGROUND.getHeight();
+        setWidth(JOURNAL_WINDOW_BACKGROUND.getWidth());
+        setHeight(JOURNAL_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
 
-        questDescriptionTextArea = new TextArea(windowOffsX + QUEST_DESCRIPTION_OFFS_X, windowOffsY + QUEST_DESCRIPTION_OFFS_Y, QUEST_DESCRIPTION_WIDTH, QUEST_DESCRIPTION_HEIGHT);
+        questDescriptionTextArea = new TextArea(getX() + QUEST_DESCRIPTION_OFFS_X, getY() + QUEST_DESCRIPTION_OFFS_Y, QUEST_DESCRIPTION_WIDTH, QUEST_DESCRIPTION_HEIGHT);
 
         itemRewards = new ItemSlotArea[5];
         
@@ -77,11 +80,11 @@ public class JournalWindow extends Window implements ButtonAction {
         resizeQuestButtons();
         createItemRewardSlots();
 
-        journal = InterfaceDelegate.getInstance().getPlayer().journal;
+        journal = World.INSTANCE.getPlayer().journal;
         // Disable all buttons when the window is not visible
         setComponentsEnabled(false);
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
@@ -108,8 +111,8 @@ public class JournalWindow extends Window implements ButtonAction {
 
         for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 5; x++) {
-                questButtons[i].setX(windowOffsX + QUEST_NUMBER_BUTTON_OFFS_X + questButtonStepX * x);
-                questButtons[i].setY(windowOffsY + QUEST_NUMBER_BUTTON_OFFS_Y + questButtonStepY * y);
+                questButtons[i].setX(getX() + QUEST_NUMBER_BUTTON_OFFS_X + questButtonStepX * x);
+                questButtons[i].setY(getY() + QUEST_NUMBER_BUTTON_OFFS_Y + questButtonStepY * y);
                 i++;
             } // for
         } // for
@@ -120,7 +123,7 @@ public class JournalWindow extends Window implements ButtonAction {
             itemRewards[i] = new ItemSlotArea() {
 
                 @Override
-                public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+                public void mouseClicked(MouseEvent e) {
                 } // mouseClicked
                 
             };
@@ -155,18 +158,18 @@ public class JournalWindow extends Window implements ButtonAction {
     /**
      * Resize elements as necessary when the application is resized.
      *
-     * @param artworkWindowOffsX the new windowOffsX position of the artwork
+     * @param artworkWindowOffsX the new getX() position of the artwork
      * interface window
-     * @param artworkWindowOffsY the new windowOffsY position of the artwork
+     * @param artworkWindowOffsY the new getY() position of the artwork
      * interface window
-     * @param windowButtonX the new windowOffsX position of the upgrade item
+     * @param windowButtonX the new getX() position of the upgrade item
      * window's button
-     * @param windowButtonY the new windowOffsY position of the upgrade item
+     * @param windowButtonY the new getY() position of the upgrade item
      * window's button
      */
     public void resize(int artworkWindowOffsX, int artworkWindowOffsY, int windowButtonX, int windowButtonY) {
-        windowOffsX = artworkWindowOffsX;
-        windowOffsY = artworkWindowOffsY - JOURNAL_WINDOW_BACKGROUND.getHeight();
+        setX(artworkWindowOffsX);
+        setY(artworkWindowOffsY - JOURNAL_WINDOW_BACKGROUND.getHeight());
 
         /* Relocate (if necessary) the button in the interface which toggles the 
          * showing of the Upgrade Item window */
@@ -174,15 +177,15 @@ public class JournalWindow extends Window implements ButtonAction {
         windowButton.setY(windowButtonY);
 
         // Relocate all other buttons as necessary
-        resizeButtons(windowOffsX, windowOffsY);
+        resizeButtons(getX(), getY());
 
         // Relocate text logs as necessary
-        questDescriptionTextArea.resize(windowOffsX + QUEST_DESCRIPTION_OFFS_X, windowOffsY + QUEST_DESCRIPTION_OFFS_Y);
+        questDescriptionTextArea.resize(getX() + QUEST_DESCRIPTION_OFFS_X, getY() + QUEST_DESCRIPTION_OFFS_Y);
 
         // Relocate quest select buttons
         resizeQuestButtons();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
     } // resize
 
     /**
@@ -190,9 +193,9 @@ public class JournalWindow extends Window implements ButtonAction {
      * inner buttons may need to be shifted accordingly so that the interface
      * maintains a complete image.
      *
-     * @param windowOffsX the new windowOffsX coordinate of the starting
+     * @param getX() the new getX() coordinate of the starting
      * location for the Upgrade Item window interface
-     * @param windowOffsY the new windowOffsY coordinate of the starting
+     * @param getY() the new getY() coordinate of the starting
      * location for the Upgrade Item window interface
      */
     private void resizeButtons(int windowOffsX, int windowOffsY) {
@@ -202,8 +205,8 @@ public class JournalWindow extends Window implements ButtonAction {
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().upgradeItemWindow.isVisible) {
-            InterfaceDelegate.getInstance().upgradeItemWindow.hide();
+        if (WindowManager.UPGRADE_ITEM_WINDOW.isVisible()) {
+            WindowManager.UPGRADE_ITEM_WINDOW.hide();
         } // if
 
         super.show();
@@ -246,20 +249,20 @@ public class JournalWindow extends Window implements ButtonAction {
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
         if (caller == windowButton) {
-            if (isVisible) {
-                InterfaceDelegate.getInstance().setTooltipText("Click to close\nyour Journal");
+            if (isVisible()) {
+                WindowManager.INSTANCE.setTooltipText("Click to close\nyour Journal");
             } // if
             else {
-                InterfaceDelegate.getInstance().setTooltipText("Click to view\nyour Journal");
+                WindowManager.INSTANCE.setTooltipText("Click to view\nyour Journal");
             } // else
         } // if
         else if (caller == closeWindowButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to close\nyour Journal");
+            WindowManager.INSTANCE.setTooltipText("Click to close\nyour Journal");
         } // else if
     } // hoverOverAction
 
@@ -267,15 +270,15 @@ public class JournalWindow extends Window implements ButtonAction {
     public void render(Screen screen) {
         windowButton.render(screen);
 
-        if (!isVisible) {
+        if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), windowOffsY);
+        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
 
-        JOURNAL_WINDOW_BACKGROUND.render(screen, windowOffsX, animationY);
+        JOURNAL_WINDOW_BACKGROUND.render(screen, getX(), animationY);
 
-        if (animationY == windowOffsY) {
+        if (animationY == getY()) {
             closeWindowButton.render(screen);
             questDescriptionTextArea.render(screen);
 
@@ -299,13 +302,13 @@ public class JournalWindow extends Window implements ButtonAction {
         } // if
 
         text = entry.getTitle();
-        textOffsX = windowOffsX + QUEST_TITLE_TEXT_OFFS_X + (QUEST_TITLE_WIDTH - Font.getStringWidth(screen, text)) / 2;
-        textOffsY = windowOffsY + QUEST_TITLE_TEXT_OFFS_Y + 18;
+        textOffsX = getX() + QUEST_TITLE_TEXT_OFFS_X + (QUEST_TITLE_WIDTH - Font.getStringWidth(screen, text)) / 2;
+        textOffsY = getY() + QUEST_TITLE_TEXT_OFFS_Y + 18;
         Font.drawFont(screen, text, Color.white, textOffsX, textOffsY);
 
         text = "" + StringHelper.formatNumber(entry.goldReward);
-        textOffsX = windowOffsX + QUEST_REWARD_GOLD_OFFS_X + QUEST_REWARD_GOLD_WIDTH - Font.getStringWidth(screen, text);
-        textOffsY = windowOffsY + QUEST_REWARD_GOLD_OFFS_Y + 15;
+        textOffsX = getX() + QUEST_REWARD_GOLD_OFFS_X + QUEST_REWARD_GOLD_WIDTH - Font.getStringWidth(screen, text);
+        textOffsY = getY() + QUEST_REWARD_GOLD_OFFS_Y + 15;
         Font.drawFont(screen, text, ColorHelper.PLAYER_GOLD_TEXT_COLOR, false, textOffsX, textOffsY);
 
         questDescriptionTextArea.setText(entry.getDescription());
@@ -320,8 +323,8 @@ public class JournalWindow extends Window implements ButtonAction {
             return;
         } // if
         
-        x = windowOffsX + QUEST_REWARD_ITEM_OFFS_X;
-        y = windowOffsY + QUEST_REWARD_ITEM_OFFS_Y;
+        x = getX() + QUEST_REWARD_ITEM_OFFS_X;
+        y = getY() + QUEST_REWARD_ITEM_OFFS_Y;
 
         for (Item reward : entry.rewards) {
             ITEM_REWARD_BORDER.render(screen, x - 4, y - 4);

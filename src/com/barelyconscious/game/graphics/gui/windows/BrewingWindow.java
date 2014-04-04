@@ -23,6 +23,7 @@ import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Cauldron;
+import com.barelyconscious.game.services.WindowManager;
 
 public class BrewingWindow extends Window implements ButtonAction {
 
@@ -51,7 +52,7 @@ public class BrewingWindow extends Window implements ButtonAction {
         setWidth(BREWING_WINDOW_BACKGROUND.getWidth());
         setHeight(BREWING_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
 
         brewPotionButton = new Button("Mix", getY() + MIX_BUTTON_OFFS_X, getY() + MIX_BUTTON_OFFS_Y, MIX_BUTTON_WIDTH, MIX_BUTTON_HEIGHT, true);
         brewPotionButton.setCallbackFunction(this);
@@ -83,7 +84,7 @@ public class BrewingWindow extends Window implements ButtonAction {
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
-        closeWindowButton.setX(getX() + BREWING_WINDOW_BACKGROUND.getWidth() - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 19);
+        closeWindowButton.setX(getX() + BREWING_WINDOW_BACKGROUND.getWidth() - WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 19);
         closeWindowButton.setY(getY() + 10);
 
         brewPotionButton.setX(getX() + MIX_BUTTON_OFFS_X);
@@ -165,23 +166,23 @@ public class BrewingWindow extends Window implements ButtonAction {
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
         if (caller == windowButton) {
             if (isVisible()) {
-                InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Brewing\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to close\nthe Brewing\nWindow");
             } // if
             else {
-                InterfaceDelegate.getInstance().setTooltipText("Click to open\nthe Brewing\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to open\nthe Brewing\nWindow");
             } // else
         } // if
         else if (caller == closeWindowButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Brewing\nWindow");
+            WindowManager.INSTANCE.setTooltipText("Click to close\nthe Brewing\nWindow");
         } // else if
         else if (caller == brewPotionButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to mix the\ningredients into\na potion");
+            WindowManager.INSTANCE.setTooltipText("Click to mix the\ningredients into\na potion");
         } // else if
     } // hoverOverAction
 

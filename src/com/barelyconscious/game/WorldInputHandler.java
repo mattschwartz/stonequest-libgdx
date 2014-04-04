@@ -21,11 +21,13 @@ import com.barelyconscious.game.graphics.tiles.Tile;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.input.KeyMap;
 import com.barelyconscious.game.player.Player;
+import com.barelyconscious.game.services.InputHandler;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.game.spawnable.Loot;
 import com.barelyconscious.game.spawnable.Sprite;
 import com.barelyconscious.util.ColorHelper;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 public class WorldInputHandler extends Interactable {
 
@@ -45,21 +47,17 @@ public class WorldInputHandler extends Interactable {
      * When the user clicks the mouse, an action should be performed based on
      * where the mouse was clicked within the game world.
      *
-     * @param buttonClicked which button was clicked
-     * @param x the x coordinate of the mouse on the screen
-     * @param y the y coordinate of the mouse on the screen
+     * @param e The MouseEvent created when the user clicks the mouse
      */
     @Override
-    public void mouseClicked(int buttonClicked, int clickCount, int x, int y) {
+    public void mouseClicked(MouseEvent e) {
         Sprite sprite;
         Tile tile;
 
-        super.mouseClicked(buttonClicked, clickCount, x, y);
+        int x = e.getX() / Screen.TILE_SIZE - world.getTileOffsX();
+        int y = e.getY() / Screen.TILE_SIZE - world.getTileOffsY();
 
-        x = getMouseX() / Screen.TILE_SIZE - world.getTileOffsX();
-        y = getMouseY() / Screen.TILE_SIZE - world.getTileOffsY();
-
-        if (buttonClicked == Interactable.MOUSE_LEFT_CLICK) {
+        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
             if ((sprite = world.getSpriteAt(x, y)) != null) {
                 if (sprite instanceof Player) {
                     TextLog.INSTANCE.append("You twiddle your thumbs.");
@@ -74,7 +72,7 @@ public class WorldInputHandler extends Interactable {
             } // else
         } // if
         
-        else if (buttonClicked == Interactable.MOUSE_RIGHT_CLICK) {
+        else if (e.getButton() == Interactable.MOUSE_RIGHT_CLICK) {
             if ((sprite = world.getSpriteAt(x, y)) != null) {
                 TextLog.INSTANCE.append(sprite.getDescription());
             } // if
@@ -124,10 +122,13 @@ public class WorldInputHandler extends Interactable {
             return;
         } // if
 
-        x = getMouseX() - (getMouseX() % Screen.TILE_SIZE);
-        y = getMouseY() - (getMouseY() % Screen.TILE_SIZE);
+        x = InputHandler.INSTANCE.getMouseX();
+        y = InputHandler.INSTANCE.getMouseY();
+        
+        x = x - (x % Screen.TILE_SIZE);
+        y = y - (y % Screen.TILE_SIZE);
 
-        sprite = world.getSpriteAt(getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
+        sprite = world.getSpriteAt(InputHandler.INSTANCE.getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), InputHandler.INSTANCE.getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
 
         if (sprite != null) {
             if (sprite instanceof Player) {
@@ -159,7 +160,7 @@ public class WorldInputHandler extends Interactable {
             return;
         } // if
 
-        tile = world.getTileAt(getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
+        tile = world.getTileAt(InputHandler.INSTANCE.getMouseX() / Screen.TILE_SIZE - world.getTileOffsX(), InputHandler.INSTANCE.getMouseY() / Screen.TILE_SIZE - world.getTileOffsY());
 
         if (tile != null) {
             if (tile.hasCollision()) {

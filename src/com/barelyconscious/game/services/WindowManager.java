@@ -80,6 +80,12 @@ public class WindowManager implements Service {
     private void createWindowButtons() {
         
     } // createWindowButtons
+    
+    public void setTooltipText(String text) {
+    } // setTooltipText
+    
+    public void clearTooltipText() {
+    } // clearTooltipText
 
     @Override
     public void start() {

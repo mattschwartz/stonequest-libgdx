@@ -15,16 +15,8 @@
  **************************************************************************** */
 package com.barelyconscious.game.input;
 
-import com.barelyconscious.game.Game;
 import com.barelyconscious.game.World;
-import com.barelyconscious.game.graphics.gui.windows.BrewingWindow;
-import com.barelyconscious.game.graphics.gui.windows.CharacterWindow;
-import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
-import com.barelyconscious.game.graphics.gui.windows.InventoryWindow;
-import com.barelyconscious.game.graphics.gui.windows.JournalWindow;
-import com.barelyconscious.game.graphics.gui.windows.SalvageWindow;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
-import com.barelyconscious.game.graphics.gui.windows.UpgradeItemWindow;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import java.awt.event.KeyEvent;
@@ -120,43 +112,43 @@ public abstract class KeyMap {
     public static final KeyAction OPEN_INVENTORY_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.INVENTORY_WINDOW);
+            WindowManager.INVENTORY_WINDOW.toggleUI();
         }
     };
     public static final KeyAction OPEN_CHARACTER_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.CHARACTER_WINDOW);
+            WindowManager.CHARACTER_WINDOW.toggleUI();
         }
     };
     public static final KeyAction OPEN_UPGRADE_WEAPON_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.UPGRADE_ITEM_WINDOW);
+            WindowManager.UPGRADE_ITEM_WINDOW.toggleUI();
         }
     };
     public static final KeyAction OPEN_JOURNAL_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.JOURNAL_WINDOW);
+            WindowManager.JOURNAL_WINDOW.toggleUI();
         }
     };
     public static final KeyAction OPEN_SALVAGE_ITEM_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.SALVAGE_WINDOW);
+            WindowManager.SALVAGE_WINDOW.toggleUI();
         }
     };
     public static final KeyAction OPEN_BREWING_WINDOW = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().toggleUI(WindowManager.BREWING_WINDOW);
+            WindowManager.BREWING_WINDOW.toggleUI();
         }
     };
     public static final KeyAction ESCAPE_BUTTON = new KeyAction() {
         @Override
         public void action(KeyEvent e) {
-            InterfaceDelegate.getInstance().closeWindows();
+            WindowManager.INSTANCE.closeAllWindows();
         }
     };
     public static final KeyAction PRINT_SCREEN_BUTTON = new KeyAction() {

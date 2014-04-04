@@ -16,6 +16,7 @@ import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
+import com.barelyconscious.game.services.WindowManager;
 
 public class SalvageWindow extends Window implements ButtonAction {
 
@@ -41,17 +42,17 @@ public class SalvageWindow extends Window implements ButtonAction {
 
     @Override
     public void action(Button buttonPressed) {
-        InterfaceDelegate.getInstance().setSalvageActive(!InterfaceDelegate.getInstance().isSalvageActive);
+//        InterfaceDelegate.getInstance().setSalvageActive(!InterfaceDelegate.getInstance().isSalvageActive);
     } // action
 
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
-        InterfaceDelegate.getInstance().setTooltipText("Click to salvage\nan item");
+        WindowManager.INSTANCE.setTooltipText("Click to salvage\nan item");
     } // hoverOverAction
 
     @Override

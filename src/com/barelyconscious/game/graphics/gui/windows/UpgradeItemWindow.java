@@ -25,6 +25,7 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Augment;
 import com.barelyconscious.game.item.DivineFavor;
 import com.barelyconscious.game.item.Item;
+import com.barelyconscious.game.services.WindowManager;
 
 public class UpgradeItemWindow extends Window implements ButtonAction {
 
@@ -58,20 +59,20 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     private ProgressBar itemSalvageProgressBar;
 
     public UpgradeItemWindow() {
-        width = UPGRADE_ITEM_WINDOW_BACKGROUND.getWidth();
-        height = UPGRADE_ITEM_WINDOW_BACKGROUND.getHeight();
+        setWidth(UPGRADE_ITEM_WINDOW_BACKGROUND.getWidth());
+        setHeight(UPGRADE_ITEM_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
 
-        applySalvageButton = new Button("Apply", Interactable.Z_BUTTON, windowOffsX + 97, windowOffsY + 258, 111, 24, true);
-        applyAugmentationButton = new Button("Apply", Interactable.Z_BUTTON, windowOffsX + 97, windowOffsY + 325, 111, 24, true);
-        removeAugmentationButton = new Button("Remove", Interactable.Z_BUTTON, windowOffsX + 97, windowOffsY + 354, 111, 24, true);
-        performRitualButton = new Button("Perform Ritual", Interactable.Z_BUTTON, windowOffsX + 97, windowOffsY + 419, 159, 24, true);
+        applySalvageButton = new Button("Apply", Interactable.Z_BUTTON, getX() + 97, getY() + 258, 111, 24, true);
+        applyAugmentationButton = new Button("Apply", Interactable.Z_BUTTON, getX() + 97, getY() + 325, 111, 24, true);
+        removeAugmentationButton = new Button("Remove", Interactable.Z_BUTTON, getX() + 97, getY() + 354, 111, 24, true);
+        performRitualButton = new Button("Perform Ritual", Interactable.Z_BUTTON, getX() + 97, getY() + 419, 159, 24, true);
 
-        itemDescriptionTextArea = new JustifiedTextArea(windowOffsX + 105, windowOffsY + 116, ITEM_DESCRIPTION_WIDTH, ITEM_DESCRIPTION_HEIGHT);
-        divineFavorDescriptionTextArea = new JustifiedTextArea(windowOffsX + 37, windowOffsY + 478, DIVINE_FAVOR_DESCRIPTION_WIDTH, DIVINE_FAVOR_DESCRIPTION_HEIGHT);
+        itemDescriptionTextArea = new JustifiedTextArea(getX() + 105, getY() + 116, ITEM_DESCRIPTION_WIDTH, ITEM_DESCRIPTION_HEIGHT);
+        divineFavorDescriptionTextArea = new JustifiedTextArea(getX() + 37, getY() + 478, DIVINE_FAVOR_DESCRIPTION_WIDTH, DIVINE_FAVOR_DESCRIPTION_HEIGHT);
 
-        itemSalvageProgressBar = new ProgressBar(windowOffsX + 97, windowOffsY + 229, SALVAGE_PROGRESS_BAR_WIDTH);
+        itemSalvageProgressBar = new ProgressBar(getX() + 97, getY() + 229, SALVAGE_PROGRESS_BAR_WIDTH);
 
         // Disable all buttons when the window is not visible
         setComponentsEnabled(false);
@@ -81,7 +82,7 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
         // Set the callback functions for the buttons
         setCallbacks();
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
@@ -117,18 +118,18 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     /**
      * Resize elements as necessary when the application is resized.
      *
-     * @param artworkWindowOffsX the new windowOffsX position of the artwork
+     * @param artworkWindowOffsX the new getX() position of the artwork
      * interface window
-     * @param artworkWindowOffsY the new windowOffsY position of the artwork
+     * @param artworkWindowOffsY the new getY() position of the artwork
      * interface window
-     * @param windowButtonX the new windowOffsX position of the upgrade item
+     * @param windowButtonX the new getX() position of the upgrade item
      * window's button
-     * @param windowButtonY the new windowOffsY position of the upgrade item
+     * @param windowButtonY the new getY() position of the upgrade item
      * window's button
      */
     public void resize(int artworkWindowOffsX, int artworkWindowOffsY, int windowButtonX, int windowButtonY) {
-        windowOffsX = artworkWindowOffsX;
-        windowOffsY = artworkWindowOffsY - UPGRADE_ITEM_WINDOW_BACKGROUND.getHeight();
+        setX(artworkWindowOffsX);
+        setY(artworkWindowOffsY - UPGRADE_ITEM_WINDOW_BACKGROUND.getHeight());
 
         /* Relocate (if necessary) the button in the interface which toggles the 
          * showing of the Upgrade Item window */
@@ -136,16 +137,16 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
         windowButton.setY(windowButtonY);
 
         // Relocate all other buttons as necessary
-        resizeButtons(windowOffsX, windowOffsY);
+        resizeButtons(getX(), getY());
         resizeItemSlots();
 
         // Relocate text logs as necessary
-        itemDescriptionTextArea.resize(windowOffsX + 105, windowOffsY + 116);
-        divineFavorDescriptionTextArea.resize(windowOffsX + 37, windowOffsY + 478);
+        itemDescriptionTextArea.resize(getX() + 105, getY() + 116);
+        divineFavorDescriptionTextArea.resize(getX() + 37, getY() + 478);
 
-        itemSalvageProgressBar.resize(windowOffsX + 97, windowOffsY + 229);
+        itemSalvageProgressBar.resize(getX() + 97, getY() + 229);
 
-        super.setRegion(windowOffsX, windowOffsY, width, height);
+        super.setRegion(getX(), getY(), getWidth(), getHeight());
     } // resize
 
     /**
@@ -153,9 +154,9 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
      * inner buttons may need to be shifted accordingly so that the interface
      * maintains a complete image.
      *
-     * @param windowOffsX the new windowOffsX coordinate of the starting
+     * @param windowOffsX the new getX() coordinate of the starting
      * location for the Upgrade Item window interface
-     * @param windowOffsY the new windowOffsY coordinate of the starting
+     * @param windowOffsY the new getY() coordinate of the starting
      * location for the Upgrade Item window interface
      */
     private void resizeButtons(int windowOffsX, int windowOffsY) {
@@ -228,16 +229,16 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     } // createItemSlots
 
     private void resizeItemSlots() {
-        itemToUpgradeSlot.resize(windowOffsX + ITEM_TO_UPGRADE_OFFS_X, windowOffsY + ITEM_TO_UPGRADE_OFFS_Y);
-        salvageSlot.resize(windowOffsX + SALVAGE_OFFS_X, windowOffsY + SALVAGE_OFFS_Y);
-        itemAugmentSlot.resize(windowOffsX + ITEM_AUGMENT_OFFS_X, windowOffsY + ITEM_AUGMENT_OFFS_Y);
-        divineFavorSlot.resize(windowOffsX + DIVINE_FAVOR_OFFS_X, windowOffsY + DIVINE_FAVOR_OFFS_Y);
+        itemToUpgradeSlot.resize(getX() + ITEM_TO_UPGRADE_OFFS_X, getY() + ITEM_TO_UPGRADE_OFFS_Y);
+        salvageSlot.resize(getX() + SALVAGE_OFFS_X, getY() + SALVAGE_OFFS_Y);
+        itemAugmentSlot.resize(getX() + ITEM_AUGMENT_OFFS_X, getY() + ITEM_AUGMENT_OFFS_Y);
+        divineFavorSlot.resize(getX() + DIVINE_FAVOR_OFFS_X, getY() + DIVINE_FAVOR_OFFS_Y);
     } // resizeItemSlots
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().journalWindow.isVisible) {
-            InterfaceDelegate.getInstance().journalWindow.hide();
+        if (WindowManager.JOURNAL_WINDOW.isVisible()) {
+            WindowManager.JOURNAL_WINDOW.hide();
         } // if
 
         super.show();
@@ -284,32 +285,32 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
         if (caller == windowButton) {
-            if (isVisible) {
-                InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Upgrade\nItem Window");
+            if (isVisible()) {
+                WindowManager.INSTANCE.setTooltipText("Click to close\nthe Upgrade\nItem Window");
             } // if
             else {
-                InterfaceDelegate.getInstance().setTooltipText("Click to open\nthe Upgrade\nItem Window");
+                WindowManager.INSTANCE.setTooltipText("Click to open\nthe Upgrade\nItem Window");
             } // else
         } // if
         else if (caller == closeWindowButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Upgrade\nItem Window");
+            WindowManager.INSTANCE.setTooltipText("Click to close\nthe Upgrade\nItem Window");
         } // else if
         else if (caller == applySalvageButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Adds selected\nsalvage to the\nitem, improving\nit");
+            WindowManager.INSTANCE.setTooltipText("Adds selected\nsalvage to the\nitem, improving\nit");
         } // else if
         else if (caller == applyAugmentationButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Applies an\naugmentation\nto the item");
+            WindowManager.INSTANCE.setTooltipText("Applies an\naugmentation\nto the item");
         } // else if
         else if (caller == removeAugmentationButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Removes the\naugmentation\nfrom the item");
+            WindowManager.INSTANCE.setTooltipText("Removes the\naugmentation\nfrom the item");
         } // else if
         else if (caller == performRitualButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Performs a\nreligious ritual\nin the hopes of\ngaining divine\nfavor");
+            WindowManager.INSTANCE.setTooltipText("Performs a\nreligious ritual\nin the hopes of\ngaining divine\nfavor");
         } // else if
     } // hoverOverAction
 
@@ -339,15 +340,15 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     public void render(Screen screen) {
         windowButton.render(screen);
 
-        if (!isVisible) {
+        if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), windowOffsY);
+        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
 
-        UPGRADE_ITEM_WINDOW_BACKGROUND.render(screen, windowOffsX, animationY);
+        UPGRADE_ITEM_WINDOW_BACKGROUND.render(screen, getX(), animationY);
 
-        if (animationY == windowOffsY) {
+        if (animationY == getY()) {
             closeWindowButton.render(screen);
             applySalvageButton.render(screen);
             applyAugmentationButton.render(screen);

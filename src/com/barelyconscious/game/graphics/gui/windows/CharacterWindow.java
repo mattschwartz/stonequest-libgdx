@@ -15,6 +15,7 @@ package com.barelyconscious.game.graphics.gui.windows;
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
 import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.Font;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
@@ -23,6 +24,7 @@ import com.barelyconscious.game.graphics.gui.JustifiedTextArea;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.player.Player;
+import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.util.StringHelper;
 import com.barelyconscious.util.TextLogHelper;
@@ -89,11 +91,11 @@ public class CharacterWindow extends Window implements ButtonAction {
     private final Player player;
 
     public CharacterWindow() {
-        this.player = InterfaceDelegate.getInstance().getPlayer();
+        this.player = World.INSTANCE.getPlayer();
         setWidth(CHARACTER_WINDOW_BACKGROUND.getWidth());
         setHeight(CHARACTER_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
         detailedStatsTextArea = new JustifiedTextArea(getX() + 43, getY() + 409, 280, 166);
         attributeInformationTextArea = new TextArea(getX() + 43, getY() + 409, 280, 166);
 
@@ -137,7 +139,7 @@ public class CharacterWindow extends Window implements ButtonAction {
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
-        closeWindowButton.setX(gameWidth - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
+        closeWindowButton.setX(gameWidth - WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
         closeWindowButton.setY(getY() + 10);
 
         detailedStatsTextArea.resize(getX() + 43, getY() + 409);
@@ -290,8 +292,8 @@ public class CharacterWindow extends Window implements ButtonAction {
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().inventoryWindow.isVisible()) {
-            InterfaceDelegate.getInstance().inventoryWindow.hide();
+        if (WindowManager.INVENTORY_WINDOW.isVisible()) {
+            WindowManager.INVENTORY_WINDOW.hide();
         } // if
 
         super.show();
@@ -323,20 +325,20 @@ public class CharacterWindow extends Window implements ButtonAction {
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
         if (caller == windowButton) {
             if (isVisible()) {
-                InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Character\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to close\nthe Character\nWindow");
             } // if
             else {
-                InterfaceDelegate.getInstance().setTooltipText("Click to open\nthe Character\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to open\nthe Character\nWindow");
             } // else
         } // if
         else if (caller == closeWindowButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Character\nWindow");
+            WindowManager.INSTANCE.setTooltipText("Click to close\nthe Character\nWindow");
         } // else if
     } // hoverOverAction
 

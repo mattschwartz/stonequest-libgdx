@@ -15,6 +15,7 @@ package com.barelyconscious.game.graphics.gui.windows;
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
 import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.Font;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
@@ -22,6 +23,7 @@ import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.graphics.gui.EquipmentSlotArea;
 import com.barelyconscious.game.graphics.gui.InventorySlotArea;
 import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.util.ColorHelper;
 
@@ -70,7 +72,7 @@ public class InventoryWindow extends Window implements ButtonAction {
         setWidth(INVENTORY_WINDOW_BACKGROUND.getWidth());
         setHeight(INVENTORY_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON);
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
 
         createItemSlots();
         resizeItemSlots();
@@ -85,11 +87,11 @@ public class InventoryWindow extends Window implements ButtonAction {
         equipmentSlots = new EquipmentSlotArea[NUM_EQUIPMENT_SLOTS];
 
         for (int i = 0; i < NUM_INVENTORY_SLOTS; i++) {
-            itemSlots[i] = new InventorySlotArea(InterfaceDelegate.getInstance().getPlayerInventory(), i, -1, -1);
+            itemSlots[i] = new InventorySlotArea(World.INSTANCE.getPlayer().getInventory(), i, -1, -1);
         } // for
 
         for (int i = 0; i < NUM_EQUIPMENT_SLOTS; i++) {
-            equipmentSlots[i] = new EquipmentSlotArea(InterfaceDelegate.getInstance().getPlayer(), i, -1, -1);
+            equipmentSlots[i] = new EquipmentSlotArea(World.INSTANCE.getPlayer(), i, -1, -1);
         } // for
     } // createItemSlots
 
@@ -112,7 +114,7 @@ public class InventoryWindow extends Window implements ButtonAction {
         windowButton.setX(windowButtonX);
         windowButton.setY(windowButtonY);
 
-        closeWindowButton.setX(gameWidth - InterfaceDelegate.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
+        closeWindowButton.setX(gameWidth - WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON.getWidth() - 16);
         closeWindowButton.setY(getY() + 10);
 
         resizeItemSlots();
@@ -160,8 +162,8 @@ public class InventoryWindow extends Window implements ButtonAction {
 
     @Override
     public void show() {
-        if (InterfaceDelegate.getInstance().characterWindow.isVisible()) {
-            InterfaceDelegate.getInstance().characterWindow.hide();
+        if (WindowManager.CHARACTER_WINDOW.isVisible()) {
+            WindowManager.CHARACTER_WINDOW.hide();
         } // if
 
         super.show();
@@ -193,20 +195,20 @@ public class InventoryWindow extends Window implements ButtonAction {
     @Override
     public void hoverOverAction(Button caller) {
         if (caller == null) {
-            InterfaceDelegate.getInstance().clearTooltipText();
+            WindowManager.INSTANCE.clearTooltipText();
             return;
         } // if
 
         if (caller == windowButton) {
             if (isVisible()) {
-                InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Inventory\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to close\nthe Inventory\nWindow");
             } // if
             else {
-                InterfaceDelegate.getInstance().setTooltipText("Click to open\nthe Inventory\nWindow");
+                WindowManager.INSTANCE.setTooltipText("Click to open\nthe Inventory\nWindow");
             } // else
         } // if
         else if (caller == closeWindowButton) {
-            InterfaceDelegate.getInstance().setTooltipText("Click to close\nthe Inventory\nWindow");
+            WindowManager.INSTANCE.setTooltipText("Click to close\nthe Inventory\nWindow");
         } // else if
     } // hoverOverAction
 
@@ -227,7 +229,7 @@ public class InventoryWindow extends Window implements ButtonAction {
             closeWindowButton.render(screen);
 
             // Draw gold text
-            playerGold = InterfaceDelegate.getInstance().getPlayerInventory().getGold() + " g";
+            playerGold = World.INSTANCE.getPlayer().getInventory().getGold() + " g";
             Font.drawFont(screen, playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, getX() + goldTextOffsX + goldTextAreaWidth - Font.getStringWidth(screen, playerGold), getY() + goldTextOffsY);
             renderItemSlots(screen);
         } // if
