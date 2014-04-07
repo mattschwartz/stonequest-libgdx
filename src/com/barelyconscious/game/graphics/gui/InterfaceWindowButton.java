@@ -31,7 +31,7 @@ public class InterfaceWindowButton extends Button {
     @Override
     public void mouseExited() {
         super.mouseExited(); //To change body of generated methods, choose Tools | Templates.
-        InterfaceDelegate.getInstance().clearTooltipText();
+//        InterfaceDelegate.getInstance().clearTooltipText();
     } // mouseExited
     
     @Override

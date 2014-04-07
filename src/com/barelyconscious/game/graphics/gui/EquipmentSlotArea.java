@@ -35,7 +35,6 @@ public class EquipmentSlotArea extends InventorySlotArea {
      * @param startY the y coordinate of where to draw the slot
      */
     public EquipmentSlotArea(Player player, int equipmentSlotId, int startX, int startY) {
-        delegate = InterfaceDelegate.getInstance();
         this.player = player;
         this.equipmentSlotId = equipmentSlotId;
         x = startX;
@@ -94,27 +93,27 @@ public class EquipmentSlotArea extends InventorySlotArea {
         } // if
     } // useItem
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Item item, cursorItem;
-
-        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
-            cursorItem = delegate.getItemOnCursor();
-
-            if (cursorItem != null) {
-                if (cursorItem instanceof Equippable && itemGoesHere(cursorItem)) {
-                    item = removeItem();
-                    delegate.putItemOnCursor(item);
-                    setItem(cursorItem);
-                } // if
-            } // if
-            else {
-                item = removeItem();
-                delegate.putItemOnCursor(item);
-            } // else
-        } // if
-        else {
-            useItem();
-        } // else
-    } // mouseClicked
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        Item item, cursorItem;
+//
+//        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
+//            cursorItem = delegate.getItemOnCursor();
+//
+//            if (cursorItem != null) {
+//                if (cursorItem instanceof Equippable && itemGoesHere(cursorItem)) {
+//                    item = removeItem();
+//                    delegate.putItemOnCursor(item);
+//                    setItem(cursorItem);
+//                } // if
+//            } // if
+//            else {
+//                item = removeItem();
+//                delegate.putItemOnCursor(item);
+//            } // else
+//        } // if
+//        else {
+//            useItem();
+//        } // else
+//    } // mouseClicked
 } // EquipmentSlotArea

@@ -29,8 +29,6 @@ public class ItemSlotArea extends InventorySlotArea {
     public List<Item> allowedItems = new ArrayList<Item>();
 
     public ItemSlotArea() {
-        delegate = InterfaceDelegate.getInstance();
-
         width = ITEM_SLOT_BACKGROUND.getWidth();
         height = ITEM_SLOT_BACKGROUND.getHeight();
 
@@ -58,7 +56,7 @@ public class ItemSlotArea extends InventorySlotArea {
     } // setItem
 
     public void onHide() {
-        delegate.getPlayerInventory().addItem(removeItem());
+//        delegate.getPlayerInventory().addItem(removeItem());
     } // onHide
 
     @Override
@@ -68,70 +66,70 @@ public class ItemSlotArea extends InventorySlotArea {
         return oldItem;
     } // removeItem
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Item item, cursorItem;
-
-        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
-            if (stackItem()) {
-                return;
-            } // if
-
-            cursorItem = delegate.getItemOnCursor();
-
-            if (cursorItem != null) {
-                if (itemGoesHere(cursorItem)) {
-                    item = removeItem();
-                    delegate.putItemOnCursor(item);
-                    setItem(cursorItem);
-                } // if
-            } // if
-            else {
-                item = removeItem();
-                delegate.putItemOnCursor(item);
-            } // else
-        } // else
-        else {
-            item = getItem();
-            if (delegate.getPlayerInventory().addItem(item)) {
-                removeItem();
-            } // if
-        } // else
-    } // mouseClicked
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        Item item, cursorItem;
+//
+//        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
+//            if (stackItem()) {
+//                return;
+//            } // if
+//
+//            cursorItem = delegate.getItemOnCursor();
+//
+//            if (cursorItem != null) {
+//                if (itemGoesHere(cursorItem)) {
+//                    item = removeItem();
+//                    delegate.putItemOnCursor(item);
+//                    setItem(cursorItem);
+//                } // if
+//            } // if
+//            else {
+//                item = removeItem();
+//                delegate.putItemOnCursor(item);
+//            } // else
+//        } // else
+//        else {
+//            item = getItem();
+//            if (delegate.getPlayerInventory().addItem(item)) {
+//                removeItem();
+//            } // if
+//        } // else
+//    } // mouseClicked
 
     @Override
     public void render(Screen screen) {
-        String stack;
-        Item item = getItem();
-
-        if (item != null) {
-            item.render(screen, x, y);
-
-            if (item.getStackSize() > 1) {
-                stack = "" + item.getStackSize();
-                screen.fillTransluscentRectangle(x + width - Font.getStringWidth(screen, stack) - 2, y + height - Font.CHAR_HEIGHT + 3, Font.getStringWidth(screen, stack), Font.CHAR_HEIGHT - 5);
-                Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
-            } // if
-
-            if (isMouseInFocus()) {
-                screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
-            } // if
-        } // if
-        else {
-            ITEM_SLOT_BACKGROUND.render(screen, x, y);
-        } // else
-
-        item = delegate.getItemOnCursor();
-
-        if (item != null) {
-            if (isMouseInFocus()) {
-                if (itemGoesHere(item)) {
-                    screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
-                } // if
-                else {
-                    screen.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, width, height);
-                }
-            } // if
-        } // if 
+//        String stack;
+//        Item item = getItem();
+//
+//        if (item != null) {
+//            item.render(screen, x, y);
+//
+//            if (item.getStackSize() > 1) {
+//                stack = "" + item.getStackSize();
+//                screen.fillTransluscentRectangle(x + width - Font.getStringWidth(screen, stack) - 2, y + height - Font.CHAR_HEIGHT + 3, Font.getStringWidth(screen, stack), Font.CHAR_HEIGHT - 5);
+//                Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
+//            } // if
+//
+//            if (isMouseInFocus()) {
+//                screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+//            } // if
+//        } // if
+//        else {
+//            ITEM_SLOT_BACKGROUND.render(screen, x, y);
+//        } // else
+//
+//        item = delegate.getItemOnCursor();
+//
+//        if (item != null) {
+//            if (isMouseInFocus()) {
+//                if (itemGoesHere(item)) {
+//                    screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+//                } // if
+//                else {
+//                    screen.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, width, height);
+//                }
+//            } // if
+//        } // if 
     } // render
 } // ItemSlotArea

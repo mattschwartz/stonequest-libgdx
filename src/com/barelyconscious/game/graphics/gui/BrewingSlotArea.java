@@ -26,7 +26,6 @@ public class BrewingSlotArea extends ItemSlotArea {
     private Item resultItem; // necessary for results
 
     public BrewingSlotArea(Cauldron cauldron, int slotId) {
-        delegate = InterfaceDelegate.getInstance();
         this.cauldron = cauldron;
         this.slotId = slotId;
 
@@ -79,34 +78,34 @@ public class BrewingSlotArea extends ItemSlotArea {
         return oldItem;
     } // removeItem
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Item item, cursorItem;
-
-        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
-            if (stackItem()) {
-                return;
-            } // if
-            
-            cursorItem = delegate.getItemOnCursor();
-
-            if (cursorItem != null) {
-                if (itemGoesHere(cursorItem)) {
-                    item = removeItem();
-                    delegate.putItemOnCursor(item);
-                    setItem(cursorItem);
-                } // if
-            } // if
-            else {
-                item = removeItem();
-                delegate.putItemOnCursor(item);
-            } // else
-        } // else
-        else {
-            item = getItem();
-            if (delegate.getPlayerInventory().addItem(item)) {
-                removeItem();
-            } // if
-        } // else
-    } // mouseClicked
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        Item item, cursorItem;
+//
+//        if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
+//            if (stackItem()) {
+//                return;
+//            } // if
+//            
+//            cursorItem = delegate.getItemOnCursor();
+//
+//            if (cursorItem != null) {
+//                if (itemGoesHere(cursorItem)) {
+//                    item = removeItem();
+//                    delegate.putItemOnCursor(item);
+//                    setItem(cursorItem);
+//                } // if
+//            } // if
+//            else {
+//                item = removeItem();
+//                delegate.putItemOnCursor(item);
+//            } // else
+//        } // else
+//        else {
+//            item = getItem();
+//            if (delegate.getPlayerInventory().addItem(item)) {
+//                removeItem();
+//            } // if
+//        } // else
+//    } // mouseClicked
 } // BrewingSlotArea

@@ -34,7 +34,6 @@ public class InventorySlotArea extends Interactable implements Component {
     protected int height;
     private int inventorySlotNumber;
     private boolean destroy = false;
-    protected InterfaceDelegate delegate;
     private Inventory playerInventory;
 
     public InventorySlotArea() {
@@ -54,7 +53,6 @@ public class InventorySlotArea extends Interactable implements Component {
      * @param startY the y coordinate of where to draw the slot
      */
     public InventorySlotArea(Inventory inventory, int slotNumber, int startX, int startY) {
-        delegate = InterfaceDelegate.getInstance();
         playerInventory = inventory;
         inventorySlotNumber = slotNumber;
         x = startX;
@@ -143,137 +141,137 @@ public class InventorySlotArea extends Interactable implements Component {
         return destroy;
     } // shouldRemove
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Item item, cursorItem;
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        Item item, cursorItem;
+//
+//        if (delegate.isSalvageActive()) {
+//            TextLog.INSTANCE.append(getItem() + " salvaged.");
+//            delegate.setSalvageActive(false);
+//            return;
+//        } // if
+//
+//        if ((e.getButton() == Interactable.MOUSE_LEFT_CLICK) && KeyHandler.isShiftKeyDown) {
+//            cursorItem = delegate.getItemOnCursor();
+//            item = getItem();
+//
+//            if (item == null) {
+//                return;
+//            } // if
+//
+//            if (cursorItem == null) {
+//                int stackSize = item.getStackSize();
+//                int split = (int) Math.ceil(stackSize * 1.0 / 2);
+//
+//                cursorItem = item.clone();
+//                if (cursorItem != null) {
+//                    cursorItem.setStackSize(stackSize - split);
+//                    if (cursorItem.getStackSize() <= 0) {
+//                        cursorItem = null;
+//                    } // if
+//                    item.setStackSize(split);
+//                    setItem(item);
+//                } // if
+//
+//                delegate.putItemOnCursor(cursorItem);
+//            } // if
+//        } // if
+//        else if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
+//            if (stackItem()) {
+//                return;
+//            } // if
+//
+//            item = removeItem();
+//
+//            if (item != null) {
+//                cursorItem = delegate.putItemOnCursor(item);
+//
+//                // swap items if there was already an item on the cursor
+//                if (cursorItem != null) {
+//                    setItem(cursorItem);
+//                } // if
+//            } // if
+//            else {
+//                item = delegate.putItemOnCursor(null);
+//                playerInventory.setItem(inventorySlotNumber, item);
+//            } // else
+//        } // else
+//        else {
+//            useItem();
+//        } // else
+//    } // mouseClicked
 
-        if (delegate.isSalvageActive()) {
-            TextLog.INSTANCE.append(getItem() + " salvaged.");
-            delegate.setSalvageActive(false);
-            return;
-        } // if
-
-        if ((e.getButton() == Interactable.MOUSE_LEFT_CLICK) && KeyHandler.isShiftKeyDown) {
-            cursorItem = delegate.getItemOnCursor();
-            item = getItem();
-
-            if (item == null) {
-                return;
-            } // if
-
-            if (cursorItem == null) {
-                int stackSize = item.getStackSize();
-                int split = (int) Math.ceil(stackSize * 1.0 / 2);
-
-                cursorItem = item.clone();
-                if (cursorItem != null) {
-                    cursorItem.setStackSize(stackSize - split);
-                    if (cursorItem.getStackSize() <= 0) {
-                        cursorItem = null;
-                    } // if
-                    item.setStackSize(split);
-                    setItem(item);
-                } // if
-
-                delegate.putItemOnCursor(cursorItem);
-            } // if
-        } // if
-        else if (e.getButton() == Interactable.MOUSE_LEFT_CLICK) {
-            if (stackItem()) {
-                return;
-            } // if
-
-            item = removeItem();
-
-            if (item != null) {
-                cursorItem = delegate.putItemOnCursor(item);
-
-                // swap items if there was already an item on the cursor
-                if (cursorItem != null) {
-                    setItem(cursorItem);
-                } // if
-            } // if
-            else {
-                item = delegate.putItemOnCursor(null);
-                playerInventory.setItem(inventorySlotNumber, item);
-            } // else
-        } // else
-        else {
-            useItem();
-        } // else
-    } // mouseClicked
-
-    public boolean stackItem() {
-        Item item, cursorItem;
-        
-        cursorItem = delegate.getItemOnCursor();
-        item = getItem();
-
-        if (cursorItem != null && item != null && item.compareTo(cursorItem) == 0) {
-            item = getItem();
-            item.adjustStackBy(cursorItem.getStackSize());
-            delegate.putItemOnCursor(null);
-            setItem(item);
-            return true;
-        } // if
-        
-        return false;
-    } // stackItem
+//    public boolean stackItem() {
+//        Item item, cursorItem;
+//        
+//        cursorItem = delegate.getItemOnCursor();
+//        item = getItem();
+//
+//        if (cursorItem != null && item != null && item.compareTo(cursorItem) == 0) {
+//            item = getItem();
+//            item.adjustStackBy(cursorItem.getStackSize());
+//            delegate.putItemOnCursor(null);
+//            setItem(item);
+//            return true;
+//        } // if
+//        
+//        return false;
+//    } // stackItem
 
     @Override
     public void mouseEntered() {
-        Item item;
-
-        super.mouseEntered();
-        item = getItem();
-
-        if (item == null) {
-            return;
-        } // if
-
-        delegate.setTooltipText(item + "\n" + item.getType());
+//        Item item;
+//
+//        super.mouseEntered();
+//        item = getItem();
+//
+//        if (item == null) {
+//            return;
+//        } // if
+//
+//        delegate.setTooltipText(item + "\n" + item.getType());
     } // mouseEntered
 
-    @Override
-    public void mouseExited() {
-        super.mouseExited();
-
-        delegate.clearTooltipText();
-    }
+//    @Override
+//    public void mouseExited() {
+//        super.mouseExited();
+//
+//        delegate.clearTooltipText();
+//    }
 
     @Override
     public void render(Screen screen) {
-        String stack;
-        Item item = getItem();
-
-        if (item != null) {
-            item.render(screen, x, y);
-
-            if (item.getStackSize() > 1) {
-                stack = "" + item.getStackSize();
-                screen.fillTransluscentRectangle(x + width - Font.getStringWidth(screen, stack) - 2, y + height - Font.CHAR_HEIGHT + 3, Font.getStringWidth(screen, stack), Font.CHAR_HEIGHT - 5);
-                Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
-            } // if
-
-            if (isMouseInFocus()) {
-                screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
-            } // if
-        } // if
-        else {
-            ITEM_SLOT_BACKGROUND.render(screen, x, y);
-        } // else
-
-        item = delegate.getItemOnCursor();
-
-        if (item != null) {
-            if (isMouseInFocus()) {
-                if (itemGoesHere(item)) {
-                    screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
-                } // if
-                else {
-                    screen.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, width, height);
-                }
-            } // if
-        } // if 
+//        String stack;
+//        Item item = getItem();
+//
+//        if (item != null) {
+//            item.render(screen, x, y);
+//
+//            if (item.getStackSize() > 1) {
+//                stack = "" + item.getStackSize();
+//                screen.fillTransluscentRectangle(x + width - Font.getStringWidth(screen, stack) - 2, y + height - Font.CHAR_HEIGHT + 3, Font.getStringWidth(screen, stack), Font.CHAR_HEIGHT - 5);
+//                Font.drawFont(screen, stack, Color.white, true, x + width - Font.getStringWidth(screen, stack) - 3, y + height - 3);
+//            } // if
+//
+//            if (isMouseInFocus()) {
+//                screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+//            } // if
+//        } // if
+//        else {
+//            ITEM_SLOT_BACKGROUND.render(screen, x, y);
+//        } // else
+//
+//        item = delegate.getItemOnCursor();
+//
+//        if (item != null) {
+//            if (isMouseInFocus()) {
+//                if (itemGoesHere(item)) {
+//                    screen.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, width, height);
+//                } // if
+//                else {
+//                    screen.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, width, height);
+//                }
+//            } // if
+//        } // if 
     } // render
 } // ItemSlotArea
