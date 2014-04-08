@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -89,9 +89,9 @@ public class JustifiedTextArea extends TextArea {
 
         for (int i = startingLineOffset; i < leftJustifiedText.size(); i++) {
             if (!leftJustifiedText.get(i).equals("\n")) {
-                Font.drawFont(screen, leftJustifiedText.get(i), leftJustifiedTextColor, null, textOffsX, textOffsY + line * Font.CHAR_HEIGHT);
-                rightJustifiedTextOffsX = x + width - Font.getStringWidth(screen, rightJustifiedText.get(i)) - MARGIN - 4;
-                Font.drawFont(screen, rightJustifiedText.get(i), rightJustifiedTextColor, null, rightJustifiedTextOffsX, textOffsY + line * Font.CHAR_HEIGHT);
+                FontService.drawFont(leftJustifiedText.get(i), leftJustifiedTextColor, null, textOffsX, textOffsY + line * FontService.characterHeight);
+                rightJustifiedTextOffsX = x + width - FontService.getStringWidth(rightJustifiedText.get(i)) - MARGIN - 4;
+                FontService.drawFont(rightJustifiedText.get(i), rightJustifiedTextColor, null, rightJustifiedTextOffsX, textOffsY + line * FontService.characterHeight);
             } // if
             
             line++;

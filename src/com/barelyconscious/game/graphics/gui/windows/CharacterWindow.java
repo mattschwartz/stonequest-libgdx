@@ -16,7 +16,7 @@ import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
@@ -381,34 +381,34 @@ public class CharacterWindow extends Window implements ButtonAction {
         String attributeValue;
 
         attributeValue = "" + (int) player.getAttribute(Entity.HEALTH_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HITPOINTS_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + HITPOINTS_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HITPOINTS_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + HITPOINTS_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.STRENGTH_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + STRENGTH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + STRENGTH_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + STRENGTH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + STRENGTH_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.ACCURACY_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + ACCURACY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + ACCURACY_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + ACCURACY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + ACCURACY_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.DEFENSE_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + DEFENSE_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + DEFENSE_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + DEFENSE_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + DEFENSE_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.EVASION_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + AGILITY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + AGILITY_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + AGILITY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + AGILITY_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.FIRE_MAGIC_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FIRE_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + FIRE_MAGIC_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FIRE_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FIRE_MAGIC_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.FROST_MAGIC_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FROST_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + FROST_MAGIC_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FROST_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FROST_MAGIC_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.HOLY_MAGIC_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HOLY_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + HOLY_MAGIC_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HOLY_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + HOLY_MAGIC_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "" + (int) player.getAttribute(Entity.CHAOS_MAGIC_ATTRIBUTE);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + CHAOS_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + CHAOS_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y);
 
         attributeValue = "100";// + (int) player.getAttribute(Entity.FAITH);
-        Font.drawFont(screen, attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FAITH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - Font.getStringWidth(screen, attributeValue)) / 2, textOffsY + FAITH_ATTRIBUTE_OFFS_Y);
+        FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FAITH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FAITH_ATTRIBUTE_OFFS_Y);
     } // renderPlayerAttributes
 
     private void renderSubtitleText(Screen screen) {
@@ -417,9 +417,9 @@ public class CharacterWindow extends Window implements ButtonAction {
         String attributeDetailsTitle;
 
         // Render the player's name
-        textOffsX = getX() + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - Font.getStringWidth(screen, player.getName())) / 2;
-        textOffsY = getY() + PLAYER_NAME_TEXT_OFFS_Y + (PLAYER_NAME_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
-        Font.drawFont(screen, player.getName(), PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
+        textOffsX = getX() + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - FontService.getStringWidth(player.getName())) / 2;
+        textOffsY = getY() + PLAYER_NAME_TEXT_OFFS_Y + (PLAYER_NAME_TEXT_HEIGHT - FontService.characterHeight) / 2;
+        FontService.drawFont(player.getName(), PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
 
         // Render the attribute details title
         if (attributeHoverOver >= 0) {
@@ -429,8 +429,8 @@ public class CharacterWindow extends Window implements ButtonAction {
             attributeDetailsTitle = "Details";
         } // else
 
-        textOffsX = getX() + DETAILS_TITLE_TEXT_OFFS_X + (DETAILS_TITLE_TEXT_WIDTH - Font.getStringWidth(screen, attributeDetailsTitle)) / 2;
-        textOffsY = getY() + DETAILS_TITLE_TEXT_OFFS_Y + (DETAILS_TITLE_TEXT_HEIGHT - Font.CHAR_HEIGHT) / 2;
-        Font.drawFont(screen, attributeDetailsTitle, PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
+        textOffsX = getX() + DETAILS_TITLE_TEXT_OFFS_X + (DETAILS_TITLE_TEXT_WIDTH - FontService.getStringWidth(attributeDetailsTitle)) / 2;
+        textOffsY = getY() + DETAILS_TITLE_TEXT_OFFS_Y + (DETAILS_TITLE_TEXT_HEIGHT - FontService.characterHeight) / 2;
+        FontService.drawFont(attributeDetailsTitle, PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
     } // renderPlayerName
 } // CharacterWindow

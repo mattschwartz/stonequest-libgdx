@@ -14,7 +14,7 @@ package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
 import com.barelyconscious.game.graphics.UIElement;
@@ -302,14 +302,14 @@ public class JournalWindow extends Window implements ButtonAction {
         } // if
 
         text = entry.getTitle();
-        textOffsX = getX() + QUEST_TITLE_TEXT_OFFS_X + (QUEST_TITLE_WIDTH - Font.getStringWidth(screen, text)) / 2;
+        textOffsX = getX() + QUEST_TITLE_TEXT_OFFS_X + (QUEST_TITLE_WIDTH - FontService.getStringWidth(text)) / 2;
         textOffsY = getY() + QUEST_TITLE_TEXT_OFFS_Y + 18;
-        Font.drawFont(screen, text, Color.white, textOffsX, textOffsY);
+        FontService.drawFont(text, Color.white, textOffsX, textOffsY);
 
         text = "" + StringHelper.formatNumber(entry.goldReward);
-        textOffsX = getX() + QUEST_REWARD_GOLD_OFFS_X + QUEST_REWARD_GOLD_WIDTH - Font.getStringWidth(screen, text);
+        textOffsX = getX() + QUEST_REWARD_GOLD_OFFS_X + QUEST_REWARD_GOLD_WIDTH - FontService.getStringWidth(text);
         textOffsY = getY() + QUEST_REWARD_GOLD_OFFS_Y + 15;
-        Font.drawFont(screen, text, ColorHelper.PLAYER_GOLD_TEXT_COLOR, false, textOffsX, textOffsY);
+        FontService.drawFont(text, ColorHelper.PLAYER_GOLD_TEXT_COLOR, false, textOffsX, textOffsY);
 
         questDescriptionTextArea.setText(entry.getDescription());
 

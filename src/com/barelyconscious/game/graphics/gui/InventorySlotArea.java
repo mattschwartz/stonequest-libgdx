@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;

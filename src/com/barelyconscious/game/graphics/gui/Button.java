@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.util.TextLogHelper;
@@ -96,7 +96,7 @@ public class Button extends Interactable implements Component {
 
         // Find a better way to do this
 //        titleOffsX = x + MARGIN + (width - MARGIN * 2 - Font.getStringWidth(Game.screen, title)) / 2;
-        titleOffsY = y + Font.CHAR_HEIGHT;
+        titleOffsY = y + FontService.characterHeight;
 
         this.hasBorder = hasBorder;
         super.setRegion(x, y, this.width, this.height);
@@ -199,7 +199,7 @@ public class Button extends Interactable implements Component {
     @Override
     public void setY(int newY) {
         y = Math.max(0, newY);
-        titleOffsY = y + Font.CHAR_HEIGHT + 2;
+        titleOffsY = y + FontService.characterHeight + 2;
 
         super.setRegion(x, y, width, height);
     } // setY
@@ -306,10 +306,10 @@ public class Button extends Interactable implements Component {
         if (isMouseButtonDown()) {
             offsX++;
             offsY++;
-            Font.drawFont(screen, title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, offsX, offsY);
+            FontService.drawFont(title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, offsX, offsY);
         } // if
         else {
-            Font.drawFont(screen, title, Color.white, offsX, offsY);
+            FontService.drawFont(title, Color.white, offsX, offsY);
         } // else
     } // renderText
 

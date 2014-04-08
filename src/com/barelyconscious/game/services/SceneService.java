@@ -30,6 +30,7 @@ import com.barelyconscious.game.graphics.WelcomeView;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.graphics.gui.Cursors;
 import java.awt.AWTException;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -46,6 +47,7 @@ import javax.swing.JFrame;
 public class SceneService extends JFrame implements Service {
 
     public static final SceneService INSTANCE = new SceneService();
+    public static final int TILE_SIZE = 32;
     public static final String GAME_TITLE = "StoneQuest";
     public static final String GAME_VERSION = "0.7.0";
     private final InputHandler inputHandler = InputHandler.INSTANCE;
@@ -57,7 +59,7 @@ public class SceneService extends JFrame implements Service {
      */
     private SceneService() {
         if (INSTANCE != null) {
-            throw new IllegalStateException("Only one Scene may exist during runtime.");
+            throw new IllegalStateException(this + " has already been instantiated.");
         } // if
     } // constructor
     
@@ -118,9 +120,14 @@ public class SceneService extends JFrame implements Service {
     public View getView() {
         return view;
     } // getView
+
+    @Override
+    public Graphics getGraphics() {
+        throw new IllegalAccessError("This function should not be accessed from outside of the SceneService Singleton.");
+    } // getGraphics
     
     public Graphics2D getCurrentGraphics() {
-        return view.getGraphics();
+        return view == null ? null : view.getGraphics();
     } // getCurrentGraphics
 
     /**

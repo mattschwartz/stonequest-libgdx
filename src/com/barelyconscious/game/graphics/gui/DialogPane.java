@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.InputHandler;
 import com.barelyconscious.game.services.SceneService;
@@ -81,7 +81,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
 
         // Find a better way to do this...
 //        width = Font.getMaxStringWidth(screen, lines) + Font.CHAR_WIDTH * 2;
-        height = (lines.size() + 1) * Font.CHAR_HEIGHT + BUTTON_MARGIN + Button.DEFAULT_HEIGHT;
+        height = (lines.size() + 1) * FontService.characterHeight + BUTTON_MARGIN + Button.DEFAULT_HEIGHT;
     } // determineDimensions
 
     @Override
@@ -226,8 +226,8 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         int borderWidth, borderHeight, borderOffsX, borderOffsY;
         int titleLineHeight, titleOffsX, titleOffsY;
 
-        titleLineHeight = Font.CHAR_HEIGHT;
-        titleOffsX = x + (width - Font.getStringWidth(screen, title)) / 2;
+        titleLineHeight = FontService.characterHeight;
+        titleOffsX = x + (width - FontService.getStringWidth(title)) / 2;
         titleOffsY = y - BORDER_WIDTH - 3;
 
         borderWidth = BORDER_WIDTH + width + BORDER_WIDTH;
@@ -236,6 +236,6 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         borderOffsY = y - TOP_BORDER_HEIGHT;
 
         screen.fillTransluscentRectangle(borderOffsX, borderOffsY, borderWidth, borderHeight);
-        Font.drawFont(screen, title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, titleOffsX, titleOffsY);
+        FontService.drawFont(title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, titleOffsX, titleOffsY);
     } // renderTitle
 } // DialogPane

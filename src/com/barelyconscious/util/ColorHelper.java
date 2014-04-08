@@ -24,12 +24,12 @@ public class ColorHelper {
     /**
      * The RGB color value for world tile selections that are valid.
      */
-    public static final int TILE_SELECT_CAN_MOVE = new Color(255, 255, 0).getRGB();
+    public static final Color TILE_SELECT_CAN_MOVE = new Color(255, 255, 0);
     /**
      * The RGB color value for world tile selections that are not valid.
      */
-    public static final int TILE_SELECT_CANNOT_MOVE = new Color(255, 0, 0).getRGB();
-    public static final int TILE_SELECT_PLAYER = new Color(0, 255, 0).getRGB();
+    public static final Color TILE_SELECT_CANNOT_MOVE = new Color(255, 0, 0);
+    public static final Color TILE_SELECT_PLAYER = new Color(0, 255, 0);
     /**
      * The RGB color value of health remaining that appears beneath Entities in the world.
      */

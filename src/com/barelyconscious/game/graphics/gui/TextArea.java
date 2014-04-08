@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.util.StringHelper;
@@ -64,7 +64,7 @@ public class TextArea extends Interactable implements Component {
         y = Math.max(0, startY);
         this.width = Math.max(0, width);
         this.height = Math.max(0, height);
-        rows = (height - textAreaBorderTopRepeat.getHeight() - MARGIN * 2) / Font.CHAR_HEIGHT;
+        rows = (height - textAreaBorderTopRepeat.getHeight() - MARGIN * 2) / FontService.characterHeight;
         columns = (int) ((width - textAreaBorderLeftRepeat.getWidth() - MARGIN * 2) / 8.25);
 
         scrollBar = new ScrollBar(x + width - ScrollBar.SCROLLBAR_WIDTH - textAreaBorderRightRepeat.getWidth() - 1, y + textAreaBorderTopRepeat.getHeight() + 1, height - textAreaBorderTopRepeat.getHeight() * 2 - 2, rows);
@@ -80,7 +80,7 @@ public class TextArea extends Interactable implements Component {
         y = Math.max(0, startY);
         this.width = Math.max(0, width);
         this.height = Math.max(0, height);
-        rows = (height - textAreaBorderTopRepeat.getHeight() - MARGIN * 2) / Font.CHAR_HEIGHT;
+        rows = (height - textAreaBorderTopRepeat.getHeight() - MARGIN * 2) / FontService.characterHeight;
         columns = (int) ((width - textAreaBorderLeftRepeat.getWidth() - MARGIN * 2) / 8.25);
 
         scrollBar = new ScrollBar(x + width - ScrollBar.SCROLLBAR_WIDTH - textAreaBorderRightRepeat.getWidth() - 1, y + textAreaBorderTopRepeat.getHeight() + 1, height - textAreaBorderTopRepeat.getHeight() * 2 - 2, rows);
@@ -285,7 +285,7 @@ public class TextArea extends Interactable implements Component {
 
     protected void renderText(Screen screen) {
         int textOffsX = x + textAreaBorderLeftRepeat.getWidth() + MARGIN;
-        int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + Font.CHAR_HEIGHT;
+        int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + FontService.characterHeight;
         int line = 0;
         List<String> lines = StringHelper.splitStringAlongWords(pureText, columns);
 
@@ -302,7 +302,7 @@ public class TextArea extends Interactable implements Component {
         lines = lines.subList(startingLineOffset, lines.size());
 
         for (String string : lines) {
-            Font.drawFont(screen, string, textColor, textOffsX, textOffsY + (line++) * Font.CHAR_HEIGHT);
+            FontService.drawFont(string, textColor, textOffsX, textOffsY + (line++) * FontService.characterHeight);
 
             if (line >= rows) {
                 break;

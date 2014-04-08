@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
 
@@ -125,11 +125,11 @@ public class ProgressBar implements Component {
 
         msg = "+" + increaseBy;
 
-        startX = x + width - 6 - Font.getStringWidth(screen, msg);
-        startY = y + Font.CHAR_HEIGHT + 1;
+        startX = x + width - 6 - FontService.getStringWidth(msg);
+        startY = y + FontService.characterHeight + 1;
 
-        screen.fillTransluscentRectangle(startX, y + 6, Font.getStringWidth(screen, msg), Font.CHAR_HEIGHT - 3);
-        Font.drawFont(screen, msg, Color.white.getRGB(), startX, startY);
+        screen.fillTransluscentRectangle(startX, y + 6, FontService.getStringWidth(msg), FontService.characterHeight - 3);
+        FontService.drawFont(msg, Color.white.getRGB(), startX, startY);
     } // renderText
 
 } // ProgressBar

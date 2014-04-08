@@ -21,7 +21,7 @@
 package com.barelyconscious.game;
 
 import com.barelyconscious.game.file.FileHandler;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.Component;
 import java.awt.AWTException;
 import java.awt.Canvas;
@@ -48,10 +48,6 @@ public class Screen extends Canvas {
     public static final int Z_BACKGROUND = 0;
     public static final int Z_FOREGROUND = 1;
     public static final int Z_ALWAYS_ON_TOP = 2;
-    /**
-     * The width and height (tiles are square) of each Tile.
-     */
-    public static final int TILE_SIZE = 32;
     /**
      * The scale of the game. This value is not used and will probably be
      * removed
@@ -464,9 +460,9 @@ public class Screen extends Canvas {
 //        animation();
         renderComponents();
 
-        Font.drawFont(this, "Frame time: " + (Game.frametime / 1000000) + "ms", Color.white, false, 0, Font.CHAR_HEIGHT);
-        Font.drawFont(this, "fps: " + Game.frames2, Color.white, false, 0, Font.CHAR_HEIGHT * 2);
-        Font.drawFont(this, "window size: " + width + " x " + height, Color.white, false, 0, Font.CHAR_HEIGHT * 3);
+//        FontService.drawFont(this, "Frame time: " + (Game.frametime / 1000000) + "ms", Color.white, false, 0, FontService.characterHeight);
+//        FontService.drawFont(this, "fps: " + Game.frames2, Color.white, false, 0, FontService.characterHeight * 2);
+//        FontService.drawFont(this, "window size: " + width + " x " + height, Color.white, false, 0, FontService.characterHeight * 3);
 
         Graphics g = bs.getDrawGraphics();
         g.fillRect(0, 0, getWidth(), getHeight());

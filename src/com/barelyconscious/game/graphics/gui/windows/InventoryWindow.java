@@ -16,7 +16,7 @@ import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
 import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
@@ -60,7 +60,7 @@ public class InventoryWindow extends Window implements ButtonAction {
     private final int INVENTORY_SLOT_COLS = 6;
     private final int NUM_INVENTORY_SLOTS = INVENTORY_SLOT_ROWS * INVENTORY_SLOT_COLS;
     private int goldTextOffsX = 130;
-    private int goldTextOffsY = 345 + Font.CHAR_HEIGHT;
+    private int goldTextOffsY = 345 + FontService.characterHeight;
     private int goldTextAreaWidth = 82;
     private int animationY;
     protected InterfaceWindowButton windowButton;
@@ -230,7 +230,7 @@ public class InventoryWindow extends Window implements ButtonAction {
 
             // Draw gold text
             playerGold = World.INSTANCE.getPlayer().getInventory().getGold() + " g";
-            Font.drawFont(screen, playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, getX() + goldTextOffsX + goldTextAreaWidth - Font.getStringWidth(screen, playerGold), getY() + goldTextOffsY);
+            FontService.drawFont(playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, getX() + goldTextOffsX + goldTextAreaWidth - FontService.getStringWidth(playerGold), getY() + goldTextOffsY);
             renderItemSlots(screen);
         } // if
     } // render

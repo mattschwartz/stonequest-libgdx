@@ -20,6 +20,7 @@ import com.barelyconscious.game.graphics.Map;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.graphics.tiles.Tile;
 import com.barelyconscious.game.player.Player;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.game.spawnable.Loot;
 import com.barelyconscious.game.spawnable.Sprite;
@@ -90,8 +91,8 @@ public class World implements Component {
      * tiles wide and high that can fit on the Screen.
      */
     private void determineNumTiles() {
-        tilesWide = (int) Math.floor(screenWidth * 1.0 / Screen.TILE_SIZE) + 1;
-        tilesHigh = (int) Math.floor(screenHeight * 1.0 / Screen.TILE_SIZE) + 1;
+        tilesWide = (int) Math.floor(screenWidth * 1.0 / SceneService.TILE_SIZE) + 1;
+        tilesHigh = (int) Math.floor(screenHeight * 1.0 / SceneService.TILE_SIZE) + 1;
     } // determineNumTiles
 
     /**
@@ -304,9 +305,9 @@ public class World implements Component {
         renderLoot(screen);
         renderEntities(screen);
 
-        player.render(screen, (pX + offsX) * Screen.TILE_SIZE, (pY + offsY) * Screen.TILE_SIZE);
+        player.render(screen, (pX + offsX) * SceneService.TILE_SIZE, (pY + offsY) * SceneService.TILE_SIZE);
 
-        inputHandler.render(screen);
+        inputHandler.render();
     } // render
 
     private void renderLoot(Screen screen) {
@@ -333,8 +334,8 @@ public class World implements Component {
                 continue;
             }
 
-            x *= Screen.TILE_SIZE;
-            y *= Screen.TILE_SIZE;
+            x *= SceneService.TILE_SIZE;
+            y *= SceneService.TILE_SIZE;
 
             entity.render(screen, x, y);
         }

@@ -14,7 +14,7 @@
 package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
@@ -66,12 +66,12 @@ public class TooltipTextArea extends TextArea {
 
     @Override
     protected void renderText(Screen screen) {
-        int offsY = textOffsY + (height - MARGIN * 2 - usedRows * Font.CHAR_HEIGHT) / 2;
+        int offsY = textOffsY + (height - MARGIN * 2 - usedRows * FontService.characterHeight) / 2;
         int offsX;
         
         for (int i = 0; i < totalRows; i++) {
-            offsX = textOffsX + (width - MARGIN * 2 - Font.getStringWidth(screen, lines[i])) / 2;
-            Font.drawFont(screen, lines[i], textColor, null, offsX, offsY + Font.CHAR_HEIGHT * i);
+            offsX = textOffsX + (width - MARGIN * 2 - FontService.getStringWidth(lines[i])) / 2;
+            FontService.drawFont(lines[i], textColor, null, offsX, offsY + FontService.characterHeight * i);
         } // for
     } // renderText
 } // TooltipTextArea

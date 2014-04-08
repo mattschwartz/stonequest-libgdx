@@ -27,7 +27,7 @@ public class View extends Canvas {
     public int height;
     public int width;
     private final int SCALE = 1;
-    private int[] pixels;
+    protected int[] pixels;
     private boolean showUI = true;
     private final List<Component> components = new CopyOnWriteArrayList<Component>();
     private BufferedImage view;
@@ -116,7 +116,7 @@ public class View extends Canvas {
      */
     @Override
     public Graphics2D getGraphics() {
-        return view.createGraphics();
+        return view == null ? null : view.createGraphics();
     } // getGraphics
 
     public void addComponent(Component c) {

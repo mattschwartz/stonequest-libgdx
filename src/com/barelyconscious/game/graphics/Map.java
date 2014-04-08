@@ -21,6 +21,7 @@ import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.tiles.GrassTile;
 import com.barelyconscious.game.graphics.tiles.StoneWallTile;
 import com.barelyconscious.game.graphics.tiles.Tile;
+import com.barelyconscious.game.services.SceneService;
 import java.util.Random;
 
 public class Map {
@@ -98,7 +99,7 @@ public class Map {
                 } // if
 
                 if (map[tileId].recentlySeen) {
-                    getTileAt(x, y).renderShaded(screen, this, (x + xOffs) * Screen.TILE_SIZE, (y + yOffs) * Screen.TILE_SIZE);
+                    getTileAt(x, y).renderShaded(screen, this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
                 } // if
             } // for
         } // for
@@ -130,7 +131,7 @@ public class Map {
                 } // if
 
                 if (map[tileId].isVisible) {
-                    getTileAt(x, y).render(screen, this, (x + xOffs) * Screen.TILE_SIZE, (y + yOffs) * Screen.TILE_SIZE);
+                    getTileAt(x, y).render(screen, this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
                     map[tileId].unlightOnRefresh = true;
                     map[tileId].recentlySeen = true;
                 } // if
@@ -837,8 +838,8 @@ public class Map {
      * @param yShift
      */
     public void shiftWorldBy(int xShift, int yShift) {
-        xStart -= xShift / Screen.TILE_SIZE;
-        yStart -= yShift / Screen.TILE_SIZE;
+        xStart -= xShift / SceneService.TILE_SIZE;
+        yStart -= yShift / SceneService.TILE_SIZE;
     } // shiftWorldBy
 
     /**

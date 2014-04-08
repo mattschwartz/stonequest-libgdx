@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.player.Player;
 import com.barelyconscious.game.spawnable.Entity;
@@ -116,7 +116,7 @@ public class TextLog extends TextArea {
     @Override
     protected synchronized void renderText(Screen screen) {
         int textOffsX = x + textAreaBorderLeftRepeat.getWidth() + MARGIN;
-        int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + Font.CHAR_HEIGHT;
+        int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + FontService.characterHeight;
         int i = 0;
         List<LineElement> lines;
 
@@ -133,7 +133,7 @@ public class TextLog extends TextArea {
         lines = textLog.subList(startingLineOffset, textLog.size());
 
         for (LineElement line : lines) {
-            Font.drawFont(screen, line, null, textOffsX, textOffsY + (i++) * Font.CHAR_HEIGHT);
+            FontService.drawFont(line, null, textOffsX, textOffsY + (i++) * FontService.characterHeight);
             if (i >= rows) {
                 break;
             }

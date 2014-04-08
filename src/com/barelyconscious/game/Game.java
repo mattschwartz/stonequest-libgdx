@@ -28,7 +28,7 @@
 package com.barelyconscious.game;
 
 import com.barelyconscious.game.file.FileHandler;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.ConsoleWriter;
 import com.barelyconscious.util.StringHelper;
@@ -56,13 +56,12 @@ public class Game implements Runnable {
                 StringHelper.generateGibberish(1000);
             } // run
         }.start();
-        
-        Font.init(Screen.INSTANCE);
     } // init
     
     private void startServices() {
         sceneService.start();
         FileHandler.INSTANCE.start();
+        FontService.INSTANCE.start();
     } // startServices
 
     /**

@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.Screen;
-import com.barelyconscious.game.graphics.Font;
+import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import java.awt.Color;
 
@@ -75,17 +75,17 @@ public class QuestButton extends Button {
 
         if (isEnabled()) {
             if (buttonSelected) {
-                questNumberOffsX = x + (width - Font.getStringWidth(screen, title, true, QUEST_NUMBER_FONT_SIZE)) / 2;
-                Font.drawFont(screen, title, QUEST_NUMBER_SELECTED_COLOR, true, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
+                questNumberOffsX = x + (width - FontService.getStringWidth(title, true, QUEST_NUMBER_FONT_SIZE)) / 2;
+                FontService.drawFont(title, QUEST_NUMBER_SELECTED_COLOR, true, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
             } // if
             else {
-                questNumberOffsX = x + (width - Font.getStringWidth(screen, title, false, QUEST_NUMBER_FONT_SIZE)) / 2;
-                Font.drawFont(screen, title, QUEST_NUMBER_ACTIVE_COLOR, false, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
+                questNumberOffsX = x + (width - FontService.getStringWidth(title, false, QUEST_NUMBER_FONT_SIZE)) / 2;
+                FontService.drawFont(title, QUEST_NUMBER_ACTIVE_COLOR, false, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
             } // else
         } // if
         else {
-            questNumberOffsX = x + (width - Font.getStringWidth(screen, title, false, QUEST_NUMBER_FONT_SIZE)) / 2;
-            Font.drawFont(screen, title, QUEST_NUMBER_INACTIVE_COLOR, false, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
+            questNumberOffsX = x + (width - FontService.getStringWidth(title, false, QUEST_NUMBER_FONT_SIZE)) / 2;
+            FontService.drawFont(title, QUEST_NUMBER_INACTIVE_COLOR, false, QUEST_NUMBER_FONT_SIZE, questNumberOffsX, questNumberOffsY);
         } // else
     } // renderText
 } // QuestButton
