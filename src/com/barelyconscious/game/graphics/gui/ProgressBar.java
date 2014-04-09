@@ -12,16 +12,17 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
-import com.barelyconscious.util.TextLogHelper;
+import com.barelyconscious.game.graphics.ShapeDrawer;
+import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 
 public class ProgressBar implements Component {
 
-    private static final int BACKGROUND_COLOR = new Color(22, 40, 22).getRGB();
-    private static final int BASE_COLOR = new Color(75, 137, 75).getRGB();
-    private static final int INCREASE_COLOR = new Color(103, 188, 103).getRGB();
+    private static final Color BACKGROUND_COLOR = new Color(22, 40, 22);
+    private static final Color BASE_COLOR = new Color(75, 137, 75);
+    private static final Color INCREASE_COLOR = new Color(103, 188, 103);
     protected int x;
     protected int y;
     protected int width;
@@ -82,27 +83,29 @@ public class ProgressBar implements Component {
     }
 
     @Override
-    public void render(Screen screen) {
-        renderBorder(screen);
-        renderBackground(screen);
-        renderText(screen);
+    public void render() {
+        View view = SceneService.INSTANCE.getView();
+        
+        renderBorder();
+        renderBackground(view);
+        renderText(view);
     } // render
 
-    private void renderBorder(Screen screen) {
-        Button.borderLeft.render(screen, x, y);
+    private void renderBorder() {
+        Button.borderLeft.render(x, y);
 
         for (int i = x + Button.borderLeft.getWidth(); i < x + (width - Button.borderRight.getWidth()); i += Button.borderRepeat.getWidth()) {
-            Button.borderRepeat.render(screen, i, y);
+            Button.borderRepeat.render( i, y);
         } // for
 
-        Button.borderRight.render(screen, x + width - Button.borderRight.getWidth(), y);
+        Button.borderRight.render(x + width - Button.borderRight.getWidth(), y);
     } // renderBorder
 
-    private void renderBackground(Screen screen) {
+    private void renderBackground(View view) {
         double baseWidthPercent, increaseWidthPercent;
         int progressBarWidth = width - 10;
 
-        screen.fillRectangle(BACKGROUND_COLOR, x + 5, y + 5, progressBarWidth, height - 10);
+        ShapeDrawer.fillRectangle(view, BACKGROUND_COLOR, x + 5, y + 5, progressBarWidth, height - 10);
 
         // Base width
         baseWidthPercent = Math.min(((current * 1.0 / max)), 1);
@@ -110,12 +113,12 @@ public class ProgressBar implements Component {
         // Increase width
         increaseWidthPercent = Math.min(((increaseBy * 1.0 / max)), 1 - baseWidthPercent);
 
-        screen.fillRectangle(BASE_COLOR, x + 5, y + 5, (int) (baseWidthPercent * progressBarWidth), height - 10);
-        screen.fillRectangle(INCREASE_COLOR, x + 5 + (int) (baseWidthPercent * progressBarWidth), y + 5, (int) (increaseWidthPercent * progressBarWidth), height - 10);
+        ShapeDrawer.fillRectangle(view, BASE_COLOR, x + 5, y + 5, (int) (baseWidthPercent * progressBarWidth), height - 10);
+        ShapeDrawer.fillRectangle(view, INCREASE_COLOR, x + 5 + (int) (baseWidthPercent * progressBarWidth), y + 5, (int) (increaseWidthPercent * progressBarWidth), height - 10);
 
     } // renderBackground
 
-    private void renderText(Screen screen) {
+    private void renderText(View view) {
         int startX, startY;
         String msg;
 
@@ -128,7 +131,7 @@ public class ProgressBar implements Component {
         startX = x + width - 6 - FontService.getStringWidth(msg);
         startY = y + FontService.characterHeight + 1;
 
-        screen.fillTransluscentRectangle(startX, y + 6, FontService.getStringWidth(msg), FontService.characterHeight - 3);
+        ShapeDrawer.fillTransluscentRectangle(view, startX, y + 6, FontService.getStringWidth(msg), FontService.characterHeight - 3);
         FontService.drawFont(msg, Color.white.getRGB(), startX, startY);
     } // renderText
 

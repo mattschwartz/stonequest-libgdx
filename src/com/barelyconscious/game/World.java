@@ -293,24 +293,24 @@ public class World implements Component {
     } // tick
 
     @Override
-    public void render(final Screen screen) {
+    public void render() {
         // Makes sure everything is on the same page when it comes to where the player is located
         int pX = player.getX();
         int pY = player.getY();
         int offsX = tileOffsX;
         int offsY = tileOffsY;
 
-        currentMap.renderBackground(screen, this, pX, pY, offsX, offsY);
+        currentMap.renderBackground(this, pX, pY, offsX, offsY);
 
-        renderLoot(screen);
-        renderEntities(screen);
+        renderLoot();
+        renderEntities();
 
-        player.render(screen, (pX + offsX) * SceneService.TILE_SIZE, (pY + offsY) * SceneService.TILE_SIZE);
+        player.render((pX + offsX) * SceneService.TILE_SIZE, (pY + offsY) * SceneService.TILE_SIZE);
 
         inputHandler.render();
     } // render
 
-    private void renderLoot(Screen screen) {
+    private void renderLoot() {
         int lootX = 15;
         int lootY = 15;
 
@@ -322,7 +322,7 @@ public class World implements Component {
         }
     } // renderLoot
 
-    private void renderEntities(Screen screen) {
+    private void renderEntities() {
         int x;
         int y;
 
@@ -337,7 +337,7 @@ public class World implements Component {
             x *= SceneService.TILE_SIZE;
             y *= SceneService.TILE_SIZE;
 
-            entity.render(screen, x, y);
+            entity.render(x, y);
         }
     } // renderEntities
 

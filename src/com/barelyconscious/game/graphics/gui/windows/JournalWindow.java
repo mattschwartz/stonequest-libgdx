@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
@@ -27,6 +26,7 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Journal;
 import com.barelyconscious.game.player.JournalEntry;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.StringHelper;
@@ -267,30 +267,30 @@ public class JournalWindow extends Window implements ButtonAction {
     } // hoverOverAction
 
     @Override
-    public void render(Screen screen) {
-        windowButton.render(screen);
+    public void render() {
+        windowButton.render();
 
         if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
+        animationY = Math.min(animationY + (int) (SceneService.INSTANCE.getHeight() * FALL_RATE), getY());
 
-        JOURNAL_WINDOW_BACKGROUND.render(screen, getX(), animationY);
+        JOURNAL_WINDOW_BACKGROUND.render(getX(), animationY);
 
         if (animationY == getY()) {
-            closeWindowButton.render(screen);
-            questDescriptionTextArea.render(screen);
+            closeWindowButton.render();
+            questDescriptionTextArea.render();
 
             for (int i = 0; i < MAX_NUM_QUESTS; i++) {
-                questButtons[i].render(screen);
+                questButtons[i].render();
             } // for
 
-            renderJournalEntry(screen);
+            renderJournalEntry();
         } // if
     } // render
 
-    private void renderJournalEntry(Screen screen) {
+    private void renderJournalEntry() {
         int textOffsX;
         int textOffsY;
         String text;
@@ -313,10 +313,10 @@ public class JournalWindow extends Window implements ButtonAction {
 
         questDescriptionTextArea.setText(entry.getDescription());
 
-        renderItemRewards(screen, entry);
+        renderItemRewards(entry);
     } // renderJournalEntry
 
-    private void renderItemRewards(Screen screen, JournalEntry entry) {
+    private void renderItemRewards(JournalEntry entry) {
         int i = 0;
         int x, y;
         if (entry.rewards == null) {
@@ -327,11 +327,11 @@ public class JournalWindow extends Window implements ButtonAction {
         y = getY() + QUEST_REWARD_ITEM_OFFS_Y;
 
         for (Item reward : entry.rewards) {
-            ITEM_REWARD_BORDER.render(screen, x - 4, y - 4);
+            ITEM_REWARD_BORDER.render(x - 4, y - 4);
             itemRewards[i].setEnabled(true);
             itemRewards[i].resize(x, y);
             itemRewards[i].setItem(reward);
-            itemRewards[i].render(screen);
+            itemRewards[i].render();
             i++;
             x += QUEST_REWARD_ITEM_STEP_X;
         } // for

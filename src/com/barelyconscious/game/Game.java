@@ -11,19 +11,6 @@
  * File description: The game's main, running thread.  In control of rendering
  *                   data to the screen and performing animations as well as keeping
  *                   track of game cross-project classes.
- **************************************************************************** *//* *****************************************************************************
- * Project:          StoneQuest
- * File name:        Game.java
- * Author:           Matt Schwartz
- * Date created:     07.01.2012
- * Redistribution:   You are free to use, reuse, and edit any of the text in
- *                   this file.  You are not allowed to take credit for code
- *                   that was not written fully by yourself, or to remove 
- *                   credit from code that was not written fully by yourself.  
- *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
- * File description: The game's main, running thread.  In control of rendering
- *                   data to the screen and performing animations as well as keeping
- *                   track of game cross-project classes.
  **************************************************************************** */
 package com.barelyconscious.game;
 

@@ -17,7 +17,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import java.awt.image.BufferedImage;
 
@@ -170,14 +169,14 @@ public class InterfaceArtworkWindow extends Window {
     } // getBrewingButtonOffsY
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         int textLogBorderRepeatWidth = textLogBorderRepeat.getWidth();
 
         for (int i = textLogOffsX; i < textLogOffsX + textLogWidth; i += textLogBorderRepeatWidth) {
-            textLogBorderRepeat.render(screen, i, textLogOffsY);
+            textLogBorderRepeat.render(i, textLogOffsY);
         } // for
 
-        bottomLeftFrame.render(screen, bottomLeftFrameOffsX, bottomLeftFrameOffsY);
-        bottomRightFrame.render(screen, bottomRightFrameOffsX, bottomRightFrameOffsY);
+        bottomLeftFrame.render(bottomLeftFrameOffsX, bottomLeftFrameOffsY);
+        bottomRightFrame.render(bottomRightFrameOffsX, bottomRightFrameOffsY);
     } // render
 } // InterfaceArtworkWindow

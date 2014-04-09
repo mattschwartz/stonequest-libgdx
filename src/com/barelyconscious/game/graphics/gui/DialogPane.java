@@ -12,8 +12,9 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
+import com.barelyconscious.game.graphics.ShapeDrawer;
+import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.InputHandler;
 import com.barelyconscious.game.services.SceneService;
@@ -49,7 +50,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         determineDimensions();
 
         messageTextArea = new TextArea(x, y, width, height);
-        messageTextArea.setBackgroundColor(new Color(107, 107, 107).getRGB());
+        messageTextArea.setBackgroundColor(new Color(107, 107, 107));
         messageTextArea.setTextColor(Color.black.getRGB());
 
         okButton = new Button(this, "Okay", Interactable.Z_DIALOG_PANE_BUTTONS, x + BUTTON_MARGIN, y, true);
@@ -80,7 +81,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         } // for
 
         // Find a better way to do this...
-//        width = Font.getMaxStringWidth(screen, lines) + Font.CHAR_WIDTH * 2;
+//        width = Font.getMaxStringWidth(lines) + Font.CHAR_WIDTH * 2;
         height = (lines.size() + 1) * FontService.characterHeight + BUTTON_MARGIN + Button.DEFAULT_HEIGHT;
     } // determineDimensions
 
@@ -202,29 +203,30 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
     } // shouldDestroy
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         if (destroy) {
             System.err.println("Why is this happening??");
             return;
         }
         // Render title of pane
-        renderTitle(screen);
+        renderTitle();
 
         try {
             // Render text area - a border with text
-            messageTextArea.render(screen);
+            messageTextArea.render();
 
             // Render buttons
-            okButton.render(screen);
-            cancelButton.render(screen);
+            okButton.render();
+            cancelButton.render();
         } catch (NullPointerException ex) {
             System.err.println(" [ERROR]: " + ex);
         }
     } // render
 
-    private void renderTitle(Screen screen) {
+    private void renderTitle() {
         int borderWidth, borderHeight, borderOffsX, borderOffsY;
         int titleLineHeight, titleOffsX, titleOffsY;
+        View view = SceneService.INSTANCE.getView();
 
         titleLineHeight = FontService.characterHeight;
         titleOffsX = x + (width - FontService.getStringWidth(title)) / 2;
@@ -235,7 +237,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         borderOffsX = x - BORDER_WIDTH;
         borderOffsY = y - TOP_BORDER_HEIGHT;
 
-        screen.fillTransluscentRectangle(borderOffsX, borderOffsY, borderWidth, borderHeight);
+        ShapeDrawer.fillTransluscentRectangle(view, borderOffsX, borderOffsY, borderWidth, borderHeight);
         FontService.drawFont(title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, titleOffsX, titleOffsY);
     } // renderTitle
 } // DialogPane

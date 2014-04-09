@@ -15,13 +15,15 @@
  **************************************************************************** */
 package com.barelyconscious.game.spawnable;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
+import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
 import com.barelyconscious.game.item.Equippable;
 import com.barelyconscious.game.player.Inventory;
 import com.barelyconscious.game.player.condition.Condition;
+import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -425,12 +427,15 @@ public class Entity extends Sprite {
      *
      * @param screen the screen to render to
      * @param xOffs the x location where to render the Entity
-     * @param yOffs the y locaiton where to render the Entity
+     * @param yOffs the y location where to render the Entity
      */
     @Override
-    public void render(Screen screen, int xOffs, int yOffs) {
+    public void render(int xOffs, int yOffs) {
+        View view;
+        
+        view = SceneService.INSTANCE.getView();
         setVisible(World.INSTANCE.isTileLit(x, y));
-        super.render(screen, xOffs, yOffs);
+        super.render(xOffs, yOffs);
 
         if (!isVisible) {
             return;
@@ -443,9 +448,9 @@ public class Entity extends Sprite {
         yOffs = yOffs + spriteIcon.getHeight() - 6;
         xOffs += 2;
 
-        screen.drawRectangle(Color.black, xOffs, yOffs, healthBarWidth + 2, 4);
-        screen.fillRectangle(damagedHealth, xOffs + 1, yOffs + 1, healthBarWidth, 2);
-        screen.fillRectangle(health, xOffs + 1, yOffs + 1, (int) (healthBarWidth * 1.0 * Math.min(1, attributes[HEALTH_ATTRIBUTE] / totalHealth)), 2);
+        ShapeDrawer.drawRectangle(view, Color.black, xOffs, yOffs, healthBarWidth + 2, 4);
+        ShapeDrawer.fillRectangle(view, damagedHealth, xOffs + 1, yOffs + 1, healthBarWidth, 2);
+        ShapeDrawer.fillRectangle(view, health, xOffs + 1, yOffs + 1, (int) (healthBarWidth * 1.0 * Math.min(1, attributes[HEALTH_ATTRIBUTE] / totalHealth)), 2);
     } // render
 
     /* MOVEMENT ############################################################# */

@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
@@ -74,7 +73,7 @@ public class JustifiedTextArea extends TextArea {
     } // appendLine
 
     @Override
-    protected void renderText(Screen screen) {
+    protected void renderText() {
         int line = 0;
         int rightJustifiedTextOffsX;
 

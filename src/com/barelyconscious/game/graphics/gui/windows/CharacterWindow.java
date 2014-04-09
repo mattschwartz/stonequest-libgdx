@@ -14,7 +14,6 @@ package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
@@ -24,6 +23,7 @@ import com.barelyconscious.game.graphics.gui.JustifiedTextArea;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.player.Player;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.util.StringHelper;
@@ -343,39 +343,39 @@ public class CharacterWindow extends Window implements ButtonAction {
     } // hoverOverAction
 
     @Override
-    public void render(Screen screen) {
-        windowButton.render(screen);
+    public void render() {
+        windowButton.render();
 
         if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
+        animationY = Math.min(animationY + (int) (SceneService.INSTANCE.getHeight() * FALL_RATE), getY());
 
-        CHARACTER_WINDOW_BACKGROUND.render(screen, getX(), animationY);
+        CHARACTER_WINDOW_BACKGROUND.render(getX(), animationY);
 
         if (animationY == getY()) {
-            renderSubtitleText(screen);
-            renderPlayerAttributes(screen);
-            closeWindowButton.render(screen);
+            renderSubtitleText();
+            renderPlayerAttributes();
+            closeWindowButton.render();
 
             if (attributeHoverOver >= 0) {
                 writeAttributeInformation();
-                attributeInformationTextArea.render(screen);
+                attributeInformationTextArea.render();
             } // if
             else {
                 updateDetailedStats();
-                detailedStatsTextArea.render(screen);
+                detailedStatsTextArea.render();
             } // else
         } // if
     } // render
 
     /**
-     * Draw the player's attributes to the screen on top of the background.
+     * Draw the player's attributes to the on top of the background.
      *
-     * @param screen the screen to render to
+     * @param the to render to
      */
-    private void renderPlayerAttributes(Screen screen) {
+    private void renderPlayerAttributes() {
         int textOffsX = getX() + ATTRIBUTE_TEXT_OFFS_X;
         int textOffsY = getY() + ATTRIBUTE_TEXT_OFFS_Y + 17;
         String attributeValue;
@@ -411,7 +411,7 @@ public class CharacterWindow extends Window implements ButtonAction {
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FAITH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FAITH_ATTRIBUTE_OFFS_Y);
     } // renderPlayerAttributes
 
-    private void renderSubtitleText(Screen screen) {
+    private void renderSubtitleText() {
         int textOffsX;
         int textOffsY;
         String attributeDetailsTitle;

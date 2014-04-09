@@ -16,7 +16,6 @@
  ************************************************************************** */
 package com.barelyconscious.game.graphics;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.tiles.GrassTile;
 import com.barelyconscious.game.graphics.tiles.StoneWallTile;
@@ -75,7 +74,7 @@ public class Map {
      *
      * @param screen the Screen to draw to
      */
-    public void renderBackground(Screen screen, World world, int pX, int pY, int xOffs, int yOffs) {
+    public void renderBackground(World world, int pX, int pY, int xOffs, int yOffs) {
         int tileId;
 
         /*
@@ -99,7 +98,7 @@ public class Map {
                 } // if
 
                 if (map[tileId].recentlySeen) {
-                    getTileAt(x, y).renderShaded(screen, this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
+                    getTileAt(x, y).renderShaded(this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
                 } // if
             } // for
         } // for
@@ -131,7 +130,7 @@ public class Map {
                 } // if
 
                 if (map[tileId].isVisible) {
-                    getTileAt(x, y).render(screen, this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
+                    getTileAt(x, y).render(this, (x + xOffs) * SceneService.TILE_SIZE, (y + yOffs) * SceneService.TILE_SIZE);
                     map[tileId].unlightOnRefresh = true;
                     map[tileId].recentlySeen = true;
                 } // if

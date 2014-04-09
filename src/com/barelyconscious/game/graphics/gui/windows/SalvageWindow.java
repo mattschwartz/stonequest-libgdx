@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
@@ -56,7 +55,7 @@ public class SalvageWindow extends Window implements ButtonAction {
     } // hoverOverAction
 
     @Override
-    public void render(Screen screen) {
-        windowButton.render(screen);
+    public void render() {
+        windowButton.render();
     } // render
 } // SalvageWindow

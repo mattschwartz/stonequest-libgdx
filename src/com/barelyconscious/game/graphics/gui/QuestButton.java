@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
 import java.awt.Color;
@@ -39,37 +38,37 @@ public class QuestButton extends Button {
     } // setSelected
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         if (buttonSelected) {
-            renderSelected(screen);
+            renderSelected();
         } // if
 
         if (isMouseInFocus() || buttonSelected) {
-            renderHighlighted(screen);
+            renderHighlighted();
         } // if
         else {
             if (isEnabled()) {
-                QUEST_BUTTON_BACKGROUND.render(screen, x, y);
+                QUEST_BUTTON_BACKGROUND.render(x, y);
             } // if
             else {
-                QUEST_BUTTON_BACKGROUND.renderGrayscale(screen, x, y);
+                QUEST_BUTTON_BACKGROUND.renderGrayscale(x, y);
             } // else
         } // else
 
-        renderText(screen);
+        renderText();
     } // render
 
     @Override
-    protected void renderHighlighted(Screen screen) {
-        QUEST_BUTTON_BACKGROUND.renderHighlighted(screen, x, y);
+    protected void renderHighlighted() {
+        QUEST_BUTTON_BACKGROUND.renderHighlighted(x, y);
     } // renderHighlighted
 
-    private void renderSelected(Screen screen) {
-        QUEST_BUTTON_SELECTED.render(screen, x, y);
+    private void renderSelected() {
+        QUEST_BUTTON_SELECTED.render(x, y);
     } // renderSelected
 
     @Override
-    protected void renderText(Screen screen) {
+    protected void renderText() {
         int questNumberOffsX;
         int questNumberOffsY = y + (height) / 2 + 9;
 

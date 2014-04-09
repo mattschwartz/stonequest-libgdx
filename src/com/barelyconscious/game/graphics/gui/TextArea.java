@@ -12,10 +12,12 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
+import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.StringHelper;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
@@ -32,7 +34,7 @@ public class TextArea extends Interactable implements Component {
     protected int y;
     protected int width;
     protected int height;
-    private int backgroundColor = Color.black.getRGB();
+    private Color backgroundColor = Color.black;
     private int textColor = TextLogHelper.TEXTLOG_DEFAULT_COLOR;
     private boolean destroy;
     // For scrolling
@@ -131,7 +133,7 @@ public class TextArea extends Interactable implements Component {
         setY(startY);
     } // resize
 
-    public void setBackgroundColor(int newBackground) {
+    public void setBackgroundColor(Color newBackground) {
         backgroundColor = newBackground;
     } // setBackgroundColor
 
@@ -253,37 +255,39 @@ public class TextArea extends Interactable implements Component {
     } // shouldDestroy
 
     @Override
-    public void render(Screen screen) {
-        renderBorder(screen);
-        renderText(screen);
-        scrollBar.render(screen);
+    public void render() {
+        renderBorder();
+        renderText();
+        scrollBar.render();
     } // render
 
-    protected void renderBorder(Screen screen) {
+    protected void renderBorder() {
+        View view = SceneService.INSTANCE.getView();
+        
         // Black background
-        screen.fillRectangle(backgroundColor, x + textAreaBorderLeftRepeat.getWidth(), y + textAreaBorderTopRepeat.getHeight(), width - textAreaBorderLeftRepeat.getWidth() * 2, height - textAreaBorderTopRepeat.getHeight() * 2);
+        ShapeDrawer.fillRectangle(view, backgroundColor, x + textAreaBorderLeftRepeat.getWidth(), y + textAreaBorderTopRepeat.getHeight(), width - textAreaBorderLeftRepeat.getWidth() * 2, height - textAreaBorderTopRepeat.getHeight() * 2);
 
         // Render corners
-        textAreaBorderTopLeftCorner.render(screen, x, y);
-        textAreaBorderBottomLeftCorner.render(screen, x, y + height - textAreaBorderBottomLeftCorner.getHeight());
-        textAreaBorderTopRightCorner.render(screen, x + width - textAreaBorderTopRightCorner.getWidth(), y);
-        textAreaBorderBottomRightCorner.render(screen, x + width - textAreaBorderTopRightCorner.getWidth(), y + height - textAreaBorderBottomLeftCorner.getHeight());
+        textAreaBorderTopLeftCorner.render(x, y);
+        textAreaBorderBottomLeftCorner.render(x, y + height - textAreaBorderBottomLeftCorner.getHeight());
+        textAreaBorderTopRightCorner.render(x + width - textAreaBorderTopRightCorner.getWidth(), y);
+        textAreaBorderBottomRightCorner.render(x + width - textAreaBorderTopRightCorner.getWidth(), y + height - textAreaBorderBottomLeftCorner.getHeight());
 
         // Render edges
         // top and UIElement.bottom edges
         for (int i = x + textAreaBorderTopLeftCorner.getWidth(); i < x + (width - textAreaBorderTopRightCorner.getWidth()); i += textAreaBorderTopRepeat.getWidth()) {
-            textAreaBorderTopRepeat.render(screen, i, y);
-            textAreaBorderBottomRepeat.render(screen, i, y + height - textAreaBorderBottomRepeat.getHeight());
+            textAreaBorderTopRepeat.render(i, y);
+            textAreaBorderBottomRepeat.render(i, y + height - textAreaBorderBottomRepeat.getHeight());
         } // for
 
         // left and right edges
         for (int i = y + textAreaBorderTopLeftCorner.getHeight(); i < y + (height - textAreaBorderBottomLeftCorner.getHeight()); i += textAreaBorderLeftRepeat.getWidth()) {
-            textAreaBorderLeftRepeat.render(screen, x, i);
-            textAreaBorderRightRepeat.render(screen, x + width - textAreaBorderRightRepeat.getWidth(), i);
+            textAreaBorderLeftRepeat.render(x, i);
+            textAreaBorderRightRepeat.render(x + width - textAreaBorderRightRepeat.getWidth(), i);
         } // for
     } // renderBorder
 
-    protected void renderText(Screen screen) {
+    protected void renderText() {
         int textOffsX = x + textAreaBorderLeftRepeat.getWidth() + MARGIN;
         int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + FontService.characterHeight;
         int line = 0;

@@ -13,7 +13,6 @@
 
 package com.barelyconscious.game.graphics.animation;
 
-import com.barelyconscious.game.Screen;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,7 +32,7 @@ public class Animation {
         frames.add(frame);
     } // addFrame
     
-    public void render(Screen screen) {
+    public void render() {
         if (--nextFrame <= 0) {
             currentFrame++;
             
@@ -43,6 +42,6 @@ public class Animation {
             nextFrame = frames.get(currentFrame).getDelay();
         } // if
         
-        frames.get(currentFrame).render(screen);
+        frames.get(currentFrame).render();
     } // render
 } // Animation

@@ -14,7 +14,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 
 public interface Component {
 
@@ -76,5 +75,5 @@ public interface Component {
      *
      * @param screen The Screen to render the Component to
      */
-    public void render(Screen screen);
+    public void render();
 } // Component

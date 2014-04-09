@@ -14,7 +14,6 @@ package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.UIElement;
@@ -23,6 +22,7 @@ import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.graphics.gui.EquipmentSlotArea;
 import com.barelyconscious.game.graphics.gui.InventorySlotArea;
 import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.util.ColorHelper;
@@ -213,35 +213,35 @@ public class InventoryWindow extends Window implements ButtonAction {
     } // hoverOverAction
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         String playerGold;
-        windowButton.render(screen);
+        windowButton.render();
 
         if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
+        animationY = Math.min(animationY + (int) (SceneService.INSTANCE.getHeight() * FALL_RATE), getY());
 
-        INVENTORY_WINDOW_BACKGROUND.render(screen, getX(), animationY);
+        INVENTORY_WINDOW_BACKGROUND.render(getX(), animationY);
 
         if (animationY == getY()) {
-            closeWindowButton.render(screen);
+            closeWindowButton.render();
 
             // Draw gold text
             playerGold = World.INSTANCE.getPlayer().getInventory().getGold() + " g";
             FontService.drawFont(playerGold, ColorHelper.PLAYER_GOLD_TEXT_COLOR, null, getX() + goldTextOffsX + goldTextAreaWidth - FontService.getStringWidth(playerGold), getY() + goldTextOffsY);
-            renderItemSlots(screen);
+            renderItemSlots();
         } // if
     } // render
 
-    private void renderItemSlots(Screen screen) {
+    private void renderItemSlots() {
         for (int slot = 0; slot < NUM_INVENTORY_SLOTS; slot++) {
-            itemSlots[slot].render(screen);
+            itemSlots[slot].render();
         } // for
 
         for (int i = 0; i < NUM_EQUIPMENT_SLOTS; i++) {
-            equipmentSlots[i].render(screen);
+            equipmentSlots[i].render();
         } // for
     } // renderItemSlots
 } // InventoryWindow

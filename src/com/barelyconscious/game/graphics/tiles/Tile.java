@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.tiles;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.Map;
 import com.barelyconscious.game.graphics.UIElement;
 import java.util.Random;
@@ -141,12 +140,12 @@ public class Tile {
      * @param x The x starting location for the Tile to be rendered
      * @param y The y starting location for the Tile to be rendered
      */
-    public void render(Screen screen, Map map, int x, int y) {
+    public void render(Map map, int x, int y) {
         if (isVisible) {
-            image.render(screen, x, y);
+            image.render(x, y);
         } // if
         else if (recentlySeen) {
-            image.renderShaded(screen, x, y);
+            image.renderShaded(x, y);
         } // if
     } // render
 
@@ -161,7 +160,7 @@ public class Tile {
      * @param x The x starting location for the Tile to be rendered
      * @param y The y starting location for the Tile to be rendered
      */
-    public void renderShaded(Screen screen, Map map, int x, int y) {
-        image.renderShaded(screen, x, y);
+    public void renderShaded(Map map, int x, int y) {
+        image.renderShaded(x, y);
     } // render
 } // Tile

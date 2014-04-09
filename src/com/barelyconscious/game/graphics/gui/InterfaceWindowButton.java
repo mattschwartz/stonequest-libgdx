@@ -12,9 +12,7 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
 import com.barelyconscious.game.input.Interactable;
 
 public class InterfaceWindowButton extends Button {
@@ -30,25 +28,25 @@ public class InterfaceWindowButton extends Button {
 
     @Override
     public void mouseExited() {
-        super.mouseExited(); //To change body of generated methods, choose Tools | Templates.
+        super.mouseExited();
 //        InterfaceDelegate.getInstance().clearTooltipText();
     } // mouseExited
-    
+
     @Override
-    public void render(Screen screen) {
+    public void render() {
         if (isMouseButtonDown()) {
-            buttonImage.renderShaded(screen, x, y);
+            buttonImage.renderShaded(x, y);
         } // if
         else if (isMouseInFocus()) {
-            renderHighlighted(screen);
+            renderHighlighted();
         } // if
         else {
-            buttonImage.render(screen, x, y);
+            buttonImage.render(x, y);
         } // else
     } // render
 
     @Override
-    protected void renderHighlighted(Screen screen) {
-        buttonImage.renderHighlighted(screen, x, y);
+    protected void renderHighlighted() {
+        buttonImage.renderHighlighted(x, y);
     } // renderHighlighted
 } // InterfaceWindowButton

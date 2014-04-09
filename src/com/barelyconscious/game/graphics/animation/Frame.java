@@ -14,7 +14,6 @@
 package com.barelyconscious.game.graphics.animation;
 
 import com.barelyconscious.game.Game;
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.util.ColorHelper;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -61,7 +60,7 @@ public class Frame {
         this.delay = delay;
     } // setDelay
     
-    public void render(Screen screen) {
+    public void render() {
         int pix;
         
         for (int x = 0; x < width; x++) {
@@ -72,7 +71,7 @@ public class Frame {
                     continue;
                 } // if
                 
-                screen.setPixel(pix, xOffs + x, yOffs + y);
+//                screen.setPixel(pix, xOffs + x, yOffs + y);
             } // for
         } // for
     } // render

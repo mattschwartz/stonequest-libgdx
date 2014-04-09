@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.spawnable;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.util.LineElement;
 import com.barelyconscious.util.StringHelper;
@@ -259,14 +258,15 @@ public class Sprite {
     /**
      * Renders the Sprite to the screen, given
      *
-     * @param screen
+     * @param xOffs The X location to render the Sprite
+     * @param yOffs The Y location to render the Sprite
      */
-    public void render(Screen screen, int xOffs, int yOffs) {
+    public void render(int xOffs, int yOffs) {
         if (isVisible) {
-            spriteIcon.render(screen, xOffs, yOffs);
+            spriteIcon.render(xOffs, yOffs);
         } // if
         else if (hasBeenSeen) {
-            spriteIcon.renderShaded(screen, xOffs, yOffs);
+            spriteIcon.renderShaded(xOffs, yOffs);
         } // else if
 
         // Otherwise, do not render

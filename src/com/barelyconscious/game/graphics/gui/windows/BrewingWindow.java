@@ -14,7 +14,6 @@ package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.BrewingSlotArea;
@@ -23,6 +22,7 @@ import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Cauldron;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 
 public class BrewingWindow extends Window implements ButtonAction {
@@ -187,29 +187,29 @@ public class BrewingWindow extends Window implements ButtonAction {
     } // hoverOverAction
 
     @Override
-    public void render(Screen screen) {
-        windowButton.render(screen);
+    public void render() {
+        windowButton.render();
 
         if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
+        animationY = Math.min(animationY + (int) (SceneService.INSTANCE.getHeight() * FALL_RATE), getY());
 
-        BREWING_WINDOW_BACKGROUND.render(screen, getX(), animationY);
+        BREWING_WINDOW_BACKGROUND.render(getX(), animationY);
 
         if (animationY == getY()) {
-            closeWindowButton.render(screen);
-            brewPotionButton.render(screen);
-            renderItemSlots(screen);
+            closeWindowButton.render();
+            brewPotionButton.render();
+            renderItemSlots();
         } // if
     } // render
 
-    private void renderItemSlots(Screen screen) {
+    private void renderItemSlots() {
         for (int i = 0; i < NUM_INGREDIENT_SLOTS; i++) {
-            ingredientSlots[i].render(screen);
+            ingredientSlots[i].render();
         } // for
 
-        resultSlot.render(screen);
+        resultSlot.render();
     } // renderItemSlots
 } // BrewingWindow

@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
 import com.barelyconscious.game.input.Interactable;
@@ -98,7 +97,7 @@ public class ItemSlotArea extends InventorySlotArea {
 //    } // mouseClicked
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
 //        String stack;
 //        Item item = getItem();
 //

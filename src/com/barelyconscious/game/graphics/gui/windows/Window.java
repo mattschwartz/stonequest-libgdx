@@ -15,7 +15,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.input.Interactable;
 
@@ -49,11 +48,11 @@ public class Window extends Interactable implements Component {
     public void hide() {
         isVisible = false;
     } // hide
-    
+
     public boolean isVisible() {
         return isVisible;
     } // isVisible
-    
+
     public void setVisible(boolean isVisible) {
         this.isVisible = isVisible;
     } // setVisible
@@ -62,7 +61,7 @@ public class Window extends Interactable implements Component {
     public int getX() {
         return windowOffsX;
     } // getX
-    
+
     @Override
     public int getY() {
         return windowOffsY;
@@ -82,7 +81,7 @@ public class Window extends Interactable implements Component {
     public int getWidth() {
         return width;
     } // getWidth
-    
+
     public void setWidth(int newWidth) {
         this.width = newWidth;
     } // setWidth
@@ -91,7 +90,7 @@ public class Window extends Interactable implements Component {
     public int getHeight() {
         return height;
     } // getHeight
-    
+
     public void setHeight(int newHeight) {
         this.height = newHeight;
     } // setHeight
@@ -101,10 +100,9 @@ public class Window extends Interactable implements Component {
      * overridden in subclasses which will tell the screen how to draw the
      * component.
      *
-     * @param screen the screen to render the window to
      */
     @Override
-    public void render(Screen screen) {
+    public void render() {
     } // render
 
     /**

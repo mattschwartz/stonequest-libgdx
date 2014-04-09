@@ -14,7 +14,6 @@ package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.graphics.gui.CloseWindowButton;
 import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
@@ -25,6 +24,7 @@ import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Augment;
 import com.barelyconscious.game.item.DivineFavor;
 import com.barelyconscious.game.item.Item;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 
 public class UpgradeItemWindow extends Window implements ButtonAction {
@@ -337,39 +337,39 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
     } // updateDivineFavorInfo
 
     @Override
-    public void render(Screen screen) {
-        windowButton.render(screen);
+    public void render() {
+        windowButton.render();
 
         if (!isVisible()) {
             return;
         } // if
 
-        animationY = Math.min(animationY + (int) (screen.getVisibleHeight() * FALL_RATE), getY());
+        animationY = Math.min(animationY + (int) (SceneService.INSTANCE.getHeight() * FALL_RATE), getY());
 
-        UPGRADE_ITEM_WINDOW_BACKGROUND.render(screen, getX(), animationY);
+        UPGRADE_ITEM_WINDOW_BACKGROUND.render(getX(), animationY);
 
         if (animationY == getY()) {
-            closeWindowButton.render(screen);
-            applySalvageButton.render(screen);
-            applyAugmentationButton.render(screen);
-            removeAugmentationButton.render(screen);
-            performRitualButton.render(screen);
+            closeWindowButton.render();
+            applySalvageButton.render();
+            applyAugmentationButton.render();
+            removeAugmentationButton.render();
+            performRitualButton.render();
 
             updateItemInfo();
-            itemDescriptionTextArea.render(screen);
+            itemDescriptionTextArea.render();
 
             updateDivineFavorInfo();
-            divineFavorDescriptionTextArea.render(screen);
-            renderItemSlots(screen);
+            divineFavorDescriptionTextArea.render();
+            renderItemSlots();
 
-            itemSalvageProgressBar.render(screen);
+            itemSalvageProgressBar.render();
         } // if
     } // render
 
-    private void renderItemSlots(Screen screen) {
-        itemToUpgradeSlot.render(screen);
-        salvageSlot.render(screen);
-        itemAugmentSlot.render(screen);
-        divineFavorSlot.render(screen);
+    private void renderItemSlots() {
+        itemToUpgradeSlot.render();
+        salvageSlot.render();
+        itemAugmentSlot.render();
+        divineFavorSlot.render();
     } // renderItemSlots
 } // UpgradeItemWindow

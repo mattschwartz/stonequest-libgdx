@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.input.Interactable;
 
@@ -28,22 +27,22 @@ public class CloseWindowButton extends Button {
     } // constructor
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         if (isMouseButtonDown()) {
-            renderMouseButtonDown(screen);
+            renderMouseButtonDown();
         } // if
         else if (isMouseInFocus()) {
-            buttonImage.renderHighlighted(screen, x, y);
+            buttonImage.renderHighlighted(x, y);
         } // else if
         else {
-            buttonImage.render(screen, x, y);
+            buttonImage.render(x, y);
         } // else
     } // render
 
-    private void renderMouseButtonDown(Screen screen) {
+    private void renderMouseButtonDown() {
         int xOffs = x + 1;
         int yOffs = y + 1;
 
-        buttonImage.render(screen, xOffs, yOffs);
+        buttonImage.render(xOffs, yOffs);
     }
 } // CloseWindowButton

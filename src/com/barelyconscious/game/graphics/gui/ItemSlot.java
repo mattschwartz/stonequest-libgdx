@@ -13,7 +13,6 @@
 
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
@@ -99,6 +98,6 @@ public class ItemSlot extends Interactable implements Component {
     } // shouldRemove
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
     } // render
 } // ItemSlot

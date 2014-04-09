@@ -28,7 +28,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.player.condition;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.player.AttributeMod;
 import com.barelyconscious.game.spawnable.Entity;
@@ -88,10 +87,10 @@ public class Condition {
             this.affectedAttributes.addAll(Arrays.asList(affectedAttributes));
         } // if
     } // constructor
-    
+
     /**
-     * 
-     * @return the remaining number of game ticks that the Condition lasts for 
+     *
+     * @return the remaining number of game ticks that the Condition lasts for
      * before being removed
      */
     public int getDuration() {
@@ -104,7 +103,7 @@ public class Condition {
      */
     public void apply() {
         affectedEntity.affect(this);
-        
+
         for (AttributeMod attributeMod : affectedAttributes) {
             affectedEntity.adjustAttribute(attributeMod.getAttributeId(), attributeMod.getAttributeModifier());
         } // for
@@ -118,68 +117,68 @@ public class Condition {
         for (AttributeMod attributeMod : affectedAttributes) {
             affectedEntity.adjustAttribute(attributeMod.getAttributeId(), -attributeMod.getAttributeModifier());
         } // for
-        
+
         affectedEntity.dissolveCondiiton(this);
     } // remove
-    
+
     /**
-     * 
+     *
      * @return the type of Condition as an integer
      */
     public int getConditionType() {
         return conditionType;
     } // getConditionType
-    
+
     /**
-     * 
+     *
      * @return the name of the Condition as a String
      */
     public String getName() {
         return name;
     } // getName
-    
+
     /**
      * This method should be overridden by subclasses and altered to more
      * appropriately fit the Condition.
+     *
      * @return the description associated with this Condition as a String
      */
     public String getDescription() {
         return "A temporary effect that affects abilities.";
     } // getDescription
-    
+
     /**
-     * 
+     *
      * @return the attributes affected by this Condition in an array
      */
     public AttributeMod[] getAffectedAttributes() {
         if (affectedAttributes == null) {
             return null;
         } // if
-        
+
         return affectedAttributes.toArray(new AttributeMod[]{});
     } // getAffectedAttributes
-    
+
     public void setAffectedEntity(Entity affectedEntity) {
         this.affectedEntity = affectedEntity;
     } // setAffectedEntity
-    
+
     /**
-     * This method is called during a game tick and the Condition should
-     * perform any necessary functions during that time.
+     * This method is called during a game tick and the Condition should perform
+     * any necessary functions during that time.
      */
     public void tick() {
         duration--;
-        
+
         if (duration <= 0) {
             remove();
         } // if
     } // tick
-    
+
     /**
      * Renders the Condition's icon to the screen for the Player.
-     * @param screen the screen to render the Condition's icon to
      */
-    public void render(Screen screen, int x, int y) {
-        conditionIcon.render(screen, x, y);
+    public void render(int x, int y) {
+        conditionIcon.render(x, y);
     } // render
 } // Condition

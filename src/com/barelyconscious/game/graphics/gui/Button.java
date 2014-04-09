@@ -12,10 +12,12 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
+import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.input.Interactable;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.TextLogHelper;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -33,8 +35,8 @@ public class Button extends Interactable implements Component {
     protected int height = DEFAULT_HEIGHT;
     protected int titleOffsX;
     protected int titleOffsY;
-    private int borderHighlightColor = new Color(137, 137, 137).getRGB();
-    private int borderShadowColor = new Color(38, 38, 38).getRGB();
+    private Color borderHighlightColor = new Color(137, 137, 137);
+    private Color borderShadowColor = new Color(38, 38, 38);
     protected boolean hasBorder = false;
     private boolean destroy = false;
     protected String title = "button";
@@ -239,12 +241,12 @@ public class Button extends Interactable implements Component {
     } // shouldDestroy
 
     @Override
-    public void render(Screen screen) {
+    public void render() {
         int xOffs = x;
         int yOffs = y;
 
         if (isMouseInFocus()) {
-            renderHighlighted(screen);
+            renderHighlighted();
             return;
         } // if
 
@@ -253,18 +255,18 @@ public class Button extends Interactable implements Component {
             yOffs++;
         } // if
 
-        borderLeft.render(screen, xOffs, yOffs);
+        borderLeft.render(xOffs, yOffs);
 
         for (int i = xOffs + borderLeft.getWidth(); i < xOffs + (width - borderRight.getWidth()); i += borderRepeat.getWidth()) {
-            borderRepeat.render(screen, i, yOffs);
+            borderRepeat.render(i, yOffs);
         } // for
 
-        borderRight.render(screen, xOffs + width - borderRight.getWidth(), yOffs);
+        borderRight.render(xOffs + width - borderRight.getWidth(), yOffs);
 
-        renderText(screen);
+        renderText();
 
         if (hasBorder) {
-            renderBorder(screen);
+            renderBorder();
         } // if
     } // render
 
@@ -273,7 +275,7 @@ public class Button extends Interactable implements Component {
      *
      * @param screen the rendering screen object
      */
-    protected void renderHighlighted(Screen screen) {
+    protected void renderHighlighted() {
         int xOffs = x;
         int yOffs = y;
 
@@ -282,24 +284,24 @@ public class Button extends Interactable implements Component {
             yOffs++;
         } // if
 
-        borderLeft.renderHighlighted(screen, xOffs, yOffs);
+        borderLeft.renderHighlighted(xOffs, yOffs);
 
         for (int i = xOffs + borderLeft.getWidth(); i < xOffs + (width - borderRight.getWidth()); i += borderRepeat.getWidth()) {
-            borderRepeat.renderHighlighted(screen, i, yOffs);
+            borderRepeat.renderHighlighted(i, yOffs);
         } // for
 
-        borderRight.renderHighlighted(screen, xOffs + width - borderRight.getWidth(), yOffs);
+        borderRight.renderHighlighted(xOffs + width - borderRight.getWidth(), yOffs);
 
         if (title != null && !(title.equals(""))) {
-            renderText(screen);
+            renderText();
         } // if
 
         if (hasBorder) {
-            renderBorder(screen);
+            renderBorder();
         } // if
     } // renderHighlighted
 
-    protected void renderText(Screen screen) {
+    protected void renderText() {
         int offsX = titleOffsX;
         int offsY = titleOffsY;
 
@@ -313,25 +315,26 @@ public class Button extends Interactable implements Component {
         } // else
     } // renderText
 
-    private void renderBorder(Screen screen) {
+    private void renderBorder() {
         int xOffs = x;
         int yOffs = y;
+        View view = SceneService.INSTANCE.getView();
 
         if (isMouseButtonDown()) {
             xOffs++;
             yOffs++;
-            screen.drawLine(borderShadowColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
-            screen.drawLine(borderShadowColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
+            ShapeDrawer.drawLine(view, borderShadowColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
+            ShapeDrawer.drawLine(view, borderShadowColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
 
-            screen.drawLine(borderHighlightColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
-            screen.drawLine(borderHighlightColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
         } // if
         else {
-            screen.drawLine(borderHighlightColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
-            screen.drawLine(borderHighlightColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
+            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
+            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
 
-            screen.drawLine(borderShadowColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
-            screen.drawLine(borderShadowColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(view, borderShadowColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(view, borderShadowColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
         } // else
     } // renderButton
 

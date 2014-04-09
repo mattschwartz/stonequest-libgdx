@@ -13,7 +13,6 @@
 
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.util.TextLogHelper;
@@ -65,7 +64,7 @@ public class TooltipTextArea extends TextArea {
     } // resize
 
     @Override
-    protected void renderText(Screen screen) {
+    protected void renderText() {
         int offsY = textOffsY + (height - MARGIN * 2 - usedRows * FontService.characterHeight) / 2;
         int offsX;
         

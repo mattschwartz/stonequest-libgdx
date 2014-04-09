@@ -79,7 +79,6 @@ public class FontService implements Service {
     /**
      * Gets the width of the message once it is drawn to the screen
      *
-     * @param scr the screen the message would be rendered to
      * @param msg the message to be drawn to the screen
      * @return
      */
@@ -90,7 +89,6 @@ public class FontService implements Service {
     /**
      * Gets the width of the message once it is drawn to the screen
      *
-     * @param scr the screen the message would be rendered to
      * @param msg the message to be drawn to the screen
      * @param bold if true, the font used will be bold
      * @param fontSize the point size of the font to be used
@@ -109,7 +107,6 @@ public class FontService implements Service {
     /**
      * Returns the maximum width as an integer based on a given list of strings.
      *
-     * @param scr the screen the messages would be rendered to
      * @param strings the list of strings from which to determine a maximum
      * width
      * @return the max width in pixels
@@ -132,7 +129,6 @@ public class FontService implements Service {
     /**
      * Draws a string to the screen at the supplied coordinates.
      *
-     * @param scr the screen to render to
      * @param msg the message to be written to the screen
      * @param col the color of the message as a Color object
      * @param font if null, the default font will be used
@@ -182,10 +178,8 @@ public class FontService implements Service {
     /**
      * Draws a string to the screen at the supplied coordinates.
      *
-     * @param scr the screen to render to
      * @param msg the message to be written to the screen
      * @param col the color of the message as an integer
-     * @param font if null, the default font will be used
      * @param xStart the starting x coordinate where the message will be drawn,
      * this value should be greater than or equal to 0 but less than the width
      * of the screen
@@ -200,10 +194,8 @@ public class FontService implements Service {
     /**
      * Draws a string to the screen at the supplied coordinates.
      *
-     * @param scr the screen to render to
      * @param msg the message to be written to the screen
      * @param col the color of the message as an integer
-     * @param font if null, the default font will be used
      * @param xStart the starting x coordinate where the message will be drawn,
      * this value should be greater than or equal to 0 but less than the width
      * of the screen
@@ -219,7 +211,6 @@ public class FontService implements Service {
      * Draws a string to the screen at the supplied coordinates using the
      * default font.
      *
-     * @param scr the screen to render to
      * @param msg the message to be written to the screen
      * @param col the color of the message as a Color object
      * @param bold if true, the message printed will be bolded

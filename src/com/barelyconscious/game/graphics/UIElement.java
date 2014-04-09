@@ -13,7 +13,7 @@
 package com.barelyconscious.game.graphics;
 
 import com.barelyconscious.game.Game;
-import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.ConsoleWriter;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -115,7 +115,7 @@ public class UIElement {
      * @param xStart the starting x coordinate of the UIElement
      * @param yStart the starting y coordinate of the UIElement
      */
-    public void render(Screen screen, int xStart, int yStart) {
+    public void render(int xStart, int yStart) {
         int pix;
         int yLoc;
 
@@ -128,7 +128,7 @@ public class UIElement {
                     continue;
                 } // if
 
-                screen.setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // render
@@ -140,7 +140,7 @@ public class UIElement {
      * @param xStart the starting x coordinate of the UIElement
      * @param yStart the starting y coordinate of the UIElement
      */
-    public void renderGrayscale(Screen screen, int xStart, int yStart) {
+    public void renderGrayscale(int xStart, int yStart) {
         int pix;
         int r, g, b, mask = 0xFF;
 
@@ -159,7 +159,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                screen.setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderGrayscale
@@ -171,7 +171,7 @@ public class UIElement {
      * @param xStart the starting x coordinate of the UIElement
      * @param yStart the starting y coordinate of the UIElement
      */
-    public void renderHighlighted(Screen screen, int xStart, int yStart) {
+    public void renderHighlighted(int xStart, int yStart) {
         int pix;
         int yLoc;
         int r, g, b, mask = 0xFF;
@@ -199,7 +199,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                screen.setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderHighlighted
@@ -211,7 +211,7 @@ public class UIElement {
      * @param xStart the starting x coordinate of the UIElement
      * @param yStart the starting y coordinate of the UIElement
      */
-    public void renderShaded(Screen screen, int xStart, int yStart) {
+    public void renderShaded(int xStart, int yStart) {
         int pix;
         int yLoc;
         int r, g, b, mask = 0xFF;
@@ -239,7 +239,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                screen.setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderShaded

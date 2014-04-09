@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.player;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.TextLog;
@@ -156,8 +155,8 @@ public class Player extends Entity {
     } // interact
 
     @Override
-    public void render(Screen screen, int xOffs, int yOffs) {
-        DEFAULT_PLAYER_ICON.render(screen, xOffs, yOffs); //To change body of generated methods, choose Tools | Templates.
+    public void render(int xOffs, int yOffs) {
+        DEFAULT_PLAYER_ICON.render(xOffs, yOffs);
     } // render
 } // Player
 

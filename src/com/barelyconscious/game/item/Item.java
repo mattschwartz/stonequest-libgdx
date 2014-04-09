@@ -15,7 +15,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.item;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.player.AttributeMod;
 import com.barelyconscious.game.spawnable.Entity;
@@ -346,8 +345,8 @@ public class Item implements Comparable<Item> {
      * @param x the x starting coordinate of where the Item should be rendered
      * @param y the y starting coordinate of where the Item should be rendered
      */
-    public void render(Screen screen, int x, int y) {
-        icon.render(screen, x, y);
+    public void render(int x, int y) {
+        icon.render(x, y);
     } // render
 
     @Override

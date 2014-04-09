@@ -12,7 +12,6 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui.windows;
 
-import com.barelyconscious.game.Screen;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.player.Player;
@@ -114,7 +113,7 @@ public class TextLog extends TextArea {
     } // toPlainText
 
     @Override
-    protected synchronized void renderText(Screen screen) {
+    protected synchronized void renderText() {
         int textOffsX = x + textAreaBorderLeftRepeat.getWidth() + MARGIN;
         int textOffsY = y + textAreaBorderTopRepeat.getHeight() + MARGIN + FontService.characterHeight;
         int i = 0;

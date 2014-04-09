@@ -12,8 +12,10 @@
  **************************************************************************** */
 package com.barelyconscious.game.graphics.gui;
 
-import com.barelyconscious.game.Screen;
+import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
@@ -27,11 +29,11 @@ public class ScrollBar {
     protected int viewableLines; // number of lines visible in the frame
     protected int topLineNumber; // line number at the very top of the frame
     protected int lineCount; // total number of lines in the frame
-    private int backgroundColor = new Color(33, 33, 33).getRGB();
-    private int backgroundColorHighlight = new Color(61, 61, 61).getRGB();
-    private int scrollBarColor = new Color(84, 84, 84).getRGB();
-    private int scrollBarHighlight = new Color(127, 127, 127).getRGB();
-    private int scrollBarShadow = new Color(61, 61, 61).getRGB();
+    private Color backgroundColor = new Color(33, 33, 33);
+    private Color backgroundColorHighlight = new Color(61, 61, 61);
+    private Color scrollBarColor = new Color(84, 84, 84);
+    private Color scrollBarHighlight = new Color(127, 127, 127);
+    private Color scrollBarShadow = new Color(61, 61, 61);
     private static UIElement barTop;
     private static UIElement barBottom;
 
@@ -101,31 +103,33 @@ public class ScrollBar {
         height = newHeight;
     } // setHeight
 
-    public void render(Screen screen) {
+    public void render() {
+        View view = SceneService.INSTANCE.getView();
+        
         if (lineCount <= viewableLines) {
             return;
-        }
+        } // if
         
-        renderBackground(screen);
-        renderScrollBar(screen, getScrollBarOffset(), getEmptySpace());
+        renderBackground(view);
+        renderScrollBar(view, getScrollBarOffset(), getEmptySpace());
     } // render
 
-    private void renderBackground(Screen screen) {
+    private void renderBackground(View view) {
         // Render background
-        screen.fillRectangle(backgroundColor, x, y, SCROLLBAR_WIDTH, height);
-        screen.fillRectangle(backgroundColorHighlight, x + SCROLLBAR_WIDTH - 1, y, 1, height);
+        ShapeDrawer.fillRectangle(view, backgroundColor, x, y, SCROLLBAR_WIDTH, height);
+        ShapeDrawer.fillRectangle(view, backgroundColorHighlight, x + SCROLLBAR_WIDTH - 1, y, 1, height);
     } // renderBackground
 
-    private void renderScrollBar(Screen screen, int yStart, int height) {
+    private void renderScrollBar(View view, int yStart, int height) {
         // Render middle part of the scroll bar
-        screen.fillRectangle(scrollBarColor, x + 1, yStart + barTop.getHeight(), 2, height - barTop.getHeight() - barBottom.getHeight());
-        screen.fillRectangle(scrollBarHighlight, x, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
-        screen.fillRectangle(scrollBarShadow, x + SCROLLBAR_WIDTH - 1, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(view, scrollBarColor, x + 1, yStart + barTop.getHeight(), 2, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(view, scrollBarHighlight, x, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(view, scrollBarShadow, x + SCROLLBAR_WIDTH - 1, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
 
         // Render top of scroll bar
-        barTop.render(screen, x, yStart);
+        barTop.render(x, yStart);
 
         // Render bottom of scroll bar
-        barBottom.render(screen, x, yStart + height - barBottom.getHeight());
+        barBottom.render(x, yStart + height - barBottom.getHeight());
     } // renderScrollBar
 } // ScrollBar
