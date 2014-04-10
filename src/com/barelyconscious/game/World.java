@@ -21,13 +21,14 @@ import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.graphics.tiles.Tile;
 import com.barelyconscious.game.player.Player;
 import com.barelyconscious.game.services.SceneService;
+import com.barelyconscious.game.services.Service;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.game.spawnable.Loot;
 import com.barelyconscious.game.spawnable.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class World implements Component {
+public class World implements Component, Service {
     
     public static final World INSTANCE = new World();
 
@@ -67,6 +68,21 @@ public class World implements Component {
         // debugger
         currentMap.generateAreaMap(256, 256, -1, 25, "Kud arajhi steppes");
     } // constructor
+
+    @Override
+    public void start() {
+        resize(SceneService.INSTANCE.getViewWidth(), SceneService.INSTANCE.getViewHeight());
+    } // start
+
+    @Override
+    public void stop() {
+    } // stop
+
+    @Override
+    public void restart() {
+        stop();
+        start();
+    } // restart
 
     /**
      * Resize the world with the given width and height: redetermine how many

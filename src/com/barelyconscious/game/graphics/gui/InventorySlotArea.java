@@ -52,7 +52,6 @@ public class InventorySlotArea extends Interactable implements Component {
      * @param startY the y coordinate of where to draw the slot
      */
     public InventorySlotArea(Inventory inventory, int slotNumber, int startX, int startY) {
-        playerInventory = inventory;
         inventorySlotNumber = slotNumber;
         x = startX;
         y = startY;

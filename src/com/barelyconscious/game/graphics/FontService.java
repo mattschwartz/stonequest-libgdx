@@ -57,8 +57,8 @@ public class FontService implements Service {
             java.awt.Font font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, Game.class.getResourceAsStream("/fonts/Exocet.ttf"));
             exocetFont = font.deriveFont(13f);
 
-            characterHeight = SceneService.INSTANCE.getGraphics().getFontMetrics(exocetFont).getHeight();
-            characterWidth = SceneService.INSTANCE.getGraphics().getFontMetrics(exocetFont).getMaxAdvance();
+            characterHeight = SceneService.INSTANCE.getCurrentGraphics().getFontMetrics(exocetFont).getHeight();
+            characterWidth = SceneService.INSTANCE.getCurrentGraphics().getFontMetrics(exocetFont).getMaxAdvance();
         } catch (FontFormatException ex) {
             ConsoleWriter.writeError("Error loading font \"Exocet.ttf\": " + ex);
         } catch (IOException ex) {
@@ -83,7 +83,7 @@ public class FontService implements Service {
      * @return
      */
     public static int getStringWidth(String msg) {
-        return SceneService.INSTANCE.getGraphics().getFontMetrics(exocetFont).stringWidth(msg);
+        return SceneService.INSTANCE.getCurrentGraphics().getFontMetrics(exocetFont).stringWidth(msg);
     } // getStringWidth
 
     /**

@@ -62,8 +62,6 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
         setWidth(UPGRADE_ITEM_WINDOW_BACKGROUND.getWidth());
         setHeight(UPGRADE_ITEM_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
-
         applySalvageButton = new Button("Apply", Interactable.Z_BUTTON, getX() + 97, getY() + 258, 111, 24, true);
         applyAugmentationButton = new Button("Apply", Interactable.Z_BUTTON, getX() + 97, getY() + 325, 111, 24, true);
         removeAugmentationButton = new Button("Remove", Interactable.Z_BUTTON, getX() + 97, getY() + 354, 111, 24, true);
@@ -75,6 +73,7 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
         itemSalvageProgressBar = new ProgressBar(getX() + 97, getY() + 229, SALVAGE_PROGRESS_BAR_WIDTH);
 
         // Disable all buttons when the window is not visible
+        createButtons();
         setComponentsEnabled(false);
         createItemSlots();
         resizeItemSlots();
@@ -86,6 +85,10 @@ public class UpgradeItemWindow extends Window implements ButtonAction {
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
+    
+    private void createButtons() {
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
+    } // createButtons
 
     /**
      * Disable or enable all buttons associated with the upgrade item window

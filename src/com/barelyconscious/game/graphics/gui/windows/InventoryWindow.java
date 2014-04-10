@@ -72,8 +72,7 @@ public class InventoryWindow extends Window implements ButtonAction {
         setWidth(INVENTORY_WINDOW_BACKGROUND.getWidth());
         setHeight(INVENTORY_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
-
+        createButtons();
         createItemSlots();
         resizeItemSlots();
 
@@ -81,6 +80,10 @@ public class InventoryWindow extends Window implements ButtonAction {
         super.addMouseListener(Interactable.Z_BACKGROUND);
         hide();
     } // constructor
+    
+    private void createButtons() {
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
+    } // createButtons
 
     private void createItemSlots() {
         itemSlots = new InventorySlotArea[NUM_INVENTORY_SLOTS];

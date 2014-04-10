@@ -27,14 +27,6 @@ import java.awt.Point;
 public class WindowManager implements Service {
 
     public static final Point WINDOW_BUTTON_OFFS = new Point(1,1);
-    
-    public static final WindowManager INSTANCE = new WindowManager();
-    public static final BrewingWindow BREWING_WINDOW = new BrewingWindow();
-    public static final CharacterWindow CHARACTER_WINDOW = new CharacterWindow();
-    public static final InventoryWindow INVENTORY_WINDOW = new InventoryWindow();
-    public static final JournalWindow JOURNAL_WINDOW = new JournalWindow();
-    public static final SalvageWindow SALVAGE_WINDOW = new SalvageWindow();
-    public static final UpgradeItemWindow UPGRADE_ITEM_WINDOW = new UpgradeItemWindow();
     // Buttons
     public static final UIElement INTERFACE_WINDOW_CLOSE_BUTTON = UIElement.createUIElement("/gfx/gui/components/button/closeWindowButton.png");
     public static final UIElement UPGRADE_ITEM_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/upgradeItem/upgradeItemButton.png");
@@ -43,6 +35,14 @@ public class WindowManager implements Service {
     public static final UIElement BREWING_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/brewing/brewingButton.png");
     public static final UIElement JOURNAL_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/journal/journalButton.png");
     public static final UIElement SALVAGE_WINDOW_BUTTON = UIElement.createUIElement("/gfx/gui/components/windows/salvage/salvageButton.png");
+    
+    public static final WindowManager INSTANCE = new WindowManager();
+    public static final BrewingWindow BREWING_WINDOW = new BrewingWindow();
+    public static final CharacterWindow CHARACTER_WINDOW = new CharacterWindow();
+    public static final InventoryWindow INVENTORY_WINDOW = new InventoryWindow();
+    public static final JournalWindow JOURNAL_WINDOW = new JournalWindow();
+    public static final SalvageWindow SALVAGE_WINDOW = new SalvageWindow();
+    public static final UpgradeItemWindow UPGRADE_ITEM_WINDOW = new UpgradeItemWindow();
 
     private WindowManager() {
         if (INSTANCE != null) {

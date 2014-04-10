@@ -14,5 +14,7 @@
 package com.barelyconscious.game.graphics;
 
 public class WelcomeView extends View {
-
+    public WelcomeView(int width, int height) { 
+        super(width, height);
+    } // constructor
 } // WelcomeView

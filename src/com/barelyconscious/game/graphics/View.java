@@ -32,12 +32,6 @@ public class View extends Canvas {
     private final List<Component> components = new CopyOnWriteArrayList<Component>();
     private BufferedImage view;
 
-    public View() {
-        width = getWidth();
-        height = getHeight();
-        createRaster();
-    } // constructor
-
     public View(int w, int h) {
         width = w;
         height = h;
@@ -136,10 +130,6 @@ public class View extends Canvas {
      */
     public void render() {
         renderView();
-        
-        if (showUI) {
-            renderComponents();
-        } // if
     } // render
 
     protected void renderView() {
@@ -149,7 +139,11 @@ public class View extends Canvas {
             requestFocus();
             return;
         } // if
-
+        
+        if (showUI) {
+            renderComponents();
+        } // if
+        
         Graphics g = bs.getDrawGraphics();
         g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -166,7 +160,7 @@ public class View extends Canvas {
                 continue;
             } // if
 
-//            c.render(this);
+            c.render();
         } // for
     } // renderComponents
 } // View

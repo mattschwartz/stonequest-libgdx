@@ -26,11 +26,11 @@ package com.barelyconscious.game.services;
 import com.barelyconscious.game.file.FileHandler;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.View;
-import com.barelyconscious.game.graphics.WelcomeView;
+import com.barelyconscious.game.graphics.WorldView;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.graphics.gui.Cursors;
+import com.barelyconscious.game.player.Player;
 import java.awt.AWTException;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -120,11 +120,6 @@ public class SceneService extends JFrame implements Service {
     public View getView() {
         return view;
     } // getView
-
-    @Override
-    public Graphics getGraphics() {
-        throw new IllegalAccessError("This function should not be accessed from outside of the SceneService Singleton.");
-    } // getGraphics
     
     public Graphics2D getCurrentGraphics() {
         return view == null ? null : view.getGraphics();
@@ -136,8 +131,7 @@ public class SceneService extends JFrame implements Service {
      *
      * @return The height of the current View
      */
-    @Override
-    public int getHeight() {
+    public int getViewHeight() {
         return view.height;
     } // getHeight
 
@@ -147,8 +141,7 @@ public class SceneService extends JFrame implements Service {
      *
      * @return The width of the current View
      */
-    @Override
-    public int getWidth() {
+    public int getViewWidth() {
         return view.width;
     } // getWidth
 
@@ -184,10 +177,12 @@ public class SceneService extends JFrame implements Service {
 
     @Override
     public void start() {
-        view = new WelcomeView();
+        initializeComponents();
+        // Normally we get a new player from WelcomeView
+        view = new WorldView(new Player("bcgames"), getWidth(), getHeight());
+        add(view);
         setApplicationIcons();
         inputHandler.addListeners(this);
-        setApplicationWindowProperties();
         Cursors.setCursor(Cursors.DEFAULT_CURSOR);
     } // start
 
@@ -217,9 +212,10 @@ public class SceneService extends JFrame implements Service {
      * rendering engine to the window and its title, and other JFrame
      * properties.
      */
-    private void setApplicationWindowProperties() {
+    private void initializeComponents() {
         setTitle(GAME_TITLE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1280, 720);
         setLocationRelativeTo(null);
         setVisible(true);
         setFocusTraversalKeysEnabled(false);

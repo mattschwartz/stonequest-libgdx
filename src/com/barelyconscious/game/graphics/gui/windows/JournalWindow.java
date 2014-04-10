@@ -70,13 +70,10 @@ public class JournalWindow extends Window implements ButtonAction {
         setWidth(JOURNAL_WINDOW_BACKGROUND.getWidth());
         setHeight(JOURNAL_WINDOW_BACKGROUND.getHeight());
 
-        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
-
         questDescriptionTextArea = new TextArea(getX() + QUEST_DESCRIPTION_OFFS_X, getY() + QUEST_DESCRIPTION_OFFS_Y, QUEST_DESCRIPTION_WIDTH, QUEST_DESCRIPTION_HEIGHT);
-
         itemRewards = new ItemSlotArea[5];
         
-        createQuestButtons();
+        createButtons();
         resizeQuestButtons();
         createItemRewardSlots();
 
@@ -89,7 +86,8 @@ public class JournalWindow extends Window implements ButtonAction {
         hide();
     } // constructor
 
-    private void createQuestButtons() {
+    private void createButtons() {
+        closeWindowButton = new CloseWindowButton(this, WindowManager.INTERFACE_WINDOW_CLOSE_BUTTON);
         questButtons = new QuestButton[MAX_NUM_QUESTS];
 
         questButtons[0] = new QuestButton("1", this, -1, -1);

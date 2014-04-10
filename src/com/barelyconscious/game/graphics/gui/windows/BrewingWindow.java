@@ -48,7 +48,6 @@ public class BrewingWindow extends Window implements ButtonAction {
     private Button brewPotionButton;
 
     public BrewingWindow() {
-        this.cauldron = World.INSTANCE.getPlayer().cauldron;
         setWidth(BREWING_WINDOW_BACKGROUND.getWidth());
         setHeight(BREWING_WINDOW_BACKGROUND.getHeight());
 
