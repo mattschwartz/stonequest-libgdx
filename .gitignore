@@ -1,4 +1,3 @@
-build/
-build.xml
+build/*
 dist/
-nbproject/*
+
