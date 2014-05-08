@@ -18,7 +18,16 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/InterfaceWindowButton.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/CharacterWindow.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/services/WindowManager.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/JournalWindow.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/services/SceneService.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/WorldView.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/BrewingWindow.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/TextLog.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/InterfaceDelegate.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/Game.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/windows/InterfaceArtworkWindow.java</file>
         </group>
     </open-files>
 </project-private>

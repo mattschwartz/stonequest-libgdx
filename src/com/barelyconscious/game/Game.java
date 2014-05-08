@@ -46,8 +46,8 @@ public class Game implements Runnable {
     } // init
     
     private void startServices() {
-        sceneService.start();
         FileHandler.INSTANCE.start();
+        sceneService.start();
         FontService.INSTANCE.start();
     } // startServices
 

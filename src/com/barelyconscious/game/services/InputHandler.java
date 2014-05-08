@@ -15,6 +15,7 @@ package com.barelyconscious.game.services;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.input.KeyHandler;
 import com.barelyconscious.game.input.MouseHandler;
+import java.awt.Component;
 
 public class InputHandler implements Service {
 
@@ -31,11 +32,11 @@ public class InputHandler implements Service {
         mouseHandler = new MouseHandler();
     } // constructor
 
-    public void addListeners(SceneService scene) {
-        scene.addKeyListener(keyHandler);
-        scene.addMouseListener(mouseHandler);
-        scene.addMouseMotionListener(mouseHandler);
-        scene.addMouseWheelListener(mouseHandler);
+    public void addListeners(Component component) {
+        component.addKeyListener(keyHandler);
+        component.addMouseListener(mouseHandler);
+        component.addMouseMotionListener(mouseHandler);
+        component.addMouseWheelListener(mouseHandler);
     } // addListeners
     
     public void addMouseListener(Interactable interactableObject, int zLevel) {

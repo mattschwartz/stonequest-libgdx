@@ -22,7 +22,6 @@ import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.graphics.gui.JustifiedTextArea;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.input.Interactable;
-import com.barelyconscious.game.player.Player;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import com.barelyconscious.game.spawnable.Entity;
@@ -88,10 +87,8 @@ public class CharacterWindow extends Window implements ButtonAction {
     private CloseWindowButton closeWindowButton;
     private JustifiedTextArea detailedStatsTextArea;
     private TextArea attributeInformationTextArea;
-    private final Player player;
 
     public CharacterWindow() {
-        this.player = World.INSTANCE.getPlayer();
         setWidth(CHARACTER_WINDOW_BACKGROUND.getWidth());
         setHeight(CHARACTER_WINDOW_BACKGROUND.getHeight());
 
@@ -168,36 +165,36 @@ public class CharacterWindow extends Window implements ButtonAction {
 
     private void writeDetailedStats() {
         detailedStatsTextArea.clearText();
-        detailedStatsTextArea.appendLine("Melee damage", String.format("%.1f-%.1f", player.getMinimumPhysicalDamage(), player.getMaximumPhysicalDamage()));
-        detailedStatsTextArea.appendLine("Magic damage", String.format("%.1f-%.1f", player.getMinimumMagicDamage(), player.getMaximumMagicDamage()));
-        detailedStatsTextArea.appendLine("Crit chance", String.format("%.1f%%", player.getBonusFromAccuracy()));
-        detailedStatsTextArea.appendLine("Armor", String.format("%.1f%%", player.getBonusFromDefense()));
-        detailedStatsTextArea.appendLine("Evasion", String.format("%.1f%%", player.getBonusFromEvasion()));
-        detailedStatsTextArea.appendLine("Fire magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.FIRE_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.appendLine("Frost magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.FROST_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.appendLine("Holy magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.HOLY_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.appendLine("Chaos magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.CHAOS_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.appendLine("Melee damage", String.format("%.1f-%.1f", World.INSTANCE.getPlayer().getMinimumPhysicalDamage(), World.INSTANCE.getPlayer().getMaximumPhysicalDamage()));
+        detailedStatsTextArea.appendLine("Magic damage", String.format("%.1f-%.1f", World.INSTANCE.getPlayer().getMinimumMagicDamage(), World.INSTANCE.getPlayer().getMaximumMagicDamage()));
+        detailedStatsTextArea.appendLine("Crit chance", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromAccuracy()));
+        detailedStatsTextArea.appendLine("Armor", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromDefense()));
+        detailedStatsTextArea.appendLine("Evasion", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromEvasion()));
+        detailedStatsTextArea.appendLine("Fire magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.FIRE_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.appendLine("Frost magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.FROST_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.appendLine("Holy magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.HOLY_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.appendLine("Chaos magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.CHAOS_MAGIC_ATTRIBUTE)));
         detailedStatsTextArea.appendLine("Faith bonus", "12%");
         detailedStatsTextArea.appendLine("\n", null);
-        detailedStatsTextArea.appendLine("Current level", "" + player.getLevel());
-        detailedStatsTextArea.appendLine("Current experience", StringHelper.formatNumber(player.getCurrentExperience()));
-        detailedStatsTextArea.appendLine("Next level in", StringHelper.formatNumber(player.getRequiredExperience()));
+        detailedStatsTextArea.appendLine("Current level", "" + World.INSTANCE.getPlayer().getLevel());
+        detailedStatsTextArea.appendLine("Current experience", StringHelper.formatNumber(World.INSTANCE.getPlayer().getCurrentExperience()));
+        detailedStatsTextArea.appendLine("Next level in", StringHelper.formatNumber(World.INSTANCE.getPlayer().getRequiredExperience()));
     } // writeDetailedStats
 
     private void updateDetailedStats() {
-        detailedStatsTextArea.setLine(0, "Melee damage", String.format("%.1f-%.1f", player.getMinimumMagicDamage(), player.getMaximumPhysicalDamage()));
-        detailedStatsTextArea.setLine(1, "Magic damage", String.format("%.1f-%.1f", player.getMinimumMagicDamage(), player.getMaximumMagicDamage()));
-        detailedStatsTextArea.setLine(2, "Crit chance", String.format("%.1f%%", player.getBonusFromAccuracy()));
-        detailedStatsTextArea.setLine(3, "Armor", String.format("%.1f%%", player.getBonusFromDefense()));
-        detailedStatsTextArea.setLine(4, "Evasion", String.format("%.1f%%", player.getBonusFromEvasion()));
-        detailedStatsTextArea.setLine(5, "Fire magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.FIRE_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.setLine(6, "Frost magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.FROST_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.setLine(7, "Holy magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.HOLY_MAGIC_ATTRIBUTE)));
-        detailedStatsTextArea.setLine(8, "Chaos magic bonus", String.format("%.1f%%", player.getBonusFromElement(Entity.CHAOS_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.setLine(0, "Melee damage", String.format("%.1f-%.1f", World.INSTANCE.getPlayer().getMinimumMagicDamage(), World.INSTANCE.getPlayer().getMaximumPhysicalDamage()));
+        detailedStatsTextArea.setLine(1, "Magic damage", String.format("%.1f-%.1f", World.INSTANCE.getPlayer().getMinimumMagicDamage(), World.INSTANCE.getPlayer().getMaximumMagicDamage()));
+        detailedStatsTextArea.setLine(2, "Crit chance", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromAccuracy()));
+        detailedStatsTextArea.setLine(3, "Armor", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromDefense()));
+        detailedStatsTextArea.setLine(4, "Evasion", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromEvasion()));
+        detailedStatsTextArea.setLine(5, "Fire magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.FIRE_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.setLine(6, "Frost magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.FROST_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.setLine(7, "Holy magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.HOLY_MAGIC_ATTRIBUTE)));
+        detailedStatsTextArea.setLine(8, "Chaos magic bonus", String.format("%.1f%%", World.INSTANCE.getPlayer().getBonusFromElement(Entity.CHAOS_MAGIC_ATTRIBUTE)));
         detailedStatsTextArea.setLine(9, "Faith bonus", "12%");
-        detailedStatsTextArea.setLine(11, "Current level", "" + player.getLevel());
-        detailedStatsTextArea.setLine(12, "Current experience", StringHelper.formatNumber(player.getCurrentExperience()));
-        detailedStatsTextArea.setLine(13, "Next level in", StringHelper.formatNumber(player.getRequiredExperience()));
+        detailedStatsTextArea.setLine(11, "Current level", "" + World.INSTANCE.getPlayer().getLevel());
+        detailedStatsTextArea.setLine(12, "Current experience", StringHelper.formatNumber(World.INSTANCE.getPlayer().getCurrentExperience()));
+        detailedStatsTextArea.setLine(13, "Next level in", StringHelper.formatNumber(World.INSTANCE.getPlayer().getRequiredExperience()));
     } // updateDetailedStats
 
     private void writeAttributeInformation() {
@@ -208,7 +205,7 @@ public class CharacterWindow extends Window implements ButtonAction {
                 attributeInformationTextArea.append("Health keeps you alive and having more of it allows you to take more hits before you die. Health becomes more effective the higher it is.");
                 break;
             case Entity.STRENGTH_ATTRIBUTE:
-                attributeInformationTextArea.append("Strength improves the physical damage done by your attacks by " + (int) (player.getAttribute(Entity.STRENGTH_ATTRIBUTE) * 2) + "% and increases your weapon damage by a direct amount.");
+                attributeInformationTextArea.append("Strength improves the physical damage done by your attacks by " + (int) (World.INSTANCE.getPlayer().getAttribute(Entity.STRENGTH_ATTRIBUTE) * 2) + "% and increases your weapon damage by a direct amount.");
                 break;
             case Entity.ACCURACY_ATTRIBUTE:
                 attributeInformationTextArea.append("Accuracy improves your chance to strike critically for double damage with physical attacks and reduces the change your attacks will glance off of enemies.");
@@ -380,34 +377,34 @@ public class CharacterWindow extends Window implements ButtonAction {
         int textOffsY = getY() + ATTRIBUTE_TEXT_OFFS_Y + 17;
         String attributeValue;
 
-        attributeValue = "" + (int) player.getAttribute(Entity.HEALTH_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.HEALTH_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HITPOINTS_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + HITPOINTS_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.STRENGTH_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.STRENGTH_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + STRENGTH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + STRENGTH_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.ACCURACY_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.ACCURACY_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + ACCURACY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + ACCURACY_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.DEFENSE_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.DEFENSE_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + DEFENSE_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + DEFENSE_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.EVASION_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.EVASION_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + AGILITY_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + AGILITY_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.FIRE_MAGIC_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.FIRE_MAGIC_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FIRE_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FIRE_MAGIC_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.FROST_MAGIC_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.FROST_MAGIC_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FROST_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FROST_MAGIC_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.HOLY_MAGIC_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.HOLY_MAGIC_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + HOLY_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + HOLY_MAGIC_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "" + (int) player.getAttribute(Entity.CHAOS_MAGIC_ATTRIBUTE);
+        attributeValue = "" + (int) World.INSTANCE.getPlayer().getAttribute(Entity.CHAOS_MAGIC_ATTRIBUTE);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + CHAOS_MAGIC_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + CHAOS_MAGIC_ATTRIBUTE_OFFS_Y);
 
-        attributeValue = "100";// + (int) player.getAttribute(Entity.FAITH);
+        attributeValue = "100";// + (int)World.INSTANCE.getPlayer().getAttribute(Entity.FAITH);
         FontService.drawFont(attributeValue, PLAYER_NAME_TEXT_COLOR, null, textOffsX + FAITH_ATTRIBUTE_OFFS_X + (PLAYER_ATTRIBUTE_TEXT_AREA_WIDTH - FontService.getStringWidth(attributeValue)) / 2, textOffsY + FAITH_ATTRIBUTE_OFFS_Y);
     } // renderPlayerAttributes
 
@@ -417,9 +414,9 @@ public class CharacterWindow extends Window implements ButtonAction {
         String attributeDetailsTitle;
 
         // Render the player's name
-        textOffsX = getX() + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - FontService.getStringWidth(player.getName())) / 2;
+        textOffsX = getX() + PLAYER_NAME_TEXT_OFFS_X + (PLAYER_NAME_TEXT_WIDTH - FontService.getStringWidth(World.INSTANCE.getPlayer().getName())) / 2;
         textOffsY = getY() + PLAYER_NAME_TEXT_OFFS_Y + (PLAYER_NAME_TEXT_HEIGHT - FontService.characterHeight) / 2;
-        FontService.drawFont(player.getName(), PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
+        FontService.drawFont(World.INSTANCE.getPlayer().getName(), PLAYER_NAME_TEXT_COLOR, null, textOffsX, textOffsY);
 
         // Render the attribute details title
         if (attributeHoverOver >= 0) {

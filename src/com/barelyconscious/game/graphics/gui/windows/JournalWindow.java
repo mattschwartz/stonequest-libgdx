@@ -63,7 +63,6 @@ public class JournalWindow extends Window implements ButtonAction {
     private TextArea questDescriptionTextArea;
     // Quest buttons
     private QuestButton[] questButtons;
-    private Journal journal; // Player journal pointer
     private ItemSlotArea[] itemRewards;
 
     public JournalWindow() {
@@ -77,7 +76,6 @@ public class JournalWindow extends Window implements ButtonAction {
         resizeQuestButtons();
         createItemRewardSlots();
 
-        journal = World.INSTANCE.getPlayer().journal;
         // Disable all buttons when the window is not visible
         setComponentsEnabled(false);
 
@@ -138,7 +136,7 @@ public class JournalWindow extends Window implements ButtonAction {
         closeWindowButton.setEnabled(enabled);
 
         for (int i = 0; i < MAX_NUM_QUESTS; i++) {
-            if (i < journal.getNumEntries()) {
+            if (i < World.INSTANCE.getPlayer().journal.getNumEntries()) {
                 questButtons[i].setEnabled(enabled);
             } // if
             else {
@@ -292,7 +290,7 @@ public class JournalWindow extends Window implements ButtonAction {
         int textOffsX;
         int textOffsY;
         String text;
-        JournalEntry entry = journal.getEntryAt(selectedQuest);
+        JournalEntry entry = World.INSTANCE.getPlayer().journal.getEntryAt(selectedQuest);
 
         if (entry == null) {
             questDescriptionTextArea.setText("No entry selected.");

@@ -18,6 +18,7 @@
 package com.barelyconscious.game.graphics.gui.windows;
 
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.services.SceneService;
 import java.awt.image.BufferedImage;
 
 public class InterfaceArtworkWindow extends Window {
@@ -34,13 +35,13 @@ public class InterfaceArtworkWindow extends Window {
     private int textLogOffsY;
     private int textLogWidth;
 
-    public InterfaceArtworkWindow(int gameWidth, int gameHeight) {
+    public InterfaceArtworkWindow() {
         loadBorder();
         // Determine offset values for this window's elements
         bottomLeftFrameOffsX = 0;
-        bottomLeftFrameOffsY = gameHeight - bottomLeftFrame.getHeight();
+        bottomLeftFrameOffsY = SceneService.INSTANCE.getViewHeight() - bottomLeftFrame.getHeight();
 
-        bottomRightFrameOffsX = gameWidth - bottomRightFrame.getWidth();
+        bottomRightFrameOffsX = SceneService.INSTANCE.getViewWidth() - bottomRightFrame.getWidth();
         bottomRightFrameOffsY = bottomLeftFrameOffsY;
 
         textLogOffsX = bottomLeftFrameOffsX + bottomLeftFrame.getWidth();
@@ -52,8 +53,9 @@ public class InterfaceArtworkWindow extends Window {
     } // constructor
 
     /**
-     * Loads the border from disk by locating subimages within the larger image. This results in a single, large disk access instead of multiple,
-     * smaller accesses
+     * Loads the border from disk by locating subimages within the larger image.
+     * This results in a single, large disk access instead of multiple, smaller
+     * accesses
      */
     private void loadBorder() {
         int[] pixels;
@@ -61,27 +63,24 @@ public class InterfaceArtworkWindow extends Window {
 
         pixels = unparsedImage.getRGB(0, 0, 314, 112, null, 0, 314);
         bottomLeftFrame = new UIElement(pixels, 314, 112);
-        
+
         pixels = unparsedImage.getRGB(314, 0, 6, 112, null, 0, 6);
         textLogBorderRepeat = new UIElement(pixels, 6, 112);
-        
+
         pixels = unparsedImage.getRGB(320, 0, 363, 112, null, 0, 363);
         bottomRightFrame = new UIElement(pixels, 363, 112);
     } // loadBorder
 
     /**
      * Reposition and resize the elements as the game application is resized.
-     * The left and right sides of the frame require their getX() and getY() coordinates
-     * to be redetermined and from these values should be derived the width of
-     * the text log.
-     *
-     * @param gameWidth the new width of the application
-     * @param gameHeight the new height of the application
+     * The left and right sides of the frame require their getX() and getY()
+     * coordinates to be redetermined and from these values should be derived
+     * the width of the text log.
      */
-    public void resize(int gameWidth, int gameHeight) {
-        bottomLeftFrameOffsY = gameHeight - bottomLeftFrame.getHeight();
+    public void resize() {
+        bottomLeftFrameOffsY = SceneService.INSTANCE.getViewHeight() - bottomLeftFrame.getHeight();
 
-        bottomRightFrameOffsX = gameWidth - bottomRightFrame.getWidth();
+        bottomRightFrameOffsX = SceneService.INSTANCE.getViewWidth() - bottomRightFrame.getWidth();
         bottomRightFrameOffsY = bottomLeftFrameOffsY;
 
         textLogOffsY = bottomLeftFrameOffsY;
@@ -89,11 +88,11 @@ public class InterfaceArtworkWindow extends Window {
 
         setY(bottomLeftFrameOffsY);
     } // resize
-    
+
     public int getTextLogOffsX() {
         return textLogOffsX - 19;
     } // getTextLogOffsX
-    
+
     public int getTextLogOffsY() {
         return textLogOffsY + 6;
     } // getTextLogOffsY
@@ -105,17 +104,17 @@ public class InterfaceArtworkWindow extends Window {
      * @return the width in pixels of the text log
      */
     public int getTextLogWidth() {
-        return textLogWidth+22;
+        return textLogWidth + 22;
     } // getTextLogWidth
-    
+
     public int getTextLogHeight() {
         return 100;
     } // getTextLogHeight
-    
+
     public int getTooltipOffsX() {
         return bottomRightFrameOffsX + 15;
     } // getTooltipOffsX
-    
+
     public int getTooltipOffsY() {
         return bottomRightFrameOffsY + 6;
     } // getTooltipOffsY

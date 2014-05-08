@@ -9,17 +9,6 @@
  *                    credit from code that was not written fully by yourself.  
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
- ************************************************************************** *//* *****************************************************************************
- * Project:           StoneQuest
- * File Name:         Scene.java
- * Author:            Matt Schwartz
- * Date Created:      01.22.2014 
- * Redistribution:    You are free to use, reuse, and edit any of the text in
- *                    this file.  You are not allowed to take credit for code
- *                    that was not written fully by yourself, or to remove 
- *                    credit from code that was not written fully by yourself.  
- *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
- * File Description:  
  ************************************************************************** */
 package com.barelyconscious.game.services;
 
@@ -109,6 +98,7 @@ public class SceneService extends JFrame implements Service {
             throw new IllegalArgumentException("Argument 'view' must be non-null.");
         } // if
         this.view = view;
+        inputHandler.addListeners(view);
     } // setView
 
     /**
@@ -172,17 +162,14 @@ public class SceneService extends JFrame implements Service {
      * repeatedly during runtime.
      */
     public void render() {
+        view.clear();
         view.render();
     } // render
 
     @Override
     public void start() {
         initializeComponents();
-        // Normally we get a new player from WelcomeView
-        view = new WorldView(new Player("bcgames"), getWidth(), getHeight());
-        add(view);
         setApplicationIcons();
-        inputHandler.addListeners(this);
         Cursors.setCursor(Cursors.DEFAULT_CURSOR);
     } // start
 
@@ -217,7 +204,12 @@ public class SceneService extends JFrame implements Service {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setLocationRelativeTo(null);
+        // Normally we get a new player from WelcomeView
+        view = new WorldView(new Player("bcgames"), getWidth(), getHeight());
+        setView(view);
+        add(view);
         setVisible(true);
+        inputHandler.addListeners(this);
         setFocusTraversalKeysEnabled(false);
     } // setApplicationWindowProperties
 

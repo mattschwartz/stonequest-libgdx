@@ -72,7 +72,11 @@ public class Map {
      * Renders each tile to the Screen, lighting ones around the player,
      * accounting for Tiles that block player line of sight
      *
-     * @param screen the Screen to draw to
+     * @param world
+     * @param pX
+     * @param xOffs
+     * @param yOffs
+     * @param pY
      */
     public void renderBackground(World world, int pX, int pY, int xOffs, int yOffs) {
         int tileId;

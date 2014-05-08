@@ -15,6 +15,7 @@ package com.barelyconscious.game.graphics.gui.windows;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.gui.TextArea;
 import com.barelyconscious.game.player.Player;
+import com.barelyconscious.game.services.Service;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.util.EntityHelper;
 import com.barelyconscious.util.LineElement;
@@ -22,7 +23,7 @@ import com.barelyconscious.util.TextLogHelper;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class TextLog extends TextArea {
+public class TextLog extends TextArea implements Service {
 
     public static final TextLog INSTANCE = new TextLog();
     private final List<LineElement> textLog = new CopyOnWriteArrayList<LineElement>();
@@ -33,10 +34,21 @@ public class TextLog extends TextArea {
         } // if
     } // constructor
 
-    public void init(int startX, int startY, int width, int height) {
-        super.init(startX, startY, width, height, true);
+    @Override
+    public void start() {
+        super.init(1, 1, 1, 1, true);
         append("\n\n\nWelcome to StoneQuest v0.7.0!\nPress ? to open the help menu.");
-    } // init
+    } // start
+
+    @Override
+    public void stop() {
+    } // stop
+
+    @Override
+    public void restart() {
+        stop();
+        start();
+    } // restart
 
     public void resize(int startX, int startY, int width, int height) {
         super.setWidth(width);

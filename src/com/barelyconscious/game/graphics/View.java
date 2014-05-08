@@ -124,7 +124,7 @@ public class View extends Canvas {
 
         return components.remove(c);
     } // removeComponent
-
+    
     /**
      * This method is called when the View is to be drawn to the screen.
      */

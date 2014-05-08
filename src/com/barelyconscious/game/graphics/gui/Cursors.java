@@ -40,8 +40,7 @@ public class Cursors {
             return null;
         } // if
 
-        Cursor c = toolkit.createCustomCursor(image, new Point(InputHandler.INSTANCE.getMouseX(),
-                InputHandler.INSTANCE.getMouseY()), "img");
+        Cursor c = toolkit.createCustomCursor(image, new Point(0,0), "img");
 
         return c;
     } // createCursor

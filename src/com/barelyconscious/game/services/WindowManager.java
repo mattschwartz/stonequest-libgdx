@@ -17,6 +17,7 @@ package com.barelyconscious.game.services;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.windows.BrewingWindow;
 import com.barelyconscious.game.graphics.gui.windows.CharacterWindow;
+import com.barelyconscious.game.graphics.gui.windows.InterfaceArtworkWindow;
 import com.barelyconscious.game.graphics.gui.windows.InventoryWindow;
 import com.barelyconscious.game.graphics.gui.windows.JournalWindow;
 import com.barelyconscious.game.graphics.gui.windows.SalvageWindow;
@@ -43,6 +44,7 @@ public class WindowManager implements Service {
     public static final JournalWindow JOURNAL_WINDOW = new JournalWindow();
     public static final SalvageWindow SALVAGE_WINDOW = new SalvageWindow();
     public static final UpgradeItemWindow UPGRADE_ITEM_WINDOW = new UpgradeItemWindow();
+    public static final InterfaceArtworkWindow INTERFACE_ARTWORK_WINDOW = new InterfaceArtworkWindow();
 
     private WindowManager() {
         if (INSTANCE != null) {
