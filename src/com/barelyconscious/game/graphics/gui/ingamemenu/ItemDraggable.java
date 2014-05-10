@@ -14,7 +14,7 @@
 package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.ShapeDrawer;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
@@ -64,12 +64,11 @@ public class ItemDraggable extends Interactable implements Component {
     @Override
     public void render() {
         int x, y;
-        View view = SceneService.INSTANCE.getView();
-        
+
         x = Math.max(0, Math.min(SceneService.INSTANCE.getWidth() - ITEM_WIDTH, InputHandler.INSTANCE.getMouseX()));
         y = Math.max(0, Math.min(SceneService.INSTANCE.getHeight()- ITEM_HEIGHT, InputHandler.INSTANCE.getMouseY()));
         
-        ShapeDrawer.fillTransluscentRectangle(view, x + 5, y + 5, ITEM_WIDTH, ITEM_HEIGHT);
+        ShapeDrawer.fillTransluscentRectangle(x + 5, y + 5, ITEM_WIDTH, ITEM_HEIGHT);
         
         itemOnCursor.render(x, y);
     } // render

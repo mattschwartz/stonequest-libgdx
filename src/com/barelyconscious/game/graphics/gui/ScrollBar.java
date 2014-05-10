@@ -14,7 +14,7 @@ package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -104,27 +104,25 @@ public class ScrollBar {
     } // setHeight
 
     public void render() {
-        View view = SceneService.INSTANCE.getView();
-        
         if (lineCount <= viewableLines) {
             return;
         } // if
         
-        renderBackground(view);
-        renderScrollBar(view, getScrollBarOffset(), getEmptySpace());
+        renderBackground();
+        renderScrollBar(getScrollBarOffset(), getEmptySpace());
     } // render
 
-    private void renderBackground(View view) {
+    private void renderBackground() {
         // Render background
-        ShapeDrawer.fillRectangle(view, backgroundColor, x, y, SCROLLBAR_WIDTH, height);
-        ShapeDrawer.fillRectangle(view, backgroundColorHighlight, x + SCROLLBAR_WIDTH - 1, y, 1, height);
+        ShapeDrawer.fillRectangle(backgroundColor, x, y, SCROLLBAR_WIDTH, height);
+        ShapeDrawer.fillRectangle(backgroundColorHighlight, x + SCROLLBAR_WIDTH - 1, y, 1, height);
     } // renderBackground
 
-    private void renderScrollBar(View view, int yStart, int height) {
+    private void renderScrollBar(int yStart, int height) {
         // Render middle part of the scroll bar
-        ShapeDrawer.fillRectangle(view, scrollBarColor, x + 1, yStart + barTop.getHeight(), 2, height - barTop.getHeight() - barBottom.getHeight());
-        ShapeDrawer.fillRectangle(view, scrollBarHighlight, x, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
-        ShapeDrawer.fillRectangle(view, scrollBarShadow, x + SCROLLBAR_WIDTH - 1, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(scrollBarColor, x + 1, yStart + barTop.getHeight(), 2, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(scrollBarHighlight, x, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
+        ShapeDrawer.fillRectangle(scrollBarShadow, x + SCROLLBAR_WIDTH - 1, yStart + barTop.getHeight(), 1, height - barTop.getHeight() - barBottom.getHeight());
 
         // Render top of scroll bar
         barTop.render(x, yStart);

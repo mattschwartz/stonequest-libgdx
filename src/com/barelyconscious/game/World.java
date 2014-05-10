@@ -71,7 +71,7 @@ public class World implements Component, Service {
 
     @Override
     public void start() {
-        resize(SceneService.INSTANCE.getViewWidth(), SceneService.INSTANCE.getViewHeight());
+        resize(SceneService.INSTANCE.getWidth(), SceneService.INSTANCE.getHeight());
     } // start
 
     @Override

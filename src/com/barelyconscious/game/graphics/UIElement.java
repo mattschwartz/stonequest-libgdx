@@ -128,7 +128,7 @@ public class UIElement {
                     continue;
                 } // if
 
-                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // render
@@ -159,7 +159,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderGrayscale
@@ -199,7 +199,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderHighlighted
@@ -239,7 +239,7 @@ public class UIElement {
 
                 pix = (r << 16) + (g << 8) + b;
 
-                SceneService.INSTANCE.getView().setPixel(pix, xStart + x, yStart + y);
+                SceneService.INSTANCE.setPixel(pix, xStart + x, yStart + y);
             } // for
         } // for
     } // renderShaded

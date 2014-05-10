@@ -16,7 +16,7 @@ package com.barelyconscious.game;
 
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.graphics.gui.Cursors;
 import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.graphics.tiles.Tile;
@@ -72,7 +72,6 @@ public class WorldInputHandler extends Interactable {
                 World.INSTANCE.getPlayer().moveTo(x, y);
             } // else
         } // if
-        
         else if (e.getButton() == Interactable.MOUSE_RIGHT_CLICK) {
             if ((sprite = World.INSTANCE.getSpriteAt(x, y)) != null) {
                 TextLog.INSTANCE.append(sprite.getDescription());
@@ -96,7 +95,6 @@ public class WorldInputHandler extends Interactable {
     /**
      * Renders information gathered from user input to the screen.
      *
-     * @param screen the screen to render to
      */
     public void render() {
         renderMouseLocation();
@@ -118,7 +116,6 @@ public class WorldInputHandler extends Interactable {
         String mouseText = "";
         Tile tile;
         Sprite sprite;
-        View view = SceneService.INSTANCE.getView();
 
         if (!isMouseInFocus()) {
             return;
@@ -126,7 +123,7 @@ public class WorldInputHandler extends Interactable {
 
         x = InputHandler.INSTANCE.getMouseX();
         y = InputHandler.INSTANCE.getMouseY();
-        
+
         x = x - (x % SceneService.TILE_SIZE);
         y = y - (y % SceneService.TILE_SIZE);
 
@@ -134,21 +131,21 @@ public class WorldInputHandler extends Interactable {
 
         if (sprite != null) {
             if (sprite instanceof Player) {
-                ShapeDrawer.drawRectangle(view, ColorHelper.TILE_SELECT_PLAYER, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
+                ShapeDrawer.drawRectangle(ColorHelper.TILE_SELECT_PLAYER, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
 
                 mouseText = sprite.getName() + " (" + ((Player) sprite).getLevel() + ")";
 
                 Cursors.setCursor(Cursors.DEFAULT_CURSOR);
             } // if
             else if (sprite instanceof Entity) {
-                ShapeDrawer.drawRectangle(view, ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
+                ShapeDrawer.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
 
                 mouseText = "Attack " + sprite.getName() + " (" + ((Entity) sprite).getLevel() + ")";
 
                 Cursors.setCursor(Cursors.ATTACK_ENTITY_CURSOR);
             } // else if
             else if (sprite instanceof Loot) {
-                ShapeDrawer.drawRectangle(view, ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
+                ShapeDrawer.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
 
                 mouseText = "Pick up " + sprite.getName();
 
@@ -156,7 +153,7 @@ public class WorldInputHandler extends Interactable {
             } // else if
 
             textOffsX = (World.INSTANCE.getWidth() - FontService.getStringWidth(mouseText)) / 2;
-            ShapeDrawer.fillTransluscentRectangle(view, textOffsX - 5, 0, FontService.getStringWidth(mouseText) + 10, FontService.characterHeight + 5);
+            ShapeDrawer.fillTransluscentRectangle(textOffsX - 5, 0, FontService.getStringWidth(mouseText) + 10, FontService.characterHeight + 5);
             FontService.drawFont(mouseText, Color.white, false, textOffsX, textOffsY);
 
             return;
@@ -166,14 +163,14 @@ public class WorldInputHandler extends Interactable {
 
         if (tile != null) {
             if (tile.hasCollision()) {
-                ShapeDrawer.drawRectangle(view, ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
+                ShapeDrawer.drawRectangle(ColorHelper.TILE_SELECT_CANNOT_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
 
                 mouseText = tile.getName() + " - cannot move here";
 
                 Cursors.setCursor(Cursors.CANNOT_MOVE_HERE_CURSOR);
             } // if 
             else {
-                ShapeDrawer.drawRectangle(view, ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
+                ShapeDrawer.drawRectangle(ColorHelper.TILE_SELECT_CAN_MOVE, x, y, SceneService.TILE_SIZE, SceneService.TILE_SIZE);
 
                 mouseText = tile.getName() + " - click to walk";
 
@@ -181,7 +178,7 @@ public class WorldInputHandler extends Interactable {
             } // else
 
             textOffsX = (World.INSTANCE.getWidth() - FontService.getStringWidth(mouseText)) / 2;
-            ShapeDrawer.fillTransluscentRectangle(view, textOffsX - 5, 0, FontService.getStringWidth(mouseText) + 10, FontService.characterHeight + 5);
+            ShapeDrawer.fillTransluscentRectangle(textOffsX - 5, 0, FontService.getStringWidth(mouseText) + 10, FontService.characterHeight + 5);
             FontService.drawFont(mouseText, Color.white, false, textOffsX, textOffsY);
         } // if
         else {

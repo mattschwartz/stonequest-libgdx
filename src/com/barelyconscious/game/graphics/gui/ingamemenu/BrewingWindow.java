@@ -68,7 +68,7 @@ public class BrewingWindow extends Window implements ButtonAction {
      *
      */
     public void resize() {
-        setX((SceneService.INSTANCE.getViewWidth() - BREWING_WINDOW_BACKGROUND.getWidth()) / 2);
+        setX((SceneService.INSTANCE.getWidth() - BREWING_WINDOW_BACKGROUND.getWidth()) / 2);
         setY((WindowManager.INTERFACE_ARTWORK_WINDOW.getY() - BREWING_WINDOW_BACKGROUND.getHeight()) / 2);
 
         windowButton.setX(WindowManager.INTERFACE_ARTWORK_WINDOW.getBrewingButtonOffsX());

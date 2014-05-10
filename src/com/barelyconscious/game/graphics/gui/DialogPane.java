@@ -14,7 +14,7 @@ package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.InputHandler;
 import com.barelyconscious.game.services.SceneService;
@@ -226,7 +226,6 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
     private void renderTitle() {
         int borderWidth, borderHeight, borderOffsX, borderOffsY;
         int titleLineHeight, titleOffsX, titleOffsY;
-        View view = SceneService.INSTANCE.getView();
 
         titleLineHeight = FontService.characterHeight;
         titleOffsX = x + (width - FontService.getStringWidth(title)) / 2;
@@ -237,7 +236,7 @@ public class DialogPane extends Interactable implements Component, ButtonAction 
         borderOffsX = x - BORDER_WIDTH;
         borderOffsY = y - TOP_BORDER_HEIGHT;
 
-        ShapeDrawer.fillTransluscentRectangle(view, borderOffsX, borderOffsY, borderWidth, borderHeight);
+        ShapeDrawer.fillTransluscentRectangle(borderOffsX, borderOffsY, borderWidth, borderHeight);
         FontService.drawFont(title, TextLogHelper.TEXTLOG_DEFAULT_COLOR, titleOffsX, titleOffsY);
     } // renderTitle
 } // DialogPane

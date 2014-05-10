@@ -15,7 +15,7 @@ package com.barelyconscious.game.graphics.gui;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.TextLogHelper;
@@ -105,8 +105,8 @@ public class Button extends Interactable implements Component {
     } // constructor
     
     public void setSize(float absoluteX, float relativeX, float absoluteY, float relativeY) {
-        float xStart = SceneService.INSTANCE.getViewWidth() * absoluteX;
-        float yStart = SceneService.INSTANCE.getViewHeight() * absoluteY;
+        float xStart = SceneService.INSTANCE.getWidth() * absoluteX;
+        float yStart = SceneService.INSTANCE.getHeight() * absoluteY;
         
         xStart += relativeX;
         yStart += relativeY;
@@ -326,23 +326,22 @@ public class Button extends Interactable implements Component {
     private void renderBorder() {
         int xOffs = x;
         int yOffs = y;
-        View view = SceneService.INSTANCE.getView();
 
         if (isMouseButtonDown()) {
             xOffs++;
             yOffs++;
-            ShapeDrawer.drawLine(view, borderShadowColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
-            ShapeDrawer.drawLine(view, borderShadowColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
+            ShapeDrawer.drawLine(borderShadowColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
+            ShapeDrawer.drawLine(borderShadowColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
 
-            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
-            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(borderHighlightColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(borderHighlightColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
         } // if
         else {
-            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
-            ShapeDrawer.drawLine(view, borderHighlightColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
+            ShapeDrawer.drawLine(borderHighlightColor, xOffs - 1, yOffs - 1, xOffs - 1, yOffs + height + 1);
+            ShapeDrawer.drawLine(borderHighlightColor, xOffs, yOffs - 1, xOffs + width, yOffs - 1);
 
-            ShapeDrawer.drawLine(view, borderShadowColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
-            ShapeDrawer.drawLine(view, borderShadowColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(borderShadowColor, xOffs + width, yOffs, xOffs + width, yOffs + height);
+            ShapeDrawer.drawLine(borderShadowColor, xOffs, yOffs + height, xOffs + width, yOffs + height);
         } // else
     } // renderButton
 

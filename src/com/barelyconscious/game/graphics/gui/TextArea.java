@@ -15,7 +15,7 @@ package com.barelyconscious.game.graphics.gui;
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.util.StringHelper;
@@ -262,10 +262,8 @@ public class TextArea extends Interactable implements Component {
     } // render
 
     protected void renderBorder() {
-        View view = SceneService.INSTANCE.getView();
-        
         // Black background
-        ShapeDrawer.fillRectangle(view, backgroundColor, x + textAreaBorderLeftRepeat.getWidth(), y + textAreaBorderTopRepeat.getHeight(), width - textAreaBorderLeftRepeat.getWidth() * 2, height - textAreaBorderTopRepeat.getHeight() * 2);
+        ShapeDrawer.fillRectangle(backgroundColor, x + textAreaBorderLeftRepeat.getWidth(), y + textAreaBorderTopRepeat.getHeight(), width - textAreaBorderLeftRepeat.getWidth() * 2, height - textAreaBorderTopRepeat.getHeight() * 2);
 
         // Render corners
         textAreaBorderTopLeftCorner.render(x, y);

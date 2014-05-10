@@ -39,9 +39,9 @@ public class InterfaceArtworkWindow extends Window {
         loadBorder();
         // Determine offset values for this window's elements
         bottomLeftFrameOffsX = 0;
-        bottomLeftFrameOffsY = SceneService.INSTANCE.getViewHeight() - bottomLeftFrame.getHeight();
+        bottomLeftFrameOffsY = SceneService.INSTANCE.getHeight() - bottomLeftFrame.getHeight();
 
-        bottomRightFrameOffsX = SceneService.INSTANCE.getViewWidth() - bottomRightFrame.getWidth();
+        bottomRightFrameOffsX = SceneService.INSTANCE.getWidth() - bottomRightFrame.getWidth();
         bottomRightFrameOffsY = bottomLeftFrameOffsY;
 
         textLogOffsX = bottomLeftFrameOffsX + bottomLeftFrame.getWidth();
@@ -78,9 +78,9 @@ public class InterfaceArtworkWindow extends Window {
      * the width of the text log.
      */
     public void resize() {
-        bottomLeftFrameOffsY = SceneService.INSTANCE.getViewHeight() - bottomLeftFrame.getHeight();
+        bottomLeftFrameOffsY = SceneService.INSTANCE.getHeight() - bottomLeftFrame.getHeight();
 
-        bottomRightFrameOffsX = SceneService.INSTANCE.getViewWidth() - bottomRightFrame.getWidth();
+        bottomRightFrameOffsX = SceneService.INSTANCE.getWidth() - bottomRightFrame.getWidth();
         bottomRightFrameOffsY = bottomLeftFrameOffsY;
 
         textLogOffsY = bottomLeftFrameOffsY;

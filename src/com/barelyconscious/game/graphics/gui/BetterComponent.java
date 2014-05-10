@@ -60,8 +60,8 @@ public abstract class BetterComponent extends Interactable {
     }
     
     public void setPosition(float absoluteX, float relativeX, float absoluteY, float relativeY) {
-        float xStart = SceneService.INSTANCE.getViewWidth() * absoluteX;
-        float yStart = SceneService.INSTANCE.getViewHeight() * absoluteY;
+        float xStart = SceneService.INSTANCE.getWidth() * absoluteX;
+        float yStart = SceneService.INSTANCE.getHeight() * absoluteY;
         
         xStart += relativeX;
         yStart += relativeY;
@@ -73,8 +73,8 @@ public abstract class BetterComponent extends Interactable {
     } // setPosition
     
     public void setSize(float absoluteX, float relativeX, float absoluteY, float relativeY) {
-        float newWidth = SceneService.INSTANCE.getViewWidth() * absoluteX;
-        float newHeight = SceneService.INSTANCE.getViewHeight() * absoluteY;
+        float newWidth = SceneService.INSTANCE.getWidth() * absoluteX;
+        float newHeight = SceneService.INSTANCE.getHeight() * absoluteY;
         
         newWidth += relativeX;
         newHeight += relativeY;

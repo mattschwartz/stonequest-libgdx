@@ -1,6 +1,6 @@
 /* *****************************************************************************
  * Project:           StoneQuest
- * File Name:         MainView.java
+ * File Name:         MainMenu.java
  * Author:            Matt Schwartz
  * Date Created:      01.22.2014 
  * Redistribution:    You are free to use, reuse, and edit any of the text in
@@ -18,7 +18,7 @@ import com.barelyconscious.game.graphics.gui.ButtonCallback;
 import com.barelyconscious.game.graphics.gui.Label;
 import com.barelyconscious.game.services.SceneService;
 
-public class MainView extends View {
+public class MainMenu extends Menu {
 
     private Label titleLabel;
     private BetterButton newPlayerButton;
@@ -26,9 +26,9 @@ public class MainView extends View {
     private BetterButton optionsButton;
     private BetterButton quitGameButton;
 
-    public MainView() {
+    public MainMenu() {
         createWidgets();
-        setComponentsEnabled(false);
+        hide();
     } // constructor
 
     private void createWidgets() {
@@ -90,31 +90,27 @@ public class MainView extends View {
         addComponent(optionsButton);
         addComponent(quitGameButton);
     } // createWidgets
-    
-    @Override
-    public void showView() {
-        SceneService.INSTANCE.setView(this);
-        resize(SceneService.INSTANCE.getWidth(), SceneService.INSTANCE.getHeight());
-        setComponentsEnabled(true);
-    } // showView
 
     @Override
     public void resize(int newWidth, int newHeight) {
         super.resize(newWidth, newHeight);
         titleLabel.setPosition(0.5f, -75, 0.5f, -85.0f);
-        newPlayerButton.setPosition(0.5f, -75, 0.5f, -50.0f);
-        loadPlayerButton.setPosition(0.5f, -75, 0.5f, -25.0f);
-        optionsButton.setPosition(0.5f, -75, 0.5f, 0.0f);
-        quitGameButton.setPosition(0.5f, -75, 0.5f, 25.0f);
         
+        newPlayerButton.setPosition(0.5f, -75, 0.5f, -50.0f);
         newPlayerButton.setSize(0.0f, 150.0f, 0.0f, 25.0f);
+        
+        loadPlayerButton.setPosition(0.5f, -75, 0.5f, -25.0f);
         loadPlayerButton.setSize(0.0f, 150.0f, 0.0f, 25.0f);
+        
+        optionsButton.setPosition(0.5f, -75, 0.5f, 0.0f);
         optionsButton.setSize(0.0f, 150.0f, 0.0f, 25.0f);
+        
+        quitGameButton.setPosition(0.5f, -75, 0.5f, 25.0f);
         quitGameButton.setSize(0.0f, 150.0f, 0.0f, 25.0f);
     } // resize
 
     private void newPlayerEvent() {
-        SceneService.newPlayerView.showView();
+        SceneService.INSTANCE.setMenu(SceneService.newPlayerMenu);
     } // newPlayerEvent
 
     private void loadPlayerEvent() {
@@ -126,4 +122,4 @@ public class MainView extends View {
     private void quitGameEvent() {
         Game.Stop();
     } // quitGameEvent
-} // MainView
+} // MainMenu

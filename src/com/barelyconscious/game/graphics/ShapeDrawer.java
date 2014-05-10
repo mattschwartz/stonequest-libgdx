@@ -15,42 +15,43 @@
  ************************************************************************** */
 package com.barelyconscious.game.graphics;
 
+import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class ShapeDrawer {
 
-    public static void drawRectangle(View v, Color c, int xStart, int yStart, int width, int height) {
-        Graphics2D g = v.getGraphics();
+    public static void drawRectangle(Color c, int xStart, int yStart, int width, int height) {
+        Graphics2D g = SceneService.INSTANCE.getCurrentGraphics();
         Color oldColor = g.getColor();
         g.setColor(c);
         g.drawRect(xStart, yStart, width, height);
         g.setColor(oldColor);
     } // drawRectangle
 
-    public static void fillRectangle(View v, Color c, int xStart, int yStart, int width, int height) {
-        Graphics2D g = v.getGraphics();
+    public static void fillRectangle(Color c, int xStart, int yStart, int width, int height) {
+        Graphics2D g = SceneService.INSTANCE.getCurrentGraphics();
         Color oldColor = g.getColor();
         g.setColor(c);
         g.fillRect(xStart, yStart, width, height);
         g.setColor(oldColor);
     } // drawRectangle
 
-    public static void drawLine(View v, Color c, int xStart, int yStart, int xEnd, int yEnd) {
-        Graphics2D g = v.getGraphics();
+    public static void drawLine(Color c, int xStart, int yStart, int xEnd, int yEnd) {
+        Graphics2D g = SceneService.INSTANCE.getCurrentGraphics();
         Color oldColor = g.getColor();
         g.setColor(c);
         g.drawLine(xStart, yStart, xEnd, yEnd);
         g.setColor(oldColor);
     } // drawRectangle
 
-    public static void fillTransluscentRectangle(View v, int xStart, int yStart, int w, int h) {
+    public static void fillTransluscentRectangle(int xStart, int yStart, int w, int h) {
         int pix;
         int r, g, b;
 
         for (int x = xStart; x < xStart + w; x++) {
             for (int y = yStart; y < yStart + h; y++) {
-                pix = v.pixels[x + y * v.width];
+                pix = SceneService.INSTANCE.getPixel(x, y);
 
                 r = (pix >> 16) & 0xFF;
                 g = (pix >> 8) & 0xFF;
@@ -62,7 +63,7 @@ public class ShapeDrawer {
 
 //                b = b > 255 ? 255 : b;
                 pix = (r << 16) + (g << 8) + b;
-                v.pixels[x + y * v.width] = pix;
+                SceneService.INSTANCE.setPixel(pix, x, y);
             } // for
         } // for
     } // fillTransluscentRectangle

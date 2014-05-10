@@ -14,10 +14,11 @@ package com.barelyconscious.game.services;
 
 import com.barelyconscious.game.file.FileHandler;
 import com.barelyconscious.game.graphics.FontService;
-import com.barelyconscious.game.graphics.MainView;
-import com.barelyconscious.game.graphics.NewPlayerView;
+import com.barelyconscious.game.graphics.MainMenu;
+import com.barelyconscious.game.graphics.Menu;
+import com.barelyconscious.game.graphics.NewPlayerMenu;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.graphics.gui.BetterComponent;
 import com.barelyconscious.game.graphics.gui.Cursors;
 import java.awt.AWTException;
@@ -41,9 +42,10 @@ public class SceneService extends JFrame implements Service {
     public static final String GAME_TITLE = "StoneQuest";
     public static final String GAME_VERSION = "0.7.0";
     private final InputHandler inputHandler = InputHandler.INSTANCE;
-    private View view;
-    public static final MainView mainView = new MainView();
-    public static final NewPlayerView newPlayerView = new NewPlayerView();
+    private final Viewport view = new Viewport();
+    private Menu currentMenu;
+    public static final MainMenu mainMenu = new MainMenu();
+    public static final NewPlayerMenu newPlayerMenu = new NewPlayerMenu();
 
     /**
      * Constructs a new Scene object. This constructor may only be called within
@@ -54,7 +56,7 @@ public class SceneService extends JFrame implements Service {
             throw new IllegalStateException(this + " has already been instantiated.");
         } // if
     } // constructor
-    
+
     public void saveScreenshot() {
         String hour, minute, second, day, month, year;
         String date;
@@ -89,71 +91,60 @@ public class SceneService extends JFrame implements Service {
         } // try-catch
     } // saveScreenshot
 
-    /**
-     * Changes the current View to <code>view</code> which must be non-null. The
-     * new View will be rendered and the old one destroyed.
-     *
-     * @param view The new View for the SceneService. If null, an
- IllegalArgumentException is thrown
-     */
-    public void setView(View view) {
-        if (this.view != null) {
-            remove(this.view);
-        }
-        this.view = view;
-        add(view);
-        inputHandler.addListeners(view);
-    } // setView
-
-    /**
-     * A View is what is being rendered within the SceneService which may be the game
- or a menu, etc.
-     *
-     * @return The current View for the SceneService
-     */
-    public View getView() {
-        return view;
-    } // getView
-    
     public Graphics2D getCurrentGraphics() {
         return view == null ? null : view.getGraphics();
     } // getCurrentGraphics
 
-    /**
-     * The height of a View is used for relative positioning of elements and
-     * components.
-     *
-     * @return The height of the current View
-     */
-    public int getViewHeight() {
+    @Override
+    public int getHeight() {
         return view.height;
     } // getHeight
 
-    /**
-     * The width of a View is used for relative positioning of elements and
-     * components.
-     *
-     * @return The width of the current View
-     */
-    public int getViewWidth() {
+    @Override
+    public int getWidth() {
         return view.width;
     } // getWidth
 
+    public void setPixel(int col, int x, int y) {
+        view.setPixel(col, x, y);
+    } // setPixel
+
+    public int getPixel(int x, int y) {
+        return view.getPixel(x, y);
+    } // getPixel
+
+    public void setMenu(Menu menu) {
+        if (currentMenu != null) {
+            currentMenu.hide();
+        } // if
+        
+        removeComponents();
+
+        for (BetterComponent c : menu.getComponents()) {
+            addComponent(c);
+        } // for
+        
+        menu.resize(getWidth(), getHeight());
+        menu.show();
+        
+        currentMenu = menu;
+    } // setMenu
+
     /**
-     * Add a Component to the current View. Components are interactable objects
-     * that act independently of the View.
+     * Add a Component to the current Viewport. Components are interactable
+     * objects that act independently of the Viewport.
      *
-     * @param c The Component to be added to the View
+     * @param c The Component to be added to the Viewport
      */
     public void addComponent(BetterComponent c) {
         view.addComponent(c);
     } // addComponent
 
     /**
-     * Removes the specified Component from the current View.
+     * Removes the specified Component from the current Viewport.
      *
-     * @param c The Component to be removed from the current View. Should not be
-     * null
+     * @param c The Component to be removed from the current Viewport. Should
+     * not be null
      * @return True if the supplied Component was found and removed. False
      * otherwise
      */
@@ -161,12 +152,19 @@ public class SceneService extends JFrame implements Service {
         return view.removeComponent(c);
     } // removeComponent
 
+    public void setComponentsEnabled(boolean enabled) {
+        view.setComponentsEnabled(enabled);
+    } // setComponentsEnabled
+
+    public void removeComponents() {
+        view.removeComponents();
+    } // removeComponents
+
     /**
-     * Renders the current View to the window application. This is done
+     * Renders the current Viewport to the window application. This is done
      * repeatedly during runtime.
      */
     public void render() {
-        view.clear();
         view.render();
     } // render
 
@@ -209,7 +207,10 @@ public class SceneService extends JFrame implements Service {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setLocationRelativeTo(null);
-        mainView.showView();
+        view.resize(super.getWidth(), super.getHeight());
+        add(view);
+        inputHandler.addListeners(view);
+        setMenu(mainMenu);
         setVisible(true);
         inputHandler.addListeners(this);
         setFocusTraversalKeysEnabled(false);

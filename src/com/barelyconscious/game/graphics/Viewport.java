@@ -1,6 +1,6 @@
 /* *****************************************************************************
  * Project:           StoneQuest
- * File Name:         View.java
+ * File Name:         Viewport.java
  * Author:            Matt Schwartz
  * Date Created:      01.22.2014 
  * Redistribution:    You are free to use, reuse, and edit any of the text in
@@ -22,17 +22,17 @@ import java.awt.image.DataBufferInt;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class View extends Canvas {
+public class Viewport extends Canvas {
 
-    public int height;
     public int width;
+    public int height;
     private final int SCALE = 1;
     protected int[] pixels;
     private boolean showUI = true;
     private final List<BetterComponent> components = new CopyOnWriteArrayList<BetterComponent>();
     private BufferedImage view;
-
-    public View() {
+    
+    public Viewport() {
     }
 
     /**
@@ -43,15 +43,12 @@ public class View extends Canvas {
         view = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt) view.getRaster().getDataBuffer()).getData();
     } // createRaster
-    
-    public void showView() {
-    }
 
     /**
      * Resizes the screen with the supplied new width and height.
      *
-     * @param newWidth The new width of the View
-     * @param newHeight The new height of the View
+     * @param newWidth The new width of the Viewport
+     * @param newHeight The new height of the Viewport
      */
     @Override
     public void resize(int newWidth, int newHeight) {
@@ -63,9 +60,6 @@ public class View extends Canvas {
     public void toggleUI() {
         showUI = !showUI;
     } // toggleUI
-
-    public void saveScreenshot() {
-    } // saveScreenshot
 
     /**
      * Sets the current pixel at {x,y} to the color supplied by the call.
@@ -126,20 +120,25 @@ public class View extends Canvas {
         return components.remove(c);
     } // removeComponent
     
+    public void removeComponents() {
+        components.clear();
+    } // removeComponents
+    
     public void setComponentsEnabled(boolean enabled) {
         for (BetterComponent c : components) {
             c.setEnabled(enabled);
-        }
-    }
+        } // for
+    } // setComponentsEnabled
     
     /**
-     * This method is called when the View is to be drawn to the screen.
+     * This method is called when the Viewport is to be drawn to the screen.
      */
     public void render() {
+        clear();
         renderView();
     } // render
 
-    synchronized protected void renderView() {
+    protected void renderView() {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
             createBufferStrategy(3);
@@ -170,4 +169,4 @@ public class View extends Canvas {
             c.render();
         } // for
     } // Components
-} // View
+} // Viewport

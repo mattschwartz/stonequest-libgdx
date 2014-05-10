@@ -18,7 +18,7 @@ package com.barelyconscious.game.spawnable;
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.item.Equippable;
 import com.barelyconscious.game.player.Inventory;
@@ -425,15 +425,11 @@ public class Entity extends Sprite {
     /**
      * Entities additionally have a health bar.
      *
-     * @param screen the screen to render to
      * @param xOffs the x location where to render the Entity
      * @param yOffs the y location where to render the Entity
      */
     @Override
     public void render(int xOffs, int yOffs) {
-        View view;
-        
-        view = SceneService.INSTANCE.getView();
         setVisible(World.INSTANCE.isTileLit(x, y));
         super.render(xOffs, yOffs);
 
@@ -448,9 +444,9 @@ public class Entity extends Sprite {
         yOffs = yOffs + spriteIcon.getHeight() - 6;
         xOffs += 2;
 
-        ShapeDrawer.drawRectangle(view, Color.black, xOffs, yOffs, healthBarWidth + 2, 4);
-        ShapeDrawer.fillRectangle(view, damagedHealth, xOffs + 1, yOffs + 1, healthBarWidth, 2);
-        ShapeDrawer.fillRectangle(view, health, xOffs + 1, yOffs + 1, (int) (healthBarWidth * 1.0 * Math.min(1, attributes[HEALTH_ATTRIBUTE] / totalHealth)), 2);
+        ShapeDrawer.drawRectangle(Color.black, xOffs, yOffs, healthBarWidth + 2, 4);
+        ShapeDrawer.fillRectangle(damagedHealth, xOffs + 1, yOffs + 1, healthBarWidth, 2);
+        ShapeDrawer.fillRectangle(health, xOffs + 1, yOffs + 1, (int) (healthBarWidth * 1.0 * Math.min(1, attributes[HEALTH_ATTRIBUTE] / totalHealth)), 2);
     } // render
 
     /* MOVEMENT ############################################################# */

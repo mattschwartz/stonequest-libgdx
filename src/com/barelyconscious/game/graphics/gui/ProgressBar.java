@@ -14,7 +14,7 @@ package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
-import com.barelyconscious.game.graphics.View;
+import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.services.SceneService;
 import java.awt.Color;
 
@@ -84,11 +84,9 @@ public class ProgressBar implements Component {
 
     @Override
     public void render() {
-        View view = SceneService.INSTANCE.getView();
-        
         renderBorder();
-        renderBackground(view);
-        renderText(view);
+        renderBackground();
+        renderText();
     } // render
 
     private void renderBorder() {
@@ -101,11 +99,11 @@ public class ProgressBar implements Component {
         Button.borderRight.render(x + width - Button.borderRight.getWidth(), y);
     } // renderBorder
 
-    private void renderBackground(View view) {
+    private void renderBackground() {
         double baseWidthPercent, increaseWidthPercent;
         int progressBarWidth = width - 10;
 
-        ShapeDrawer.fillRectangle(view, BACKGROUND_COLOR, x + 5, y + 5, progressBarWidth, height - 10);
+        ShapeDrawer.fillRectangle(BACKGROUND_COLOR, x + 5, y + 5, progressBarWidth, height - 10);
 
         // Base width
         baseWidthPercent = Math.min(((current * 1.0 / max)), 1);
@@ -113,12 +111,12 @@ public class ProgressBar implements Component {
         // Increase width
         increaseWidthPercent = Math.min(((increaseBy * 1.0 / max)), 1 - baseWidthPercent);
 
-        ShapeDrawer.fillRectangle(view, BASE_COLOR, x + 5, y + 5, (int) (baseWidthPercent * progressBarWidth), height - 10);
-        ShapeDrawer.fillRectangle(view, INCREASE_COLOR, x + 5 + (int) (baseWidthPercent * progressBarWidth), y + 5, (int) (increaseWidthPercent * progressBarWidth), height - 10);
+        ShapeDrawer.fillRectangle(BASE_COLOR, x + 5, y + 5, (int) (baseWidthPercent * progressBarWidth), height - 10);
+        ShapeDrawer.fillRectangle(INCREASE_COLOR, x + 5 + (int) (baseWidthPercent * progressBarWidth), y + 5, (int) (increaseWidthPercent * progressBarWidth), height - 10);
 
     } // renderBackground
 
-    private void renderText(View view) {
+    private void renderText() {
         int startX, startY;
         String msg;
 
@@ -131,7 +129,7 @@ public class ProgressBar implements Component {
         startX = x + width - 6 - FontService.getStringWidth(msg);
         startY = y + FontService.characterHeight + 1;
 
-        ShapeDrawer.fillTransluscentRectangle(view, startX, y + 6, FontService.getStringWidth(msg), FontService.characterHeight - 3);
+        ShapeDrawer.fillTransluscentRectangle(startX, y + 6, FontService.getStringWidth(msg), FontService.characterHeight - 3);
         FontService.drawFont(msg, Color.white.getRGB(), startX, startY);
     } // renderText
 
