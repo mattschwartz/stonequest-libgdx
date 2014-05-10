@@ -39,6 +39,14 @@ public class InputHandler implements Service {
         component.addMouseWheelListener(mouseHandler);
     } // addListeners
     
+    public void addKeyListener(Interactable interactableObject) {
+        keyHandler.addInteractable(interactableObject);
+    } // addKeyListener
+    
+    public void removeKeyListener(Interactable interactableObject) {
+        keyHandler.removeInteractable(interactableObject);
+    } // removeKeyListener
+    
     public void addMouseListener(Interactable interactableObject, int zLevel) {
         mouseHandler.addInteractable(interactableObject, zLevel);
     } // addMouseListener

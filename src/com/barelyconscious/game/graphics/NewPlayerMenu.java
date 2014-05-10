@@ -15,11 +15,13 @@ package com.barelyconscious.game.graphics;
 import com.barelyconscious.game.graphics.gui.BetterButton;
 import com.barelyconscious.game.graphics.gui.ButtonCallback;
 import com.barelyconscious.game.graphics.gui.Label;
+import com.barelyconscious.game.graphics.gui.TextField;
 import com.barelyconscious.game.services.SceneService;
 
 public class NewPlayerMenu extends Menu {
 
     private Label playerNameLabel;
+    private TextField playerNameTextField;
     private BetterButton backButton;
     private BetterButton startGameButton;
 
@@ -31,7 +33,7 @@ public class NewPlayerMenu extends Menu {
     private void createWidgets() {
         ButtonCallback backEvent;
         ButtonCallback startGameEvent;
-
+        
         backEvent = new ButtonCallback() {
 
             @Override
@@ -56,10 +58,13 @@ public class NewPlayerMenu extends Menu {
         };
 
         playerNameLabel = new Label("Player name:");
+        playerNameTextField = new TextField("player1");
+        playerNameTextField.setOnSubmit(startGameEvent);
         backButton = new BetterButton(backEvent, "Back");
         startGameButton = new BetterButton(startGameEvent, "Start Game");
 
         addComponent(playerNameLabel);
+        addComponent(playerNameTextField);
         addComponent(backButton);
         addComponent(startGameButton);
     } // createWidgets
@@ -70,6 +75,9 @@ public class NewPlayerMenu extends Menu {
 
         playerNameLabel.setSize(0.0f, 150.0f, 0.0f, 25.0f);
         playerNameLabel.setPosition(0.5f, -150.0f, 0.5f, -25.0f);
+
+        playerNameTextField.setSize(0.0f, 150.0f, 0.0f, 25.0f);
+        playerNameTextField.setPosition(0.5f, 0.0f, 0.5f, -25.0f);
 
         backButton.setSize(0.0f, 150.0f, 0.0f, 25.0f);
         backButton.setPosition(0.5f, -150.0f, 0.5f, 0.0f);

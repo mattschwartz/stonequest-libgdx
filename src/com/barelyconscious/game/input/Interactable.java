@@ -16,6 +16,7 @@ package com.barelyconscious.game.input;
 
 import com.barelyconscious.game.services.InputHandler;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Interactable {
@@ -33,6 +34,7 @@ public class Interactable {
     public static final int MOUSE_LEFT_CLICK = MouseEvent.BUTTON1;
     public static final int MOUSE_MIDDLE_CLICK = MouseEvent.BUTTON2;
     public static final int MOUSE_RIGHT_CLICK = MouseEvent.BUTTON3;
+    private boolean focus = false;
     private boolean mouseInFocus = false;
     private boolean mouseButtonDown = false;
     private Rectangle region;
@@ -72,6 +74,31 @@ public class Interactable {
         InputHandler.INSTANCE.removeMouseListener(this);
         enabled = false;
     } // removeMouseListener
+    
+    public void addKeyListener() {
+        InputHandler.INSTANCE.addKeyListener(this);
+    } // addKeyListener
+    
+    public void removeKeyListener() {
+        InputHandler.INSTANCE.removeKeyListener(this);
+    } // removeKeyListener
+    
+    public void setFocus(boolean focus) {
+        this.focus = focus;
+    } // setFocus
+    
+    public boolean hasFocus() {
+        return focus;
+    } // hasFocus
+    
+    public void keyPressed(KeyEvent e) {
+    }
+    
+    public void keyReleased(KeyEvent e) {
+    }
+    
+    public void keyTyped(KeyEvent e) {
+    }
 
     /**
      * Changes the region of the interactable object.
@@ -110,6 +137,7 @@ public class Interactable {
     } // mouseMoved
 
     public void mouseClicked(MouseEvent e) {
+        focus = true;
     } // mouseClicked
 
     public void mousePressed(MouseEvent e) {

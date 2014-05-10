@@ -73,6 +73,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
         for (Integer zLevel : interactableObjects.keySet()) {
             for (int i = 0; i < interactableObjects.get(zLevel).size(); i++) {
                 interactable = interactableObjects.get(zLevel).get(i);
+                interactable.setFocus(false);
 
                 if (!interactable.isEnabled()) {
                     continue;

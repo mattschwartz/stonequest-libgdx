@@ -14,7 +14,6 @@ package com.barelyconscious.game.graphics.gui;
 
 import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
-import com.barelyconscious.game.graphics.Viewport;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.services.InputHandler;
 import com.barelyconscious.game.services.SceneService;
