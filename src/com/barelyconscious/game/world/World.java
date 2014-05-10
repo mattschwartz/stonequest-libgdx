@@ -28,4 +28,7 @@ public class World {
         } // if
     } // constructor
 
+    public void setCurrentPlayer(Player player) {
+        this.player = player;
+    } // setCurrentPlayer
 } // World

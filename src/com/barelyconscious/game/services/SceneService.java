@@ -13,12 +13,13 @@
 package com.barelyconscious.game.services;
 
 import com.barelyconscious.game.file.FileHandler;
+import com.barelyconscious.game.graphics.FontService;
+import com.barelyconscious.game.graphics.MainView;
+import com.barelyconscious.game.graphics.NewPlayerView;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.View;
-import com.barelyconscious.game.graphics.WorldView;
-import com.barelyconscious.game.graphics.gui.Component;
+import com.barelyconscious.game.graphics.gui.BetterComponent;
 import com.barelyconscious.game.graphics.gui.Cursors;
-import com.barelyconscious.game.player.Player;
 import java.awt.AWTException;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -41,6 +42,8 @@ public class SceneService extends JFrame implements Service {
     public static final String GAME_VERSION = "0.7.0";
     private final InputHandler inputHandler = InputHandler.INSTANCE;
     private View view;
+    public static final MainView mainView = new MainView();
+    public static final NewPlayerView newPlayerView = new NewPlayerView();
 
     /**
      * Constructs a new Scene object. This constructor may only be called within
@@ -94,10 +97,11 @@ public class SceneService extends JFrame implements Service {
  IllegalArgumentException is thrown
      */
     public void setView(View view) {
-        if (view == null) {
-            throw new IllegalArgumentException("Argument 'view' must be non-null.");
-        } // if
+        if (this.view != null) {
+            remove(this.view);
+        }
         this.view = view;
+        add(view);
         inputHandler.addListeners(view);
     } // setView
 
@@ -141,7 +145,7 @@ public class SceneService extends JFrame implements Service {
      *
      * @param c The Component to be added to the View
      */
-    public void addComponent(Component c) {
+    public void addComponent(BetterComponent c) {
         view.addComponent(c);
     } // addComponent
 
@@ -153,7 +157,7 @@ public class SceneService extends JFrame implements Service {
      * @return True if the supplied Component was found and removed. False
      * otherwise
      */
-    public boolean removeComponent(Component c) {
+    public boolean removeComponent(BetterComponent c) {
         return view.removeComponent(c);
     } // removeComponent
 
@@ -170,6 +174,7 @@ public class SceneService extends JFrame implements Service {
     public void start() {
         initializeComponents();
         setApplicationIcons();
+        FontService.INSTANCE.start();
         Cursors.setCursor(Cursors.DEFAULT_CURSOR);
     } // start
 
@@ -204,10 +209,7 @@ public class SceneService extends JFrame implements Service {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setLocationRelativeTo(null);
-        // Normally we get a new player from WelcomeView
-        view = new WorldView(new Player("bcgames"), getWidth(), getHeight());
-        setView(view);
-        add(view);
+        mainView.showView();
         setVisible(true);
         inputHandler.addListeners(this);
         setFocusTraversalKeysEnabled(false);

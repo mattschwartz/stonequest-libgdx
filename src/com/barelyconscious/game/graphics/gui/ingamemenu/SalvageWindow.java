@@ -10,11 +10,11 @@
  *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File description: 
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui.windows;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
-import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
+import com.barelyconscious.game.graphics.gui.ingamemenu.InterfaceWindowButton;
 import com.barelyconscious.game.services.WindowManager;
 
 public class SalvageWindow extends Window implements ButtonAction {

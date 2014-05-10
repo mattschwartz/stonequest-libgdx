@@ -14,7 +14,7 @@ package com.barelyconscious.game.player;
 
 import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.gui.windows.TextLog;
+import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.item.Scroll;
 import com.barelyconscious.game.spawnable.Entity;
 import com.barelyconscious.game.spawnable.Faction;

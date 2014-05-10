@@ -117,6 +117,7 @@ public class Interactable {
     } // mousePressed
 
     public void mouseReleased(MouseEvent e) {
+        mouseButtonDown = false;
     } // mouseReleased
 
     public void mouseDragged(MouseEvent e) {

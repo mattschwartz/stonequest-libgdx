@@ -10,9 +10,11 @@
  *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File description: 
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.gui.Button;
+import com.barelyconscious.game.graphics.gui.ButtonAction;
 import com.barelyconscious.game.input.Interactable;
 
 public class InterfaceWindowButton extends Button {

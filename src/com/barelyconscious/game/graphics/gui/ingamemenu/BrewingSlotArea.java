@@ -10,14 +10,12 @@
  *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File description: 
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
-import static com.barelyconscious.game.graphics.gui.InventorySlotArea.ITEM_SLOT_BACKGROUND;
-import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
+import static com.barelyconscious.game.graphics.gui.ingamemenu.InventorySlotArea.ITEM_SLOT_BACKGROUND;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Cauldron;
-import java.awt.event.MouseEvent;
 
 public class BrewingSlotArea extends ItemSlotArea {
 

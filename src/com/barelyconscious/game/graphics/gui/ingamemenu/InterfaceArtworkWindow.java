@@ -15,7 +15,7 @@
  *                   buttons to access other Windows and the information text
  *                   log but has no direct interaction between them.
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui.windows;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.services.SceneService;

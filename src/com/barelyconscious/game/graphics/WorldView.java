@@ -18,11 +18,8 @@ import com.barelyconscious.game.player.Player;
 
 public class WorldView extends View {
     public WorldView(Player player, int width, int height) {
-        super(width, height);
-        
         World.INSTANCE.spawnPlayer(player, 0, 0);
         World.INSTANCE.resize(width, height);
-        addComponent(World.INSTANCE);
         
         //WindowManager.INSTANCE.start();
     } // constructor

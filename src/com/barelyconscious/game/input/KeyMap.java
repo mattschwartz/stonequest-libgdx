@@ -16,7 +16,7 @@
 package com.barelyconscious.game.input;
 
 import com.barelyconscious.game.World;
-import com.barelyconscious.game.graphics.gui.windows.TextLog;
+import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.services.SceneService;
 import com.barelyconscious.game.services.WindowManager;
 import java.awt.event.KeyEvent;

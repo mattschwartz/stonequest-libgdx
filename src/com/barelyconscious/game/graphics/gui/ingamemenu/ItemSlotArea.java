@@ -10,10 +10,9 @@
  *                   Please email mattschwartz@utexas.edu for issues or concerns.
  *   Description:    
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.FontService;
-import com.barelyconscious.game.graphics.gui.windows.InterfaceDelegate;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.util.ColorHelper;

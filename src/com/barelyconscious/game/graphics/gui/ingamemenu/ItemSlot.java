@@ -11,9 +11,10 @@
    * File Description:  
    ************************************************************************** */
 
-package com.barelyconscious.game.graphics.gui;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.UIElement;
+import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.item.Item;
 import java.util.ArrayList;

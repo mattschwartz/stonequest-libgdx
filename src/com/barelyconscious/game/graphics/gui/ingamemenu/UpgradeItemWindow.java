@@ -10,14 +10,14 @@
  *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File description: 
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui.windows;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
-import com.barelyconscious.game.graphics.gui.CloseWindowButton;
-import com.barelyconscious.game.graphics.gui.InterfaceWindowButton;
+import com.barelyconscious.game.graphics.gui.ingamemenu.CloseWindowButton;
+import com.barelyconscious.game.graphics.gui.ingamemenu.InterfaceWindowButton;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Button;
 import com.barelyconscious.game.graphics.gui.ButtonAction;
-import com.barelyconscious.game.graphics.gui.ItemSlotArea;
+import com.barelyconscious.game.graphics.gui.ingamemenu.ItemSlotArea;
 import com.barelyconscious.game.graphics.gui.JustifiedTextArea;
 import com.barelyconscious.game.graphics.gui.ProgressBar;
 import com.barelyconscious.game.input.Interactable;

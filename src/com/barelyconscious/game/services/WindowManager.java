@@ -15,14 +15,14 @@
 package com.barelyconscious.game.services;
 
 import com.barelyconscious.game.graphics.UIElement;
-import com.barelyconscious.game.graphics.gui.windows.BrewingWindow;
-import com.barelyconscious.game.graphics.gui.windows.CharacterWindow;
-import com.barelyconscious.game.graphics.gui.windows.InterfaceArtworkWindow;
-import com.barelyconscious.game.graphics.gui.windows.InventoryWindow;
-import com.barelyconscious.game.graphics.gui.windows.JournalWindow;
-import com.barelyconscious.game.graphics.gui.windows.SalvageWindow;
-import com.barelyconscious.game.graphics.gui.windows.UpgradeItemWindow;
-import com.barelyconscious.game.graphics.gui.windows.Window;
+import com.barelyconscious.game.graphics.gui.ingamemenu.BrewingWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.CharacterWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.InterfaceArtworkWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.InventoryWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.JournalWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.SalvageWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.UpgradeItemWindow;
+import com.barelyconscious.game.graphics.gui.ingamemenu.Window;
 import java.awt.Point;
 
 public class WindowManager implements Service {
@@ -102,12 +102,12 @@ public class WindowManager implements Service {
 //        JOURNAL_WINDOW.windowButton.setRegion(xStart, yStart, width, height);
 //        SALVAGE_WINDOW.windowButton.setRegion(xStart, yStart, width, height);
 //        UPGRADE_ITEM_WINDOW.windowButton.setRegion(xStart, yStart, width, height);
-        SceneService.INSTANCE.addComponent(BREWING_WINDOW);
-        SceneService.INSTANCE.addComponent(CHARACTER_WINDOW);
-        SceneService.INSTANCE.addComponent(INVENTORY_WINDOW);
-        SceneService.INSTANCE.addComponent(JOURNAL_WINDOW);
-        SceneService.INSTANCE.addComponent(SALVAGE_WINDOW);
-        SceneService.INSTANCE.addComponent(UPGRADE_ITEM_WINDOW);
+//        SceneService.INSTANCE.addComponent(BREWING_WINDOW);
+//        SceneService.INSTANCE.addComponent(CHARACTER_WINDOW);
+//        SceneService.INSTANCE.addComponent(INVENTORY_WINDOW);
+//        SceneService.INSTANCE.addComponent(JOURNAL_WINDOW);
+//        SceneService.INSTANCE.addComponent(SALVAGE_WINDOW);
+//        SceneService.INSTANCE.addComponent(UPGRADE_ITEM_WINDOW);
     } // start
 
     @Override

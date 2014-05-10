@@ -10,12 +10,12 @@
  *                   Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File description: 
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui.windows;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.Game;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.gui.Cursors;
-import com.barelyconscious.game.graphics.gui.ItemDraggable;
+import com.barelyconscious.game.graphics.gui.ingamemenu.ItemDraggable;
 import com.barelyconscious.game.item.Item;
 import com.barelyconscious.game.player.Inventory;
 import com.barelyconscious.game.player.Player;

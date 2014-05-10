@@ -33,8 +33,6 @@ public class Button extends Interactable implements Component {
     protected int y;
     protected int width = DEFAULT_WIDTH;
     protected int height = DEFAULT_HEIGHT;
-    protected int titleOffsX;
-    protected int titleOffsY;
     private Color borderHighlightColor = new Color(137, 137, 137);
     private Color borderShadowColor = new Color(38, 38, 38);
     protected boolean hasBorder = false;
@@ -81,6 +79,11 @@ public class Button extends Interactable implements Component {
     public Button(String title, int startX, int startY, int width, int height, boolean hasBorder) {
         this(title, Interactable.Z_BUTTON, startX, startY, width, height, hasBorder);
     } // constructor
+    
+    public Button(ButtonAction callback, String title, int startX, int startY, int width, int height, boolean hasBorder) {
+        this(title, Interactable.Z_BUTTON, startX, startY, width, height, hasBorder);
+        callbackFunction = callback;
+    } // constructor
 
     public Button(String title, int zLevel, int startX, int startY, int width, int height, boolean hasBorder) {
         loadBorder();
@@ -96,15 +99,23 @@ public class Button extends Interactable implements Component {
 
         this.title = title;
 
-        // Find a better way to do this
-//        titleOffsX = x + MARGIN + (width - MARGIN * 2 - Font.getStringWidth(Game.screen, title)) / 2;
-        titleOffsY = y + FontService.characterHeight;
-
         this.hasBorder = hasBorder;
         super.setRegion(x, y, this.width, this.height);
         super.addMouseListener(zLevel);
     } // constructor
-
+    
+    public void setSize(float absoluteX, float relativeX, float absoluteY, float relativeY) {
+        float xStart = SceneService.INSTANCE.getViewWidth() * absoluteX;
+        float yStart = SceneService.INSTANCE.getViewHeight() * absoluteY;
+        
+        xStart += relativeX;
+        yStart += relativeY;
+        
+        x = (int)xStart;
+        y = (int)yStart;
+        super.setRegion(x, y, width, height);
+    } // setSize
+    
     /**
      * Loads the border from disk by locating subimages within the larger image. This results in a single, large disk access instead of multiple,
      * smaller accesses
@@ -191,9 +202,7 @@ public class Button extends Interactable implements Component {
 
     @Override
     public void setX(int newX) {
-        int titleWidth = titleOffsX - x;
         x = Math.max(0, newX);
-        titleOffsX = x + titleWidth;
 
         super.setRegion(x, y, width, height);
     } // setX
@@ -201,7 +210,6 @@ public class Button extends Interactable implements Component {
     @Override
     public void setY(int newY) {
         y = Math.max(0, newY);
-        titleOffsY = y + FontService.characterHeight + 2;
 
         super.setRegion(x, y, width, height);
     } // setY
@@ -302,8 +310,8 @@ public class Button extends Interactable implements Component {
     } // renderHighlighted
 
     protected void renderText() {
-        int offsX = titleOffsX;
-        int offsY = titleOffsY;
+        int offsX = x + MARGIN + (width - MARGIN * 2 - FontService.getStringWidth(title)) / 2;
+        int offsY = y + FontService.characterHeight;
 
         if (isMouseButtonDown()) {
             offsX++;

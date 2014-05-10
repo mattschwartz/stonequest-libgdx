@@ -13,7 +13,7 @@
  *                   meant to serve as a GUI implementation of a player function
  *                   like viewing the player's attributes or inventory.
  **************************************************************************** */
-package com.barelyconscious.game.graphics.gui.windows;
+package com.barelyconscious.game.graphics.gui.ingamemenu;
 
 import com.barelyconscious.game.graphics.gui.Component;
 import com.barelyconscious.game.input.Interactable;

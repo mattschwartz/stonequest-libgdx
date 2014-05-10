@@ -12,7 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.game.graphics;
 
-import com.barelyconscious.game.graphics.gui.Component;
+import com.barelyconscious.game.graphics.gui.BetterComponent;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,14 +29,11 @@ public class View extends Canvas {
     private final int SCALE = 1;
     protected int[] pixels;
     private boolean showUI = true;
-    private final List<Component> components = new CopyOnWriteArrayList<Component>();
+    private final List<BetterComponent> components = new CopyOnWriteArrayList<BetterComponent>();
     private BufferedImage view;
 
-    public View(int w, int h) {
-        width = w;
-        height = h;
-        createRaster();
-    } // constructor
+    public View() {
+    }
 
     /**
      * Creates the int array of pixels that represents the BufferedImage which
@@ -46,6 +43,9 @@ public class View extends Canvas {
         view = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt) view.getRaster().getDataBuffer()).getData();
     } // createRaster
+    
+    public void showView() {
+    }
 
     /**
      * Resizes the screen with the supplied new width and height.
@@ -97,6 +97,7 @@ public class View extends Canvas {
      * Resets the pixels on the screen to the BG color.
      */
     public void clear() {
+        if (pixels == null) return;
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = 0;
         } // for
@@ -113,17 +114,23 @@ public class View extends Canvas {
         return view == null ? null : view.createGraphics();
     } // getGraphics
 
-    public void addComponent(Component c) {
+    public void addComponent(BetterComponent c) {
         components.add(c);
     } // addComponent
 
-    public boolean removeComponent(Component c) {
+    public boolean removeComponent(BetterComponent c) {
         if (c == null) {
             return false;
         } // if
 
         return components.remove(c);
     } // removeComponent
+    
+    public void setComponentsEnabled(boolean enabled) {
+        for (BetterComponent c : components) {
+            c.setEnabled(enabled);
+        }
+    }
     
     /**
      * This method is called when the View is to be drawn to the screen.
@@ -132,7 +139,7 @@ public class View extends Canvas {
         renderView();
     } // render
 
-    protected void renderView() {
+    synchronized protected void renderView() {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
             createBufferStrategy(3);
@@ -154,7 +161,7 @@ public class View extends Canvas {
     } // renderView
 
     protected void renderComponents() {
-        for (Component c : components) {
+        for (BetterComponent c : components) {
             if (c.shouldRemove()) {
                 components.remove(c);
                 continue;
@@ -162,5 +169,5 @@ public class View extends Canvas {
 
             c.render();
         } // for
-    } // renderComponents
+    } // Components
 } // View

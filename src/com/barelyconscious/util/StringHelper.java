@@ -41,6 +41,20 @@ public class StringHelper {
      */
     public static final ArrayList GIBBERISH_WORD_LIST = new ArrayList<String>();
     
+    public static boolean isNullOrEmpty(String str) {
+        if (str == null || str.equals(" ")) {
+            return true;
+        }
+        
+        for (char c : str.toCharArray()) {
+            if (c != ' ') {
+                break;
+            }
+        }
+        
+        return false;
+    }
+    
     public static String aOrAn(String str) {
         if (vowels.contains(str.charAt(0))) {
             return "an " + str;

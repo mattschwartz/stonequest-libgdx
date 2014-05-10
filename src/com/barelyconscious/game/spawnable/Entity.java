@@ -19,7 +19,7 @@ import com.barelyconscious.game.World;
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.UIElement;
 import com.barelyconscious.game.graphics.View;
-import com.barelyconscious.game.graphics.gui.windows.TextLog;
+import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.item.Equippable;
 import com.barelyconscious.game.player.Inventory;
 import com.barelyconscious.game.player.condition.Condition;

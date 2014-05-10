@@ -18,7 +18,7 @@ import com.barelyconscious.game.graphics.FontService;
 import com.barelyconscious.game.graphics.ShapeDrawer;
 import com.barelyconscious.game.graphics.View;
 import com.barelyconscious.game.graphics.gui.Cursors;
-import com.barelyconscious.game.graphics.gui.windows.TextLog;
+import com.barelyconscious.game.graphics.gui.ingamemenu.TextLog;
 import com.barelyconscious.game.graphics.tiles.Tile;
 import com.barelyconscious.game.input.Interactable;
 import com.barelyconscious.game.input.KeyMap;
