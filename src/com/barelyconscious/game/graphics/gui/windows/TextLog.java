@@ -63,9 +63,9 @@ public class TextLog extends TextArea implements Service {
     } // append
 
     public void appendDamageMessage(Entity assailant, Entity target, double dmg, int type) {
+        int[] matchColors = new int[4];
         String msg;
         String[] matches = new String[4];
-        int[] matchColors = new int[4];
 
         if (assailant instanceof Player) {
             matches[0] = "You";
@@ -149,5 +149,5 @@ public class TextLog extends TextArea implements Service {
                 break;
             }
         } // for
-    }
+    } // renderText
 } // TextLog
