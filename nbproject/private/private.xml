@@ -18,14 +18,21 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/NewPlayerView.java</file>
-            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/input/Interactable.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/NewPlayerMenu.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/TextField.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/services/InputHandler.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/input/MouseHandler.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/BetterComponent.java</file>
             <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/services/SceneService.java</file>
-            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/MainView.java</file>
-            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/View.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/MainMenu.java</file>
             <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/Label.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/input/KeyHandler.java</file>
             <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/BetterButton.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/input/KeyInteractable.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/input/Interactable.java</file>
             <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/gui/ingamemenu/BrewingWindow.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/Viewport.java</file>
+            <file>file:/E:/Users/matt/GitHub/stonequest/src/com/barelyconscious/game/graphics/Menu.java</file>
         </group>
     </open-files>
 </project-private>
