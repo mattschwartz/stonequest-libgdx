@@ -10,7 +10,7 @@
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
  ************************************************************************** */
-package com.barelyconscious.stonequest.screens;
+package com.barelyconscious.stonequest.screens.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
