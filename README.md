@@ -1,3 +1,5 @@
+![2.png](https://bitbucket.org/repo/qM5zXK/images/1146144651-2.png)
+
 ![background.png](https://bitbucket.org/repo/qM5zXK/images/2478909983-background.png)
 
 # StoneQuest #
@@ -10,4 +12,3 @@ StoneQuest takes advantage of several free, third-party libraries:
 * LWJGL
 * libgdx
 * box2d and box2dlights
-
