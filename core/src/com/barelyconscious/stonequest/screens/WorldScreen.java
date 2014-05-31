@@ -96,7 +96,6 @@ public class WorldScreen extends GameScreen {
         menu.show(inputMultiplexer);
         
         GameWorld.getInstance().init(menu.getSpriteBatch(), inputMultiplexer);
-        GameWorld.getInstance().spawnPlayer(new Player("awdaw"));
         ObjectManager.getInstance().spawnObject(new LootObject(new Item("")), 50, 50);
     }
 
@@ -106,5 +105,5 @@ public class WorldScreen extends GameScreen {
         LightManager.getInstance().dispose();
         menu.dispose();
     }
-
+    
 } // WorldScreen

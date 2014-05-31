@@ -13,6 +13,9 @@
 package com.barelyconscious.stonequest.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,11 +27,12 @@ import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.screens.GameScreen;
 import com.barelyconscious.util.GUIHelper;
 
-public abstract class MenuScreen extends GameScreen {
+public abstract class MenuScreen extends GameScreen implements InputProcessor {
 
     protected Stage stage;
     private Sprite backgroundImage;
     private Label label;
+    private InputMultiplexer multiplexer;
 
     public MenuScreen(Game game) {
         super(game);
@@ -57,17 +61,72 @@ public abstract class MenuScreen extends GameScreen {
     @Override
     public void show() {
         stage = new Stage();
+
+        multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(this);
+        multiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(multiplexer);
+        
         backgroundImage = new Sprite(new Texture(Gdx.files.internal("app/background.png")));
         label = new Label(Game.GAME_TITLE + "\n" + Game.GAME_VERSION, GUIHelper.getLabelStyle(16, Color.LIGHT_GRAY));
         label.setAlignment(Align.right);
 
-        Gdx.input.setInputProcessor(stage);
         stage.addActor(label);
     }
 
     @Override
     public void hide() {
         label.remove();
+        multiplexer.removeProcessor(this);
+        multiplexer.removeProcessor(stage);
+    }
+    
+    public void backEvent() {
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        if (keycode == Keys.ESCAPE) {
+            backEvent();
+            return true;
+        }
+        
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 
 } // MenuScreen

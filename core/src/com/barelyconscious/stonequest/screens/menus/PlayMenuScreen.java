@@ -103,13 +103,14 @@ public class PlayMenuScreen extends MenuScreen {
     }
 
     private void newPlayerEvent() {
-        game.setScreen(game.worldScreen);
+        game.setScreen(game.newPlayerMenuScreen);
     }
 
     private void loadPlayerEvent() {
     }
 
-    private void backEvent() {
+    @Override
+    public void backEvent() {
         game.setScreen(game.mainMenuScreen);
     }
 

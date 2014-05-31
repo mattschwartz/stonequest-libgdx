@@ -99,7 +99,7 @@ public class MainMenuScreen extends MenuScreen {
 
     @Override
     public void hide() {
-        super.dispose();
+        super.hide();
         
         playButton.remove();
         exitButton.remove();
