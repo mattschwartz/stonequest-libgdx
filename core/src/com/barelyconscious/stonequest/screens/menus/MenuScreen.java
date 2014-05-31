@@ -68,7 +68,7 @@ public abstract class MenuScreen extends GameScreen implements InputProcessor {
         Gdx.input.setInputProcessor(multiplexer);
         
         backgroundImage = new Sprite(new Texture(Gdx.files.internal("app/background.png")));
-        label = new Label(Game.GAME_TITLE + "\n" + Game.GAME_VERSION, GUIHelper.getLabelStyle(16, Color.LIGHT_GRAY));
+        label = new Label(Game.GAME_TITLE + "\n" + Game.GAME_VERSION, GUIHelper.createLabelStyle(16, Color.LIGHT_GRAY));
         label.setAlignment(Align.right);
 
         stage.addActor(label);

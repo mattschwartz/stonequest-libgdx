@@ -9,6 +9,17 @@
  *                    credit from code that was not written fully by yourself.  
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
+ ************************************************************************** *//* *****************************************************************************
+ * Project:           core
+ * File Name:         GUIHelper.java
+ * Author:            Matt Schwartz
+ * Date Created:      05.28.2014 
+ * Redistribution:    You are free to use, reuse, and edit any of the text in
+ *                    this file.  You are not allowed to take credit for code
+ *                    that was not written fully by yourself, or to remove 
+ *                    credit from code that was not written fully by yourself.  
+ *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
+ * File Description:  
  ************************************************************************** */
 package com.barelyconscious.util;
 
@@ -17,11 +28,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class GUIHelper {
 
@@ -59,17 +73,37 @@ public class GUIHelper {
         DEFAULT_TEXTFIELD_STYLE.font = FontFactory.createDefaultFont(16);
         DEFAULT_TEXTFIELD_STYLE.fontColor = Color.WHITE;
         DEFAULT_TEXTFIELD_STYLE.cursor = skin.getDrawable("textFieldCursor");
+        
+        atlas = new TextureAtlas(Gdx.files.internal("app/gui/window_buttons.pack"));
+        skin.addRegions(atlas);
+        
+        atlas = new TextureAtlas(Gdx.files.internal("app/gui/ui.pack"));
+        skin.addRegions(atlas);
     }
 
     public static GUIHelper getInstance() {
         return INSTANCE;
+    }
+    
+    public static ImageButtonStyle createImageButtonStyle(String up, String down, String over) {
+        ImageButtonStyle result = new ImageButton.ImageButtonStyle();
+        
+        result.imageUp = skin.getDrawable(up);
+        result.imageOver = skin.getDrawable(over);
+        result.imageDown = skin.getDrawable(down);
+        
+        return result;
+    }
+    
+    public static Drawable getDrawable(String str) {
+        return skin.getDrawable(str);
     }
 
     public static Button createButton(String text) {
         return new TextButton(text, DEFAULT_BUTTON_STYLE);
     }
 
-    public static LabelStyle getLabelStyle(int size, Color color) {
+    public static LabelStyle createLabelStyle(int size, Color color) {
         return new LabelStyle(FontFactory.createDefaultFont(size), color);
     }
 

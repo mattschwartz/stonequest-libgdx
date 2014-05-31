@@ -58,7 +58,7 @@ public class NewPlayerMenuScreen extends MenuScreen {
         backButton = GUIHelper.createButton("Back");
         continueButton = GUIHelper.createButton("Create");
         playerNameTextArea = new TextField("player1", GUIHelper.DEFAULT_TEXTFIELD_STYLE);
-        playerNameLabel = new Label("Name:", GUIHelper.getLabelStyle(16, Color.WHITE));
+        playerNameLabel = new Label("Name:", GUIHelper.createLabelStyle(16, Color.WHITE));
         playerNameLabel.setAlignment(Align.right);
 
         continueButton.addListener(new InputListener() {

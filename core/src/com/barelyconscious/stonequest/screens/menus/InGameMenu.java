@@ -12,20 +12,47 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.Color;
+import static com.badlogic.gdx.graphics.VertexAttribute.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.barelyconscious.stonequest.Game;
+import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
 
 public class InGameMenu {
 
+    private final int INVENTORY_OFFS_X = 168;
+    private final int INVENTORY_OFFS_Y = 57;
+    private final int CHARACTER_OFFS_X = 119;
+    private final int CHARACTER_OFFS_Y = INVENTORY_OFFS_Y;
+    private final int UPGRADE_OFFS_X = 70;
+    private final int UPGRADE_OFFS_Y = INVENTORY_OFFS_Y;
+    private final int JOURNAL_OFFS_X = INVENTORY_OFFS_X;
+    private final int JOURNAL_OFFS_Y = 20;
+    private final int SALVAGE_OFFS_X = CHARACTER_OFFS_X;
+    private final int SALVAGE_OFFS_Y = JOURNAL_OFFS_Y;
+    private final int BREWING_OFFS_X = UPGRADE_OFFS_X;
+    private final int BREWING_OFFS_Y = JOURNAL_OFFS_Y;
+
     private Stage stage;
-    private Button button;
+    private ImageButton inventoryButton;
+    private ImageButton characterButton;
+    private ImageButton upgradeButton;
+    private ImageButton journalButton;
+    private ImageButton salvageButton;
+    private ImageButton brewingButton;
+    private Image uiLeft;
+    private Image uiRight;
+    private TextArea infoLog;
 
     public InGameMenu() {
         stage = new Stage();
@@ -36,8 +63,15 @@ public class InGameMenu {
     }
 
     public void resize(int width, int height) {
-        button.setX((Gdx.graphics.getWidth() - button.getWidth() * 3) / 2);
-        button.setY((Gdx.graphics.getHeight() - button.getHeight()) / 2);
+        GUIHelper.setPosition(infoLog, 0, 0, uiLeft.getWidth() - 1, -1);
+        infoLog.setWidth(width - uiRight.getWidth() - uiLeft.getWidth() + 2);
+        GUIHelper.setPosition(uiRight, 1f, 0, -uiRight.getWidth(), 0);
+        GUIHelper.setPosition(inventoryButton, 1f, 0f, -INVENTORY_OFFS_X, INVENTORY_OFFS_Y);
+        GUIHelper.setPosition(characterButton, 1f, 0f, -CHARACTER_OFFS_X, CHARACTER_OFFS_Y);
+        GUIHelper.setPosition(upgradeButton, 1f, 0f, -UPGRADE_OFFS_X, UPGRADE_OFFS_Y);
+        GUIHelper.setPosition(journalButton, 1f, 0f, -JOURNAL_OFFS_X, JOURNAL_OFFS_Y);
+        GUIHelper.setPosition(salvageButton, 1f, 0f, -SALVAGE_OFFS_X, SALVAGE_OFFS_Y);
+        GUIHelper.setPosition(brewingButton, 1f, 0f, -BREWING_OFFS_X, BREWING_OFFS_Y);
     }
 
     public void actAndDraw(float delta) {
@@ -49,11 +83,23 @@ public class InGameMenu {
         stage = new Stage();
         inputMultiplexer.addProcessor(stage);
 
-        button = new TextButton("Options", GUIHelper.DEFAULT_BUTTON_STYLE);
-        button.setWidth(150);
-        button.setHeight(40);
+        inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("inventoryButtonImageUp", "inventoryButtonImageDown", "inventoryButtonImageOver"));
+        characterButton = new ImageButton(GUIHelper.createImageButtonStyle("characterButtonImageUp", "characterButtonImageDown", "characterButtonImageOver"));
+        upgradeButton = new ImageButton(GUIHelper.createImageButtonStyle("upgradeItemButtonImageUp", "upgradeItemButtonImageDown", "upgradeItemButtonImageOver"));
+        journalButton = new ImageButton(GUIHelper.createImageButtonStyle("journalButtonImageUp", "journalButtonImageDown", "journalButtonImageOver"));
+        salvageButton = new ImageButton(GUIHelper.createImageButtonStyle("salvageButtonImageUp", "salvageButtonImageDown", "salvageButtonImageOver"));
+        brewingButton = new ImageButton(GUIHelper.createImageButtonStyle("brewingButtonImageUp", "brewingButtonImageDown", "brewingButtonImageOver"));
+        uiLeft = new Image(GUIHelper.getDrawable("ui_left"));
+        uiRight = new Image(GUIHelper.getDrawable("ui_right"));
 
-        button.addListener(new InputListener() {
+        TextFieldStyle style = new TextFieldStyle();
+        style.background = GUIHelper.getDrawable("ui_middle");
+        style.font = FontFactory.createDefaultFont(14);
+        style.fontColor = Color.LIGHT_GRAY;
+        infoLog = new TextArea("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION, style);
+        infoLog.setTouchable(Touchable.disabled);
+
+        inventoryButton.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -66,10 +112,23 @@ public class InGameMenu {
 
         });
 
-        stage.addActor(button);
+        stage.addActor(uiLeft);
+        stage.addActor(uiRight);
+        stage.addActor(infoLog);
+        stage.addActor(inventoryButton);
+        stage.addActor(characterButton);
+        stage.addActor(upgradeButton);
+        stage.addActor(journalButton);
+        stage.addActor(salvageButton);
+        stage.addActor(brewingButton);
     }
 
     public void dispose() {
+        characterButton.remove();
+        upgradeButton.remove();
+        journalButton.remove();
+        salvageButton.remove();
+        brewingButton.remove();
         stage.dispose();
     }
 

@@ -10,7 +10,7 @@ import com.barelyconscious.util.GUIHelper;
 public class Game extends com.badlogic.gdx.Game {
 
     public static final String GAME_TITLE = "StoneQuest";
-    public static final String GAME_VERSION = "Version 0.1.0alpha";
+    public static final String GAME_VERSION = "Version 0.1.0_alpha";
 
     public SplashScreen splashScreen;
     public MainMenuScreen mainMenuScreen;
