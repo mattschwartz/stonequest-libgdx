@@ -85,6 +85,14 @@ public class GUIHelper {
         return INSTANCE;
     }
     
+    public static ImageButtonStyle createImageButtonStyle(String name) {
+        String up = name + "Up";
+        String down = name + "Down";
+        String over = name + "Over";
+        
+        return createImageButtonStyle(up, down, over);
+    }
+    
     public static ImageButtonStyle createImageButtonStyle(String up, String down, String over) {
         ImageButtonStyle result = new ImageButton.ImageButtonStyle();
         

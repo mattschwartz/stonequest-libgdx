@@ -10,11 +10,10 @@
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
  ************************************************************************** */
-package com.barelyconscious.stonequest.screens.menus;
+package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
-import static com.badlogic.gdx.graphics.VertexAttribute.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -44,6 +43,7 @@ public class InGameMenu {
     private final int BREWING_OFFS_Y = JOURNAL_OFFS_Y;
 
     private Stage stage;
+    private InventoryWindow inventory;
     private ImageButton inventoryButton;
     private ImageButton characterButton;
     private ImageButton upgradeButton;
@@ -83,6 +83,7 @@ public class InGameMenu {
         stage = new Stage();
         inputMultiplexer.addProcessor(stage);
 
+        inventory = new InventoryWindow();
         inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("inventoryButtonImageUp", "inventoryButtonImageDown", "inventoryButtonImageOver"));
         characterButton = new ImageButton(GUIHelper.createImageButtonStyle("characterButtonImageUp", "characterButtonImageDown", "characterButtonImageOver"));
         upgradeButton = new ImageButton(GUIHelper.createImageButtonStyle("upgradeItemButtonImageUp", "upgradeItemButtonImageDown", "upgradeItemButtonImageOver"));
@@ -98,7 +99,7 @@ public class InGameMenu {
         style.fontColor = Color.LIGHT_GRAY;
         infoLog = new TextArea("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION, style);
         infoLog.setTouchable(Touchable.disabled);
-
+        
         inventoryButton.addListener(new InputListener() {
 
             @Override
@@ -108,9 +109,12 @@ public class InGameMenu {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                inventory.toggle();
             }
 
         });
+        
+        inventory.create();
 
         stage.addActor(uiLeft);
         stage.addActor(uiRight);
@@ -121,9 +125,11 @@ public class InGameMenu {
         stage.addActor(journalButton);
         stage.addActor(salvageButton);
         stage.addActor(brewingButton);
+        stage.addActor(inventory.getWindow());
     }
 
     public void dispose() {
+        inventory.remove();
         characterButton.remove();
         upgradeButton.remove();
         journalButton.remove();

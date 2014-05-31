@@ -12,7 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens;
 
-import com.barelyconscious.stonequest.screens.menus.InGameMenu;
+import com.barelyconscious.stonequest.screens.menus.ingamemenu.InGameMenu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;

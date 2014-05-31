@@ -3,25 +3,60 @@ ui.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+inventoryBackground
+  rotate: false
+  xy: 1, 308
+  size: 363, 608
+  orig: 363, 608
+  offset: 0, 0
+  index: -1
 ui_right
   rotate: false
-  xy: 1, 3
+  xy: 1, 194
   size: 363, 112
   orig: 363, 112
   offset: 0, 0
   index: -1
 ui_left
   rotate: false
-  xy: 366, 3
+  xy: 1, 80
   size: 320, 112
   orig: 320, 112
   offset: 0, 0
   index: -1
 ui_middle
   rotate: false
-  xy: 688, 1
+  xy: 366, 802
   size: 8, 114
   split: 1, 1, 19, 19
   orig: 8, 114
+  offset: 0, 0
+  index: -1
+itemSlot
+  rotate: false
+  xy: 1, 31
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+closeWindowButtonDown
+  rotate: false
+  xy: 323, 164
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+closeWindowButtonOver
+  rotate: false
+  xy: 376, 888
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+closeWindowButtonUp
+  rotate: false
+  xy: 1, 1
+  size: 28, 28
+  orig: 28, 28
   offset: 0, 0
   index: -1
