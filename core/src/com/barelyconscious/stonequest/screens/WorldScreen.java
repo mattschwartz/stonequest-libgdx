@@ -19,10 +19,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.barelyconscious.stonequest.Game;
-import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.gameobjects.LightManager;
 import com.barelyconscious.stonequest.gameobjects.LootObject;
 import com.barelyconscious.stonequest.gameobjects.ObjectManager;
+import com.barelyconscious.stonequest.input.WorldInputController;
 import com.barelyconscious.stonequest.items.Item;
 import com.barelyconscious.stonequest.world.GameWorld;
 
@@ -92,6 +92,7 @@ public class WorldScreen extends GameScreen {
     public void show() {
         inputMultiplexer = new InputMultiplexer(Gdx.input.getInputProcessor());
         Gdx.input.setInputProcessor(inputMultiplexer);
+        inputMultiplexer.addProcessor(new WorldInputController());
         menu = new InGameMenu();
         menu.show(inputMultiplexer);
         

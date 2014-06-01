@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.barelyconscious.stonequest.Game;
+import com.barelyconscious.stonequest.input.KeyBindings;
 import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
 
@@ -126,6 +127,25 @@ public class InGameMenu {
         stage.addActor(salvageButton);
         stage.addActor(brewingButton);
         stage.addActor(inventory.getWindow());
+        
+        addActionListeners();
+    }
+    
+    private void addActionListeners() {
+        KeyBindings.addAction(KeyBindings.open_inventoryWindow, new Runnable() {
+
+            @Override
+            public void run() {
+                inventory.toggle();
+            }
+        });
+        KeyBindings.addAction(KeyBindings.close_allWindows, new Runnable() {
+
+            @Override
+            public void run() {
+                inventory.hide();
+            }
+        });
     }
 
     public void dispose() {
