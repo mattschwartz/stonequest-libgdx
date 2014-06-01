@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
 
-public class InventoryWindow {
+public class InventoryWindow extends InGameComponent {
 
     private final int WINDOW_WIDTH = 363;
     private final int WINDOW_HEIGHT = 608;
@@ -34,10 +35,21 @@ public class InventoryWindow {
     private final int GOLD_AMOUNT_HEIGHT = 22;
     private final int GOLD_AMOUNT_OFFS_X = 130;
     private final int GOLD_AMOUNT_OFFS_Y = WINDOW_HEIGHT - 366;
+    private final int INVENTORY_OFFS_X = 37;
+    private final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 434;
+    private final int INVENTORY_STEP_X = 49;
+    private final int INVENTORY_STEP_Y = 49;
+    private final int INVENTORY_ROWS = 4;
+    private final int INVENTORY_COLS = 6;
 
     private Window window;
     private ImageButton closeWindowButton;
     private Label goldAmountLabel;
+    private ItemSlotActor itemSlot;
+    
+    public InventoryWindow(InGameMenu menu) {
+        super(menu);
+    }
 
     public void create() {
         createActors();
@@ -48,8 +60,11 @@ public class InventoryWindow {
     }
 
     private void createActors() {
+        itemSlot = new ItemSlotActor();
         closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("closeWindowButton"));
-        goldAmountLabel = new Label("0 g", GUIHelper.createLabelStyle(14, new Color(234f/255f, (185f/255f), (51f/255f), 1)));
+        goldAmountLabel = new Label("0 g", GUIHelper.createLabelStyle(14, new Color(234f / 255f, (185f / 255f), (51f / 255f), 1)));
+        
+        itemSlot.create();
         goldAmountLabel.setAlignment(Align.right);
     }
 
@@ -62,6 +77,7 @@ public class InventoryWindow {
 
         window.addActor(closeWindowButton);
         window.addActor(goldAmountLabel);
+        window.addActor(itemSlot);
     }
 
     private void registerEvents() {
@@ -92,10 +108,11 @@ public class InventoryWindow {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         GUIHelper.setPosition(window, 1, 1, -WINDOW_WIDTH, -WINDOW_HEIGHT);
         GUIHelper.setPosition(closeWindowButton, 0, 0, CLOSEBUTTON_OFFS_X, CLOSEBUTTON_OFFS_Y);
-        
+
         GUIHelper.setSize(goldAmountLabel, 0, 0, GOLD_AMOUNT_WIDTH, GOLD_AMOUNT_HEIGHT);
         GUIHelper.setPosition(goldAmountLabel, 0, 0, GOLD_AMOUNT_OFFS_X, GOLD_AMOUNT_OFFS_Y);
-        
+        itemSlot.setPosition(50, 50);
+
         window.setVisible(true);
         window.setTouchable(Touchable.enabled);
     }
@@ -114,5 +131,5 @@ public class InventoryWindow {
             hide();
         }
     }
-
+    
 } // InventoryWindow

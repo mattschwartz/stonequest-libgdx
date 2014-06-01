@@ -39,6 +39,13 @@ itemSlot
   orig: 47, 47
   offset: 0, 0
   index: -1
+itemSlotHighlighted
+  rotate: false
+  xy: 376, 869
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
 closeWindowButtonDown
   rotate: false
   xy: 323, 164
@@ -48,14 +55,14 @@ closeWindowButtonDown
   index: -1
 closeWindowButtonOver
   rotate: false
-  xy: 376, 888
+  xy: 1, 1
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonUp
   rotate: false
-  xy: 1, 1
+  xy: 50, 50
   size: 28, 28
   orig: 28, 28
   offset: 0, 0

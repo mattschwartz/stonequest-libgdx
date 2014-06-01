@@ -83,7 +83,7 @@ public class InGameMenu {
         stage = new Stage();
         inputMultiplexer.addProcessor(stage);
 
-        inventory = new InventoryWindow();
+        inventory = new InventoryWindow(this);
         inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("inventoryButtonImageUp", "inventoryButtonImageDown", "inventoryButtonImageOver"));
         characterButton = new ImageButton(GUIHelper.createImageButtonStyle("characterButtonImageUp", "characterButtonImageDown", "characterButtonImageOver"));
         upgradeButton = new ImageButton(GUIHelper.createImageButtonStyle("upgradeItemButtonImageUp", "upgradeItemButtonImageDown", "upgradeItemButtonImageOver"));
@@ -115,7 +115,7 @@ public class InGameMenu {
         });
         
         inventory.create();
-
+        
         stage.addActor(uiLeft);
         stage.addActor(uiRight);
         stage.addActor(infoLog);
