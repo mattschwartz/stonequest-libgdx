@@ -9,6 +9,17 @@
    *                    credit from code that was not written fully by yourself.  
    *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
    * File Description:  
+   ************************************************************************** *//* *****************************************************************************
+   * Project:           core
+   * File Name:         Entity.java
+   * Author:            Matt Schwartz
+   * Date Created:      05.22.2014 
+   * Redistribution:    You are free to use, reuse, and edit any of the text in
+   *                    this file.  You are not allowed to take credit for code
+   *                    that was not written fully by yourself, or to remove 
+   *                    credit from code that was not written fully by yourself.  
+   *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
+   * File Description:  
    ************************************************************************** */
 
 package com.barelyconscious.stonequest.entities;
@@ -18,7 +29,7 @@ import java.util.Map;
 
 public abstract class Entity {
 
-    public static enum attr {
+    public static enum Attribute {
 
         HITPOINTS,
         STRENGTH,
@@ -34,28 +45,28 @@ public abstract class Entity {
         public static final int NUM_ATTRIBUTES = values().length;
     }
 
-    private final Map<attr, Double> attributes;
+    private final Map<Attribute, Double> attributes;
     private final Inventory inventory;
     protected String name;
 
     public Entity(String name) {
         this.name = name;
-        attributes = new EnumMap<>(attr.class);
+        attributes = new EnumMap<>(Attribute.class);
         inventory = new Inventory();
         setDefaultAttributes();
     }
 
     private void setDefaultAttributes() {
-        for (attr attribute : attributes.keySet()) {
+        for (Attribute attribute : attributes.keySet()) {
             attributes.put(attribute, 10.0);
         }
     }
 
-    public void setAttribute(attr attribute, double value) {
+    public void setAttribute(Attribute attribute, double value) {
         attributes.put(attribute, value);
     }
 
-    public double getAttribute(attr attribute) {
+    public double getAttribute(Attribute attribute) {
         return attributes.get(attribute);
     }
 

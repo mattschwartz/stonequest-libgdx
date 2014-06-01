@@ -12,7 +12,6 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -22,31 +21,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.barelyconscious.stonequest.items.Equippable.SLOT_ID;
 import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InventoryWindow extends InGameComponent {
-
-    private final int WINDOW_WIDTH = 363;
-    private final int WINDOW_HEIGHT = 608;
-    private final int CLOSEBUTTON_OFFS_X = 320;
-    private final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 37;
-    private final int GOLD_AMOUNT_WIDTH = 83;
-    private final int GOLD_AMOUNT_HEIGHT = 22;
-    private final int GOLD_AMOUNT_OFFS_X = 130;
-    private final int GOLD_AMOUNT_OFFS_Y = WINDOW_HEIGHT - 366;
-    private final int INVENTORY_OFFS_X = 37;
-    private final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 434;
-    private final int INVENTORY_STEP_X = 49;
-    private final int INVENTORY_STEP_Y = 49;
-    private final int INVENTORY_ROWS = 4;
-    private final int INVENTORY_COLS = 6;
 
     private Window window;
     private ImageButton closeWindowButton;
     private Label goldAmountLabel;
-    private ItemSlotActor itemSlot;
-    
+    private List<ItemSlotActor> inventorySlots;
+    private Map<Integer, ItemSlotActor> equipmentSlots;
+
     public InventoryWindow(InGameMenu menu) {
         super(menu);
     }
@@ -60,12 +50,20 @@ public class InventoryWindow extends InGameComponent {
     }
 
     private void createActors() {
-        itemSlot = new ItemSlotActor();
+        inventorySlots = new ArrayList<>();
+        equipmentSlots = new HashMap<>();
         closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("closeWindowButton"));
         goldAmountLabel = new Label("0 g", GUIHelper.createLabelStyle(14, new Color(234f / 255f, (185f / 255f), (51f / 255f), 1)));
-        
-        itemSlot.create();
+
         goldAmountLabel.setAlignment(Align.right);
+
+        for (int i = 0; i < Offset.INVENTORY_SLOTS_ROWS * Offset.INVENTORY_SLOTS_COLS; i++) {
+            inventorySlots.add(new ItemSlotActor());
+        }
+
+        for (int i = 0; i < SLOT_ID.NUM_SLOTS; i++) {
+            equipmentSlots.put(i, new ItemSlotActor());
+        }
     }
 
     private void createRootWindow() {
@@ -77,7 +75,14 @@ public class InventoryWindow extends InGameComponent {
 
         window.addActor(closeWindowButton);
         window.addActor(goldAmountLabel);
-        window.addActor(itemSlot);
+
+        for (ItemSlotActor itemSlot : inventorySlots) {
+            window.addActor(itemSlot);
+        }
+
+        for (ItemSlotActor itemSlot : equipmentSlots.values()) {
+            window.addActor(itemSlot);
+        }
     }
 
     private void registerEvents() {
@@ -105,13 +110,31 @@ public class InventoryWindow extends InGameComponent {
     }
 
     public void show() {
-        window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        GUIHelper.setPosition(window, 1, 1, -WINDOW_WIDTH, -WINDOW_HEIGHT);
-        GUIHelper.setPosition(closeWindowButton, 0, 0, CLOSEBUTTON_OFFS_X, CLOSEBUTTON_OFFS_Y);
+        window.setSize(Offset.INVENTORY_WINDOW_WIDTH, Offset.INVENTORY_WINDOW_HEIGHT);
+        GUIHelper.setPosition(window, 1, 1, -Offset.INVENTORY_WINDOW_WIDTH, -Offset.INVENTORY_WINDOW_HEIGHT);
+        GUIHelper.setPosition(closeWindowButton, 0, 0, Offset.INVENTORY_CLOSEBUTTON_OFFS_X, Offset.INVENTORY_CLOSEBUTTON_OFFS_Y);
 
-        GUIHelper.setSize(goldAmountLabel, 0, 0, GOLD_AMOUNT_WIDTH, GOLD_AMOUNT_HEIGHT);
-        GUIHelper.setPosition(goldAmountLabel, 0, 0, GOLD_AMOUNT_OFFS_X, GOLD_AMOUNT_OFFS_Y);
-        itemSlot.setPosition(50, 50);
+        GUIHelper.setSize(goldAmountLabel, 0, 0, Offset.INVENTORY_GOLD_AMOUNT_WIDTH, Offset.INVENTORY_GOLD_AMOUNT_HEIGHT);
+        GUIHelper.setPosition(goldAmountLabel, 0, 0, Offset.INVENTORY_GOLD_AMOUNT_OFFS_X, Offset.INVENTORY_GOLD_AMOUNT_OFFS_Y);
+
+        for (int r = 0; r < Offset.INVENTORY_SLOTS_ROWS; r++) {
+            for (int c = 0; c < Offset.INVENTORY_SLOTS_COLS; c++) {
+                inventorySlots.get(r + c * Offset.INVENTORY_SLOTS_ROWS).setPosition(Offset.INVENTORY_SLOTS_OFFS_X + c * Offset.INVENTORY_SLOTS_STEP_X, Offset.INVENTORY_SLOTS_OFFS_Y - r * Offset.INVENTORY_SLOTS_STEP_Y);
+            }
+        }
+
+        equipmentSlots.get(SLOT_ID.helmet.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_HELMET_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_HELMET_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.chest.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_CHEST_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_CHEST_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.legs.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_LEGS_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_LEGS_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.boots.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_BOOTS_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_BOOTS_OFFS_Y);
+
+        equipmentSlots.get(SLOT_ID.gloves.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_GLOVES_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_GLOVES_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.belt.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_BELT_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_BELT_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.necklace.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_NECKLACE_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_NECKLACE_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.ring.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_RING_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_RING_OFFS_Y);
+
+        equipmentSlots.get(SLOT_ID.weapon.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_WEAPON_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_WEAPON_OFFS_Y);
+        equipmentSlots.get(SLOT_ID.offHand.ordinal()).setPosition(Offset.INVENTORY_EQUIPMENT_SLOT_OFFHAND_OFFS_X, Offset.INVENTORY_EQUIPMENT_SLOT_OFFHAND_OFFS_Y);
 
         window.setVisible(true);
         window.setTouchable(Touchable.enabled);
@@ -131,5 +154,5 @@ public class InventoryWindow extends InGameComponent {
             hide();
         }
     }
-    
+
 } // InventoryWindow

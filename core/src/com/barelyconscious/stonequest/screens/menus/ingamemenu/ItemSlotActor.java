@@ -14,7 +14,7 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -25,12 +25,11 @@ import com.barelyconscious.util.GUIHelper;
 public class ItemSlotActor extends Container {
 
     private Image emptySlotImage;
+    private Image item;
     
     public ItemSlotActor() {
-    }
-    
-    public void create() {
         emptySlotImage = new Image(GUIHelper.getDrawable("itemSlot"));
+        item = new Image(new Texture(Gdx.files.internal("item.png")));
         setWidget(emptySlotImage);
         setSize(emptySlotImage.getWidth(), emptySlotImage.getHeight());
         addListener(new ItemSlotInputListener());
@@ -40,8 +39,12 @@ public class ItemSlotActor extends Container {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-            Gdx.app.log(null, "entered this bitch");
         }
+
+        @Override
+        public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        }
+        
     }
     
 } // ItemSlotActor
