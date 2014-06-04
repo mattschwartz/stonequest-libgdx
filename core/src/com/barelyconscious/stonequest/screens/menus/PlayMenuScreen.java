@@ -15,6 +15,7 @@ package com.barelyconscious.stonequest.screens.menus;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.util.GUIHelper;
 
@@ -49,41 +50,26 @@ public class PlayMenuScreen extends MenuScreen {
         newPlayerButton = GUIHelper.createButton("New");
         loadPlayerButton = GUIHelper.createButton("Load");
 
-        newPlayerButton.addListener(new InputListener() {
+        newPlayerButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 newPlayerEvent();
             }
 
         });
-        loadPlayerButton.addListener(new InputListener() {
+        loadPlayerButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 loadPlayerEvent();
             }
 
         });
-        backButton.addListener(new InputListener() {
+        backButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 backEvent();
             }
 

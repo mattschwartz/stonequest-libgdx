@@ -63,10 +63,10 @@ public class GUIHelper {
         DEFAULT_TEXTFIELD_STYLE.font = FontFactory.createDefaultFont(16);
         DEFAULT_TEXTFIELD_STYLE.fontColor = Color.WHITE;
         DEFAULT_TEXTFIELD_STYLE.cursor = skin.getDrawable("textFieldCursor");
-        
+
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/window_buttons.pack"));
         skin.addRegions(atlas);
-        
+
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/ui.pack"));
         skin.addRegions(atlas);
     }
@@ -74,35 +74,39 @@ public class GUIHelper {
     public static GUIHelper getInstance() {
         return INSTANCE;
     }
-    
+
     public static ImageButtonStyle createImageButtonStyle(String name) {
         String up = name + "Up";
         String down = name + "Down";
         String over = name + "Over";
-        
+
         return createImageButtonStyle(up, down, over);
     }
-    
+
     public static ImageButtonStyle createImageButtonStyle(String up, String down, String over) {
         ImageButtonStyle result = new ImageButton.ImageButtonStyle();
-        
+
         result.imageUp = skin.getDrawable(up);
         result.imageOver = skin.getDrawable(over);
         result.imageDown = skin.getDrawable(down);
-        
+
         return result;
     }
-    
+
     public static Sprite getSprite(String str) {
         return skin.getSprite(str);
     }
-    
+
     public static Drawable getDrawable(String str) {
         return skin.getDrawable(str);
     }
 
     public static Button createButton(String text) {
         return new TextButton(text, DEFAULT_BUTTON_STYLE);
+    }
+
+    public static LabelStyle createLabelStyle() {
+        return createLabelStyle(16, Color.LIGHT_GRAY);
     }
 
     public static LabelStyle createLabelStyle(int size, Color color) {

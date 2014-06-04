@@ -12,11 +12,84 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.barelyconscious.util.FontFactory;
+import com.barelyconscious.util.GUIHelper;
+
 public abstract class InGameComponent {
 
+    private String imageBackground;
     protected InGameMenu inGameMenu;
+    protected Window window;
+    protected ImageButton closeWindowButton;
 
-    public InGameComponent(InGameMenu inGameMenu) {
+    public InGameComponent(InGameMenu inGameMenu, String background) {
+        imageBackground = background;
         this.inGameMenu = inGameMenu;
+    }
+
+    public final void create() {
+        createActors();
+        createRootWindow();
+        registerEvents();
+        hide();
+    }
+
+    protected void createActors() {
+        closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("closeWindowButton"));
+    }
+
+    protected void createRootWindow() {
+        Window.WindowStyle style = new Window.WindowStyle();
+        style.background = GUIHelper.getDrawable(imageBackground);
+        style.titleFont = FontFactory.createDefaultFont(18);
+
+        window = new Window("", style);
+        window.addActor(closeWindowButton);
+    }
+
+    protected void registerEvents() {
+        closeWindowButton.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                hide();
+            }
+
+        });
+    }
+
+    public Window getWindow() {
+        return window;
+    }
+
+    public void show() {
+        window.setVisible(true);
+        window.setTouchable(Touchable.enabled);
+    }
+
+    public void hide() {
+        window.setVisible(false);
+        window.setTouchable(Touchable.disabled);
+    }
+
+    public void dispose() {
+        window.clear();
+        window.remove();
+    }
+
+    public final boolean toggle() {
+        if (!window.isVisible()) {
+            show();
+        } else {
+            hide();
+        }
+        
+        return window.isVisible();
     }
 } // InGameMenuComponent

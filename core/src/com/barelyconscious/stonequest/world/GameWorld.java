@@ -55,7 +55,7 @@ public class GameWorld {
         ObjectManager.getInstance().init(boxWorld, inputMultiplexer);
         LightManager.getInstance().init(boxWorld);
     }
-    
+
     public Vector2 getWorldCoords(float mouseX, float mouseY) {
         Vector3 result = new Vector3(mouseX, mouseY, 0);
         result = camera.unproject(result);
@@ -66,7 +66,11 @@ public class GameWorld {
         playerObject = new PlayerObject(player);
         ObjectManager.getInstance().spawnObject(playerObject, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
     }
-    
+
+    public Player getPlayer() {
+        return (Player) playerObject.getEntity();
+    }
+
     public Rectangle getPlayerBoundingBox() {
         return playerObject.getBoundingBox();
     }

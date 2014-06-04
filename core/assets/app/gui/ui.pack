@@ -3,30 +3,37 @@ ui.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+characterBackground
+  rotate: false
+  xy: 1, 279
+  size: 363, 608
+  orig: 363, 608
+  offset: 0, 0
+  index: -1
 inventoryBackground
   rotate: false
-  xy: 1, 308
+  xy: 366, 279
   size: 363, 608
   orig: 363, 608
   offset: 0, 0
   index: -1
 ui_right
   rotate: false
-  xy: 1, 194
+  xy: 1, 165
   size: 363, 112
   orig: 363, 112
   offset: 0, 0
   index: -1
 ui_left
   rotate: false
-  xy: 1, 80
+  xy: 1, 51
   size: 320, 112
   orig: 320, 112
   offset: 0, 0
   index: -1
 ui_middle
   rotate: false
-  xy: 366, 802
+  xy: 731, 773
   size: 8, 114
   split: 1, 1, 19, 19
   orig: 8, 114
@@ -34,36 +41,61 @@ ui_middle
   index: -1
 itemSlot
   rotate: false
-  xy: 1, 31
+  xy: 366, 230
   size: 47, 47
   orig: 47, 47
   offset: 0, 0
   index: -1
-itemSlotHighlighted
+infoLogBackground
   rotate: false
-  xy: 376, 869
-  size: 47, 47
-  orig: 47, 47
+  xy: 1, 9
+  size: 28, 40
+  split: 12, 12, 18, 18
+  orig: 28, 40
   offset: 0, 0
   index: -1
 closeWindowButtonDown
   rotate: false
-  xy: 323, 164
+  xy: 323, 135
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonOver
   rotate: false
-  xy: 1, 1
+  xy: 741, 859
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonUp
   rotate: false
-  xy: 50, 50
+  xy: 366, 200
   size: 28, 28
   orig: 28, 28
+  offset: 0, 0
+  index: -1
+textAreaBorder
+  rotate: false
+  xy: 415, 249
+  size: 28, 28
+  split: 12, 12, 12, 12
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+scrollBarHorizontal
+  rotate: false
+  xy: 1, 1
+  size: 12, 6
+  split: 5, 5, 0, 6
+  orig: 12, 6
+  offset: 0, 0
+  index: -1
+scrollBarVertical
+  rotate: false
+  xy: 731, 759
+  size: 6, 12
+  split: 0, 6, 5, 5
+  orig: 6, 12
   offset: 0, 0
   index: -1

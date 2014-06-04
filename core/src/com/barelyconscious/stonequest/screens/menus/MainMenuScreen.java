@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.util.GUIHelper;
 
@@ -51,43 +52,24 @@ public class MainMenuScreen extends MenuScreen {
         optionsButton = GUIHelper.createButton("Options");
         exitButton = GUIHelper.createButton("Quit");
 
-        playButton.addListener(new InputListener() {
+        playButton.addListener(new ClickListener() {
 
             @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-            }
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 startGame();
             }
         });
-        optionsButton.addListener(new InputListener() {
+        optionsButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 showOptions();
             }
         });
-        exitButton.addListener(new InputListener() {
+        exitButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 quitGame();
             }
         });

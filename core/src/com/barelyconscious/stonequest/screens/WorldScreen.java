@@ -40,52 +40,10 @@ public class WorldScreen extends GameScreen {
         menu.resize(width, height);
     }
 
-    boolean pressed = false;
-
     @Override
     public void render(float delta) {
         GameWorld.getInstance().render(delta);
         menu.actAndDraw(delta);
-
-        // debugging
-        if (!Gdx.input.isButtonPressed(0)) {
-            pressed = false;
-        }
-
-        if (!pressed && Gdx.input.isButtonPressed(0)) {
-            pressed = true;
-            Color color;
-            Vector2 mouseCoords = GameWorld.getInstance().getWorldCoords(Gdx.input.getX(), Gdx.input.getY());
-
-            int ran = MathUtils.random(7);
-            switch (ran) {
-                case 0:
-                    color = Color.BLUE;
-                    break;
-                case 1:
-                    color = Color.CYAN;
-                    break;
-                case 2:
-                    color = Color.GREEN;
-                    break;
-                case 3:
-                    color = Color.MAGENTA;
-                    break;
-                case 4:
-                    color = Color.ORANGE;
-                    break;
-                case 5:
-                    color = Color.PINK;
-                    break;
-                case 6:
-                    color = Color.RED;
-                    break;
-                default:
-                    color = Color.YELLOW;
-            }
-
-            LightManager.getInstance().addPointLight(color, 350, mouseCoords.x, mouseCoords.y);
-        }
     }
     
     @Override

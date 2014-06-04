@@ -1,8 +1,8 @@
 /* *****************************************************************************
    * Project:           core
-   * File Name:         EntityObject.java
+   * File Name:         StringHelper.java
    * Author:            Matt Schwartz
-   * Date Created:      05.24.2014 
+   * Date Created:      06.04.2014 
    * Redistribution:    You are free to use, reuse, and edit any of the text in
    *                    this file.  You are not allowed to take credit for code
    *                    that was not written fully by yourself, or to remove 
@@ -11,20 +11,12 @@
    * File Description:  
    ************************************************************************** */
 
-package com.barelyconscious.stonequest.gameobjects;
+package com.barelyconscious.util;
 
-import com.barelyconscious.stonequest.entities.Entity;
+public class StringHelper {
 
-public abstract class EntityObject extends GameObject {
-
-    protected Entity entity;
     
-    public EntityObject(String filepath, Entity entity) {
-        super(filepath);
-        this.entity = entity;
+    public static boolean isNullOrEmpty(String str) {
+        return str == null || str.equals("");
     }
-    
-    public Entity getEntity() {
-        return entity;
-    }
-} // EntityObject
+} // StringHelper

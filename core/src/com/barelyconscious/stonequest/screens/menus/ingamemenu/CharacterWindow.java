@@ -1,0 +1,120 @@
+/* *****************************************************************************
+ * Project:           core
+ * File Name:         CharacterWindow.java
+ * Author:            Matt Schwartz
+ * Date Created:      06.03.2014 
+ * Redistribution:    You are free to use, reuse, and edit any of the text in
+ *                    this file.  You are not allowed to take credit for code
+ *                    that was not written fully by yourself, or to remove 
+ *                    credit from code that was not written fully by yourself.  
+ *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
+ * File Description:  
+ ************************************************************************** */
+package com.barelyconscious.stonequest.screens.menus.ingamemenu;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.barelyconscious.stonequest.entities.Entity.Attribute;
+import com.barelyconscious.stonequest.world.GameWorld;
+import com.barelyconscious.util.GUIHelper;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CharacterWindow extends InGameComponent {
+
+    private Label playerNameLabel;
+    private Label subtitleLabel;
+    private JustifiedTextArea detailsTextArea;
+    private Map<Attribute, Label> statsLabels;
+
+    public CharacterWindow(InGameMenu inGameMenu) {
+        super(inGameMenu, "characterBackground");
+        statsLabels = new HashMap<>();
+    }
+
+    @Override
+    protected void createActors() {
+        super.createActors();
+
+        playerNameLabel = new Label("player's name", GUIHelper.createLabelStyle());
+        subtitleLabel = new Label("Details", GUIHelper.createLabelStyle());
+        detailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, new Color(0.15f, 0.85f, 0.5f, 1));
+
+        detailsTextArea.setCenterLines(true);
+        detailsTextArea.addLine("melee damage", "999.9-999.9");
+        detailsTextArea.addLine("magic damage", "999.9-999.9");
+        detailsTextArea.addLine("crit chance", "100.99%");
+        detailsTextArea.addLine("armor", "100.99%");
+        detailsTextArea.addLine("evasion", "100.99%");
+        detailsTextArea.addLine("fire magic bonus", "100.99%");
+        detailsTextArea.addLine("frost magic bonus", "100.99%");
+        detailsTextArea.addLine("holy magic bonus", "100.99%");
+        detailsTextArea.addLine("chaos magic bonus", "100.99%");
+
+        playerNameLabel.setAlignment(Align.center);
+        subtitleLabel.setAlignment(Align.center);
+
+        for (int i = 0; i < Attribute.NUM_ATTRIBUTES; i++) {
+            Label label = new Label("999/999", GUIHelper.createLabelStyle());
+            statsLabels.put(Attribute.toAttribute(i), label);
+        }
+    }
+
+    @Override
+    protected void createRootWindow() {
+        super.createRootWindow();
+
+        window.addActor(playerNameLabel);
+        window.addActor(subtitleLabel);
+        window.addActor(detailsTextArea);
+
+        for (Label label : statsLabels.values()) {
+            window.addActor(label);
+        }
+    }
+
+    @Override
+    protected void registerEvents() {
+        super.registerEvents();
+
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        String name = GameWorld.getInstance().getPlayer().getName();
+        playerNameLabel.setText(name);
+
+        int i = 0;
+        float statsOffsX = Offset.CharacterWindow.STATS_OFFS_X;
+        float statsOffsY;
+
+        for (int c = 0; c < 2; c++) {
+            statsOffsY = Offset.CharacterWindow.STATS_OFFS_Y;
+            
+            for (int r = 0; r < 5; r++) {
+                Label label = statsLabels.get(Attribute.toAttribute(i++));
+                GUIHelper.setSize(label, 0, 0, Offset.CharacterWindow.STATS_WIDTH, Offset.CharacterWindow.STATS_HEIGHT);
+                GUIHelper.setPosition(label, 0, 0, statsOffsX, statsOffsY);
+                
+                statsOffsY -= Offset.CharacterWindow.STATS_STEP_Y;
+            }
+            statsOffsX += Offset.CharacterWindow.STATS_STEP_X;
+        }
+
+        window.setSize(Offset.CharacterWindow.WINDOW_WIDTH, Offset.CharacterWindow.WINDOW_HEIGHT);
+        GUIHelper.setPosition(window, 1, 1, -Offset.CharacterWindow.WINDOW_WIDTH, -Offset.CharacterWindow.WINDOW_HEIGHT);
+        GUIHelper.setPosition(closeWindowButton, 0, 0, Offset.CharacterWindow.CLOSEBUTTON_OFFS_X, Offset.CharacterWindow.CLOSEBUTTON_OFFS_Y);
+
+        GUIHelper.setSize(playerNameLabel, 0, 0, Offset.CharacterWindow.PLAYER_NAME_LABEL_WIDTH, Offset.CharacterWindow.PLAYER_NAME_LABEL_HEIGHT);
+        GUIHelper.setPosition(playerNameLabel, 0, 0, Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_X, Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_Y);
+
+        GUIHelper.setSize(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_WIDTH, Offset.CharacterWindow.SUBTITLE_LABEL_HEIGHT);
+        GUIHelper.setPosition(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_X, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_Y);
+
+        GUIHelper.setSize(detailsTextArea, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_WIDTH, Offset.CharacterWindow.DETAILS_TEXTAREA_HEIGHT);
+        GUIHelper.setPosition(detailsTextArea, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_X, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_Y);
+    }
+
+} // CharacterWindow

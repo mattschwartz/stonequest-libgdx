@@ -15,11 +15,11 @@ package com.barelyconscious.stonequest.screens.menus;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.world.GameWorld;
@@ -61,45 +61,43 @@ public class NewPlayerMenuScreen extends MenuScreen {
         playerNameLabel = new Label("Name:", GUIHelper.createLabelStyle(16, Color.WHITE));
         playerNameLabel.setAlignment(Align.right);
 
-        continueButton.addListener(new InputListener() {
+        continueButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 continueEvent();
             }
 
         });
-        backButton.addListener(new InputListener() {
+        backButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 backEvent();
             }
 
         });
-        playerNameTextArea.addListener(new InputListener() {
-
-            @Override
-            public boolean keyDown(InputEvent event, int keycode) {
-                if (acceptableInput(keycode)) {
-                    return true;
-                }
-
-                event.cancel();
-                return false;
-            }
-
-        });
+//        
+//        TextAreaListener listener = new TextArea.TextAreaListener();
+//        
+//        
+//        playerNameTextArea.addListener(new TextAreaListener() {
+//            
+//        });
+//        
+//        playerNameTextArea.addListener(new TextArea.TextAreaListener() {
+//
+//            @Override
+//            public boolean keyDown(InputEvent event, int keycode) {
+//                if (acceptableInput(keycode)) {
+//                    return true;
+//                }
+//
+//                event.cancel();
+//                return false;
+//            }
+//
+//        });
 
         stage.addActor(backButton);
         stage.addActor(continueButton);
@@ -120,7 +118,7 @@ public class NewPlayerMenuScreen extends MenuScreen {
 
     private void continueEvent() {
         game.setScreen(game.worldScreen);
-        GameWorld.getInstance().spawnPlayer(new Player(playerNameLabel.getText().toString()));
+        GameWorld.getInstance().spawnPlayer(new Player(playerNameTextArea.getText()));
     }
 
     @Override
