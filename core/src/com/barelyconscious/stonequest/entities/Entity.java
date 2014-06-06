@@ -93,6 +93,43 @@ public abstract class Entity {
                     return "invalid";
             }
         }
+
+        public static String getDescription(Attribute attr) {
+            switch (attr) {
+                case HITPOINTS:
+                    return "Your hitpoints. Lose them all and you're dead.";
+
+                case STRENGTH:
+                    return "More of this, the harder you hit with physical attacks.";
+
+                case ACCURACY:
+                    return "Hit harder.";
+
+                case DEFENSE:
+                    return "Get hit less hard.";
+
+                case EVASION:
+                    return "Get hit less often.";
+
+                case FIRE_MAGIC:
+                    return "Firey.";
+
+                case ICE_MAGIC:
+                    return "C-c-c-cold.";
+
+                case HOLY_MAGIC:
+                    return "Holier than thou.";
+
+                case CHAOS_MAGIC:
+                    return "Chaotic!";
+
+                case FAITH:
+                    return "If you have it, hold onto it.";
+
+                default:
+                    return toString(attr);
+            }
+        }
     }
 
     private final Map<Attribute, Double> attributes;

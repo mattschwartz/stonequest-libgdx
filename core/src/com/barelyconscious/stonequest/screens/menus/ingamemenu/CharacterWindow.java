@@ -13,10 +13,17 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.stonequest.entities.Entity.Attribute;
 import com.barelyconscious.stonequest.world.GameWorld;
+import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +32,9 @@ public class CharacterWindow extends InGameComponent {
 
     private Label playerNameLabel;
     private Label subtitleLabel;
+    private TextArea attributesInfoTextArea;
     private JustifiedTextArea detailsTextArea;
+    private ScrollPane scrollPane;
     private Map<Attribute, Label> statsLabels;
 
     public CharacterWindow(InGameMenu inGameMenu) {
@@ -40,6 +49,12 @@ public class CharacterWindow extends InGameComponent {
         playerNameLabel = new Label("player's name", GUIHelper.createLabelStyle());
         subtitleLabel = new Label("Details", GUIHelper.createLabelStyle());
         detailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, new Color(0.15f, 0.85f, 0.5f, 1));
+        scrollPane = new ScrollPane(detailsTextArea);
+
+        TextFieldStyle style = new TextFieldStyle();
+        style.font = FontFactory.createDefaultFont(14);
+        style.fontColor = Color.LIGHT_GRAY;
+        attributesInfoTextArea = new TextArea("", style);
 
         detailsTextArea.setCenterLines(true);
         detailsTextArea.addLine("melee damage", "999.9-999.9");
@@ -67,7 +82,7 @@ public class CharacterWindow extends InGameComponent {
 
         window.addActor(playerNameLabel);
         window.addActor(subtitleLabel);
-        window.addActor(detailsTextArea);
+        window.addActor(scrollPane);
 
         for (Label label : statsLabels.values()) {
             window.addActor(label);
@@ -78,6 +93,27 @@ public class CharacterWindow extends InGameComponent {
     protected void registerEvents() {
         super.registerEvents();
 
+        window.addListener(new InputListener() {
+
+            @Override
+            public boolean mouseMoved(InputEvent event, float x, float y) {
+                Actor hit = window.hit(x, y, false);
+
+                subtitleLabel.setText("Details");
+                scrollPane.setWidget(detailsTextArea);
+
+                for (Attribute attr : statsLabels.keySet()) {
+                    if (hit == statsLabels.get(attr)) {
+                        subtitleLabel.setText(Attribute.toString(attr));
+                        attributesInfoTextArea.setText(Attribute.getDescription(attr));
+                        scrollPane.setWidget(attributesInfoTextArea);
+                    }
+                }
+
+                return super.mouseMoved(event, x, y);
+            }
+
+        });
     }
 
     @Override
@@ -92,12 +128,12 @@ public class CharacterWindow extends InGameComponent {
 
         for (int c = 0; c < 2; c++) {
             statsOffsY = Offset.CharacterWindow.STATS_OFFS_Y;
-            
+
             for (int r = 0; r < 5; r++) {
                 Label label = statsLabels.get(Attribute.toAttribute(i++));
                 GUIHelper.setSize(label, 0, 0, Offset.CharacterWindow.STATS_WIDTH, Offset.CharacterWindow.STATS_HEIGHT);
                 GUIHelper.setPosition(label, 0, 0, statsOffsX, statsOffsY);
-                
+
                 statsOffsY -= Offset.CharacterWindow.STATS_STEP_Y;
             }
             statsOffsX += Offset.CharacterWindow.STATS_STEP_X;
@@ -113,8 +149,8 @@ public class CharacterWindow extends InGameComponent {
         GUIHelper.setSize(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_WIDTH, Offset.CharacterWindow.SUBTITLE_LABEL_HEIGHT);
         GUIHelper.setPosition(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_X, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_Y);
 
-        GUIHelper.setSize(detailsTextArea, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_WIDTH, Offset.CharacterWindow.DETAILS_TEXTAREA_HEIGHT);
-        GUIHelper.setPosition(detailsTextArea, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_X, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_Y);
+        GUIHelper.setSize(scrollPane, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_WIDTH, Offset.CharacterWindow.DETAILS_TEXTAREA_HEIGHT);
+        GUIHelper.setPosition(scrollPane, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_X, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_Y);
     }
 
 } // CharacterWindow

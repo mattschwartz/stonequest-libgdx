@@ -34,10 +34,10 @@ public class Offset {
         public static final int BREWING_OFFS_X = UPGRADE_OFFS_X;
         public static final int BREWING_OFFS_Y = JOURNAL_OFFS_Y;
 
-        public static final int TOOLTIP_OFFS_X = 1;
-        public static final int TOOLTIP_OFFS_Y = 1;
-        public static final int TOOLTIP_WIDTH = 1;
-        public static final int TOOLTIP_HEIGHT = 1;
+        public static final int TOOLTIP_OFFS_X = 345;
+        public static final int TOOLTIP_OFFS_Y = 10;
+        public static final int TOOLTIP_WIDTH = 151;
+        public static final int TOOLTIP_HEIGHT = 94;
 
     }
 

@@ -13,10 +13,14 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.barelyconscious.stonequest.Game;
@@ -36,10 +40,7 @@ public class InGameMenu {
     private ImageButton brewingButton;
     private Image uiLeft;
     private Image uiRight;
-
-    public InGameMenu() {
-        stage = new Stage();
-    }
+    private TooltipArea tooltipArea;
 
     public Batch getSpriteBatch() {
         return stage.getSpriteBatch();
@@ -47,7 +48,10 @@ public class InGameMenu {
 
     public void resize(int width, int height) {
         Console.getInstance().resize(width, height);
-        
+
+        GUIHelper.setPosition(tooltipArea, 1, 0, -Offset.InGameMenu.TOOLTIP_OFFS_X, Offset.InGameMenu.TOOLTIP_OFFS_Y);
+        GUIHelper.setSize(tooltipArea, 0, 0, Offset.InGameMenu.TOOLTIP_WIDTH, Offset.InGameMenu.TOOLTIP_HEIGHT);
+
         GUIHelper.setPosition(uiRight, 1f, 0, -uiRight.getWidth(), 0);
         GUIHelper.setPosition(inventoryButton, 1f, 0f, -Offset.InGameMenu.INVENTORY_OFFS_X, Offset.InGameMenu.INVENTORY_OFFS_Y);
         GUIHelper.setPosition(characterButton, 1f, 0f, -Offset.InGameMenu.CHARACTER_OFFS_X, Offset.InGameMenu.CHARACTER_OFFS_Y);
@@ -63,7 +67,35 @@ public class InGameMenu {
     }
 
     public void show(InputMultiplexer inputMultiplexer) {
-        stage = new Stage();
+        stage = new Stage() {
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                Actor a;
+                Vector2 stagePos = stage.screenToStageCoordinates(new Vector2(screenX, screenY));
+
+                a = hit(stagePos.x, stagePos.y, true);
+                tooltipArea.setText("");
+
+                if (a != null && a instanceof Image) {
+                    if (a == characterButton.getImage()) {
+                        tooltipArea.setText("Character Attributes");
+                    } else if (a == inventoryButton.getImage()) {
+                        tooltipArea.setText("Inventory And Equipment");
+                    } else if (a == upgradeButton.getImage()) {
+                        tooltipArea.setText("Items Upgrade");
+                    } else if (a == journalButton.getImage()) {
+                        tooltipArea.setText("Journal");
+                    } else if (a == brewingButton.getImage()) {
+                        tooltipArea.setText("Potion Brewing");
+                    } else if (a == salvageButton.getImage()) {
+                        tooltipArea.setText("Salvage Items");
+                    }
+                }
+
+                return super.mouseMoved(screenX, screenY);
+            }
+        };
         inputMultiplexer.addProcessor(stage);
 
         inventoryWindow = new InventoryWindow(this);
@@ -76,14 +108,18 @@ public class InGameMenu {
         brewingButton = new ImageButton(GUIHelper.createImageButtonStyle("brewingButtonImageUp", "brewingButtonImageDown", "brewingButtonImageOver"));
         uiLeft = new Image(GUIHelper.getDrawable("ui_left"));
         uiRight = new Image(GUIHelper.getDrawable("ui_right"));
+        tooltipArea = new TooltipArea("", 14, Color.LIGHT_GRAY);
 
+        uiLeft.setTouchable(Touchable.disabled);
+        uiRight.setTouchable(Touchable.disabled);
         inventoryWindow.create();
         characterWindow.create();
         Console.getInstance().create(stage);
         Console.getInstance().writeLine("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
-        
+
         stage.addActor(uiLeft);
         stage.addActor(uiRight);
+        stage.addActor(tooltipArea);
         stage.addActor(inventoryButton);
         stage.addActor(characterButton);
         stage.addActor(upgradeButton);
