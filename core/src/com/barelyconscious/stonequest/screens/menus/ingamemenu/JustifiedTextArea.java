@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -39,6 +40,11 @@ public class JustifiedTextArea extends Widget {
 
     public void setCenterLines(boolean centerLines) {
         this.centerLines = centerLines;
+    }
+    
+    public void clearText() {
+        leftLines.clear();
+        rightLines.clear();
     }
 
     public void addLine(String left, String right) {
@@ -71,6 +77,10 @@ public class JustifiedTextArea extends Widget {
         for (String line : leftLines) {
             font.draw(batch, line, x, y);
             y -= font.getLineHeight();
+            
+            if ((y - font.getLineHeight()) <= getY()) {
+                break;
+            }
         }
 
         font.setColor(rightColor);
@@ -79,6 +89,10 @@ public class JustifiedTextArea extends Widget {
             x = getX() + getWidth() - font.getBounds(line).width;
             font.draw(batch, line, x, y);
             y -= font.getLineHeight();
+            
+            if ((y - font.getLineHeight()) <= getY()) {
+                break;
+            }
         }
     }
 

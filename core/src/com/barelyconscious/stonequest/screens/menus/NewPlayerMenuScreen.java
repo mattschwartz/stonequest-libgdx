@@ -117,6 +117,8 @@ public class NewPlayerMenuScreen extends MenuScreen {
     }
 
     private void continueEvent() {
+        game.mainMenuScreen.dispose();
+        game.playMenuScreen.dispose();
         game.setScreen(game.worldScreen);
         GameWorld.getInstance().spawnPlayer(new Player(playerNameTextArea.getText()));
     }

@@ -109,7 +109,7 @@ public class Offset {
 
         public static final int STATS_WIDTH = 70;
         public static final int STATS_HEIGHT = 28;
-        
+
         public static final int STATS_OFFS_X = 85;
         public static final int STATS_OFFS_Y = WINDOW_HEIGHT - 183;
         public static final int STATS_STEP_X = 166;
@@ -124,5 +124,61 @@ public class Offset {
         public static final int DETAILS_TEXTAREA_OFFS_Y = WINDOW_HEIGHT - 574 + 8;
         public static final int DETAILS_TEXTAREA_WIDTH = 280 - 16;
         public static final int DETAILS_TEXTAREA_HEIGHT = 166 - 16;
+    }
+
+    public class UpgradeItemWindow{
+
+        public static final int WINDOW_WIDTH = 363;
+        public static final int WINDOW_HEIGHT = 608;
+        public static final int WINDOW_OFFS_Y = 112;
+
+        public static final int CLOSEBUTTON_OFFS_X = 316;
+        public static final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 38;
+        
+        public static final int ITEM_NAME_LABEL_OFFS_X = 25;
+        public static final int ITEM_NAME_LABEL_OFFS_Y = WINDOW_HEIGHT - 105;
+
+        public static final int ITEM_TO_UPGRADE_SLOT_OFFS_X = 40;
+        public static final int ITEM_TO_UPGRADE_SLOT_OFFS_Y = WINDOW_HEIGHT - 173;
+
+        public static final int SALVAGE_SLOT_OFFS_X = ITEM_TO_UPGRADE_SLOT_OFFS_X;
+        public static final int SALVAGE_SLOT_OFFS_Y = WINDOW_HEIGHT - 278;
+
+        public static final int AUGMENTATION_SLOT_OFFS_X = ITEM_TO_UPGRADE_SLOT_OFFS_X;
+        public static final int AUGMENTATION_SLOT_OFFS_Y = WINDOW_HEIGHT - 374;
+
+        public static final int DIVINE_FAVOR_SLOT_OFFS_X = ITEM_TO_UPGRADE_SLOT_OFFS_X;
+        public static final int DIVINE_FAVOR_SLOT_OFFS_Y = WINDOW_HEIGHT - 468;
+
+        public static final int ITEM_TO_UPGRADE_INFO_WIDTH = 212;
+        public static final int ITEM_TO_UPGRADE_INFO_HEIGHT = 63;
+        public static final int ITEM_TO_UPGRADE_INFO_OFFS_X = 112;
+        public static final int ITEM_TO_UPGRADE_INFO_OFFS_Y = WINDOW_HEIGHT - 185;
+
+        public static final int BUTTON_WIDTH = 114;
+        public static final int BUTTON_HEIGHT = 27;
+        public static final int ADD_SALVAGE_BUTTON_OFFS_X = 96;
+        public static final int ADD_SALVAGE_BUTTON_OFFS_Y = WINDOW_HEIGHT - 284;
+        
+        public static final int APPLY_AUGMENTATION_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
+        public static final int APPLY_AUGMENTATION_BUTTON_OFFS_Y = WINDOW_HEIGHT - 350;
+        
+        public static final int REMOVE_AUGMENTATION_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
+        public static final int REMOVE_AUGMENTATION_BUTTON_OFFS_Y = WINDOW_HEIGHT - 380;
+        
+        public static final int RITUAL_BUTTON_WIDTH = 162+67;
+        public static final int RITUAL_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
+        public static final int RITUAL_BUTTON_OFFS_Y = WINDOW_HEIGHT - 444;
+        
+        public static final int SALVAGE_PROGRESS_WIDTH = 220;
+        public static final int SALVAGE_PROGRESS_HEIGHT = 18;
+        public static final int SALVAGE_PROGRESS_OFFS_X = 100;
+        public static final int SALVAGE_PROGRESS_OFFS_Y = WINDOW_HEIGHT - 250;
+        
+        public static final int RITUAL_DETAILS_WIDTH = 272;
+        public static final int RITUAL_DETAILS_HEIGHT = 93;
+        public static final int RITUAL_DETAILS_OFFS_X = 43;
+        public static final int RITUAL_DETAILS_OFFS_Y = WINDOW_HEIGHT - 577;
+        
     }
 } // Offset

@@ -17,6 +17,7 @@ public class DesktopLauncher {
         config.addIcon("app/applicationIconSmall.png", Files.FileType.Internal);
         config.resizable = false;
         config.vSyncEnabled = true;
+        config.foregroundFPS = 60;
 
         new LwjglApplication(new Game(), config);
     }

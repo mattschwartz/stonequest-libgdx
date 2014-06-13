@@ -20,8 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
@@ -100,9 +102,21 @@ public class GUIHelper {
     public static Drawable getDrawable(String str) {
         return skin.getDrawable(str);
     }
+    
+    public static TextArea createTextArea(Color col, int fontSize) {
+        TextFieldStyle style = new TextFieldStyle();
+        style.font = FontFactory.createDefaultFont(fontSize);
+        style.fontColor = col;
+        
+        return new TextArea("", style);
+    }
 
     public static Button createButton(String text) {
         return new TextButton(text, DEFAULT_BUTTON_STYLE);
+    }
+    
+    public static Label createLabel(String text, int size, Color color) {
+        return new Label(text, createLabelStyle(size, color));
     }
 
     public static LabelStyle createLabelStyle() {

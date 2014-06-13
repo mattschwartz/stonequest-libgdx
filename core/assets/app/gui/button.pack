@@ -7,7 +7,7 @@ button
   rotate: false
   xy: 1, 1
   size: 83, 28
-  split: 40, 41, 13, 13
+  split: 40, 41, 12, 12
   orig: 83, 28
   offset: 0, 0
   index: -1
@@ -15,7 +15,7 @@ buttonHighlighted
   rotate: false
   xy: 86, 1
   size: 83, 28
-  split: 40, 41, 13, 13
+  split: 40, 41, 12, 12
   orig: 83, 28
   offset: 0, 0
   index: -1
@@ -23,7 +23,7 @@ buttonPressed
   rotate: false
   xy: 171, 1
   size: 83, 28
-  split: 40, 41, 13, 13
+  split: 40, 41, 12, 12
   orig: 83, 28
   offset: 0, 0
   index: -1

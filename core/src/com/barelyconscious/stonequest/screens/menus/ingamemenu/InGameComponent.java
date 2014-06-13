@@ -13,7 +13,6 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -66,6 +65,9 @@ public abstract class InGameComponent {
 
     public Window getWindow() {
         return window;
+    }
+    
+    public void resize(int width, int height) {
     }
 
     public void show() {

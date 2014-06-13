@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.input.KeyBindings;
 import com.barelyconscious.util.GUIHelper;
@@ -32,6 +33,7 @@ public class InGameMenu {
     private Stage stage;
     private InventoryWindow inventoryWindow;
     private CharacterWindow characterWindow;
+    private UpgradeItemWindow upgradeItemWindow;
     private ImageButton inventoryButton;
     private ImageButton characterButton;
     private ImageButton upgradeButton;
@@ -100,6 +102,7 @@ public class InGameMenu {
 
         inventoryWindow = new InventoryWindow(this);
         characterWindow = new CharacterWindow(this);
+        upgradeItemWindow = new UpgradeItemWindow(this);
         inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("inventoryButtonImageUp", "inventoryButtonImageDown", "inventoryButtonImageOver"));
         characterButton = new ImageButton(GUIHelper.createImageButtonStyle("characterButtonImageUp", "characterButtonImageDown", "characterButtonImageOver"));
         upgradeButton = new ImageButton(GUIHelper.createImageButtonStyle("upgradeItemButtonImageUp", "upgradeItemButtonImageDown", "upgradeItemButtonImageOver"));
@@ -114,6 +117,7 @@ public class InGameMenu {
         uiRight.setTouchable(Touchable.disabled);
         inventoryWindow.create();
         characterWindow.create();
+        upgradeItemWindow.create();
         Console.getInstance().create(stage);
         Console.getInstance().writeLine("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
 
@@ -128,34 +132,33 @@ public class InGameMenu {
         stage.addActor(brewingButton);
         stage.addActor(inventoryWindow.getWindow());
         stage.addActor(characterWindow.getWindow());
+        stage.addActor(upgradeItemWindow.getWindow());
 
         addActionListeners();
     }
 
     private void addActionListeners() {
-        inventoryButton.addListener(new InputListener() {
+        inventoryButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void clicked(InputEvent event, float x, float y) {
                 KeyBindings.invoke(KeyBindings.open_inventoryWindow);
             }
 
         });
-        characterButton.addListener(new InputListener() {
+        characterButton.addListener(new ClickListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
+            public void clicked(InputEvent event, float x, float y) {
+                KeyBindings.invoke(KeyBindings.open_characterWindow);
             }
 
+        });
+        upgradeButton.addListener(new ClickListener() {
+
             @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                KeyBindings.invoke(KeyBindings.open_characterWindow);
+            public void clicked(InputEvent event, float x, float y) {
+                KeyBindings.invoke(KeyBindings.open_upgradeWindow);
             }
 
         });
@@ -178,18 +181,30 @@ public class InGameMenu {
                 }
             }
         });
+        KeyBindings.addAction(KeyBindings.open_upgradeWindow, new Runnable() {
+
+            @Override
+            public void run() {
+                if (upgradeItemWindow.toggle()) {
+//                    journalWindow.hide();
+                }
+            }
+        });
         KeyBindings.addAction(KeyBindings.close_allWindows, new Runnable() {
 
             @Override
             public void run() {
                 inventoryWindow.hide();
                 characterWindow.hide();
+                upgradeItemWindow.hide();
             }
         });
     }
 
     public void dispose() {
         inventoryWindow.dispose();
+        characterWindow.dispose();
+        upgradeItemWindow.dispose();
         characterButton.remove();
         upgradeButton.remove();
         journalButton.remove();

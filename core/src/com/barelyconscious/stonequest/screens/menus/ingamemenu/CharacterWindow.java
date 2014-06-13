@@ -17,13 +17,14 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.stonequest.entities.Entity.Attribute;
+import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.world.GameWorld;
-import com.barelyconscious.util.FontFactory;
+import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.GUIHelper;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,13 +49,9 @@ public class CharacterWindow extends InGameComponent {
 
         playerNameLabel = new Label("player's name", GUIHelper.createLabelStyle());
         subtitleLabel = new Label("Details", GUIHelper.createLabelStyle());
-        detailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, new Color(0.15f, 0.85f, 0.5f, 1));
+        detailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, ColorHelper.SUMMER_GREEN);
         scrollPane = new ScrollPane(detailsTextArea);
-
-        TextFieldStyle style = new TextFieldStyle();
-        style.font = FontFactory.createDefaultFont(14);
-        style.fontColor = Color.LIGHT_GRAY;
-        attributesInfoTextArea = new TextArea("", style);
+        attributesInfoTextArea = GUIHelper.createTextArea(Color.LIGHT_GRAY, 14);
 
         detailsTextArea.setCenterLines(true);
         detailsTextArea.addLine("melee damage", "999.9-999.9");
@@ -71,7 +68,23 @@ public class CharacterWindow extends InGameComponent {
         subtitleLabel.setAlignment(Align.center);
 
         for (int i = 0; i < Attribute.NUM_ATTRIBUTES; i++) {
-            Label label = new Label("999/999", GUIHelper.createLabelStyle());
+            final Label label = new Label("", GUIHelper.createLabelStyle());
+            label.setAlignment(Align.center);
+            label.setColor(Color.LIGHT_GRAY);
+            
+            label.addListener(new InputListener() {
+
+                @Override
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    label.setColor(Color.WHITE);
+                }
+
+                @Override
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    label.setColor(Color.LIGHT_GRAY);
+                }
+
+            });
             statsLabels.put(Attribute.toAttribute(i), label);
         }
     }
@@ -119,9 +132,23 @@ public class CharacterWindow extends InGameComponent {
     @Override
     public void show() {
         super.show();
-        String name = GameWorld.getInstance().getPlayer().getName();
-        playerNameLabel.setText(name);
 
+        setLocations();
+        setPlayerAttributes();
+    }
+
+    private void setPlayerAttributes() {
+        Player player = GameWorld.getInstance().getPlayer();
+        playerNameLabel.setText(player.getName());
+
+        Attribute attr;
+        for (int i = 0; i < Attribute.NUM_ATTRIBUTES; i++) {
+            attr = Attribute.toAttribute(i);
+            statsLabels.get(attr).setText("" + Math.round(player.getAttribute(attr)));
+        }
+    }
+
+    private void setLocations() {
         int i = 0;
         float statsOffsX = Offset.CharacterWindow.STATS_OFFS_X;
         float statsOffsY;

@@ -28,6 +28,7 @@ import com.barelyconscious.stonequest.tweening.SplashScreenAccessor;
 
 public class SplashScreen extends GameScreen {
 
+    private Texture splashTexture;
     private Sprite splashSprite;
     private Batch batch;
 
@@ -64,7 +65,7 @@ public class SplashScreen extends GameScreen {
         float x = Gdx.graphics.getWidth() / 2;
         float y = Gdx.graphics.getHeight() / 2;
 
-        Texture splashTexture = new Texture("app/splash.png");
+        splashTexture = new Texture("app/splash.png");
         splashTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         x -= splashTexture.getWidth() / 2;
@@ -109,7 +110,8 @@ public class SplashScreen extends GameScreen {
     }
 
     private void tweenCompleted() {
+        splashTexture.dispose();
         game.setScreen(game.mainMenuScreen);
     }
-
+    
 } // SplashScreen

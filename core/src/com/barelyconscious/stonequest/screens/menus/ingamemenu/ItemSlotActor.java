@@ -17,17 +17,34 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.barelyconscious.stonequest.items.Item;
 import com.barelyconscious.util.GUIHelper;
 
 public class ItemSlotActor extends Container {
 
+    private Item item;
     private Image emptySlotImage;
+    private InGameComponent context;
+    private Runnable onItemChanged;
 
-    public ItemSlotActor() {
+    public ItemSlotActor(InGameComponent context) {
+        this.context = context;
         emptySlotImage = new Image(GUIHelper.getDrawable("itemSlot"));
         setWidget(emptySlotImage);
         setSize(emptySlotImage.getWidth(), emptySlotImage.getHeight());
         addListener(new ItemSlotInputListener());
+    }
+
+    public Item setItem(Item item) {
+        Item result = this.item;
+
+        this.item = item;
+
+        if (onItemChanged != null) {
+            onItemChanged.run();
+        }
+
+        return result;
     }
 
     class ItemSlotInputListener extends InputListener {

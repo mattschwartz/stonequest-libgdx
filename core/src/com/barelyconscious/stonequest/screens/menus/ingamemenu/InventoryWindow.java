@@ -13,8 +13,6 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.stonequest.items.Equippable.SLOT_ID;
@@ -45,11 +43,11 @@ public class InventoryWindow extends InGameComponent {
         goldAmountLabel.setAlignment(Align.right);
 
         for (int i = 0; i < Offset.InventoryWindow.SLOTS_ROWS * Offset.InventoryWindow.SLOTS_COLS; i++) {
-            inventorySlots.add(new ItemSlotActor());
+            inventorySlots.add(new ItemSlotActor(this));
         }
 
         for (int i = 0; i < SLOT_ID.NUM_SLOTS; i++) {
-            equipmentSlots.put(i, new ItemSlotActor());
+            equipmentSlots.put(i, new ItemSlotActor(this));
         }
     }
 
@@ -99,4 +97,18 @@ public class InventoryWindow extends InGameComponent {
         equipmentSlots.get(SLOT_ID.offHand.ordinal()).setPosition(Offset.InventoryWindow.EQUIPMENT_SLOT_OFFHAND_OFFS_X, Offset.InventoryWindow.EQUIPMENT_SLOT_OFFHAND_OFFS_Y);
     }
 
+    @Override
+    public void dispose() {
+        goldAmountLabel.remove();
+        for (ItemSlotActor itemSlotActor : inventorySlots) {
+            itemSlotActor.remove();
+        }
+        for (ItemSlotActor itemSlotActor : equipmentSlots.values()) {
+            itemSlotActor.remove();
+        }
+        inventorySlots.clear();
+        equipmentSlots.clear();
+        super.dispose();
+    }
+    
 } // InventoryWindow

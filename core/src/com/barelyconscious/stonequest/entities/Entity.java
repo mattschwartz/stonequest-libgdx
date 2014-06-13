@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.entities;
 
+import com.badlogic.gdx.Gdx;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -144,7 +145,7 @@ public abstract class Entity {
     }
 
     private void setDefaultAttributes() {
-        for (Attribute attribute : attributes.keySet()) {
+        for (Attribute attribute : Attribute.values()) {
             attributes.put(attribute, 10.0);
         }
     }
