@@ -1,5 +1,5 @@
 /* *****************************************************************************
-   * Project:           core
+   * Project:           StoneQuest
    * File Name:         GameScreen.java
    * Author:            Matt Schwartz
    * Date Created:      05.22.2014 

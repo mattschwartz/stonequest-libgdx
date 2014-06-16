@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         CharacterWindow.java
  * Author:            Matt Schwartz
  * Date Created:      06.03.2014 

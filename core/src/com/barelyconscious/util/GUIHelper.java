@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         GUIHelper.java
  * Author:            Matt Schwartz
  * Date Created:      05.28.2014 
@@ -14,6 +14,7 @@ package com.barelyconscious.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -93,6 +94,10 @@ public class GUIHelper {
         result.imageDown = skin.getDrawable(down);
 
         return result;
+    }
+    
+    public static NinePatch getPatch(String str) {
+        return skin.getPatch(str);
     }
 
     public static Sprite getSprite(String str) {

@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         GameObject.java
  * Author:            Matt Schwartz
  * Date Created:      05.24.2014 

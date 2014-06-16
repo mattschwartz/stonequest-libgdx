@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         Console.java
  * Author:            Matt Schwartz
  * Date Created:      06.04.2014 
@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.util.FontFactory;
 import com.barelyconscious.util.GUIHelper;
 

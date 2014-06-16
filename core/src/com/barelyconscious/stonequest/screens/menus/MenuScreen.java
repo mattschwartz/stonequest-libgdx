@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         MenuScreen.java
  * Author:            Matt Schwartz
  * Date Created:      05.30.2014 

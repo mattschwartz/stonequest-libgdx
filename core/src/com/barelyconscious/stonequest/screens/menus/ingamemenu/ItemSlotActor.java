@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         ItemSlotActor.java
  * Author:            Matt Schwartz
  * Date Created:      05.31.2014 
@@ -24,15 +24,21 @@ public class ItemSlotActor extends Container {
 
     private Item item;
     private Image emptySlotImage;
-    private InGameComponent context;
     private Runnable onItemChanged;
 
-    public ItemSlotActor(InGameComponent context) {
-        this.context = context;
+    public ItemSlotActor() {
         emptySlotImage = new Image(GUIHelper.getDrawable("itemSlot"));
         setWidget(emptySlotImage);
         setSize(emptySlotImage.getWidth(), emptySlotImage.getHeight());
         addListener(new ItemSlotInputListener());
+    }
+
+    public void setItemChangeRunnable(Runnable runnable) {
+        onItemChanged = runnable;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public Item setItem(Item item) {

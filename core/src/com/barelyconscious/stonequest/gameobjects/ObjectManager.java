@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         ObjectManager.java
  * Author:            Matt Schwartz
  * Date Created:      05.26.2014 

@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         LightManager.java
  * Author:            Matt Schwartz
  * Date Created:      05.27.2014 

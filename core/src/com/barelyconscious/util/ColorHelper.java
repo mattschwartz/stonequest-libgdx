@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         ColorHelper.java
  * Author:            Matt Schwartz
  * Date Created:      06.09.2014 

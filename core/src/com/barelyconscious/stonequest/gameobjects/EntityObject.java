@@ -1,5 +1,5 @@
 /* *****************************************************************************
-   * Project:           core
+   * Project:           StoneQuest
    * File Name:         EntityObject.java
    * Author:            Matt Schwartz
    * Date Created:      05.24.2014 

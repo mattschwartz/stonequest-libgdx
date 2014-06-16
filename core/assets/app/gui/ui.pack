@@ -5,35 +5,35 @@ filter: Nearest,Nearest
 repeat: none
 characterBackground
   rotate: false
-  xy: 1, 279
+  xy: 1, 285
   size: 363, 608
   orig: 363, 608
   offset: 0, 0
   index: -1
 inventoryBackground
   rotate: false
-  xy: 366, 279
+  xy: 366, 285
   size: 363, 608
   orig: 363, 608
   offset: 0, 0
   index: -1
 ui_right
   rotate: false
-  xy: 1, 165
+  xy: 1, 171
   size: 363, 112
   orig: 363, 112
   offset: 0, 0
   index: -1
 ui_left
   rotate: false
-  xy: 1, 51
+  xy: 1, 57
   size: 320, 112
   orig: 320, 112
   offset: 0, 0
   index: -1
 ui_middle
   rotate: false
-  xy: 731, 773
+  xy: 731, 779
   size: 8, 114
   split: 1, 1, 19, 19
   orig: 8, 114
@@ -41,14 +41,14 @@ ui_middle
   index: -1
 itemSlot
   rotate: false
-  xy: 366, 230
+  xy: 366, 236
   size: 47, 47
   orig: 47, 47
   offset: 0, 0
   index: -1
 infoLogBackground
   rotate: false
-  xy: 1, 9
+  xy: 1, 15
   size: 28, 40
   split: 12, 12, 18, 18
   orig: 28, 40
@@ -56,36 +56,44 @@ infoLogBackground
   index: -1
 closeWindowButtonDown
   rotate: false
-  xy: 323, 135
+  xy: 323, 141
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonOver
   rotate: false
-  xy: 741, 859
+  xy: 741, 865
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonUp
   rotate: false
-  xy: 366, 200
+  xy: 366, 206
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 textAreaBorder
   rotate: false
-  xy: 415, 249
+  xy: 415, 255
   size: 28, 28
   split: 12, 12, 12, 12
   orig: 28, 28
   offset: 0, 0
   index: -1
-scrollBarHorizontal
+outline_border
   rotate: false
   xy: 1, 1
+  size: 12, 12
+  split: 5, 5, 5, 5
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+scrollBarHorizontal
+  rotate: false
+  xy: 31, 49
   size: 12, 6
   split: 5, 5, 0, 6
   orig: 12, 6
@@ -93,7 +101,7 @@ scrollBarHorizontal
   index: -1
 scrollBarVertical
   rotate: false
-  xy: 731, 759
+  xy: 731, 765
   size: 6, 12
   split: 0, 6, 5, 5
   orig: 6, 12

@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         WorldInputController.java
  * Author:            Matt Schwartz
  * Date Created:      05.31.2014 

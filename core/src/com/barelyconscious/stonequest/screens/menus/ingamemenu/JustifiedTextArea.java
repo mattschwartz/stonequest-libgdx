@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         JustifiedTextArea.java
  * Author:            Matt Schwartz
  * Date Created:      06.04.2014 

@@ -1,5 +1,5 @@
 /* *****************************************************************************
-   * Project:           core
+   * Project:           StoneQuest
    * File Name:         StringHelper.java
    * Author:            Matt Schwartz
    * Date Created:      06.04.2014 
@@ -13,10 +13,29 @@
 
 package com.barelyconscious.util;
 
+import com.barelyconscious.stonequest.items.Material;
+import java.util.List;
+
 public class StringHelper {
 
     
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.equals("");
+    }
+
+    public static String listAsString(List<Material> materials) {
+        String result = "";
+        
+        if (materials == null || materials.isEmpty()) {
+            return "";
+        }
+        
+        for (Material material : materials) {
+            result += material + ", ";
+        }
+
+        result = result.substring(0, result.length() - 2);
+        
+        return result;
     }
 } // StringHelper

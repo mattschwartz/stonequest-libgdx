@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         InGameMenu.java
  * Author:            Matt Schwartz
  * Date Created:      05.28.2014 

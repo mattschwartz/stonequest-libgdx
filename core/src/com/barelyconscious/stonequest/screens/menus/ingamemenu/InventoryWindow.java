@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         InventoryWindow.java
  * Author:            Matt Schwartz
  * Date Created:      05.31.2014 
@@ -43,11 +43,11 @@ public class InventoryWindow extends InGameComponent {
         goldAmountLabel.setAlignment(Align.right);
 
         for (int i = 0; i < Offset.InventoryWindow.SLOTS_ROWS * Offset.InventoryWindow.SLOTS_COLS; i++) {
-            inventorySlots.add(new ItemSlotActor(this));
+            inventorySlots.add(new ItemSlotActor());
         }
 
         for (int i = 0; i < SLOT_ID.NUM_SLOTS; i++) {
-            equipmentSlots.put(i, new ItemSlotActor(this));
+            equipmentSlots.put(i, new ItemSlotActor());
         }
     }
 

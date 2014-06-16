@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         UpgradeItemWindow.java
  * Author:            Matt Schwartz
  * Date Created:      06.05.2014 
@@ -16,8 +16,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.barelyconscious.stonequest.items.Item;
+import com.barelyconscious.stonequest.items.Salvage;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.GUIHelper;
+import com.barelyconscious.util.StringHelper;
 
 public class UpgradeItemWindow extends InGameComponent {
 
@@ -42,10 +45,10 @@ public class UpgradeItemWindow extends InGameComponent {
     protected void createActors() {
         super.createActors();
 
-        itemToUpgradeSlot = new ItemSlotActor(this);
-        salvageSlot = new ItemSlotActor(this);
-        augmentationSlot = new ItemSlotActor(this);
-        divineFavorSlot = new ItemSlotActor(this);
+        itemToUpgradeSlot = new ItemSlotActor();
+        salvageSlot = new ItemSlotActor();
+        augmentationSlot = new ItemSlotActor();
+        divineFavorSlot = new ItemSlotActor();
 
         itemNameLabel = GUIHelper.createLabel("Item to Upgrade", 16, Color.BLACK);
         applySalvageButton = GUIHelper.createButton("Apply");
@@ -79,11 +82,58 @@ public class UpgradeItemWindow extends InGameComponent {
         window.addActor(progressBar);
 
         progressBar.setProgress(0.25f);
+        progressBar.setPreviewAmount(7);
+        progressBar.setPreviewProgress(0.65f);
     }
 
     @Override
     protected void registerEvents() {
         super.registerEvents();
+        itemToUpgradeSlot.setItemChangeRunnable(new Runnable() {
+
+            @Override
+            public void run() {
+                String materials;
+                Item item = itemToUpgradeSlot.getItem();
+
+                itemToUpgradeTextArea.clearText();
+
+                if (item == null) {
+                    itemNameLabel.setText("item to upgrade");
+                    return;
+                }
+
+                itemNameLabel.setText(item.getName());
+
+                materials = StringHelper.listAsString(item.getMaterials());
+
+                itemToUpgradeTextArea.addLine("item level", "" + item.getLevel());
+                itemToUpgradeTextArea.addLine("next level", "" + item.getRequiredSalvage());
+                itemToUpgradeTextArea.addLine("materials", materials);
+            }
+        });
+        salvageSlot.setItemChangeRunnable(new Runnable() {
+
+            @Override
+            public void run() {
+                float preview;
+                Item upgradeItem = itemToUpgradeSlot.getItem();
+                Salvage item = (Salvage) salvageSlot.getItem();
+
+                progressBar.setPreviewAmount(0);
+                progressBar.setPreviewProgress(0);
+
+                if (item == null) {
+                    return;
+                }
+
+                preview = upgradeItem.getAppliedSalvage() + item.getSalvageWorthFor(upgradeItem);
+                preview /= 100f;
+
+                progressBar.setPreviewAmount(item.getSalvageWorthFor(upgradeItem));
+                progressBar.setPreviewProgress(preview);
+            }
+        });
     }
 
     @Override

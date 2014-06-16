@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * Project:           core
+ * Project:           StoneQuest
  * File Name:         Offset.java
  * Author:            Matt Schwartz
  * Date Created:      05.31.2014 
@@ -170,10 +170,10 @@ public class Offset {
         public static final int RITUAL_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
         public static final int RITUAL_BUTTON_OFFS_Y = WINDOW_HEIGHT - 444;
         
-        public static final int SALVAGE_PROGRESS_WIDTH = 220;
-        public static final int SALVAGE_PROGRESS_HEIGHT = 18;
-        public static final int SALVAGE_PROGRESS_OFFS_X = 100;
-        public static final int SALVAGE_PROGRESS_OFFS_Y = WINDOW_HEIGHT - 250;
+        public static final int SALVAGE_PROGRESS_WIDTH = 216;
+        public static final int SALVAGE_PROGRESS_HEIGHT =  14;
+        public static final int SALVAGE_PROGRESS_OFFS_X = 102;
+        public static final int SALVAGE_PROGRESS_OFFS_Y = WINDOW_HEIGHT - 248;
         
         public static final int RITUAL_DETAILS_WIDTH = 272;
         public static final int RITUAL_DETAILS_HEIGHT = 93;
