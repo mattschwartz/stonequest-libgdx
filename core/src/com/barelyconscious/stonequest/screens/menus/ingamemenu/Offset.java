@@ -191,5 +191,17 @@ public class Offset {
         public static final int CLOSEBUTTON_OFFS_X = 316;
         public static final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 38;
 
+        public static final int QUEST_TITLE_LABEL_WIDTH = 305;
+        public static final int QUEST_TITLE_LABEL_HEIGHT = 28;
+        public static final int QUEST_TITLE_LABEL_OFFS_X = 30;
+        public static final int QUEST_TITLE_LABEL_OFFS_Y = WINDOW_HEIGHT - 242;
+        
+        public static final int DETAILS_OFFS_X = 38;
+        public static final int DETAILS_OFFS_Y = WINDOW_HEIGHT - 482;
+        public static final int DETAILS_WIDTH = 303;
+        public static final int DETAILS_HEIGHT = 170;
+        
+        
+        
     }
 } // Offset
