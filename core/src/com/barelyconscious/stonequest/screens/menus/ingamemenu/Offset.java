@@ -126,7 +126,7 @@ public class Offset {
         public static final int DETAILS_TEXTAREA_HEIGHT = 166 - 16;
     }
 
-    public class UpgradeItemWindow{
+    public class UpgradeItemWindow {
 
         public static final int WINDOW_WIDTH = 363;
         public static final int WINDOW_HEIGHT = 608;
@@ -134,7 +134,7 @@ public class Offset {
 
         public static final int CLOSEBUTTON_OFFS_X = 316;
         public static final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 38;
-        
+
         public static final int ITEM_NAME_LABEL_OFFS_X = 25;
         public static final int ITEM_NAME_LABEL_OFFS_Y = WINDOW_HEIGHT - 105;
 
@@ -159,26 +159,37 @@ public class Offset {
         public static final int BUTTON_HEIGHT = 27;
         public static final int ADD_SALVAGE_BUTTON_OFFS_X = 96;
         public static final int ADD_SALVAGE_BUTTON_OFFS_Y = WINDOW_HEIGHT - 284;
-        
+
         public static final int APPLY_AUGMENTATION_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
         public static final int APPLY_AUGMENTATION_BUTTON_OFFS_Y = WINDOW_HEIGHT - 350;
-        
+
         public static final int REMOVE_AUGMENTATION_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
         public static final int REMOVE_AUGMENTATION_BUTTON_OFFS_Y = WINDOW_HEIGHT - 380;
-        
-        public static final int RITUAL_BUTTON_WIDTH = 162+67;
+
+        public static final int RITUAL_BUTTON_WIDTH = 162 + 67;
         public static final int RITUAL_BUTTON_OFFS_X = ADD_SALVAGE_BUTTON_OFFS_X;
         public static final int RITUAL_BUTTON_OFFS_Y = WINDOW_HEIGHT - 444;
-        
+
         public static final int SALVAGE_PROGRESS_WIDTH = 216;
-        public static final int SALVAGE_PROGRESS_HEIGHT =  14;
+        public static final int SALVAGE_PROGRESS_HEIGHT = 14;
         public static final int SALVAGE_PROGRESS_OFFS_X = 102;
         public static final int SALVAGE_PROGRESS_OFFS_Y = WINDOW_HEIGHT - 248;
-        
+
         public static final int RITUAL_DETAILS_WIDTH = 272;
         public static final int RITUAL_DETAILS_HEIGHT = 93;
         public static final int RITUAL_DETAILS_OFFS_X = 43;
         public static final int RITUAL_DETAILS_OFFS_Y = WINDOW_HEIGHT - 577;
-        
+
+    }
+
+    public class JournalWindow {
+
+        public static final int WINDOW_WIDTH = 363;
+        public static final int WINDOW_HEIGHT = 608;
+        public static final int WINDOW_OFFS_Y = 112;
+
+        public static final int CLOSEBUTTON_OFFS_X = 316;
+        public static final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 38;
+
     }
 } // Offset

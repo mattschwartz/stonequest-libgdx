@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -34,6 +33,7 @@ public class InGameMenu {
     private InventoryWindow inventoryWindow;
     private CharacterWindow characterWindow;
     private UpgradeItemWindow upgradeItemWindow;
+    private JournalWindow journalWindow;
     private ImageButton inventoryButton;
     private ImageButton characterButton;
     private ImageButton upgradeButton;
@@ -103,6 +103,7 @@ public class InGameMenu {
         inventoryWindow = new InventoryWindow(this);
         characterWindow = new CharacterWindow(this);
         upgradeItemWindow = new UpgradeItemWindow(this);
+        journalWindow = new JournalWindow(this);
         inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("inventoryButtonImageUp", "inventoryButtonImageDown", "inventoryButtonImageOver"));
         characterButton = new ImageButton(GUIHelper.createImageButtonStyle("characterButtonImageUp", "characterButtonImageDown", "characterButtonImageOver"));
         upgradeButton = new ImageButton(GUIHelper.createImageButtonStyle("upgradeItemButtonImageUp", "upgradeItemButtonImageDown", "upgradeItemButtonImageOver"));
@@ -118,6 +119,7 @@ public class InGameMenu {
         inventoryWindow.create();
         characterWindow.create();
         upgradeItemWindow.create();
+        journalWindow.create();
         Console.getInstance().create(stage);
         Console.getInstance().writeLine("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
 
@@ -133,6 +135,7 @@ public class InGameMenu {
         stage.addActor(inventoryWindow.getWindow());
         stage.addActor(characterWindow.getWindow());
         stage.addActor(upgradeItemWindow.getWindow());
+        stage.addActor(journalWindow.getWindow());
 
         addActionListeners();
     }
@@ -162,6 +165,13 @@ public class InGameMenu {
             }
 
         });
+        journalButton.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                KeyBindings.invoke(KeyBindings.open_journalWindow);
+            }
+        });
 
         KeyBindings.addAction(KeyBindings.open_inventoryWindow, new Runnable() {
 
@@ -186,7 +196,16 @@ public class InGameMenu {
             @Override
             public void run() {
                 if (upgradeItemWindow.toggle()) {
-//                    journalWindow.hide();
+                    journalWindow.hide();
+                }
+            }
+        });
+        KeyBindings.addAction(KeyBindings.open_journalWindow, new Runnable() {
+
+            @Override
+            public void run() {
+                if (journalWindow.toggle()) {
+                    upgradeItemWindow.hide();
                 }
             }
         });
@@ -197,6 +216,7 @@ public class InGameMenu {
                 inventoryWindow.hide();
                 characterWindow.hide();
                 upgradeItemWindow.hide();
+                journalWindow.hide();
             }
         });
     }
@@ -205,6 +225,7 @@ public class InGameMenu {
         inventoryWindow.dispose();
         characterWindow.dispose();
         upgradeItemWindow.dispose();
+        journalWindow.dispose();
         characterButton.remove();
         upgradeButton.remove();
         journalButton.remove();

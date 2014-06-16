@@ -112,9 +112,16 @@ ui2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-upgradeItemBackground
+journalBackground
   rotate: false
   xy: 1, 1
+  size: 363, 608
+  orig: 363, 608
+  offset: 0, 0
+  index: -1
+upgradeItemBackground
+  rotate: false
+  xy: 366, 1
   size: 363, 608
   orig: 363, 608
   offset: 0, 0
