@@ -49,7 +49,7 @@ public class TextBox extends Actor {
     private List<String> getLines() {
         int wrapLength;
         List<String> result = new ArrayList<>();
-        wrapLength = (int) (getWidth() / 8);
+        wrapLength = (int) (getWidth() / 9);
 
         result.addAll(Arrays.asList(WordUtils.wrap(text, wrapLength).split("\n")));
 

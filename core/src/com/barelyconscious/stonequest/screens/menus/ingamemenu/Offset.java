@@ -197,11 +197,16 @@ public class Offset {
         public static final int QUEST_TITLE_LABEL_OFFS_Y = WINDOW_HEIGHT - 242;
         
         public static final int DETAILS_OFFS_X = 38;
-        public static final int DETAILS_OFFS_Y = WINDOW_HEIGHT - 482;
-        public static final int DETAILS_WIDTH = 303;
-        public static final int DETAILS_HEIGHT = 170;
+        public static final int DETAILS_OFFS_Y = WINDOW_HEIGHT - 443;
+        public static final int DETAILS_WIDTH = 300;
+        public static final int DETAILS_HEIGHT = 182;
         
-        
+        public static final int ENTRY_WIDTH = 47;
+        public static final int ENTRY_HEIGHT = 47;
+        public static final int ENTRY_OFFS_X = 1;
+        public static final int ENTRY_OFFS_Y = 1;
+        public static final int ENTRY_STEP_X = 1;
+        public static final int ENTRY_STEP_Y = 1;
         
     }
 } // Offset

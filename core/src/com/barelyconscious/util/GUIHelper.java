@@ -87,12 +87,22 @@ public class GUIHelper {
     }
 
     public static ImageButtonStyle createImageButtonStyle(String up, String down, String over) {
-        ImageButtonStyle result = new ImageButton.ImageButtonStyle();
+        ImageButtonStyle result = new ImageButtonStyle();
 
         result.imageUp = skin.getDrawable(up);
         result.imageOver = skin.getDrawable(over);
         result.imageDown = skin.getDrawable(down);
 
+        return result;
+    }
+    
+    public static TextButtonStyle createTextButtonStyle(String up, String down, String over) {
+        TextButtonStyle result = new TextButtonStyle();
+        
+        result.up = skin.getDrawable(up);
+        result.over = skin.getDrawable(over);
+        result.down = skin.getDrawable(down);
+        
         return result;
     }
     
