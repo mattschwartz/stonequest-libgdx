@@ -203,10 +203,10 @@ public class Offset {
         
         public static final int ENTRY_WIDTH = 47;
         public static final int ENTRY_HEIGHT = 47;
-        public static final int ENTRY_OFFS_X = 1;
-        public static final int ENTRY_OFFS_Y = 1;
-        public static final int ENTRY_STEP_X = 1;
-        public static final int ENTRY_STEP_Y = 1;
+        public static final int ENTRY_OFFS_X = 57;
+        public static final int ENTRY_OFFS_Y = WINDOW_HEIGHT - 132;
+        public static final int ENTRY_STEP_X = 50;
+        public static final int ENTRY_STEP_Y = 50;
         
     }
 } // Offset

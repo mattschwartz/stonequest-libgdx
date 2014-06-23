@@ -12,21 +12,26 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.util.GUIHelper;
 
 public class ToggleButton extends Button {
 
     private boolean toggled;
+    private Label textLabel;
     private TextButtonStyle enabledStyle;
     private TextButtonStyle disabledStyle;
 
     public ToggleButton() {
-        enabledStyle = GUIHelper.createTextButtonStyle("journalButtonEnabledUp", "journalButtonEnabledDown", "journalButtonEnabledOver");
-        disabledStyle = GUIHelper.createTextButtonStyle("journalButtonDisabledUp", "journalButtonDisabledDown", "journalButtonDisabledOver");
+        enabledStyle = GUIHelper.createTextButtonStyle("toggleButtonEnabledUp", "toggleButtonEnabledDown", "toggleButtonEnabledOver");
+        disabledStyle = GUIHelper.createTextButtonStyle("toggleButtonDisabledUp", "toggleButtonDisabledDown", "toggleButtonDisabledOver");
         init();
     }
 
@@ -35,10 +40,16 @@ public class ToggleButton extends Button {
         this.disabledStyle = disabled;
         init();
     }
-    
+
+    public void setText(String text) {
+        textLabel.setText(text);
+    }
+
     private void init() {
         setStyle(disabledStyle);
-        
+        textLabel = GUIHelper.createLabel("", 14, Color.BLACK);
+        textLabel.setAlignment(Align.center);
+
         addListener(new ClickListener() {
 
             @Override
@@ -58,15 +69,28 @@ public class ToggleButton extends Button {
     public boolean isToggled() {
         return toggled;
     }
-    
+
     public void setToggled(boolean toggled) {
         this.toggled = toggled;
-        
+
         if (toggled) {
             setStyle(enabledStyle);
         } else {
             setStyle(disabledStyle);
         }
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        textLabel.setPosition(getX(), getY());
+        textLabel.setSize(getWidth(), getHeight());
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
+        textLabel.draw(batch, parentAlpha);
     }
 
 } // ToggleButton
