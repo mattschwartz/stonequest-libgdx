@@ -121,7 +121,7 @@ public class CharacterWindow extends InGameComponent {
 
                 for (Attribute attr : statsLabels.keySet()) {
                     if (hit == statsLabels.get(attr)) {
-                        subtitleLabel.setText(Attribute.toString(attr));
+                        subtitleLabel.setText(attr.toString());
                         attributesInfoTextArea.setText(Attribute.getDescription(attr));
                         scrollPane.setWidget(attributesInfoTextArea);
                     }

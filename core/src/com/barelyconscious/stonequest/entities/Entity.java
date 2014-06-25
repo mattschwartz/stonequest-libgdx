@@ -12,7 +12,6 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.entities;
 
-import com.badlogic.gdx.Gdx;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -68,8 +67,9 @@ public abstract class Entity {
             return null;
         }
 
-        public static String toString(Attribute attr) {
-            switch (attr) {
+        @Override
+        public String toString() {
+            switch (this) {
                 case HITPOINTS:
                     return "hitpoints";
                 case STRENGTH:
@@ -128,7 +128,7 @@ public abstract class Entity {
                     return "If you have it, hold onto it.";
 
                 default:
-                    return toString(attr);
+                    return "no description";
             }
         }
     }
@@ -140,7 +140,7 @@ public abstract class Entity {
     public Entity(String name) {
         this.name = name;
         attributes = new EnumMap<>(Attribute.class);
-        inventory = new Inventory();
+        inventory = new Inventory(this);
         setDefaultAttributes();
     }
 
