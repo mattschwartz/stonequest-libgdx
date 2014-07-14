@@ -6,30 +6,30 @@ repeat: none
 button
   rotate: false
   xy: 1, 1
-  size: 83, 28
-  split: 40, 41, 12, 12
-  orig: 83, 28
+  size: 30, 30
+  split: 3, 3, 3, 3
+  orig: 30, 30
   offset: 0, 0
   index: -1
-buttonHighlighted
+button_highlighted
   rotate: false
-  xy: 86, 1
-  size: 83, 28
-  split: 40, 41, 12, 12
-  orig: 83, 28
+  xy: 33, 1
+  size: 30, 30
+  split: 3, 3, 3, 3
+  orig: 30, 30
   offset: 0, 0
   index: -1
-buttonPressed
+button_pressed
   rotate: false
-  xy: 171, 1
-  size: 83, 28
-  split: 40, 41, 12, 12
-  orig: 83, 28
+  xy: 65, 1
+  size: 30, 30
+  split: 3, 3, 3, 3
+  orig: 30, 30
   offset: 0, 0
   index: -1
 toggleButtonDisabledDown
   rotate: false
-  xy: 256, 11
+  xy: 97, 13
   size: 18, 18
   split: 4, 3, 4, 3
   orig: 18, 18
@@ -37,7 +37,7 @@ toggleButtonDisabledDown
   index: -1
 toggleButtonDisabledOver
   rotate: false
-  xy: 276, 11
+  xy: 117, 13
   size: 18, 18
   split: 3, 4, 3, 4
   orig: 18, 18
@@ -45,7 +45,7 @@ toggleButtonDisabledOver
   index: -1
 toggleButtonDisabledUp
   rotate: false
-  xy: 296, 11
+  xy: 137, 13
   size: 18, 18
   split: 3, 4, 3, 4
   orig: 18, 18
@@ -53,7 +53,7 @@ toggleButtonDisabledUp
   index: -1
 toggleButtonEnabledDown
   rotate: false
-  xy: 316, 11
+  xy: 157, 13
   size: 18, 18
   split: 4, 3, 4, 3
   orig: 18, 18
@@ -61,7 +61,7 @@ toggleButtonEnabledDown
   index: -1
 toggleButtonEnabledOver
   rotate: false
-  xy: 336, 11
+  xy: 177, 13
   size: 18, 18
   split: 4, 3, 4, 3
   orig: 18, 18
@@ -69,7 +69,7 @@ toggleButtonEnabledOver
   index: -1
 toggleButtonEnabledUp
   rotate: false
-  xy: 356, 11
+  xy: 197, 13
   size: 18, 18
   split: 4, 3, 4, 3
   orig: 18, 18

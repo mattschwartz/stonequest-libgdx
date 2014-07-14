@@ -40,7 +40,7 @@ public abstract class InGameComponent {
     }
 
     protected void createActors() {
-        closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("closeWindowButton"));
+        closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_window_close_button", "GUI_window_close_button", "GUI_window_close_button"));
     }
 
     protected void createRootWindow() {

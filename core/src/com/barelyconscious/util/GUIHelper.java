@@ -53,8 +53,8 @@ public class GUIHelper {
 
         DEFAULT_BUTTON_STYLE = new TextButtonStyle();
         DEFAULT_BUTTON_STYLE.up = skin.getDrawable("button");
-        DEFAULT_BUTTON_STYLE.down = skin.getDrawable("buttonPressed");
-        DEFAULT_BUTTON_STYLE.over = skin.getDrawable("buttonHighlighted");
+        DEFAULT_BUTTON_STYLE.down = skin.getDrawable("button_pressed");
+        DEFAULT_BUTTON_STYLE.over = skin.getDrawable("button_highlighted");
         DEFAULT_BUTTON_STYLE.font = FontFactory.getTitleFont();
 
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/textfield.pack"));
@@ -68,7 +68,7 @@ public class GUIHelper {
         DEFAULT_TEXTFIELD_STYLE.fontColor = Color.WHITE;
         DEFAULT_TEXTFIELD_STYLE.cursor = skin.getDrawable("textFieldCursor");
 
-        atlas = new TextureAtlas(Gdx.files.internal("app/gui/window_buttons.pack"));
+        atlas = new TextureAtlas(Gdx.files.internal("app/gui/gui_buttons.pack"));
         skin.addRegions(atlas);
 
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/ui.pack"));
@@ -80,9 +80,9 @@ public class GUIHelper {
     }
 
     public static ImageButtonStyle createImageButtonStyle(String name) {
-        String up = name + "Up";
-        String down = name + "Down";
-        String over = name + "Over";
+        String up = name + "_up";
+        String down = name + "_down";
+        String over = name + "_over";
 
         return createImageButtonStyle(up, down, over);
     }

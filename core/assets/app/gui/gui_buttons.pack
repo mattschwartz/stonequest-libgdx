@@ -1,0 +1,103 @@
+
+gui_buttons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+GUI_buttons_background
+  rotate: false
+  xy: 1, 19
+  size: 229, 95
+  orig: 229, 95
+  offset: 0, 0
+  index: -1
+GUI_character_window_button_down
+  rotate: false
+  xy: 232, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_character_window_button_over
+  rotate: false
+  xy: 284, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_character_window_button_up
+  rotate: false
+  xy: 336, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_inventory_window_button_down
+  rotate: false
+  xy: 388, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_inventory_window_button_over
+  rotate: false
+  xy: 440, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_inventory_window_button_up
+  rotate: false
+  xy: 492, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_journal_window_button_down
+  rotate: false
+  xy: 544, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_journal_window_button_over
+  rotate: false
+  xy: 596, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_journal_window_button_up
+  rotate: false
+  xy: 648, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_menu_window_button_down
+  rotate: false
+  xy: 700, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_menu_window_button_over
+  rotate: false
+  xy: 752, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_menu_window_button_up
+  rotate: false
+  xy: 804, 39
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+GUI_window_close_button
+  rotate: false
+  xy: 1, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

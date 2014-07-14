@@ -11,8 +11,8 @@ public class DesktopLauncher {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Game.GAME_TITLE + " " + Game.GAME_VERSION;
         config.useGL30 = true;
-        config.width = 1280;
-        config.height = 720;
+        config.width = 1000;
+        config.height = 600;
         config.addIcon("app/applicationIcon.png", Files.FileType.Internal);
         config.addIcon("app/applicationIconSmall.png", Files.FileType.Internal);
         config.resizable = false;
