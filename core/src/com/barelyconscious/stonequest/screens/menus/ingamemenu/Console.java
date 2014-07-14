@@ -40,7 +40,7 @@ public class Console {
     public void create(Stage root) {
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         style.background = GUIHelper.getDrawable("infoLogBackground");
-        style.font = FontFactory.createDefaultFont(14);
+        style.font = FontFactory.getDefaultFont();
         style.fontColor = Color.LIGHT_GRAY;
         consoleLog = new TextArea("", style);
         consoleLog.setTouchable(Touchable.disabled);

@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.barelyconscious.stonequest.gui.ProgressBar;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -51,10 +52,10 @@ public class UpgradeItemWindow extends InGameComponent {
         divineFavorSlot = new ItemSlotActor();
 
         itemNameLabel = GUIHelper.createLabel("Item to Upgrade", 16, Color.BLACK);
-        applySalvageButton = GUIHelper.createButton("Apply");
-        applyAugmentationButton = GUIHelper.createButton("Apply");
-        removeAugmentationButton = GUIHelper.createButton("Remove");
-        performRitualButton = GUIHelper.createButton("Perform Ritual");
+        applySalvageButton = GUIHelper.createTextButton("Apply");
+        applyAugmentationButton = GUIHelper.createTextButton("Apply");
+        removeAugmentationButton = GUIHelper.createTextButton("Remove");
+        performRitualButton = GUIHelper.createTextButton("Perform Ritual");
         progressBar = new ProgressBar();
         ritualDetailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, ColorHelper.SUMMER_GREEN);
 

@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.items;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.barelyconscious.stonequest.entities.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,15 +55,12 @@ public class Item implements Comparable {
      */
     protected int sellValue;
 
-    /**
-     * How many instances of this Item exist in a single stack.
-     */
-    private int stackSize;
-
     private String name;
     protected Entity owner;
     protected Augment augment;
     protected DivineFavor divineFavor;
+    protected Image inventoryImage;
+    public Image worldImage;
     private List<Material> materials = new ArrayList<>();
 
     public Item() {

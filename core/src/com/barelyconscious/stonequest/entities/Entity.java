@@ -135,6 +135,8 @@ public abstract class Entity {
 
     private final Map<Attribute, Double> attributes;
     private final Inventory inventory;
+    
+    protected int level;
     protected String name;
 
     public Entity(String name) {
@@ -160,6 +162,10 @@ public abstract class Entity {
 
     public Inventory getInventory() {
         return inventory;
+    }
+    
+    public int getLevel() {
+        return level;
     }
 
     public String getName() {

@@ -46,9 +46,9 @@ public class PlayMenuScreen extends MenuScreen {
     public void show() {
         super.show();
 
-        backButton = GUIHelper.createButton("Back");
-        newPlayerButton = GUIHelper.createButton("New");
-        loadPlayerButton = GUIHelper.createButton("Load");
+        backButton = GUIHelper.createTextButton("Back");
+        newPlayerButton = GUIHelper.createTextButton("New");
+        loadPlayerButton = GUIHelper.createTextButton("Load");
 
         newPlayerButton.addListener(new ClickListener() {
 

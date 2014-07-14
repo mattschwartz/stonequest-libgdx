@@ -3,37 +3,37 @@ ui.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-characterBackground
+GUI_inventory_window_background
   rotate: false
-  xy: 1, 285
-  size: 363, 608
-  orig: 363, 608
+  xy: 1, 419
+  size: 500, 600
+  orig: 500, 600
   offset: 0, 0
   index: -1
-inventoryBackground
+GUI_journal_window_background
   rotate: false
-  xy: 366, 285
-  size: 363, 608
-  orig: 363, 608
+  xy: 503, 519
+  size: 500, 500
+  orig: 500, 500
   offset: 0, 0
   index: -1
-ui_right
+GUI_merchant_window_background
   rotate: false
-  xy: 1, 171
-  size: 363, 112
-  orig: 363, 112
+  xy: 1, 50
+  size: 393, 367
+  orig: 393, 367
   offset: 0, 0
   index: -1
-ui_left
+GUI_character_window_background
   rotate: false
-  xy: 1, 57
-  size: 320, 112
-  orig: 320, 112
+  xy: 503, 67
+  size: 380, 450
+  orig: 380, 450
   offset: 0, 0
   index: -1
 ui_middle
   rotate: false
-  xy: 731, 779
+  xy: 1005, 905
   size: 8, 114
   split: 1, 1, 19, 19
   orig: 8, 114
@@ -41,14 +41,14 @@ ui_middle
   index: -1
 itemSlot
   rotate: false
-  xy: 366, 236
+  xy: 1, 1
   size: 47, 47
   orig: 47, 47
   offset: 0, 0
   index: -1
 infoLogBackground
   rotate: false
-  xy: 1, 15
+  xy: 885, 477
   size: 28, 40
   split: 12, 12, 18, 18
   orig: 28, 40
@@ -56,36 +56,58 @@ infoLogBackground
   index: -1
 closeWindowButtonDown
   rotate: false
-  xy: 323, 141
+  xy: 396, 389
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonOver
   rotate: false
-  xy: 741, 865
+  xy: 50, 20
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 closeWindowButtonUp
   rotate: false
-  xy: 366, 206
+  xy: 885, 447
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 textAreaBorder
   rotate: false
-  xy: 415, 255
+  xy: 915, 489
   size: 28, 28
   split: 12, 12, 12, 12
   orig: 28, 28
   offset: 0, 0
   index: -1
+button
+  rotate: false
+  xy: 396, 367
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+GUI_element_tab_selector
+  rotate: false
+  xy: 426, 404
+  size: 13, 13
+  split: 5, 4, 10, 1
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+GUI_listbox_selection
+  rotate: false
+  xy: 1015, 1011
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 outline_border
   rotate: false
-  xy: 1, 1
+  xy: 50, 6
   size: 12, 12
   split: 5, 5, 5, 5
   orig: 12, 12
@@ -93,7 +115,7 @@ outline_border
   index: -1
 scrollBarHorizontal
   rotate: false
-  xy: 31, 49
+  xy: 80, 42
   size: 12, 6
   split: 5, 5, 0, 6
   orig: 12, 6
@@ -101,7 +123,7 @@ scrollBarHorizontal
   index: -1
 scrollBarVertical
   rotate: false
-  xy: 731, 765
+  xy: 1005, 891
   size: 6, 12
   split: 0, 6, 5, 5
   orig: 6, 12
@@ -112,16 +134,42 @@ ui2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-journalBackground
+characterBackground
   rotate: false
-  xy: 1, 1
+  xy: 1, 229
   size: 363, 608
   orig: 363, 608
   offset: 0, 0
   index: -1
+inventoryBackground
+  rotate: false
+  xy: 366, 229
+  size: 363, 608
+  orig: 363, 608
+  offset: 0, 0
+  index: -1
+ui_right
+  rotate: false
+  xy: 1, 115
+  size: 363, 112
+  orig: 363, 112
+  offset: 0, 0
+  index: -1
+ui_left
+  rotate: false
+  xy: 1, 1
+  size: 320, 112
+  orig: 320, 112
+  offset: 0, 0
+  index: -1
+
+ui3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 upgradeItemBackground
   rotate: false
-  xy: 366, 1
+  xy: 1, 1
   size: 363, 608
   orig: 363, 608
   offset: 0, 0

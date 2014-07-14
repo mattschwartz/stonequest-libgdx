@@ -46,9 +46,9 @@ public class MainMenuScreen extends MenuScreen {
     public void show() {
         super.show();
 
-        playButton = GUIHelper.createButton("Play");
-        optionsButton = GUIHelper.createButton("Options");
-        exitButton = GUIHelper.createButton("Quit");
+        playButton = GUIHelper.createTextButton("Play");
+        optionsButton = GUIHelper.createTextButton("Options");
+        exitButton = GUIHelper.createTextButton("Quit");
 
         playButton.addListener(new ClickListener() {
 

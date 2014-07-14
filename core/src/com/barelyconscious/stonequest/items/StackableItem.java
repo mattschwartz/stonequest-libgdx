@@ -1,8 +1,8 @@
 /* *****************************************************************************
  * Project:           StoneQuest
- * File Name:         ColorHelper.java
+ * File Name:         StackableItem.java
  * Author:            Matt Schwartz
- * Date Created:      06.09.2014 
+ * Date Created:      07.06.2014 
  * Redistribution:    You are free to use, reuse, and edit any of the text in
  *                    this file.  You are not allowed to take credit for code
  *                    that was not written fully by yourself, or to remove 
@@ -10,12 +10,15 @@
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
  ************************************************************************** */
-package com.barelyconscious.util;
+package com.barelyconscious.stonequest.items;
 
-import com.badlogic.gdx.graphics.Color;
-
-public class ColorHelper {
-
-    public static final Color SUMMER_GREEN = new Color(0.15f, 0.85f, 0.5f, 1);
-    public static final Color FOREST_GREEN = new Color(0.164f, 0.172f, 0.02f, 1);
-} // ColorHelper
+public class StackableItem extends Item {
+    /**
+     * How many instances of this Item exist in a single stack.
+     */
+    private int stackSize;
+    
+    public void addToStack() {
+        
+    }
+}

@@ -32,7 +32,7 @@ public class JustifiedTextArea extends Widget {
     private final List<String> rightLines = new ArrayList<>();
 
     public JustifiedTextArea(int fontSize, Color leftColor, Color rightColor) {
-        font = FontFactory.createDefaultFont(fontSize);
+        font = FontFactory.createFont(fontSize, false);
         this.leftColor = leftColor;
         this.rightColor = rightColor;
         centerLines = false;

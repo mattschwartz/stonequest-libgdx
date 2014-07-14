@@ -28,7 +28,7 @@ public class TooltipArea extends Actor {
     private String text;
 
     public TooltipArea(String text, int fontSize, Color color) {
-        font = FontFactory.createDefaultFont(fontSize);
+        font = FontFactory.createFont(fontSize, true);
         font.setColor(color);
         setText(text);
     }

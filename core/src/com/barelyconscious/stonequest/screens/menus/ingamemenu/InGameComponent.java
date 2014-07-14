@@ -46,7 +46,7 @@ public abstract class InGameComponent {
     protected void createRootWindow() {
         Window.WindowStyle style = new Window.WindowStyle();
         style.background = GUIHelper.getDrawable(imageBackground);
-        style.titleFont = FontFactory.createDefaultFont(18);
+        style.titleFont = FontFactory.getDefaultFont();
 
         window = new Window("", style);
         window.addActor(closeWindowButton);

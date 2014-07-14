@@ -13,79 +13,64 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.barelyconscious.stonequest.entities.Entity.Attribute;
 import com.barelyconscious.stonequest.entities.player.Player;
+import com.barelyconscious.stonequest.gui.TabbedPane;
 import com.barelyconscious.stonequest.world.GameWorld;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.GUIHelper;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CharacterWindow extends InGameComponent {
 
     private Label playerNameLabel;
-    private Label subtitleLabel;
-    private TextArea attributesInfoTextArea;
-    private JustifiedTextArea detailsTextArea;
-    private ScrollPane scrollPane;
-    private Map<Attribute, Label> statsLabels;
+    private JustifiedTextArea attributesTextArea;
+    private JustifiedTextArea reputationTextArea;
+    private JustifiedTextArea miscTextArea;
+    private TabbedPane tabbedPane;
 
     public CharacterWindow(InGameMenu inGameMenu) {
-        super(inGameMenu, "characterBackground");
-        statsLabels = new HashMap<>();
+        super(inGameMenu, "GUI_character_window_background");
     }
 
     @Override
     protected void createActors() {
         super.createActors();
 
-        playerNameLabel = new Label("player's name", GUIHelper.createLabelStyle());
-        subtitleLabel = new Label("Details", GUIHelper.createLabelStyle());
-        detailsTextArea = new JustifiedTextArea(14, Color.LIGHT_GRAY, ColorHelper.SUMMER_GREEN);
-        scrollPane = new ScrollPane(detailsTextArea);
-        attributesInfoTextArea = GUIHelper.createTextArea(Color.LIGHT_GRAY, 14);
-
-        detailsTextArea.setCenterLines(true);
-        detailsTextArea.addLine("melee damage", "999.9-999.9");
-        detailsTextArea.addLine("magic damage", "999.9-999.9");
-        detailsTextArea.addLine("crit chance", "100.99%");
-        detailsTextArea.addLine("armor", "100.99%");
-        detailsTextArea.addLine("evasion", "100.99%");
-        detailsTextArea.addLine("fire magic bonus", "100.99%");
-        detailsTextArea.addLine("frost magic bonus", "100.99%");
-        detailsTextArea.addLine("holy magic bonus", "100.99%");
-        detailsTextArea.addLine("chaos magic bonus", "100.99%");
+        playerNameLabel = new Label("cur_player_name", GUIHelper.createLabelStyle());
+        attributesTextArea = new JustifiedTextArea(14, Color.BLACK, ColorHelper.FOREST_GREEN);
+        reputationTextArea = new JustifiedTextArea(14, Color.BLACK, ColorHelper.FOREST_GREEN);
+        miscTextArea = new JustifiedTextArea(14, Color.BLACK, ColorHelper.FOREST_GREEN);
+        tabbedPane = new TabbedPane();
 
         playerNameLabel.setAlignment(Align.center);
-        subtitleLabel.setAlignment(Align.center);
-
-        for (int i = 0; i < Attribute.NUM_ATTRIBUTES; i++) {
-            final Label label = new Label("", GUIHelper.createLabelStyle());
-            label.setAlignment(Align.center);
-            label.setColor(Color.LIGHT_GRAY);
-            
-            label.addListener(new InputListener() {
-
-                @Override
-                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                    label.setColor(Color.WHITE);
-                }
-
-                @Override
-                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                    label.setColor(Color.LIGHT_GRAY);
-                }
-
-            });
-            statsLabels.put(Attribute.toAttribute(i), label);
-        }
+        tabbedPane.addTab("Attributes", attributesTextArea)
+                .setLabelBounds(Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_X, 
+                        Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_Y, 
+                        Offset.CharacterWindow.ATTRIBUTES_LABEL_WIDTH, 
+                        Offset.CharacterWindow.ATTRIBUTES_LABEL_HEIGHT)
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                        Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
+                        Offset.CharacterWindow.TAB_CONTENT_WIDTH,
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
+        tabbedPane.addTab("Reputation", reputationTextArea)
+                .setLabelBounds(Offset.CharacterWindow.REPUTATION_LABEL_OFFS_X, 
+                        Offset.CharacterWindow.REPUTATION_LABEL_OFFS_Y, 
+                        Offset.CharacterWindow.REPUTATION_LABEL_WIDTH, 
+                        Offset.CharacterWindow.REPUTATION_LABEL_HEIGHT)
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                        Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
+                        Offset.CharacterWindow.TAB_CONTENT_WIDTH,
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
+        tabbedPane.addTab("Misc.", miscTextArea)
+                .setLabelBounds(Offset.CharacterWindow.MISC_LABEL_OFFS_X, 
+                        Offset.CharacterWindow.MISC_LABEL_OFFS_Y, 
+                        Offset.CharacterWindow.MISC_LABEL_WIDTH, 
+                        Offset.CharacterWindow.MISC_LABEL_HEIGHT)
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                        Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
+                        Offset.CharacterWindow.TAB_CONTENT_WIDTH,
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
     }
 
     @Override
@@ -93,95 +78,66 @@ public class CharacterWindow extends InGameComponent {
         super.createRootWindow();
 
         window.addActor(playerNameLabel);
-        window.addActor(subtitleLabel);
-        window.addActor(scrollPane);
-
-        for (Label label : statsLabels.values()) {
-            window.addActor(label);
-        }
+        tabbedPane.addToRoot(window);
     }
 
     @Override
     protected void registerEvents() {
         super.registerEvents();
-
-        window.addListener(new InputListener() {
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(InputEvent event, float x, float y) {
-                Actor hit = window.hit(x, y, false);
-
-                subtitleLabel.setText("Details");
-                scrollPane.setWidget(detailsTextArea);
-
-                for (Attribute attr : statsLabels.keySet()) {
-                    if (hit == statsLabels.get(attr)) {
-                        subtitleLabel.setText(attr.toString());
-                        attributesInfoTextArea.setText(Attribute.getDescription(attr));
-                        scrollPane.setWidget(attributesInfoTextArea);
-                    }
-                }
-
-                return super.mouseMoved(event, x, y);
-            }
-
-        });
     }
 
     @Override
     public void show() {
         super.show();
-
-        setLocations();
-        setPlayerAttributes();
-    }
-
-    private void setPlayerAttributes() {
         Player player = GameWorld.getInstance().getPlayer();
-        playerNameLabel.setText(player.getName());
+        playerNameLabel.setText(player.getName() + ", a level " + player.getLevel() + " " + player.getProfession());
 
-        Attribute attr;
-        for (int i = 0; i < Attribute.NUM_ATTRIBUTES; i++) {
-            attr = Attribute.toAttribute(i);
-            statsLabels.get(attr).setText("" + Math.round(player.getAttribute(attr)));
-        }
+        setAttributesText(player);
+        setReputationText(player);
+        setMiscText(player);
+        adjustActors();
     }
 
-    private void setLocations() {
-        int i = 0;
-        float statsOffsX = Offset.CharacterWindow.STATS_OFFS_X;
-        float statsOffsY;
+    private void setAttributesText(Player player) {
+        attributesTextArea.clearText();
 
-        for (int c = 0; c < 2; c++) {
-            statsOffsY = Offset.CharacterWindow.STATS_OFFS_Y;
+        attributesTextArea.addLine("Physical damage dealt", "1-999");
+        attributesTextArea.addLine("Critical strike chance", "100.99%");
+        attributesTextArea.addLine("Armor value", "9,999");
+        attributesTextArea.addLine("Physical damage reduction", "100.99%");
+        attributesTextArea.addLine("Evasion value", "9,999");
+        attributesTextArea.addLine("Chance to evade", "100.99%");
+    }
 
-            for (int r = 0; r < 5; r++) {
-                Label label = statsLabels.get(Attribute.toAttribute(i++));
-                GUIHelper.setSize(label, 0, 0, Offset.CharacterWindow.STATS_WIDTH, Offset.CharacterWindow.STATS_HEIGHT);
-                GUIHelper.setPosition(label, 0, 0, statsOffsX, statsOffsY);
+    private void setReputationText(Player player) {
+        reputationTextArea.clearText();
 
-                statsOffsY -= Offset.CharacterWindow.STATS_STEP_Y;
-            }
-            statsOffsX += Offset.CharacterWindow.STATS_STEP_X;
-        }
+        reputationTextArea.addLine("Deity of Hate", "999 / 1000");
+        reputationTextArea.addLine("Deity of Fortune", "999 / 1000");
+    }
 
+    private void setMiscText(Player player) {
+        miscTextArea.clearText();
+    }
+
+    private void adjustActors() {
         window.setSize(Offset.CharacterWindow.WINDOW_WIDTH, Offset.CharacterWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(window, 1, 1, -Offset.CharacterWindow.WINDOW_WIDTH, -Offset.CharacterWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(closeWindowButton, 0, 0, Offset.CharacterWindow.CLOSEBUTTON_OFFS_X, Offset.CharacterWindow.CLOSEBUTTON_OFFS_Y);
+        GUIHelper.setPosition(window, 1, 1,
+                -Offset.CharacterWindow.WINDOW_WIDTH,
+                -Offset.CharacterWindow.WINDOW_HEIGHT);
 
-        GUIHelper.setSize(playerNameLabel, 0, 0, Offset.CharacterWindow.PLAYER_NAME_LABEL_WIDTH, Offset.CharacterWindow.PLAYER_NAME_LABEL_HEIGHT);
-        GUIHelper.setPosition(playerNameLabel, 0, 0, Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_X, Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_Y);
+        GUIHelper.setSize(playerNameLabel, 0, 0,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_WIDTH,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_HEIGHT);
+        GUIHelper.setPosition(playerNameLabel, 0, 0,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_X,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_Y);
 
-        GUIHelper.setSize(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_WIDTH, Offset.CharacterWindow.SUBTITLE_LABEL_HEIGHT);
-        GUIHelper.setPosition(subtitleLabel, 0, 0, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_X, Offset.CharacterWindow.SUBTITLE_LABEL_OFFS_Y);
-
-        GUIHelper.setSize(scrollPane, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_WIDTH, Offset.CharacterWindow.DETAILS_TEXTAREA_HEIGHT);
-        GUIHelper.setPosition(scrollPane, 0, 0, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_X, Offset.CharacterWindow.DETAILS_TEXTAREA_OFFS_Y);
+        GUIHelper.setSize(tabbedPane, 0, 0,
+                Offset.CharacterWindow.TEXT_AREA_WIDTH,
+                Offset.CharacterWindow.TEXT_AREA_HEIGHT);
+        GUIHelper.setPosition(tabbedPane, 0, 0,
+                Offset.CharacterWindow.TEXT_AREA_OFFS_X,
+                Offset.CharacterWindow.TEXT_AREA_OFFS_Y);
     }
-
 } // CharacterWindow

@@ -19,10 +19,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.List.ListStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -54,7 +55,7 @@ public class GUIHelper {
         DEFAULT_BUTTON_STYLE.up = skin.getDrawable("button");
         DEFAULT_BUTTON_STYLE.down = skin.getDrawable("buttonPressed");
         DEFAULT_BUTTON_STYLE.over = skin.getDrawable("buttonHighlighted");
-        DEFAULT_BUTTON_STYLE.font = FontFactory.createDefaultFont(16);
+        DEFAULT_BUTTON_STYLE.font = FontFactory.getTitleFont();
 
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/textfield.pack"));
         skin.addRegions(atlas);
@@ -63,7 +64,7 @@ public class GUIHelper {
         DEFAULT_TEXTFIELD_STYLE.background = skin.getDrawable("textField");
         DEFAULT_TEXTFIELD_STYLE.focusedBackground = skin.getDrawable("textFieldFocused");
         DEFAULT_TEXTFIELD_STYLE.selection = skin.getDrawable("textFieldSelection");
-        DEFAULT_TEXTFIELD_STYLE.font = FontFactory.createDefaultFont(16);
+        DEFAULT_TEXTFIELD_STYLE.font = FontFactory.getTitleFont();
         DEFAULT_TEXTFIELD_STYLE.fontColor = Color.WHITE;
         DEFAULT_TEXTFIELD_STYLE.cursor = skin.getDrawable("textFieldCursor");
 
@@ -120,14 +121,34 @@ public class GUIHelper {
     
     public static TextArea createTextArea(Color col, int fontSize) {
         TextFieldStyle style = new TextFieldStyle();
-        style.font = FontFactory.createDefaultFont(fontSize);
+        style.font = FontFactory.createFont(fontSize, false);
         style.fontColor = col;
         
         return new TextArea("", style);
     }
+    
+    public static List createList(String background, int fontSize) {
+        ListStyle style = new ListStyle();
+        
+        style.font = FontFactory.createFont(fontSize, false);
+        style.fontColorSelected = Color.BLACK;
+        style.fontColorUnselected = Color.BLACK;
+        style.selection = getDrawable("GUI_listbox_selection");
+        
+        
+        if (background != null) {
+            style.background = getDrawable(background);
+        }
+        
+        return new List(style);
+    }
 
-    public static Button createButton(String text) {
+    public static TextButton createTextButton(String text) {
         return new TextButton(text, DEFAULT_BUTTON_STYLE);
+    }
+    
+    public static Label createLabel(String text) {
+        return new Label(text, createLabelStyle(16, Color.BLACK));
     }
     
     public static Label createLabel(String text, int size, Color color) {
@@ -135,11 +156,11 @@ public class GUIHelper {
     }
 
     public static LabelStyle createLabelStyle() {
-        return createLabelStyle(16, Color.LIGHT_GRAY);
+        return createLabelStyle(16, Color.BLACK);
     }
 
     public static LabelStyle createLabelStyle(int size, Color color) {
-        return new LabelStyle(FontFactory.createDefaultFont(size), color);
+        return new LabelStyle(FontFactory.createFont(size, true), color);
     }
 
     public static void setSize(Actor actor, float absWidth, float absHeight, float relWidth, float relHeight) {
@@ -148,6 +169,7 @@ public class GUIHelper {
 
         actor.setWidth(width);
         actor.setHeight(height);
+        actor.setSize(width, height);
     }
 
     public static void setPosition(Actor actor, float absX, float absY, float relX, float relY) {
@@ -156,6 +178,7 @@ public class GUIHelper {
 
         actor.setX(x);
         actor.setY(y);
+        actor.setPosition(x, y);
     }
 
 }
