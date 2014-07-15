@@ -23,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
+import com.barelyconscious.stonequest.console.ConsoleWriter;
+import com.barelyconscious.stonequest.console.ConsoleWriter.ChannelName;
 import com.barelyconscious.stonequest.input.KeyBindings;
 import com.barelyconscious.util.GUIHelper;
 
@@ -39,14 +41,13 @@ public class InGameMenu {
     private ImageButton journalButton;
     private ImageButton menuButton;
     private TooltipArea tooltipArea;
+    private MessageWindow messageWindow;
 
     public Batch getSpriteBatch() {
         return stage.getSpriteBatch();
     }
 
     public void resize(int width, int height) {
-        Console.getInstance().resize(width, height);
-
         GUIHelper.setPosition(tooltipArea, 1, 0,
                 -Offset.InGameMenu.TOOLTIP_OFFS_X,
                 Offset.InGameMenu.TOOLTIP_OFFS_Y);
@@ -70,6 +71,9 @@ public class InGameMenu {
         GUIHelper.setPosition(menuButton, 1, 0,
                 Offset.InGameMenu.MENU_OFFS_X,
                 Offset.InGameMenu.MENU_OFFS_Y);
+        
+        GUIHelper.setSize(messageWindow, 0, 0, 500, 150);
+        GUIHelper.setPosition(messageWindow, 0, 0, 10, 10);
     }
 
     public void actAndDraw(float delta) {
@@ -113,13 +117,15 @@ public class InGameMenu {
         menuButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_menu_window_button"));
         buttonBackground = new Image(GUIHelper.getDrawable("GUI_buttons_background"));
         tooltipArea = new TooltipArea("", 14, Color.LIGHT_GRAY);
+        messageWindow = new MessageWindow();
 
         inventoryWindow.create();
         characterWindow.create();
         upgradeItemWindow.create();
         journalWindow.create();
-        Console.getInstance().create(stage);
-        Console.getInstance().writeLine("Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
+        
+        messageWindow.addChannel(ConsoleWriter.getChannel(ChannelName.general));
+        ConsoleWriter.writeLine(ChannelName.general, "Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
 
         stage.addActor(tooltipArea);
         stage.addActor(buttonBackground);
@@ -131,6 +137,7 @@ public class InGameMenu {
         stage.addActor(characterWindow.getWindow());
         stage.addActor(upgradeItemWindow.getWindow());
         stage.addActor(journalWindow.getWindow());
+        stage.addActor(messageWindow);
 
         addActionListeners();
     }
