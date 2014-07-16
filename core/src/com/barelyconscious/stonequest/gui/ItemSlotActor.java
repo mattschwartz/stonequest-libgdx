@@ -24,12 +24,19 @@ import com.barelyconscious.stonequest.entities.ItemSlot;
 
 public class ItemSlotActor extends Container {
 
-    private final ItemSlot itemSlot;
+    public static final int SLOT_WIDTH = 50;
+    public static final int SLOT_HEIGHT = 50;
+    
+    private ItemSlot itemSlot;
     private Runnable onItemChanged;
 
-    public ItemSlotActor(ItemSlot itemSlot) {
-        this.itemSlot = itemSlot;
+    public ItemSlotActor() {
         addListener(new ItemSlotInputListener());
+        setSize(SLOT_WIDTH, SLOT_HEIGHT);
+    }
+    
+    public void setItemSlot(ItemSlot itemSlot) {
+        this.itemSlot = itemSlot;
     }
 
     public void setItemChangeRunnable(Runnable runnable) {
@@ -38,7 +45,7 @@ public class ItemSlotActor extends Container {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if (itemSlot.empty()) {
+        if (itemSlot == null || itemSlot.empty()) {
             return;
         }
         

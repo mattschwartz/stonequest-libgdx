@@ -64,10 +64,10 @@ public class Offset {
         
         public static final int INVENTORY_ROWS = 4;
         public static final int INVENTORY_COLS = 9;
-        public static final int INVENTORY_OFFS_X = 1;
-        public static final int INVENTORY_OFFS_Y = 1;
-        public static final int INVENTORY_STEP_X = 1;
-        public static final int INVENTORY_STEP_Y = 1;
+        public static final int INVENTORY_OFFS_X = 15;
+        public static final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 374;
+        public static final int INVENTORY_STEP_X = 53;
+        public static final int INVENTORY_STEP_Y = 53;
     }
 
     public class CharacterWindow {

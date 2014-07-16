@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.stonequest.entities.Attribute;
 import com.barelyconscious.stonequest.entities.Inventory;
+import com.barelyconscious.stonequest.entities.ItemSlot;
 import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.gui.ItemSlotActor;
 import com.barelyconscious.stonequest.world.GameWorld;
@@ -60,7 +61,11 @@ public class InventoryWindow extends InGameComponent {
         holyLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         chaosLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         faithLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
-        
+
+        for (int i = 0; i < Inventory.INVENTORY_SLOTS; i++) {
+            itemSlots.add(new ItemSlotActor());
+        }
+
         goldAmountLabel.setAlignment(Align.right);
         hitpointsLabel.setAlignment(Align.right);
         strengthLabel.setAlignment(Align.right);
@@ -89,6 +94,10 @@ public class InventoryWindow extends InGameComponent {
         window.addActor(holyLabel);
         window.addActor(chaosLabel);
         window.addActor(faithLabel);
+
+        for (ItemSlotActor itemSlot : itemSlots) {
+            window.addActor(itemSlot);
+        }
     }
 
     @Override
@@ -97,6 +106,7 @@ public class InventoryWindow extends InGameComponent {
 
         setLabelText();
         positionLabels();
+        showItemSlots();
 
         window.setSize(Offset.InventoryWindow.WINDOW_WIDTH,
                 Offset.InventoryWindow.WINDOW_HEIGHT);
@@ -107,7 +117,7 @@ public class InventoryWindow extends InGameComponent {
 
     private void setLabelText() {
         Player player = GameWorld.getInstance().getPlayer();
-        
+
         goldAmountLabel.setText("" + player.getInventory().getGold());
 
         hitpointsLabel.setText("" + Math.round(player.getAttribute(Attribute.HITPOINTS)));
@@ -171,6 +181,27 @@ public class InventoryWindow extends InGameComponent {
         GUIHelper.setPosition(faithLabel, 0, 0,
                 Offset.InventoryWindow.STAT_LABEL_RIGHT_COL_OFFS_X,
                 Offset.InventoryWindow.FAITH_OFFS_Y);
+    }
+
+    private void showItemSlots() {
+        int i = 0;
+        float x = Offset.InventoryWindow.INVENTORY_OFFS_X;
+        float y = Offset.InventoryWindow.INVENTORY_OFFS_Y;
+        ItemSlotActor actor;
+        Inventory inventory = GameWorld.getInstance().getPlayer().getInventory();
+        ItemSlot[] itemSlot = inventory.getItemSlots();
+
+        for (int r = 0; r < Offset.InventoryWindow.INVENTORY_ROWS; r++) {
+            for (int c = 0; c < Offset.InventoryWindow.INVENTORY_COLS; c++) {
+                actor = itemSlots.get(i);
+                actor.setItemSlot(itemSlot[i]);
+
+                GUIHelper.setPosition(actor, 0, 0,
+                        x + c * Offset.InventoryWindow.INVENTORY_STEP_X,
+                        y - r * Offset.InventoryWindow.INVENTORY_STEP_Y);
+                i++;
+            }
+        }
     }
 
     @Override
