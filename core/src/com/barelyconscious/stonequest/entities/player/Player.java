@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.entities.player;
 
+import com.barelyconscious.stonequest.entities.Attribute;
 import com.barelyconscious.stonequest.entities.Entity;
 import com.barelyconscious.stonequest.journal.Journal;
 
@@ -23,9 +24,17 @@ public class Player extends Entity {
     public Player(String name) {
         super(name);
         journal = new Journal();
+        level = 1;
+        setDefaultAttributes();
         
         // since professions are not yet implemented
         profession = "Architect";
+    }
+
+    private void setDefaultAttributes() {
+        for (Attribute attribute : Attribute.values()) {
+            attributes.put(attribute, 10.0);
+        }
     }
 
     public Journal getJournal() {

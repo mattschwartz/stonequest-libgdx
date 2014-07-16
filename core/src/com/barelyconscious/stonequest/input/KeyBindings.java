@@ -20,10 +20,7 @@ public class KeyBindings {
     
     public static int open_inventoryWindow = Keys.I;
     public static int open_characterWindow = Keys.C;
-    public static int open_brewingWindow = Keys.B;
     public static int open_journalWindow = Keys.J;
-    public static int open_upgradeWindow = Keys.U;
-    public static int open_salvageWindow = Keys.V;
     public static int close_allWindows = Keys.ESCAPE;
 
     private static final Map<Integer, Runnable> BINDINGS = new HashMap<>();

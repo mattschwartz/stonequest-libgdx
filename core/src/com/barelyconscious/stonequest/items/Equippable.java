@@ -17,28 +17,32 @@ import java.util.List;
 
 public class Equippable extends Item {
 
-    public static enum SLOT_ID {
+    public static enum EquipmentSlot {
 
         helmet,
         chest,
         legs,
         boots,
-        
         gloves,
         belt,
         necklace,
         ring,
-        
         weapon,
         offHand;
 
         public static final int NUM_SLOTS = values().length;
     }
 
+    private EquipmentSlot slotId;
     private final List<Affix> itemAffixes;
 
-    public Equippable() {
+    public Equippable(EquipmentSlot slotId) {
         itemAffixes = new ArrayList<>();
+        this.slotId = slotId;
+    }
+
+    public EquipmentSlot getSlotId() {
+        return slotId;
     }
 
     @Override

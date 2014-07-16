@@ -15,7 +15,7 @@ package com.barelyconscious.stonequest.items;
 
 public class Weapon extends Equippable {
 
-    public Weapon() {
-        
+    public Weapon(EquipmentSlot slotId) {
+        super(slotId);
     }
 } // Weapon

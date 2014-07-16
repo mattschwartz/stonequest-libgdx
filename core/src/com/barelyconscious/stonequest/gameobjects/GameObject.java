@@ -12,7 +12,10 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -42,7 +45,7 @@ public abstract class GameObject extends InputAdapter {
     public GameObject(String filepath) {
         sprite = new Sprite(new Texture(filepath));
     }
-    
+
     protected final Vector2 getWorldCoords(int x, int y) {
         return GameWorld.getInstance().getWorldCoords(x, y);
     }
@@ -77,7 +80,7 @@ public abstract class GameObject extends InputAdapter {
     public Rectangle getBoundingBox() {
         return sprite.getBoundingRectangle();
     }
-    
+
     public void spawnObject(World world) {
         spawnObject(world, x, y);
     }
@@ -112,11 +115,33 @@ public abstract class GameObject extends InputAdapter {
     }
 
     public void remove() {
-        removeOnUpdate = true;
+        for (Fixture fixture : spriteBody.getFixtureList()) {
+            spriteBody.destroyFixture(fixture);
+        }
+        
+        sprite.getTexture().dispose();
     }
 
     public boolean shouldRemove() {
         return removeOnUpdate;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (sprite.getBoundingRectangle().contains(getWorldCoords(screenX, screenY))) {
+            mouseClicked(screenX, screenY, pointer, button);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return sprite.getBoundingRectangle().contains(getWorldCoords(screenX, screenY));
+    }
+
+    public void mouseClicked(int screenX, int screenY, int pointer, int button) {
     }
 
     public void update(float delta) {
@@ -124,5 +149,17 @@ public abstract class GameObject extends InputAdapter {
 
     public void draw(Batch batch) {
         sprite.draw(batch);
+    }
+
+    public void drawHighlighted(Batch batch) {
+        batch.setBlendFunction(GL30.GL_ONE, GL30.GL_ONE);
+        batch.setColor(0.75f, 0.75f, 0.75f, 1f);
+        batch.draw(sprite, x - sprite.getWidth() / 2, y - sprite.getHeight() / 2);
+        batch.setColor(1f, 1f, 1f, 1f);
+        batch.setBlendFunction(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    public void drawHurt() {
+        sprite.setColor(Color.RED);
     }
 } // GameObject

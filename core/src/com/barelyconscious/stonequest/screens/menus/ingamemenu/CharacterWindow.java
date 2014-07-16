@@ -15,11 +15,13 @@ package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.barelyconscious.stonequest.entities.Attribute;
 import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.gui.TabbedPane;
 import com.barelyconscious.stonequest.world.GameWorld;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.GUIHelper;
+import com.barelyconscious.util.StringHelper;
 
 public class CharacterWindow extends InGameComponent {
 
@@ -101,12 +103,18 @@ public class CharacterWindow extends InGameComponent {
     private void setAttributesText(Player player) {
         attributesTextArea.clearText();
 
-        attributesTextArea.addLine("Physical damage dealt", "1-999");
-        attributesTextArea.addLine("Critical strike chance", "100.99%");
-        attributesTextArea.addLine("Armor value", "9,999");
-        attributesTextArea.addLine("Physical damage reduction", "100.99%");
-        attributesTextArea.addLine("Evasion value", "9,999");
-        attributesTextArea.addLine("Chance to evade", "100.99%");
+        attributesTextArea.addLine("Physical damage dealt", 
+                StringHelper.pairToString(player.getPhysicalDamage(), "-"));
+        attributesTextArea.addLine("Critical strike chance", 
+                StringHelper.asPercent(player.getCriticalStrikeChance()));
+        attributesTextArea.addLine("Armor value", 
+                "" + (int) player.getAttribute(Attribute.DEFENSE));
+        attributesTextArea.addLine("Physical damage reduction", 
+                StringHelper.asPercent(player.getPhysicalDamageReduction()));
+        attributesTextArea.addLine("Evasion value", 
+                "" + (int) player.getAttribute(Attribute.EVASION));
+        attributesTextArea.addLine("Chance to evade", 
+                StringHelper.asPercent(player.getDodgeChance()));
     }
 
     private void setReputationText(Player player) {

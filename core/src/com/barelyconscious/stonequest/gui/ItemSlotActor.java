@@ -10,20 +10,25 @@
  *                    Please email stonequest.bcgames@gmail.com for issues or concerns.
  * File Description:  
  ************************************************************************** */
-package com.barelyconscious.stonequest.screens.menus.ingamemenu;
+package com.barelyconscious.stonequest.gui;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
-import com.barelyconscious.stonequest.items.Item;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.barelyconscious.stonequest.entities.ItemSlot;
 
 public class ItemSlotActor extends Container {
 
-    private Item item;
+    private final ItemSlot itemSlot;
     private Runnable onItemChanged;
 
-    public ItemSlotActor() {
+    public ItemSlotActor(ItemSlot itemSlot) {
+        this.itemSlot = itemSlot;
         addListener(new ItemSlotInputListener());
     }
 
@@ -31,22 +36,20 @@ public class ItemSlotActor extends Container {
         onItemChanged = runnable;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public Item setItem(Item item) {
-        Item result = this.item;
-
-        this.item = item;
-
-        if (onItemChanged != null) {
-            onItemChanged.run();
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        if (itemSlot.empty()) {
+            return;
         }
+        
+        // Debug
+        Texture tex = new Texture(Gdx.files.internal("sprites/items/inventory/scroll.png"));
+        Image img = new Image(tex);
 
-        return result;
+        img.setPosition(getX(), getY());
+        img.draw(batch, parentAlpha);
     }
-
+    
     class ItemSlotInputListener extends InputListener {
 
         @Override
@@ -56,7 +59,5 @@ public class ItemSlotActor extends Container {
         @Override
         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         }
-
     }
-
 } // ItemSlotActor

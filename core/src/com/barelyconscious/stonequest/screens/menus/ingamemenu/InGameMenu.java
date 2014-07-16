@@ -33,7 +33,6 @@ public class InGameMenu {
     private Stage stage;
     private InventoryWindow inventoryWindow;
     private CharacterWindow characterWindow;
-    private UpgradeItemWindow upgradeItemWindow;
     private JournalWindow journalWindow;
     private Image buttonBackground;
     private ImageButton inventoryButton;
@@ -109,7 +108,6 @@ public class InGameMenu {
 
         inventoryWindow = new InventoryWindow(this);
         characterWindow = new CharacterWindow(this);
-        upgradeItemWindow = new UpgradeItemWindow(this);
         journalWindow = new JournalWindow(this);
         inventoryButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_inventory_window_button"));
         characterButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_character_window_button"));
@@ -121,13 +119,13 @@ public class InGameMenu {
 
         inventoryWindow.create();
         characterWindow.create();
-        upgradeItemWindow.create();
         journalWindow.create();
         
         messageWindow.addChannel(ConsoleWriter.getChannel(ChannelName.general));
         ConsoleWriter.writeLine(ChannelName.general, "Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
 
         stage.addActor(tooltipArea);
+        stage.addActor(messageWindow);
         stage.addActor(buttonBackground);
         stage.addActor(inventoryButton);
         stage.addActor(characterButton);
@@ -135,9 +133,7 @@ public class InGameMenu {
         stage.addActor(menuButton);
         stage.addActor(inventoryWindow.getWindow());
         stage.addActor(characterWindow.getWindow());
-        stage.addActor(upgradeItemWindow.getWindow());
         stage.addActor(journalWindow.getWindow());
-        stage.addActor(messageWindow);
 
         addActionListeners();
     }
@@ -185,23 +181,13 @@ public class InGameMenu {
                 }
             }
         });
-        KeyBindings.addAction(KeyBindings.open_upgradeWindow, new Runnable() {
-
-            @Override
-            public void run() {
-                if (upgradeItemWindow.toggle()) {
-                    journalWindow.hide();
-                }
-            }
-        });
         KeyBindings.addAction(KeyBindings.open_journalWindow, new Runnable() {
 
             @Override
             public void run() {
-                if (journalWindow.toggle()) {
-                    upgradeItemWindow.hide();
-                }
+                journalWindow.toggle();
             }
+            
         });
         KeyBindings.addAction(KeyBindings.close_allWindows, new Runnable() {
 
@@ -209,7 +195,6 @@ public class InGameMenu {
             public void run() {
                 inventoryWindow.hide();
                 characterWindow.hide();
-                upgradeItemWindow.hide();
                 journalWindow.hide();
             }
         });
@@ -218,7 +203,6 @@ public class InGameMenu {
     public void dispose() {
         inventoryWindow.dispose();
         characterWindow.dispose();
-        upgradeItemWindow.dispose();
         journalWindow.dispose();
         characterButton.remove();
         journalButton.remove();

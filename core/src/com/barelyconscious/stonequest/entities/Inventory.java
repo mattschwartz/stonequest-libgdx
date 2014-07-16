@@ -12,33 +12,57 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.barelyconscious.stonequest.items.Equippable;
+import com.barelyconscious.stonequest.items.Equippable.EquipmentSlot;
 import com.barelyconscious.stonequest.items.Item;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
 
-    public static final int INVENTORY_SLOTS = 24;
-    public static final int EQUIPMENT_SLOTS = Equippable.SLOT_ID.NUM_SLOTS;
+    public static final int INVENTORY_SLOTS = 36;
 
     private int gold;
-    private List<Item> inventory;
-    private List<Item> equipment;
+    private List<ItemSlot> inventory;
+    private List<ItemSlot> equipment;
     private Entity owner;
 
     public Inventory(Entity owner) {
         this.owner = owner;
         inventory = new ArrayList<>(INVENTORY_SLOTS);
-        equipment = new ArrayList<>(EQUIPMENT_SLOTS);
+        equipment = new ArrayList<>();
+
+        for (int i = 0; i < INVENTORY_SLOTS; i++) {
+            inventory.add(new ItemSlot());
+        }
+
+        for (final EquipmentSlot slotId : EquipmentSlot.values()) {
+            equipment.add(new ItemSlot() {
+
+                @Override
+                public boolean itemGoesHere(Item item) {
+                    if (!(item instanceof Equippable)) {
+                        return false;
+                    }
+
+                    return ((Equippable) item).getSlotId() == slotId;
+                }
+
+            });
+        }
     }
-    
+
     public int getGold() {
         return gold;
     }
-    
+
     public void adjustGold(int amount) {
         this.gold += amount;
+    }
+
+    public ItemSlot[] getItemSlots() {
+        return inventory.toArray(new ItemSlot[]{});
     }
 
     /**
@@ -50,11 +74,11 @@ public class Inventory {
      * null.
      */
     public Item getItem(int index) {
-        if (index < 0 || index >= inventory.size()) {
+        if (index < 0 || index >= INVENTORY_SLOTS) {
             return null;
         }
 
-        return null;
+        return inventory.get(index).item;
     }
 
     /**
@@ -79,9 +103,17 @@ public class Inventory {
      * Item could not be added.
      */
     public boolean addItem(Item item) {
-        boolean result = false;
+        for (ItemSlot itemSlot : inventory) {
+            if (itemSlot.empty()) {
+                itemSlot.item = item;
+                Gdx.app.log(null, "Item added " + item);
+                return true;
+            }
+        }
 
-        return result;
+        Gdx.app.log(null, "Item was not added");
+
+        return false;
     }
 
     /**
@@ -94,7 +126,11 @@ public class Inventory {
      * Item added does not replace another or if the index is invalid.
      */
     public Item addItem(int index, Item item) {
-        return null;
+        if (index < 0 || index >= INVENTORY_SLOTS) {
+            return null;
+        }
+
+        return inventory.get(index).swap(item);
     }
 
     /**
@@ -107,11 +143,11 @@ public class Inventory {
      * inventory, null is returned.
      */
     public Item removeItem(int index) {
-        if (index < 0 || index >= inventory.size()) {
+        if (index < 0 || index >= INVENTORY_SLOTS) {
             return null;
         }
 
-        return null;
+        return inventory.get(index).swap(null);
     }
 
     /**

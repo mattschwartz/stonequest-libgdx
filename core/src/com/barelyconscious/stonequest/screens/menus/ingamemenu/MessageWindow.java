@@ -1,6 +1,6 @@
 /* *****************************************************************************
  * Project:           StoneQuest
- * File Name:         Console.java
+ * File Name:         MessageWindow.java
  * Author:            Matt Schwartz
  * Date Created:      06.04.2014 
  * Redistribution:    You are free to use, reuse, and edit any of the text in
@@ -52,15 +52,16 @@ public class MessageWindow extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        String text = "";
+        StringBuilder text = new StringBuilder();
         
         for (Channel channel : channels) {
             for (String line : channel.getLines()) {
-                text += line + "\n";
+                text.append(line).append("\n");
             }
         }
         
-        textArea.setText(text);
+        textArea.setText(text.toString());
+        textArea.moveCursorLine(Integer.MAX_VALUE);
     }
 
     @Override

@@ -12,144 +12,21 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.entities;
 
+import com.barelyconscious.util.Pair;
 import java.util.EnumMap;
 import java.util.Map;
 
 public abstract class Entity {
 
-    public static enum Attribute {
-
-        HITPOINTS,
-        STRENGTH,
-        ACCURACY,
-        DEFENSE,
-        EVASION,
-        FIRE_MAGIC,
-        ICE_MAGIC,
-        HOLY_MAGIC,
-        CHAOS_MAGIC,
-        FAITH;
-
-        public static final int NUM_ATTRIBUTES = values().length;
-
-        public static Attribute toAttribute(int ordinal) {
-            if (HITPOINTS.ordinal() == ordinal) {
-                return HITPOINTS;
-            }
-            if (STRENGTH.ordinal() == ordinal) {
-                return STRENGTH;
-            }
-            if (ACCURACY.ordinal() == ordinal) {
-                return ACCURACY;
-            }
-            if (DEFENSE.ordinal() == ordinal) {
-                return DEFENSE;
-            }
-            if (EVASION.ordinal() == ordinal) {
-                return EVASION;
-            }
-            if (FIRE_MAGIC.ordinal() == ordinal) {
-                return FIRE_MAGIC;
-            }
-            if (ICE_MAGIC.ordinal() == ordinal) {
-                return ICE_MAGIC;
-            }
-            if (HOLY_MAGIC.ordinal() == ordinal) {
-                return HOLY_MAGIC;
-            }
-            if (CHAOS_MAGIC.ordinal() == ordinal) {
-                return CHAOS_MAGIC;
-            }
-            if (FAITH.ordinal() == ordinal) {
-                return FAITH;
-            }
-
-            return null;
-        }
-
-        @Override
-        public String toString() {
-            switch (this) {
-                case HITPOINTS:
-                    return "hitpoints";
-                case STRENGTH:
-                    return "strength";
-                case ACCURACY:
-                    return "accuracy";
-                case DEFENSE:
-                    return "defense";
-                case EVASION:
-                    return "evasion";
-                case FIRE_MAGIC:
-                    return "fire magic";
-                case ICE_MAGIC:
-                    return "ice magic";
-                case HOLY_MAGIC:
-                    return "holy magic";
-                case CHAOS_MAGIC:
-                    return "chaos magic";
-                case FAITH:
-                    return "faith";
-                default:
-                    return "invalid";
-            }
-        }
-
-        public static String getDescription(Attribute attr) {
-            switch (attr) {
-                case HITPOINTS:
-                    return "Your hitpoints. Lose them all and you're dead.";
-
-                case STRENGTH:
-                    return "More of this, the harder you hit with physical attacks.";
-
-                case ACCURACY:
-                    return "Hit harder.";
-
-                case DEFENSE:
-                    return "Get hit less hard.";
-
-                case EVASION:
-                    return "Get hit less often.";
-
-                case FIRE_MAGIC:
-                    return "Firey.";
-
-                case ICE_MAGIC:
-                    return "C-c-c-cold.";
-
-                case HOLY_MAGIC:
-                    return "Holier than thou.";
-
-                case CHAOS_MAGIC:
-                    return "Chaotic!";
-
-                case FAITH:
-                    return "If you have it, hold onto it.";
-
-                default:
-                    return "no description";
-            }
-        }
-    }
-
-    private final Map<Attribute, Double> attributes;
-    private final Inventory inventory;
-    
     protected int level;
     protected String name;
+    protected final Map<Attribute, Double> attributes;
+    protected final Inventory inventory;
 
     public Entity(String name) {
         this.name = name;
         attributes = new EnumMap<>(Attribute.class);
         inventory = new Inventory(this);
-        setDefaultAttributes();
-    }
-
-    private void setDefaultAttributes() {
-        for (Attribute attribute : Attribute.values()) {
-            attributes.put(attribute, 10.0);
-        }
     }
 
     public void setAttribute(Attribute attribute, double value) {
@@ -159,11 +36,27 @@ public abstract class Entity {
     public double getAttribute(Attribute attribute) {
         return attributes.get(attribute);
     }
+    
+    public Pair<Double, Double> getPhysicalDamage() {
+        return new Pair(1, 5);
+    }
+    
+    public double getCriticalStrikeChance() {
+        return 0.05;
+    }
+    
+    public double getDodgeChance() {
+        return 0.05;
+    }
+    
+    public double getPhysicalDamageReduction() {
+        return 0.05;
+    }
 
     public Inventory getInventory() {
         return inventory;
     }
-    
+
     public int getLevel() {
         return level;
     }

@@ -55,7 +55,7 @@ public class WorldScreen extends GameScreen {
         menu.show(inputMultiplexer);
         
         GameWorld.getInstance().init(menu.getSpriteBatch(), inputMultiplexer);
-        ObjectManager.getInstance().spawnObject(new LootObject(new Item("")), 50, 50);
+        ObjectManager.getInstance().spawnObject(new LootObject(new Item("Potion of Healing")), 50, 50);
     }
 
     @Override

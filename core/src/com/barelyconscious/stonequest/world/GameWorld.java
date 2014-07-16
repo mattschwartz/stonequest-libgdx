@@ -70,7 +70,7 @@ public class GameWorld {
     public Player getPlayer() {
         return (Player) playerObject.getEntity();
     }
-
+    
     public Rectangle getPlayerBoundingBox() {
         return playerObject.getBoundingBox();
     }

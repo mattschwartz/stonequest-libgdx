@@ -59,6 +59,8 @@ public class ObjectManager {
 
         for (GameObject object : gameObjects) {
             if (object.shouldRemove()) {
+                object.remove();
+                inputMultiplexer.removeProcessor(object);
                 gameObjects.remove(object);
             } else {
                 object.draw(batch);

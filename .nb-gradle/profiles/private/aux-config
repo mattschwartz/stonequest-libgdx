@@ -8,7 +8,16 @@
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
+      <group>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/screens/menus/ingamemenu/InventoryWindow.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/entities/Entity.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/entities/player/Player.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/screens/menus/ingamemenu/Offset.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/util/SpriteHelper.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/entities/Attribute.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/gameobjects/LootObject.java</file>
+        <file>file:/C:/Users/cassi_000.PAM/Documents/GitHub/stonequest/core/src/com/barelyconscious/stonequest/gameobjects/GameObject.java</file>
+      </group>
     </open-files>
   </auxiliary>
 </gradle-project-properties>

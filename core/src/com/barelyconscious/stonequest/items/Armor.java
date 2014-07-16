@@ -15,7 +15,7 @@ package com.barelyconscious.stonequest.items;
 
 public class Armor extends Equippable {
 
-    public Armor() {
-        
+    public Armor(EquipmentSlot slotId) {
+        super(slotId);
     }
 } // Armor
