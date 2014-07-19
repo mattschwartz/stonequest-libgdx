@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -96,17 +95,17 @@ public class GUIHelper {
 
         return result;
     }
-    
+
     public static TextButtonStyle createTextButtonStyle(String up, String down, String over) {
         TextButtonStyle result = new TextButtonStyle();
-        
+
         result.up = skin.getDrawable(up);
         result.over = skin.getDrawable(over);
         result.down = skin.getDrawable(down);
-        
+
         return result;
     }
-    
+
     public static NinePatch getPatch(String str) {
         return skin.getPatch(str);
     }
@@ -118,41 +117,47 @@ public class GUIHelper {
     public static Drawable getDrawable(String str) {
         return skin.getDrawable(str);
     }
-    
+
     public static TextArea createTextArea(Color col, int fontSize) {
         TextFieldStyle style = new TextFieldStyle();
         style.font = FontFactory.createFont(fontSize, false);
         style.fontColor = col;
-        
+
         return new TextArea("", style);
     }
-    
+
     public static List createList(String background, int fontSize) {
         ListStyle style = new ListStyle();
-        
+
         style.font = FontFactory.createFont(fontSize, false);
         style.fontColorSelected = Color.BLACK;
         style.fontColorUnselected = Color.BLACK;
         style.selection = getDrawable("GUI_listbox_selection");
-        
-        
+
         if (background != null) {
             style.background = getDrawable(background);
         }
-        
+
         return new List(style);
     }
 
     public static TextButton createTextButton(String text) {
         return new TextButton(text, DEFAULT_BUTTON_STYLE);
     }
-    
+
     public static Label createLabel(String text) {
         return new Label(text, createLabelStyle(16, Color.BLACK));
     }
-    
+
     public static Label createLabel(String text, int size, Color color) {
         return new Label(text, createLabelStyle(size, color));
+    }
+
+    public static Label createTooltipLabel(String text) {
+        LabelStyle style = createLabelStyle(12, Color.WHITE);
+        style.background = GUIHelper.getDrawable("GUI_component_transparent_box");
+
+        return new Label(text, style);
     }
 
     public static LabelStyle createLabelStyle() {

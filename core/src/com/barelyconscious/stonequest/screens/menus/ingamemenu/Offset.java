@@ -55,16 +55,16 @@ public class Offset {
         public static final int ACCURACY_OFFS_Y = WINDOW_HEIGHT - 138;
         public static final int DEFENSE_OFFS_Y = WINDOW_HEIGHT - 162;
         public static final int EVASION_OFFS_Y = WINDOW_HEIGHT - 185;
-        
+
         public static final int FIRE_OFFS_Y = HITPOINTS_OFFS_Y;
         public static final int ICE_OFFS_Y = STRENGTH_OFFS_Y;
         public static final int HOLY_OFFS_Y = ACCURACY_OFFS_Y;
         public static final int CHAOS_OFFS_Y = DEFENSE_OFFS_Y;
         public static final int FAITH_OFFS_Y = EVASION_OFFS_Y;
-        
+
         public static final int INVENTORY_ROWS = 4;
         public static final int INVENTORY_COLS = 9;
-        public static final int INVENTORY_OFFS_X = 15;
+        public static final int INVENTORY_OFFS_X = 14;
         public static final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 374;
         public static final int INVENTORY_STEP_X = 53;
         public static final int INVENTORY_STEP_Y = 53;

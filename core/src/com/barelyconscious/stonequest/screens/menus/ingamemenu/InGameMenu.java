@@ -39,25 +39,25 @@ public class InGameMenu {
     private ImageButton characterButton;
     private ImageButton journalButton;
     private ImageButton menuButton;
-    private TooltipArea tooltipArea;
     private MessageWindow messageWindow;
+    private Tooltip inventoryTooltip;
+    private Tooltip characterTooltip;
+    private Tooltip journalTooltip;
+    private Tooltip menuTooltip;
 
     public Batch getSpriteBatch() {
         return stage.getSpriteBatch();
     }
+    
+    public Stage getStage() {
+        return stage;
+    }
 
     public void resize(int width, int height) {
-        GUIHelper.setPosition(tooltipArea, 1, 0,
-                -Offset.InGameMenu.TOOLTIP_OFFS_X,
-                Offset.InGameMenu.TOOLTIP_OFFS_Y);
-        GUIHelper.setSize(tooltipArea, 0, 0,
-                Offset.InGameMenu.TOOLTIP_WIDTH,
-                Offset.InGameMenu.TOOLTIP_HEIGHT);
-
-        GUIHelper.setPosition(buttonBackground, 1, 0, 
-                Offset.InGameMenu.BUTTONS_BACKGROUND_OFFS_X, 
+        GUIHelper.setPosition(buttonBackground, 1, 0,
+                Offset.InGameMenu.BUTTONS_BACKGROUND_OFFS_X,
                 Offset.InGameMenu.BUTTONS_BACKGROUND_OFFS_Y);
-        
+
         GUIHelper.setPosition(inventoryButton, 1, 0,
                 Offset.InGameMenu.INVENTORY_OFFS_X,
                 Offset.InGameMenu.INVENTORY_OFFS_Y);
@@ -70,7 +70,7 @@ public class InGameMenu {
         GUIHelper.setPosition(menuButton, 1, 0,
                 Offset.InGameMenu.MENU_OFFS_X,
                 Offset.InGameMenu.MENU_OFFS_Y);
-        
+
         GUIHelper.setSize(messageWindow, 0, 0, 500, 150);
         GUIHelper.setPosition(messageWindow, 0, 0, 10, 10);
     }
@@ -81,29 +81,7 @@ public class InGameMenu {
     }
 
     public void show(InputMultiplexer inputMultiplexer) {
-        stage = new Stage() {
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                Actor a;
-                Vector2 stagePos = stage.screenToStageCoordinates(new Vector2(screenX, screenY));
-
-                a = hit(stagePos.x, stagePos.y, true);
-                tooltipArea.setText("");
-
-                if (a != null && a instanceof Image) {
-                    if (a == characterButton.getImage()) {
-                        tooltipArea.setText("Character Attributes");
-                    } else if (a == inventoryButton.getImage()) {
-                        tooltipArea.setText("Inventory And Equipment");
-                    } else if (a == journalButton.getImage()) {
-                        tooltipArea.setText("Journal");
-                    }
-                }
-
-                return super.mouseMoved(screenX, screenY);
-            }
-        };
+        stage = new Stage();
         inputMultiplexer.addProcessor(stage);
 
         inventoryWindow = new InventoryWindow(this);
@@ -114,17 +92,19 @@ public class InGameMenu {
         journalButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_journal_window_button"));
         menuButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_menu_window_button"));
         buttonBackground = new Image(GUIHelper.getDrawable("GUI_buttons_background"));
-        tooltipArea = new TooltipArea("", 14, Color.LIGHT_GRAY);
         messageWindow = new MessageWindow();
+        inventoryTooltip = new Tooltip("Click to view your Inventory.", inventoryButton);
+        characterTooltip = new Tooltip("Click to view your Character details.", characterButton);
+        journalTooltip = new Tooltip("Click to view your Journal.", journalButton);
+        menuTooltip = new Tooltip("Click to view the Menu.", menuButton);
 
         inventoryWindow.create();
         characterWindow.create();
         journalWindow.create();
-        
+
         messageWindow.addChannel(ConsoleWriter.getChannel(ChannelName.general));
         ConsoleWriter.writeLine(ChannelName.general, "Welcome to " + Game.GAME_TITLE + " " + Game.GAME_VERSION);
 
-        stage.addActor(tooltipArea);
         stage.addActor(messageWindow);
         stage.addActor(buttonBackground);
         stage.addActor(inventoryButton);
@@ -134,6 +114,10 @@ public class InGameMenu {
         stage.addActor(inventoryWindow.getWindow());
         stage.addActor(characterWindow.getWindow());
         stage.addActor(journalWindow.getWindow());
+        stage.addActor(inventoryTooltip);
+        stage.addActor(characterTooltip);
+        stage.addActor(journalTooltip);
+        stage.addActor(menuTooltip);
 
         addActionListeners();
     }
@@ -187,7 +171,7 @@ public class InGameMenu {
             public void run() {
                 journalWindow.toggle();
             }
-            
+
         });
         KeyBindings.addAction(KeyBindings.close_allWindows, new Runnable() {
 

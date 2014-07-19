@@ -17,7 +17,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
 import com.barelyconscious.util.GUIHelper;
 
 public class Tab extends Actor {
@@ -25,11 +27,20 @@ public class Tab extends Actor {
     private boolean selected;
     private Label tabLabel;
     private Widget content;
+    private Tooltip tooltip;
 
     public Tab(String text, Widget content) {
         tabLabel = GUIHelper.createLabel(text);
         tabLabel.setAlignment(Align.center);
         this.content = content;
+    }
+
+    public void addToRoot(Window root) {
+        root.addActor(tabLabel);
+
+        if (tooltip != null) {
+            root.addActor(tooltip);
+        }
     }
 
     public boolean isSelected() {
@@ -68,6 +79,12 @@ public class Tab extends Actor {
         return this;
     }
 
+    public Tab setTooltip(String text) {
+        tooltip = new Tooltip(text, tabLabel);
+
+        return this;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (selected) {
@@ -83,5 +100,20 @@ public class Tab extends Actor {
         }
 
         tabLabel.draw(batch, parentAlpha);
+    }
+
+    @Override
+    public boolean remove() {
+        if (tooltip != null) {
+            tooltip.remove();
+        }
+
+        if (content != null) {
+            content.remove();
+        }
+
+        tabLabel.remove();
+
+        return super.remove();
     }
 }

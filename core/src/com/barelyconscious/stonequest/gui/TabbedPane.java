@@ -55,7 +55,7 @@ public class TabbedPane extends Actor {
         root.add(this);
 
         for (Tab tab : tabs) {
-            root.addActor(tab.getTabLabel());
+            tab.addToRoot(root);
         }
     }
 
@@ -79,5 +79,14 @@ public class TabbedPane extends Actor {
                 content.draw(batch, parentAlpha);
             }
         }
+    }
+
+    @Override
+    public boolean remove() {
+        for (Tab tab : tabs) {
+            tab.remove();
+        }
+        
+        return super.remove();
     }
 }

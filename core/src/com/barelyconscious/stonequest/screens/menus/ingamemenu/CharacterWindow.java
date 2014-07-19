@@ -47,32 +47,35 @@ public class CharacterWindow extends InGameComponent {
 
         playerNameLabel.setAlignment(Align.center);
         tabbedPane.addTab("Attributes", attributesTextArea)
-                .setLabelBounds(Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_X, 
-                        Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_Y, 
-                        Offset.CharacterWindow.ATTRIBUTES_LABEL_WIDTH, 
+                .setLabelBounds(Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_X,
+                        Offset.CharacterWindow.ATTRIBUTES_LABEL_OFFS_Y,
+                        Offset.CharacterWindow.ATTRIBUTES_LABEL_WIDTH,
                         Offset.CharacterWindow.ATTRIBUTES_LABEL_HEIGHT)
-                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X,
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
-                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
+                .setTooltip("Your character's attributes.");
         tabbedPane.addTab("Reputation", reputationTextArea)
-                .setLabelBounds(Offset.CharacterWindow.REPUTATION_LABEL_OFFS_X, 
-                        Offset.CharacterWindow.REPUTATION_LABEL_OFFS_Y, 
-                        Offset.CharacterWindow.REPUTATION_LABEL_WIDTH, 
+                .setLabelBounds(Offset.CharacterWindow.REPUTATION_LABEL_OFFS_X,
+                        Offset.CharacterWindow.REPUTATION_LABEL_OFFS_Y,
+                        Offset.CharacterWindow.REPUTATION_LABEL_WIDTH,
                         Offset.CharacterWindow.REPUTATION_LABEL_HEIGHT)
-                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X,
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
-                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
+                .setTooltip("Your reputation with various factions.");
         tabbedPane.addTab("Misc.", miscTextArea)
-                .setLabelBounds(Offset.CharacterWindow.MISC_LABEL_OFFS_X, 
-                        Offset.CharacterWindow.MISC_LABEL_OFFS_Y, 
-                        Offset.CharacterWindow.MISC_LABEL_WIDTH, 
+                .setLabelBounds(Offset.CharacterWindow.MISC_LABEL_OFFS_X,
+                        Offset.CharacterWindow.MISC_LABEL_OFFS_Y,
+                        Offset.CharacterWindow.MISC_LABEL_WIDTH,
                         Offset.CharacterWindow.MISC_LABEL_HEIGHT)
-                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X, 
+                .setContentBounds(Offset.CharacterWindow.TAB_CONTENT_OFFS_X,
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
-                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT);
+                        Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
+                .setTooltip("Other handy details.");
     }
 
     @Override
@@ -103,17 +106,17 @@ public class CharacterWindow extends InGameComponent {
     private void setAttributesText(Player player) {
         attributesTextArea.clearText();
 
-        attributesTextArea.addLine("Physical damage dealt", 
+        attributesTextArea.addLine("Physical damage dealt",
                 StringHelper.pairToString(player.getPhysicalDamage(), "-"));
-        attributesTextArea.addLine("Critical strike chance", 
+        attributesTextArea.addLine("Critical strike chance",
                 StringHelper.asPercent(player.getCriticalStrikeChance()));
-        attributesTextArea.addLine("Armor value", 
+        attributesTextArea.addLine("Armor value",
                 "" + (int) player.getAttribute(Attribute.DEFENSE));
-        attributesTextArea.addLine("Physical damage reduction", 
+        attributesTextArea.addLine("Physical damage reduction",
                 StringHelper.asPercent(player.getPhysicalDamageReduction()));
-        attributesTextArea.addLine("Evasion value", 
+        attributesTextArea.addLine("Evasion value",
                 "" + (int) player.getAttribute(Attribute.EVASION));
-        attributesTextArea.addLine("Chance to evade", 
+        attributesTextArea.addLine("Chance to evade",
                 StringHelper.asPercent(player.getDodgeChance()));
     }
 
@@ -147,5 +150,12 @@ public class CharacterWindow extends InGameComponent {
         GUIHelper.setPosition(tabbedPane, 0, 0,
                 Offset.CharacterWindow.TEXT_AREA_OFFS_X,
                 Offset.CharacterWindow.TEXT_AREA_OFFS_Y);
+    }
+
+    @Override
+    public void dispose() {
+        playerNameLabel.remove();
+        tabbedPane.remove();
+        super.dispose();
     }
 } // CharacterWindow

@@ -20,8 +20,8 @@ public class DateUtility {
         Calendar cal = Calendar.getInstance();
         StringBuilder result = new StringBuilder();
 
-        result.append(cal.get(Calendar.MONTH) + 1).append("/");
-        result.append(cal.get(Calendar.DAY_OF_MONTH)).append("/");
+        result.append(String.format("%02d", cal.get(Calendar.MONTH) + 1)).append("/");
+        result.append(String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))).append("/");
         result.append(cal.get(Calendar.YEAR));
 
         return result.toString();
@@ -31,9 +31,9 @@ public class DateUtility {
         Calendar cal = Calendar.getInstance();
         StringBuilder result = new StringBuilder();
 
-        result.append(cal.get(Calendar.HOUR_OF_DAY)).append(":");
-        result.append(cal.get(Calendar.MINUTE)).append(":");
-        result.append(cal.get(Calendar.SECOND));
+        result.append(String.format("%02d", cal.get(Calendar.HOUR_OF_DAY))).append(":");
+        result.append(String.format("%02d", cal.get(Calendar.MINUTE))).append(":");
+        result.append(String.format("%02d", cal.get(Calendar.SECOND)));
 
         return result.toString();
     }

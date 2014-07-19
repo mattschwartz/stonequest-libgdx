@@ -13,13 +13,14 @@
 package com.barelyconscious.stonequest.console;
 
 import com.barelyconscious.util.DateUtility;
+import com.barelyconscious.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Channel {
 
     private boolean showDate = true;
-    private List<String> log;
+    private List<Pair<String, String>> log;
 
     public Channel() {
         log = new ArrayList<>();
@@ -29,15 +30,26 @@ public class Channel {
         log.clear();
     }
 
-    public String[] getLines() {
-        return log.toArray(new String[]{});
+    public List<String> getLines() {
+        String line;
+        List<String> result = new ArrayList<>();
+        
+        for (Pair<String, String> pair : log) {
+            line = "";
+            
+            if (showDate) {
+                line = pair.first;
+            }
+            
+            line += pair.second;
+            
+            result.add(line);
+        }
+        
+        return result;
     }
 
     public void addLine(String line) {
-        if (showDate) {
-            line = "[" + DateUtility.currentTime() + "] " + line;
-        }
-
-        log.add(line);
+        log.add(new Pair("[" + DateUtility.currentTime() + "] ", line));
     }
 }

@@ -16,25 +16,30 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.barelyconscious.stonequest.entities.ItemSlot;
+import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
 
-public class ItemSlotActor extends Container {
+public class ItemSlotActor extends Group {
 
     public static final int SLOT_WIDTH = 50;
     public static final int SLOT_HEIGHT = 50;
-    
+
     private ItemSlot itemSlot;
     private Runnable onItemChanged;
+    private final Tooltip tooltip;
 
     public ItemSlotActor() {
-        addListener(new ItemSlotInputListener());
         setSize(SLOT_WIDTH, SLOT_HEIGHT);
+        tooltip = new Tooltip("item", this);
+        
+        addActor(tooltip);
+        addListener(new ItemSlotInputListener());
     }
-    
+
     public void setItemSlot(ItemSlot itemSlot) {
         this.itemSlot = itemSlot;
     }
@@ -44,11 +49,23 @@ public class ItemSlotActor extends Container {
     }
 
     @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (itemSlot == null || itemSlot.empty()) {
+            return;
+        }
+        tooltip.setText(itemSlot.item.getName() + "\n" + itemSlot.item.getDescription());
+
+    }
+
+    @Override
     public void draw(Batch batch, float parentAlpha) {
         if (itemSlot == null || itemSlot.empty()) {
             return;
         }
-        
+
+        tooltip.draw(batch, parentAlpha);
+
         // Debug
         Texture tex = new Texture(Gdx.files.internal("sprites/items/inventory/scroll.png"));
         Image img = new Image(tex);
@@ -56,7 +73,7 @@ public class ItemSlotActor extends Container {
         img.setPosition(getX(), getY());
         img.draw(batch, parentAlpha);
     }
-    
+
     class ItemSlotInputListener extends InputListener {
 
         @Override
