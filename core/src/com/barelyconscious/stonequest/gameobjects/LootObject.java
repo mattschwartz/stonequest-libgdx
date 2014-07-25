@@ -62,6 +62,8 @@ public class LootObject extends GameObject {
             
             ConsoleWriter.writeLine(ChannelName.general, "You found "
                     + StringHelper.aOrAn(item.getName()) + ".");
+        } else {
+            ConsoleWriter.writeLine(ChannelName.general, "You are too far away.");
         }
     }
 

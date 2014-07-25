@@ -13,8 +13,8 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -22,13 +22,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.util.GUIHelper;
-import static com.barelyconscious.util.GUIHelper.createLabelStyle;
 
 public class Tooltip extends Actor {
 
     private boolean showTooltip;
     private String text;
-    private final Label tooltip;
+    private Label tooltip;
     private final Actor anchor;
 
     public Tooltip(String text, Actor anchor) {
@@ -41,8 +40,10 @@ public class Tooltip extends Actor {
     }
 
     public void setText(String text) {
-        this.text = text;
-        tooltip.setText(text);
+        Label newLabel = GUIHelper.createTooltipLabel(text);
+        newLabel.setPosition(tooltip.getX(), tooltip.getY());
+        newLabel.setAlignment(Align.center);
+        tooltip = newLabel;
     }
 
     @Override
@@ -62,8 +63,8 @@ public class Tooltip extends Actor {
             return;
         }
 
-        float x = tooltip.getX();
-        float y = tooltip.getY();
+        float x = Math.max(tooltip.getX(), 0);
+        float y = Math.max(tooltip.getY(), 0);
 
         if ((y + tooltip.getHeight()) > getStage().getHeight()) {
             y -= (tooltip.getHeight() + y) - getStage().getHeight();
@@ -72,15 +73,9 @@ public class Tooltip extends Actor {
         if ((x + tooltip.getWidth()) > getStage().getWidth()) {
             x -= (x + tooltip.getWidth()) - getStage().getWidth();
         }
-        if (y < 0) {
-            y = 0;
-        }
-        if (x < 0) {
-            x = 0;
-        }
 
         // TODO: Figure out this stage bullshit.
-//        Vector2 pos = getStage().toScreenCoordinates(new Vector2(x, y),
+//        Vector2 pos = InGameMenu.stage.toScreenCoordinates(new Vector2(x, y),
 //                batch.getTransformMatrix());
 //        if ((pos.y - tooltip.getHeight()) < 0) {
 //            y -= tooltip.getHeight() - pos.y;

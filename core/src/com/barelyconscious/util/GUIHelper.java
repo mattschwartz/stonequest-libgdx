@@ -154,10 +154,14 @@ public class GUIHelper {
     }
 
     public static Label createTooltipLabel(String text) {
+        Label result;
         LabelStyle style = createLabelStyle(12, Color.WHITE);
         style.background = GUIHelper.getDrawable("GUI_component_transparent_box");
 
-        return new Label(text, style);
+        result = new Label(text, style);
+        result.setZIndex(2);
+        
+        return result;
     }
 
     public static LabelStyle createLabelStyle() {

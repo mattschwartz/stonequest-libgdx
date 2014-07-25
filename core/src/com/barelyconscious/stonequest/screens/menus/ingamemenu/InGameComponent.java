@@ -51,6 +51,7 @@ public abstract class InGameComponent {
 
         window = new Window("", style);
         window.addActor(closeWindowButton);
+        window.setZIndex(1);
     }
 
     protected void registerEvents() {
