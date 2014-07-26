@@ -170,22 +170,22 @@ public class Offset {
     public class JournalWindow {
 
         public static final int WINDOW_WIDTH = 500;
-        public static final int WINDOW_HEIGHT = 498;
+        public static final int WINDOW_HEIGHT = 504;
 
         public static final int CLOSE_WINDOW_BUTTON_OFFS_X = 305;
         public static final int CLOSE_WINDOW_BUTTON_OFFS_Y = WINDOW_HEIGHT - 45;
 
         public static final int ENTRY_TITLE_OFFS_X = 18;
-        public static final int ENTRY_TITLE_OFFS_Y = WINDOW_HEIGHT - 67;
+        public static final int ENTRY_TITLE_OFFS_Y = WINDOW_HEIGHT - 74;
         public static final int ENTRY_DESCRIPTION_WIDTH = 300;
         public static final int ENTRY_DESCRIPTION_HEIGHT = 269;
         public static final int ENTRY_DESCRIPTION_OFFS_X = ENTRY_TITLE_OFFS_X;
-        public static final int ENTRY_DESCRIPTION_OFFS_Y = WINDOW_HEIGHT - ENTRY_DESCRIPTION_HEIGHT - 92;
+        public static final int ENTRY_DESCRIPTION_OFFS_Y = WINDOW_HEIGHT - ENTRY_DESCRIPTION_HEIGHT - 95;
 
         public static final int ENTRY_REWARDS_WIDTH = 330;
         public static final int ENTRY_REWARDS_HEIGHT = 156;
         public static final int ENTRY_REWARDS_TITLE_OFFS_X = ENTRY_TITLE_OFFS_X;
-        public static final int ENTRY_REWARDS_TITLE_OFFS_Y = ENTRY_REWARDS_HEIGHT + 10 - 67;
+        public static final int ENTRY_REWARDS_TITLE_OFFS_Y = ENTRY_REWARDS_HEIGHT + 10 - 26;
 
         public static final int ENTRY_LISTBOX_WIDTH = 140 - 16;
         public static final int ENTRY_LISTBOX_HEIGHT = 198;

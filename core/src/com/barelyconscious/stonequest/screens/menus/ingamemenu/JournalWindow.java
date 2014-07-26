@@ -123,7 +123,8 @@ public class JournalWindow extends InGameComponent {
     @Override
     public void show() {
         super.show();
-
+        
+        titleBounds.width = 302;
         showEntryDetails();
         showSelectedEntry();
     }

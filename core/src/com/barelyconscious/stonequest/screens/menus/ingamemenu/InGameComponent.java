@@ -27,7 +27,7 @@ import com.barelyconscious.util.GUIHelper;
 
 public abstract class InGameComponent {
 
-    private Rectangle titleBounds = new Rectangle();
+    protected Rectangle titleBounds = new Rectangle();
     private String imageBackground;
     protected InGameMenu inGameMenu;
     protected Window window;
