@@ -67,6 +67,12 @@ public class JournalWindow extends InGameComponent {
         window.addActor(entryDescriptionScrollPane);
         window.addActor(rewardsDescription);
         window.addActor(entryListScrollPane);
+
+        GUIHelper.setPosition(window, 0, 1, 0,
+                -Offset.JournalWindow.WINDOW_HEIGHT);
+        GUIHelper.setPosition(closeWindowButton, 0, 0, 
+                Offset.JournalWindow.CLOSE_WINDOW_BUTTON_OFFS_X, 
+                Offset.JournalWindow.CLOSE_WINDOW_BUTTON_OFFS_Y);
     }
 
     @Override
@@ -85,13 +91,11 @@ public class JournalWindow extends InGameComponent {
     }
 
     @Override
-    public void show() {
-        super.show();
+    public void resize(int width, int height) {
+        super.resize(width, height);
 
         GUIHelper.setSize(window, 0, 0, Offset.JournalWindow.WINDOW_WIDTH,
                 Offset.JournalWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(window, 0, 1, 0,
-                - Offset.JournalWindow.WINDOW_HEIGHT);
 
         GUIHelper.setPosition(entryTitle, 0, 0,
                 Offset.JournalWindow.ENTRY_TITLE_OFFS_X,
@@ -114,6 +118,11 @@ public class JournalWindow extends InGameComponent {
         GUIHelper.setPosition(entryListScrollPane, 0, 0,
                 Offset.JournalWindow.ENTRY_LISTBOX_OFFS_X,
                 Offset.JournalWindow.ENTRY_LISTBOX_OFFS_Y);
+    }
+
+    @Override
+    public void show() {
+        super.show();
 
         showEntryDetails();
         showSelectedEntry();

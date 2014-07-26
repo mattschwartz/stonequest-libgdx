@@ -28,6 +28,7 @@ import com.barelyconscious.util.GUIHelper;
 public class InGameMenu {
 
     private Stage stage;
+    private InputMultiplexer inputMultiplexer;
     private InventoryWindow inventoryWindow;
     private CharacterWindow characterWindow;
     private JournalWindow journalWindow;
@@ -45,9 +46,13 @@ public class InGameMenu {
     public Batch getSpriteBatch() {
         return stage.getSpriteBatch();
     }
-    
+
     public Stage getStage() {
         return stage;
+    }
+
+    public InputMultiplexer getInputMultiplexer() {
+        return inputMultiplexer;
     }
 
     public void resize(int width, int height) {
@@ -70,6 +75,10 @@ public class InGameMenu {
 
         GUIHelper.setSize(messageWindow, 0, 0, 500, 150);
         GUIHelper.setPosition(messageWindow, 0, 0, 10, 10);
+        
+        inventoryWindow.resize(width, height);
+        characterWindow.resize(width, height);
+        journalWindow.resize(width, height);
     }
 
     public void actAndDraw(float delta) {
@@ -79,6 +88,7 @@ public class InGameMenu {
 
     public void show(InputMultiplexer inputMultiplexer) {
         stage = new Stage();
+        this.inputMultiplexer = inputMultiplexer;
         inputMultiplexer.addProcessor(stage);
 
         inventoryWindow = new InventoryWindow(this);
@@ -148,18 +158,14 @@ public class InGameMenu {
 
             @Override
             public void run() {
-                if (inventoryWindow.toggle()) {
-                    characterWindow.hide();
-                }
+                inventoryWindow.toggle();
             }
         });
         KeyBindings.addAction(KeyBindings.open_characterWindow, new Runnable() {
 
             @Override
             public void run() {
-                if (characterWindow.toggle()) {
-                    inventoryWindow.hide();
-                }
+                characterWindow.toggle();
             }
         });
         KeyBindings.addAction(KeyBindings.open_journalWindow, new Runnable() {

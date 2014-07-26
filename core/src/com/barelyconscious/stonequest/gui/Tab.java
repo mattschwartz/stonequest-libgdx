@@ -15,6 +15,7 @@ package com.barelyconscious.stonequest.gui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -81,6 +82,7 @@ public class Tab extends Actor {
 
     public Tab setTooltip(String text) {
         tooltip = new Tooltip(text, tabLabel);
+        tooltip.setTouchable(Touchable.disabled);
 
         return this;
     }

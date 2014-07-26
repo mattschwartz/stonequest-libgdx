@@ -30,13 +30,9 @@ public class ItemSlotActor extends Group {
 
     private ItemSlot itemSlot;
     private Runnable onItemChanged;
-    private final Tooltip tooltip;
 
     public ItemSlotActor() {
         setSize(SLOT_WIDTH, SLOT_HEIGHT);
-        tooltip = new Tooltip("item", this);
-        
-        addActor(tooltip);
         addListener(new ItemSlotInputListener());
     }
 
@@ -52,11 +48,12 @@ public class ItemSlotActor extends Group {
     public void act(float delta) {
         super.act(delta);
         if (itemSlot == null || itemSlot.empty()) {
-            return;
         }
-        tooltip.setText(itemSlot.item.getName() + "\n" + itemSlot.item.getDescription());
-
     }
+
+    // Debug
+    static Texture tex = new Texture(Gdx.files.internal("sprites/items/inventory/scroll.png"));
+    static Image img = new Image(tex);
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -64,12 +61,7 @@ public class ItemSlotActor extends Group {
             return;
         }
 
-        tooltip.draw(batch, parentAlpha);
-
         // Debug
-        Texture tex = new Texture(Gdx.files.internal("sprites/items/inventory/scroll.png"));
-        Image img = new Image(tex);
-
         img.setPosition(getX(), getY());
         img.draw(batch, parentAlpha);
     }

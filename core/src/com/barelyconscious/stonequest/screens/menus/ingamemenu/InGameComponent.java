@@ -12,8 +12,11 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -23,6 +26,7 @@ import com.barelyconscious.util.GUIHelper;
 
 public abstract class InGameComponent {
 
+    private Rectangle titleBounds = new Rectangle();
     private String imageBackground;
     protected InGameMenu inGameMenu;
     protected Window window;
@@ -41,7 +45,7 @@ public abstract class InGameComponent {
     }
 
     protected void createActors() {
-        closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_window_close_button", "GUI_window_close_button", "GUI_window_close_button"));
+        closeWindowButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_close_window_button"));
     }
 
     protected void createRootWindow() {
@@ -51,7 +55,8 @@ public abstract class InGameComponent {
 
         window = new Window("", style);
         window.addActor(closeWindowButton);
-        window.setZIndex(1);
+        window.setMovable(true);
+        window.addListener(new WindowListener());
     }
 
     protected void registerEvents() {
@@ -68,13 +73,16 @@ public abstract class InGameComponent {
     public Window getWindow() {
         return window;
     }
-    
+
     public void resize(int width, int height) {
     }
 
     public void show() {
         window.setVisible(true);
         window.setTouchable(Touchable.enabled);
+        titleBounds.y = window.getHeight() - 58;
+        titleBounds.width = window.getWidth() - 48;
+        titleBounds.height = 58;
     }
 
     public void hide() {
@@ -93,7 +101,23 @@ public abstract class InGameComponent {
         } else {
             hide();
         }
-        
+
         return window.isVisible();
+    }
+
+    private class WindowListener extends InputListener {
+
+        @Override
+        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            return button == Buttons.LEFT && titleBounds.contains(x, y);
+        }
+
+        @Override
+        public void touchDragged(InputEvent event, float x, float y, int pointer) {
+            x = window.getX() + Gdx.input.getDeltaX();
+            y = window.getY() - Gdx.input.getDeltaY();
+
+            window.setPosition(x, y);
+        }
     }
 } // InGameMenuComponent

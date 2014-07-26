@@ -40,21 +40,24 @@ public class Offset {
     public class InventoryWindow {
 
         public static final int WINDOW_WIDTH = 500;
-        public static final int WINDOW_HEIGHT = 547;
+        public static final int WINDOW_HEIGHT = 567;
+        
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_X = 455;
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_Y = WINDOW_HEIGHT - 45;
 
-        public static final int GOLD_AMOUNT_WIDTH = 138 - 8;
-        public static final int GOLD_AMOUNT_HEIGHT = 22;
-        public static final int GOLD_AMOUNT_OFFS_X = 181 + 4;
-        public static final int GOLD_AMOUNT_OFFS_Y = WINDOW_HEIGHT - 321;
+        public static final int GOLD_AMOUNT_WIDTH = 101 - 8;
+        public static final int GOLD_AMOUNT_HEIGHT = 26;
+        public static final int GOLD_AMOUNT_OFFS_X = 42 + 4;
+        public static final int GOLD_AMOUNT_OFFS_Y = WINDOW_HEIGHT - 341;
 
         public static final int STAT_LABEL_WIDTH = 100 - 7;
         public static final int STAT_LABEL_LEFT_COL_OFFS_X = 149;
         public static final int STAT_LABEL_RIGHT_COL_OFFS_X = 334;
-        public static final int HITPOINTS_OFFS_Y = WINDOW_HEIGHT - 91;
-        public static final int STRENGTH_OFFS_Y = WINDOW_HEIGHT - 114;
-        public static final int ACCURACY_OFFS_Y = WINDOW_HEIGHT - 138;
-        public static final int DEFENSE_OFFS_Y = WINDOW_HEIGHT - 162;
-        public static final int EVASION_OFFS_Y = WINDOW_HEIGHT - 185;
+        public static final int HITPOINTS_OFFS_Y = WINDOW_HEIGHT - 138;
+        public static final int STRENGTH_OFFS_Y = WINDOW_HEIGHT - 162;
+        public static final int ACCURACY_OFFS_Y = WINDOW_HEIGHT - 185;
+        public static final int DEFENSE_OFFS_Y = WINDOW_HEIGHT - 209;
+        public static final int EVASION_OFFS_Y = WINDOW_HEIGHT - 233;
 
         public static final int FIRE_OFFS_Y = HITPOINTS_OFFS_Y;
         public static final int ICE_OFFS_Y = STRENGTH_OFFS_Y;
@@ -65,7 +68,7 @@ public class Offset {
         public static final int INVENTORY_ROWS = 4;
         public static final int INVENTORY_COLS = 9;
         public static final int INVENTORY_OFFS_X = 14;
-        public static final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 374;
+        public static final int INVENTORY_OFFS_Y = WINDOW_HEIGHT - 394;
         public static final int INVENTORY_STEP_X = 53;
         public static final int INVENTORY_STEP_Y = 53;
     }
@@ -75,23 +78,23 @@ public class Offset {
         public static final int WINDOW_WIDTH = 380;
         public static final int WINDOW_HEIGHT = 450;
 
-        public static final int CLOSEBUTTON_OFFS_X = 319;
-        public static final int CLOSEBUTTON_OFFS_Y = WINDOW_HEIGHT - 38;
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_X = 335;
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_Y = WINDOW_HEIGHT - 45;
 
-        public static final int PLAYER_NAME_LABEL_WIDTH = 354;
-        public static final int PLAYER_NAME_LABEL_HEIGHT = 26;
+        public static final int PLAYER_NAME_LABEL_WIDTH = 319;
+        public static final int PLAYER_NAME_LABEL_HEIGHT = 32;
         public static final int PLAYER_NAME_LABEL_OFFS_X = 13;
-        public static final int PLAYER_NAME_LABEL_OFFS_Y = WINDOW_HEIGHT - 38;
+        public static final int PLAYER_NAME_LABEL_OFFS_Y = WINDOW_HEIGHT - 44;
 
-        public static final int TEXT_AREA_WIDTH = 354;
-        public static final int TEXT_AREA_HEIGHT = 382;
-        public static final int TEXT_AREA_OFFS_X = 13;
-        public static final int TEXT_AREA_OFFS_Y = WINDOW_HEIGHT - 80;
+        public static final int TABBED_PANE_WIDTH = 354;
+        public static final int TABBED_PANE_HEIGHT = 347;
+        public static final int TABBED_PANE_OFFS_X = 13;
+        public static final int TABBED_PANE_OFFS_Y = WINDOW_HEIGHT - TABBED_PANE_HEIGHT - 90;
 
         public static final int ATTRIBUTES_LABEL_WIDTH = 116;
         public static final int ATTRIBUTES_LABEL_HEIGHT = 26;
         public static final int ATTRIBUTES_LABEL_OFFS_X = 13;
-        public static final int ATTRIBUTES_LABEL_OFFS_Y = WINDOW_HEIGHT - 80;
+        public static final int ATTRIBUTES_LABEL_OFFS_Y = WINDOW_HEIGHT - 86;
 
         public static final int REPUTATION_LABEL_WIDTH = ATTRIBUTES_LABEL_WIDTH;
         public static final int REPUTATION_LABEL_HEIGHT = ATTRIBUTES_LABEL_HEIGHT;
@@ -104,9 +107,9 @@ public class Offset {
         public static final int MISC_LABEL_OFFS_Y = ATTRIBUTES_LABEL_OFFS_Y;
 
         public static final int TAB_CONTENT_WIDTH = 354 - 16;
-        public static final int TAB_CONTENT_HEIGHT = 353 - 16;
+        public static final int TAB_CONTENT_HEIGHT = 347 - 16;
         public static final int TAB_CONTENT_OFFS_X = 13 + 8;
-        public static final int TAB_CONTENT_OFFS_Y = WINDOW_HEIGHT - TAB_CONTENT_HEIGHT - 84 - 8;
+        public static final int TAB_CONTENT_OFFS_Y = WINDOW_HEIGHT - TAB_CONTENT_HEIGHT - (90 + 8);
     }
 
     public class UpgradeItemWindow {
@@ -167,24 +170,26 @@ public class Offset {
     public class JournalWindow {
 
         public static final int WINDOW_WIDTH = 500;
-        public static final int WINDOW_HEIGHT = 500;
-        public static final int WINDOW_OFFS_Y = 0;
+        public static final int WINDOW_HEIGHT = 498;
+
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_X = 305;
+        public static final int CLOSE_WINDOW_BUTTON_OFFS_Y = WINDOW_HEIGHT - 45;
 
         public static final int ENTRY_TITLE_OFFS_X = 18;
-        public static final int ENTRY_TITLE_OFFS_Y = WINDOW_HEIGHT - 25;
+        public static final int ENTRY_TITLE_OFFS_Y = WINDOW_HEIGHT - 67;
         public static final int ENTRY_DESCRIPTION_WIDTH = 300;
         public static final int ENTRY_DESCRIPTION_HEIGHT = 269;
         public static final int ENTRY_DESCRIPTION_OFFS_X = ENTRY_TITLE_OFFS_X;
-        public static final int ENTRY_DESCRIPTION_OFFS_Y = WINDOW_HEIGHT - ENTRY_DESCRIPTION_HEIGHT - 50;
+        public static final int ENTRY_DESCRIPTION_OFFS_Y = WINDOW_HEIGHT - ENTRY_DESCRIPTION_HEIGHT - 92;
 
         public static final int ENTRY_REWARDS_WIDTH = 330;
         public static final int ENTRY_REWARDS_HEIGHT = 156;
         public static final int ENTRY_REWARDS_TITLE_OFFS_X = ENTRY_TITLE_OFFS_X;
-        public static final int ENTRY_REWARDS_TITLE_OFFS_Y = ENTRY_REWARDS_HEIGHT + 10 - 25;
+        public static final int ENTRY_REWARDS_TITLE_OFFS_Y = ENTRY_REWARDS_HEIGHT + 10 - 67;
 
         public static final int ENTRY_LISTBOX_WIDTH = 140 - 16;
         public static final int ENTRY_LISTBOX_HEIGHT = 198;
         public static final int ENTRY_LISTBOX_OFFS_X = 350 + 8;
-        public static final int ENTRY_LISTBOX_OFFS_Y = WINDOW_HEIGHT - ENTRY_LISTBOX_HEIGHT - 69;
+        public static final int ENTRY_LISTBOX_OFFS_Y = WINDOW_HEIGHT - ENTRY_LISTBOX_HEIGHT - 90;
     }
 } // Offset

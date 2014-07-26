@@ -5,102 +5,43 @@ filter: Nearest,Nearest
 repeat: none
 GUI_inventory_window_background
   rotate: false
-  xy: 1, 475
-  size: 500, 547
-  orig: 500, 547
+  xy: 1, 453
+  size: 500, 567
+  orig: 500, 567
   offset: 0, 0
   index: -1
 GUI_journal_window_background
   rotate: false
-  xy: 503, 522
-  size: 500, 500
-  orig: 500, 500
+  xy: 503, 516
+  size: 500, 504
+  orig: 500, 504
   offset: 0, 0
   index: -1
 GUI_character_window_background
   rotate: false
-  xy: 1, 23
+  xy: 1, 1
   size: 380, 450
   orig: 380, 450
   offset: 0, 0
   index: -1
 GUI_merchant_window_background
   rotate: false
-  xy: 383, 106
-  size: 393, 367
-  orig: 393, 367
-  offset: 0, 0
-  index: -1
-ui_middle
-  rotate: false
-  xy: 1005, 908
-  size: 8, 114
-  split: 1, 1, 19, 19
-  orig: 8, 114
-  offset: 0, 0
-  index: -1
-infoLogBackground
-  rotate: false
-  xy: 503, 480
-  size: 28, 40
-  split: 12, 12, 18, 18
-  orig: 28, 40
-  offset: 0, 0
-  index: -1
-closeWindowButtonDown
-  rotate: false
-  xy: 383, 76
-  size: 28, 28
-  orig: 28, 28
-  offset: 0, 0
-  index: -1
-closeWindowButtonOver
-  rotate: false
-  xy: 533, 492
-  size: 28, 28
-  orig: 28, 28
-  offset: 0, 0
-  index: -1
-closeWindowButtonUp
-  rotate: false
-  xy: 383, 46
-  size: 28, 28
-  orig: 28, 28
-  offset: 0, 0
-  index: -1
-textAreaBorder
-  rotate: false
-  xy: 413, 76
-  size: 28, 28
-  split: 12, 12, 12, 12
-  orig: 28, 28
-  offset: 0, 0
-  index: -1
-button
-  rotate: false
-  xy: 1, 1
-  size: 20, 20
-  orig: 20, 20
+  xy: 383, 78
+  size: 393, 373
+  orig: 393, 373
   offset: 0, 0
   index: -1
 GUI_element_tab_selector
   rotate: false
-  xy: 563, 507
+  xy: 1005, 1007
   size: 13, 13
   split: 5, 4, 10, 1
   orig: 13, 13
   offset: 0, 0
   index: -1
-GUI_listbox_selection
-  rotate: false
-  xy: 1015, 1014
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 outline_border
   rotate: false
-  xy: 383, 32
+  xy: 503, 502
   size: 12, 12
   split: 5, 5, 5, 5
   orig: 12, 12
@@ -108,7 +49,7 @@ outline_border
   index: -1
 scrollBarHorizontal
   rotate: false
-  xy: 533, 484
+  xy: 383, 70
   size: 12, 6
   split: 5, 5, 0, 6
   orig: 12, 6
@@ -116,29 +57,24 @@ scrollBarHorizontal
   index: -1
 scrollBarVertical
   rotate: false
-  xy: 1005, 894
+  xy: 1005, 993
   size: 6, 12
   split: 0, 6, 5, 5
   orig: 6, 12
   offset: 0, 0
   index: -1
+GUI_listbox_selection
+  rotate: false
+  xy: 503, 492
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 GUI_component_transparent_box
   rotate: false
-  xy: 413, 68
+  xy: 517, 508
   size: 6, 6
   split: 2, 2, 2, 2
   orig: 6, 6
-  offset: 0, 0
-  index: -1
-
-ui2.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-upgradeItemBackground
-  rotate: false
-  xy: 1, 1
-  size: 363, 608
-  orig: 363, 608
   offset: 0, 0
   index: -1

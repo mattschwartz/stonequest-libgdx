@@ -84,11 +84,39 @@ public class CharacterWindow extends InGameComponent {
 
         window.addActor(playerNameLabel);
         tabbedPane.addToRoot(window);
+
+        GUIHelper.setPosition(window, 1, 1,
+                -Offset.CharacterWindow.WINDOW_WIDTH,
+                -Offset.CharacterWindow.WINDOW_HEIGHT);
+        GUIHelper.setPosition(closeWindowButton, 0, 0,
+                Offset.CharacterWindow.CLOSE_WINDOW_BUTTON_OFFS_X,
+                Offset.CharacterWindow.CLOSE_WINDOW_BUTTON_OFFS_Y);
     }
 
     @Override
     protected void registerEvents() {
         super.registerEvents();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+
+        window.setSize(Offset.CharacterWindow.WINDOW_WIDTH, Offset.CharacterWindow.WINDOW_HEIGHT);
+
+        GUIHelper.setSize(playerNameLabel, 0, 0,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_WIDTH,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_HEIGHT);
+        GUIHelper.setPosition(playerNameLabel, 0, 0,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_X,
+                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_Y);
+
+        GUIHelper.setSize(tabbedPane, 0, 0,
+                Offset.CharacterWindow.TABBED_PANE_WIDTH,
+                Offset.CharacterWindow.TABBED_PANE_HEIGHT);
+        GUIHelper.setPosition(tabbedPane, 0, 0,
+                Offset.CharacterWindow.TABBED_PANE_OFFS_X,
+                Offset.CharacterWindow.TABBED_PANE_OFFS_Y);
     }
 
     @Override
@@ -100,7 +128,6 @@ public class CharacterWindow extends InGameComponent {
         setAttributesText(player);
         setReputationText(player);
         setMiscText(player);
-        adjustActors();
     }
 
     private void setAttributesText(Player player) {
@@ -129,27 +156,6 @@ public class CharacterWindow extends InGameComponent {
 
     private void setMiscText(Player player) {
         miscTextArea.clearText();
-    }
-
-    private void adjustActors() {
-        window.setSize(Offset.CharacterWindow.WINDOW_WIDTH, Offset.CharacterWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(window, 1, 1,
-                -Offset.CharacterWindow.WINDOW_WIDTH,
-                -Offset.CharacterWindow.WINDOW_HEIGHT);
-
-        GUIHelper.setSize(playerNameLabel, 0, 0,
-                Offset.CharacterWindow.PLAYER_NAME_LABEL_WIDTH,
-                Offset.CharacterWindow.PLAYER_NAME_LABEL_HEIGHT);
-        GUIHelper.setPosition(playerNameLabel, 0, 0,
-                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_X,
-                Offset.CharacterWindow.PLAYER_NAME_LABEL_OFFS_Y);
-
-        GUIHelper.setSize(tabbedPane, 0, 0,
-                Offset.CharacterWindow.TEXT_AREA_WIDTH,
-                Offset.CharacterWindow.TEXT_AREA_HEIGHT);
-        GUIHelper.setPosition(tabbedPane, 0, 0,
-                Offset.CharacterWindow.TEXT_AREA_OFFS_X,
-                Offset.CharacterWindow.TEXT_AREA_OFFS_Y);
     }
 
     @Override

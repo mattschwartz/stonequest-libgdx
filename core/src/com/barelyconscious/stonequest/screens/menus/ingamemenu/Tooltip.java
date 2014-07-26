@@ -12,13 +12,11 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.util.GUIHelper;
@@ -26,16 +24,16 @@ import com.barelyconscious.util.GUIHelper;
 public class Tooltip extends Actor {
 
     private boolean showTooltip;
-    private String text;
     private Label tooltip;
-    private final Actor anchor;
+    private Actor anchor;
 
     public Tooltip(String text, Actor anchor) {
         tooltip = GUIHelper.createTooltipLabel(text);
-        this.text = text;
         this.anchor = anchor;
 
         tooltip.setAlignment(Align.center);
+        setTouchable(Touchable.disabled);
+        tooltip.setTouchable(Touchable.disabled);
         anchor.addListener(new AnchorListener());
     }
 
@@ -43,7 +41,13 @@ public class Tooltip extends Actor {
         Label newLabel = GUIHelper.createTooltipLabel(text);
         newLabel.setPosition(tooltip.getX(), tooltip.getY());
         newLabel.setAlignment(Align.center);
+        tooltip.remove();
         tooltip = newLabel;
+        tooltip.setTouchable(Touchable.disabled);
+    }
+
+    public void setAnchor(Actor anchor) {
+        this.anchor = anchor;
     }
 
     @Override

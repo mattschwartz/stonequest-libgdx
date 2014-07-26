@@ -98,6 +98,24 @@ public class InventoryWindow extends InGameComponent {
         for (ItemSlotActor itemSlot : itemSlots) {
             window.addActor(itemSlot);
         }
+
+
+        window.setSize(Offset.InventoryWindow.WINDOW_WIDTH,
+                Offset.InventoryWindow.WINDOW_HEIGHT);
+        GUIHelper.setPosition(window, 1, 1,
+                -Offset.InventoryWindow.WINDOW_WIDTH,
+                -Offset.InventoryWindow.WINDOW_HEIGHT);
+        
+        GUIHelper.setPosition(closeWindowButton, 0, 0, 
+                Offset.InventoryWindow.CLOSE_WINDOW_BUTTON_OFFS_X, 
+                Offset.InventoryWindow.CLOSE_WINDOW_BUTTON_OFFS_Y);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+
+        positionLabels();
     }
 
     @Override
@@ -105,14 +123,7 @@ public class InventoryWindow extends InGameComponent {
         super.show();
 
         setLabelText();
-        positionLabels();
         showItemSlots();
-
-        window.setSize(Offset.InventoryWindow.WINDOW_WIDTH,
-                Offset.InventoryWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(window, 1, 1,
-                -Offset.InventoryWindow.WINDOW_WIDTH,
-                -Offset.InventoryWindow.WINDOW_HEIGHT);
     }
 
     private void setLabelText() {
@@ -217,6 +228,11 @@ public class InventoryWindow extends InGameComponent {
         holyLabel.remove();
         chaosLabel.remove();
         faithLabel.remove();
+        
+        for (ItemSlotActor itemSlotActor : itemSlots) {
+            itemSlotActor.remove();
+        }
+        
         super.dispose();
     }
 }
