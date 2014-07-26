@@ -30,9 +30,13 @@ public class ItemSlotActor extends Group {
 
     private ItemSlot itemSlot;
     private Runnable onItemChanged;
+    private final Tooltip tooltip;
 
     public ItemSlotActor() {
         setSize(SLOT_WIDTH, SLOT_HEIGHT);
+        tooltip = new Tooltip("item", this);
+
+        addActor(tooltip);
         addListener(new ItemSlotInputListener());
     }
 
@@ -42,13 +46,6 @@ public class ItemSlotActor extends Group {
 
     public void setItemChangeRunnable(Runnable runnable) {
         onItemChanged = runnable;
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-        if (itemSlot == null || itemSlot.empty()) {
-        }
     }
 
     // Debug
@@ -61,15 +58,27 @@ public class ItemSlotActor extends Group {
             return;
         }
 
+        tooltip.draw(batch, parentAlpha);
+        
         // Debug
         img.setPosition(getX(), getY());
         img.draw(batch, parentAlpha);
+    }
+
+    @Override
+    public boolean remove() {
+        return super.remove();
     }
 
     class ItemSlotInputListener extends InputListener {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            if (itemSlot == null || itemSlot.empty()) {
+                return;
+            }
+            
+            tooltip.setText(itemSlot.item.getName() + "\n" + itemSlot.item.getDescription());
         }
 
         @Override

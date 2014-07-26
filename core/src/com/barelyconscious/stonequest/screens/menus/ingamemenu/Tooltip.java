@@ -52,6 +52,10 @@ public class Tooltip extends Actor {
 
     @Override
     public void act(float delta) {
+        if (!showTooltip) {
+            return;
+        }
+        
         float x = anchor.getX();
         float y = anchor.getY();
 
