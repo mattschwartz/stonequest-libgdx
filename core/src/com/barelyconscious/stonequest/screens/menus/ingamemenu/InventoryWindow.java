@@ -63,7 +63,7 @@ public class InventoryWindow extends InGameComponent {
         faithLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
 
         for (int i = 0; i < Inventory.INVENTORY_SLOTS; i++) {
-            itemSlots.add(new ItemSlotActor());
+            itemSlots.add(new ItemSlotActor(inGameMenu.getStage()));
         }
 
         goldAmountLabel.setAlignment(Align.right);

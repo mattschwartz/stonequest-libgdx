@@ -19,9 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.barelyconscious.stonequest.entities.ItemSlot;
 import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ItemSlotActor extends Group {
 
@@ -31,15 +34,23 @@ public class ItemSlotActor extends Group {
     private ItemSlot itemSlot;
     private Runnable onItemChanged;
     private final Tooltip tooltip;
+    private ContextMenu popupMenu;
 
-    public ItemSlotActor() {
+    public ItemSlotActor(Stage stage) {
         setSize(SLOT_WIDTH, SLOT_HEIGHT);
         tooltip = new Tooltip("item", this);
+        popupMenu = new ContextMenu(Arrays.asList(
+                new MenuItem[]{
+                    new MenuItem("Option 1", null),
+                    new MenuItem("Option 2", null),
+                    new MenuItem("Option 3", null)}), this);
 
-        addActor(tooltip);
+        stage.addActor(tooltip);
+        stage.addActor(popupMenu);
+
         addListener(new ItemSlotInputListener());
     }
-
+    
     public void setItemSlot(ItemSlot itemSlot) {
         this.itemSlot = itemSlot;
     }
@@ -53,36 +64,43 @@ public class ItemSlotActor extends Group {
     static Image img = new Image(tex);
 
     @Override
+    public void act(float delta) {
+        tooltip.act(delta);
+    }
+
+    @Override
     public void draw(Batch batch, float parentAlpha) {
         if (itemSlot == null || itemSlot.empty()) {
             return;
         }
 
-        tooltip.draw(batch, parentAlpha);
-        
         // Debug
         img.setPosition(getX(), getY());
         img.draw(batch, parentAlpha);
+
+        tooltip.draw(batch, parentAlpha);
     }
 
-    @Override
-    public boolean remove() {
-        return super.remove();
-    }
-
-    class ItemSlotInputListener extends InputListener {
+    private class ItemSlotInputListener extends InputListener {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
             if (itemSlot == null || itemSlot.empty()) {
                 return;
             }
-            
+
             tooltip.setText(itemSlot.item.getName() + "\n" + itemSlot.item.getDescription());
         }
 
         @Override
         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         }
+
+        @Override
+        public boolean mouseMoved(InputEvent event, float x, float y) {
+            return false;
+        }
+        
+        
     }
 } // ItemSlotActor

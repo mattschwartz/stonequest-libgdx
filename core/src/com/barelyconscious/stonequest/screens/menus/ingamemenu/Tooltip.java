@@ -92,6 +92,7 @@ public class Tooltip extends Actor {
 //        if ((pos.x + tooltip.getWidth()) > Gdx.graphics.getWidth()) {
 //            x -= (pos.x + tooltip.getWidth()) - Gdx.graphics.getWidth();
 //        }
+        
         tooltip.setPosition(x, y);
     }
 
