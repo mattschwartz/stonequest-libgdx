@@ -32,7 +32,6 @@ public class ItemSlotActor extends Group {
     public static final int SLOT_HEIGHT = 50;
 
     private ItemSlot itemSlot;
-    private Runnable onItemChanged;
     private final Tooltip tooltip;
     private ContextMenu popupMenu;
 
@@ -41,22 +40,26 @@ public class ItemSlotActor extends Group {
         tooltip = new Tooltip("item", this);
         popupMenu = new ContextMenu(Arrays.asList(
                 new MenuItem[]{
-                    new MenuItem("Option 1", null),
-                    new MenuItem("Option 2", null),
-                    new MenuItem("Option 3", null)}), this);
+                    new MenuItem("Use", null),
+                    new MenuItem("Examine", null),
+                    new MenuItem("Drop", null),
+                    new MenuItem("Cancel", null)}), this);
 
         stage.addActor(tooltip);
         stage.addActor(popupMenu);
 
         addListener(new ItemSlotInputListener());
     }
-    
-    public void setItemSlot(ItemSlot itemSlot) {
-        this.itemSlot = itemSlot;
-    }
 
-    public void setItemChangeRunnable(Runnable runnable) {
-        onItemChanged = runnable;
+    public void setItemSlot(final ItemSlot itemSlot) {
+        this.itemSlot = itemSlot;
+        this.itemSlot.addItemChangeAction(new Runnable() {
+
+            @Override
+            public void run() {
+                tooltip.setText(itemSlot.getItem().getName() + "\n" + itemSlot.getItem().getDescription());
+            }
+        });
     }
 
     // Debug
@@ -65,9 +68,14 @@ public class ItemSlotActor extends Group {
 
     @Override
     public void act(float delta) {
-        tooltip.act(delta);
+        if (itemSlot == null || itemSlot.empty()) {
+            tooltip.doNotShow = true;
+        } else {
+            tooltip.doNotShow = false;
+        }
+        super.act(delta);
     }
-
+    
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (itemSlot == null || itemSlot.empty()) {
@@ -77,8 +85,6 @@ public class ItemSlotActor extends Group {
         // Debug
         img.setPosition(getX(), getY());
         img.draw(batch, parentAlpha);
-
-        tooltip.draw(batch, parentAlpha);
     }
 
     private class ItemSlotInputListener extends InputListener {
@@ -86,10 +92,8 @@ public class ItemSlotActor extends Group {
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
             if (itemSlot == null || itemSlot.empty()) {
-                return;
             }
 
-            tooltip.setText(itemSlot.item.getName() + "\n" + itemSlot.item.getDescription());
         }
 
         @Override
@@ -100,7 +104,6 @@ public class ItemSlotActor extends Group {
         public boolean mouseMoved(InputEvent event, float x, float y) {
             return false;
         }
-        
-        
+
     }
 } // ItemSlotActor

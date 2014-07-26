@@ -55,7 +55,7 @@ public class CharacterWindow extends InGameComponent {
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
                         Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
-                .setTooltip("Your character's attributes.");
+                .setTooltip(inGameMenu.getStage(), "Your character's attributes.");
         tabbedPane.addTab("Reputation", reputationTextArea)
                 .setLabelBounds(Offset.CharacterWindow.REPUTATION_LABEL_OFFS_X,
                         Offset.CharacterWindow.REPUTATION_LABEL_OFFS_Y,
@@ -65,7 +65,7 @@ public class CharacterWindow extends InGameComponent {
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
                         Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
-                .setTooltip("Your reputation with various factions.");
+                .setTooltip(inGameMenu.getStage(), "Your reputation with various factions.");
         tabbedPane.addTab("Misc.", miscTextArea)
                 .setLabelBounds(Offset.CharacterWindow.MISC_LABEL_OFFS_X,
                         Offset.CharacterWindow.MISC_LABEL_OFFS_Y,
@@ -75,7 +75,7 @@ public class CharacterWindow extends InGameComponent {
                         Offset.CharacterWindow.TAB_CONTENT_OFFS_Y,
                         Offset.CharacterWindow.TAB_CONTENT_WIDTH,
                         Offset.CharacterWindow.TAB_CONTENT_HEIGHT)
-                .setTooltip("Other handy details.");
+                .setTooltip(inGameMenu.getStage(), "Other handy details.");
     }
 
     @Override

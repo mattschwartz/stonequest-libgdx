@@ -31,8 +31,8 @@ import java.util.List;
 
 public class ContextMenu extends Group {
 
-    private Rectangle bounds;
-    private NinePatch background;
+    private final Rectangle bounds;
+    private final NinePatch background;
     private final List<MenuItem> menuItems;
 
     public ContextMenu(List<MenuItem> menuItems, Actor anchor) {
@@ -132,7 +132,5 @@ public class ContextMenu extends Group {
         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
             ((Label) event.getListenerActor()).setColor(Color.WHITE);
         }
-
     }
-
 } // ContextMenu

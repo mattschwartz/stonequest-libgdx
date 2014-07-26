@@ -13,23 +13,48 @@
 package com.barelyconscious.stonequest.entities;
 
 import com.barelyconscious.stonequest.items.Item;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemSlot {
 
-    public Item item;
+    private Item item;
+    private List<Runnable> itemChangeActions;
+
+    public ItemSlot() {
+        itemChangeActions = new ArrayList<>();
+    }
 
     public boolean itemGoesHere(Item item) {
         return true;
     }
-    
+
     public boolean empty() {
         return item == null;
     }
-
+    
+    public Item getItem() {
+        return item;
+    }
+    
+    public void setItem(Item item) {
+        swap(item);
+    }
+    
     public Item swap(Item item) {
         Item result = this.item;
         this.item = item;
 
+        if (this.item != null) {
+            for (Runnable action : itemChangeActions) {
+                action.run();
+            }
+        }
+
         return result;
+    }
+
+    public void addItemChangeAction(Runnable action) {
+        itemChangeActions.add(action);
     }
 }

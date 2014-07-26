@@ -78,7 +78,7 @@ public class Inventory {
             return null;
         }
 
-        return inventory.get(index).item;
+        return inventory.get(index).getItem();
     }
 
     /**
@@ -105,8 +105,7 @@ public class Inventory {
     public boolean addItem(Item item) {
         for (ItemSlot itemSlot : inventory) {
             if (itemSlot.empty()) {
-                itemSlot.item = item;
-                Gdx.app.log(null, "Item added " + item);
+                itemSlot.setItem(item);
                 return true;
             }
         }
