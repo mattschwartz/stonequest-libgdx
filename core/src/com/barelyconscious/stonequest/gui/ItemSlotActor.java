@@ -23,8 +23,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.barelyconscious.stonequest.entities.ItemSlot;
 import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ItemSlotActor extends Group {
 
@@ -32,32 +30,39 @@ public class ItemSlotActor extends Group {
     public static final int SLOT_HEIGHT = 50;
 
     private ItemSlot itemSlot;
-    private final Tooltip tooltip;
+    private Tooltip tooltip;
     private ContextMenu popupMenu;
 
-    public ItemSlotActor(Stage stage) {
+    public ItemSlotActor() {
         setSize(SLOT_WIDTH, SLOT_HEIGHT);
-        tooltip = new Tooltip("item", this);
-        popupMenu = new ContextMenu(Arrays.asList(
-                new MenuItem[]{
-                    new MenuItem("Use", null),
-                    new MenuItem("Examine", null),
-                    new MenuItem("Drop", null),
-                    new MenuItem("Cancel", null)}), this);
-
-        stage.addActor(tooltip);
-        stage.addActor(popupMenu);
-
         addListener(new ItemSlotInputListener());
     }
 
+    public void setTooltip(Tooltip tooltip) {
+        this.tooltip = tooltip;
+        this.tooltip.addAnchor(this, "item");
+    }
+    
+    public void show(Stage stage) {
+//        popupMenu = new ContextMenu(Arrays.asList(
+//                new MenuItem[]{
+//                    new MenuItem("Use", null),
+//                    new MenuItem("Examine", null),
+//                    new MenuItem("Drop", null),
+//                    new MenuItem("Cancel", null)}), this);
+//
+//        stage.addActor(popupMenu);
+    }
+
     public void setItemSlot(final ItemSlot itemSlot) {
+        final ItemSlotActor actor = this; // wtf is this??
+        
         this.itemSlot = itemSlot;
         this.itemSlot.addItemChangeAction(new Runnable() {
 
             @Override
             public void run() {
-                tooltip.setText(itemSlot.getItem().getName() + "\n" + itemSlot.getItem().getDescription());
+                tooltip.setText(actor, itemSlot.getItem().getName() + "\n" + itemSlot.getItem().getDescription());
             }
         });
     }
@@ -69,13 +74,13 @@ public class ItemSlotActor extends Group {
     @Override
     public void act(float delta) {
         if (itemSlot == null || itemSlot.empty()) {
-            tooltip.doNotShow = true;
+            tooltip.setDoNotShow(this, true);
         } else {
-            tooltip.doNotShow = false;
+            tooltip.setDoNotShow(this, false);
         }
         super.act(delta);
     }
-    
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (itemSlot == null || itemSlot.empty()) {

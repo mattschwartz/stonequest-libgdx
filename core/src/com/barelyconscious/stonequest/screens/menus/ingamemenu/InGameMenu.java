@@ -85,6 +85,10 @@ public class InGameMenu {
         stage.act(delta);
         stage.draw();
     }
+    
+    public void load() {
+        
+    }
 
     public void show(InputMultiplexer inputMultiplexer) {
         stage = new Stage();

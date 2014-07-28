@@ -33,6 +33,7 @@ public class GameWorld {
     private World boxWorld;
     private OrthographicCamera camera;
     private Batch batch;
+    private Player player;
     private PlayerObject playerObject;
     private Zone zone;
 
@@ -62,13 +63,17 @@ public class GameWorld {
         return new Vector2(result.x, result.y);
     }
 
-    public void spawnPlayer(Player player) {
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    public void spawnPlayer() {
         playerObject = new PlayerObject(player);
-        ObjectManager.getInstance().spawnObject(playerObject, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        ObjectManager.getInstance().spawnObject(playerObject);
     }
 
     public Player getPlayer() {
-        return (Player) playerObject.getEntity();
+        return player;
     }
     
     public Rectangle getPlayerBoundingBox() {

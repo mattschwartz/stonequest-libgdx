@@ -17,17 +17,26 @@ import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.tweening.SplashScreenAccessor;
+import com.barelyconscious.util.GUIHelper;
 
 public class SplashScreen extends GameScreen {
 
+    private Timeline animation;
+    private Stage stage;
+    private Label loadingLabel;
     private Texture splashTexture;
     private Sprite splashSprite;
     private Batch batch;
@@ -44,21 +53,43 @@ public class SplashScreen extends GameScreen {
         batch.begin();
         splashSprite.draw(batch);
         batch.end();
+
+        processInput();
+        
+        stage.act(delta);
+        stage.draw();
+        
+
+        if (animation.isFinished() && !game.mainMenuScreen.stillLoading()) {
+            game.setScreen(game.mainMenuScreen);
+        }
     }
 
-    @Override
-    public void resize(int width, int height) {
+    private void processInput() {
+        if (Gdx.input.isKeyPressed(Keys.ESCAPE)
+                || Gdx.input.isButtonPressed(Buttons.LEFT)) {
+            manager.killAll();
+        }
     }
 
     @Override
     public void show() {
         createSprite();
         setupAnimation();
-    }
+        GUIHelper.getInstance().init();
+        stage = new Stage();
+        loadingLabel = GUIHelper.createLabel("Loading...", 24, Color.WHITE);
+        loadingLabel.setVisible(false);
+        stage.addActor(loadingLabel);
 
-    @Override
-    public void hide() {
+        new Thread() {
 
+            @Override
+            public void run() {
+                game.mainMenuScreen.create();
+            }
+
+        }.start();
     }
 
     private void createSprite() {
@@ -90,7 +121,7 @@ public class SplashScreen extends GameScreen {
             }
         };
 
-        Timeline.createSequence()
+        animation = Timeline.createSequence()
                 .push(Tween.set(splashSprite, SplashScreenAccessor.ALPHA))
                 .push(Tween.set(splashSprite, SplashScreenAccessor.Y))
                 .beginParallel()
@@ -111,7 +142,14 @@ public class SplashScreen extends GameScreen {
 
     private void tweenCompleted() {
         splashTexture.dispose();
-        game.setScreen(game.mainMenuScreen);
+        loadingLabel.setVisible(true);
     }
-    
-} // SplashScreen
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        loadingLabel.remove();
+        stage.dispose();
+        batch.dispose();
+    }
+}

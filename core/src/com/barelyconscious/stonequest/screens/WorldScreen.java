@@ -25,6 +25,8 @@ import com.barelyconscious.stonequest.world.GameWorld;
 
 public class WorldScreen extends GameScreen {
 
+    private boolean loading;
+    private boolean paused;
     private InGameMenu menu;
     private InputMultiplexer inputMultiplexer;
     
@@ -36,22 +38,42 @@ public class WorldScreen extends GameScreen {
     public void resize(int width, int height) {
         menu.resize(width, height);
     }
-
+    
     @Override
     public void render(float delta) {
+        if (paused) {
+            return;
+        }
         GameWorld.getInstance().render(delta);
         menu.actAndDraw(delta);
     }
     
-    @Override
-    public void show() {
+    public boolean stillLoading() {
+        return loading;
+    }
+    
+    public void loadAssets() {
+        paused = true;
+        loading = true;
+        
         inputMultiplexer = new InputMultiplexer(Gdx.input.getInputProcessor());
+        menu = new InGameMenu();
         Gdx.input.setInputProcessor(inputMultiplexer);
         inputMultiplexer.addProcessor(new WorldInputController());
-        menu = new InGameMenu();
+        menu.load();
+        
+        loading = false;
+    }
+    
+    @Override
+    public void show() {
         menu.show(inputMultiplexer);
         
         GameWorld.getInstance().init(menu.getSpriteBatch(), inputMultiplexer);
+        GameWorld.getInstance().spawnPlayer();
+        
+        paused = false;
+        // Debug
         ObjectManager.getInstance().spawnObject(new LootObject(new Item("Potion of Healing")), 50, 50);
     }
 

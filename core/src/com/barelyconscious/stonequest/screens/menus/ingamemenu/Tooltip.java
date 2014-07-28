@@ -13,7 +13,6 @@
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -22,57 +21,85 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.barelyconscious.util.GUIHelper;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tooltip extends Group {
 
-    public boolean doNotShow = false;
     private Label tooltip;
-    private Actor anchor;
+    private Map<Actor, ActorContents> actorMap;
+
+    private class ActorContents {
+
+        public boolean doNotShow;
+        public String text;
+
+        public ActorContents() {
+        }
+
+        public ActorContents(boolean doNotShow, String text) {
+            this.doNotShow = doNotShow;
+            this.text = text;
+        }
+    }
+
+    public Tooltip() {
+        this(null, null);
+    }
 
     public Tooltip(String text, Actor anchor) {
         tooltip = GUIHelper.createTooltipLabel(text);
-        this.anchor = anchor;
+        actorMap = new HashMap<>();
 
         tooltip.setAlignment(Align.center);
         tooltip.setTouchable(Touchable.disabled);
+
+        if (anchor != null) {
+            anchor.addListener(new AnchorListener());
+            actorMap.put(anchor, new ActorContents(false, text));
+        }
+
+        addActor(tooltip);
+        setVisible(false);
+    }
+
+    public void setDoNotShow(Actor anchor, boolean doNotShow) {
+        if (!actorMap.containsKey(anchor)) return;
+        actorMap.get(anchor).doNotShow = doNotShow;
+    }
+    
+    public boolean shouldShow(Actor anchor) {
+        if (!actorMap.containsKey(anchor)) return false;
+        return actorMap.get(anchor).doNotShow;
+    }
+
+    private void setText(String text) {
+        tooltip.setText(text);
+        tooltip.setSize(tooltip.getPrefWidth(), tooltip.getPrefHeight());
+        setVisible(false);
+    }
+
+    public void setText(Actor anchor, String text) {
+        actorMap.put(anchor, new ActorContents(false, text));
+    }
+
+    private void setText(Actor anchor) {
+        if (!actorMap.containsKey(anchor)) {
+            return;
+        }
+
+        setText(actorMap.get(anchor).text);
+    }
+
+    public void addAnchor(Actor anchor, String text) {
+        actorMap.put(anchor, new ActorContents(false, text));
         anchor.addListener(new AnchorListener());
-
-        addActor(tooltip);
-        setVisible(false);
-    }
-
-    public void setText(String text) {
-        Label newLabel = GUIHelper.createTooltipLabel(text);
-        newLabel.setPosition(tooltip.getX(), tooltip.getY());
-        newLabel.setAlignment(Align.center);
-        tooltip.remove();
-        tooltip = newLabel;
-        tooltip.setTouchable(Touchable.disabled);
-        addActor(tooltip);
-        setVisible(false);
-    }
-
-    public void setAnchor(Actor anchor) {
-        this.anchor = anchor;
     }
 
     @Override
     public void act(float delta) {
-        if (doNotShow) {
-            return;
-        }
-        
-        setZIndex(Integer.MAX_VALUE);
+        setZIndex(Integer.MAX_VALUE); // Always on top
         super.act(delta);
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        if (doNotShow) {
-            return;
-        }
-        
-        super.draw(batch, parentAlpha); //To change body of generated methods, choose Tools | Templates.
     }
 
     private class AnchorListener extends InputListener {
@@ -91,7 +118,7 @@ public class Tooltip extends Group {
 
             x = Math.max(x, 0);
             y = Math.max(y, 0);
-            
+
             tooltip.setPosition(x, y);
         }
 
@@ -103,7 +130,12 @@ public class Tooltip extends Group {
 
         @Override
         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            if (shouldShow(event.getListenerActor())) {
+                return;
+            }
+            
             setPosition();
+            setText(event.getListenerActor());
             setVisible(true);
         }
 

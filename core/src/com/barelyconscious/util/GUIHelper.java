@@ -13,7 +13,9 @@
 package com.barelyconscious.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -39,6 +41,7 @@ public class GUIHelper {
     public static TextFieldStyle DEFAULT_TEXTFIELD_STYLE;
 
     public static Skin skin = new Skin();
+    public static AssetManager assetManager = new AssetManager();
 
     private GUIHelper() {
         if (INSTANCE != null) {

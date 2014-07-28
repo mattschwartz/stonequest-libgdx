@@ -1,11 +1,11 @@
 package com.barelyconscious.stonequest;
 
+import com.barelyconscious.stonequest.screens.LoadingScreen;
 import com.barelyconscious.stonequest.screens.menus.MainMenuScreen;
 import com.barelyconscious.stonequest.screens.SplashScreen;
 import com.barelyconscious.stonequest.screens.WorldScreen;
 import com.barelyconscious.stonequest.screens.menus.NewPlayerMenuScreen;
 import com.barelyconscious.stonequest.screens.menus.PlayMenuScreen;
-import com.barelyconscious.util.GUIHelper;
 
 public class Game extends com.badlogic.gdx.Game {
 
@@ -16,6 +16,7 @@ public class Game extends com.badlogic.gdx.Game {
     public MainMenuScreen mainMenuScreen;
     public PlayMenuScreen playMenuScreen;
     public NewPlayerMenuScreen newPlayerMenuScreen;
+    public LoadingScreen loadingScreen;
     public WorldScreen worldScreen;
 
     @Override
@@ -24,10 +25,10 @@ public class Game extends com.badlogic.gdx.Game {
         mainMenuScreen = new MainMenuScreen(this);
         playMenuScreen = new PlayMenuScreen(this);
         newPlayerMenuScreen = new NewPlayerMenuScreen(this);
+        loadingScreen = new LoadingScreen(this);
         worldScreen = new WorldScreen(this);
-        setScreen(splashScreen);
 
-        GUIHelper.getInstance().init();
+        setScreen(splashScreen);
     }
 
     @Override

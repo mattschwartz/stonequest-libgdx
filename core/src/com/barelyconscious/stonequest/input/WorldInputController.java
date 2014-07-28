@@ -18,11 +18,7 @@ public class WorldInputController extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (KeyBindings.invoke(keycode)) {
-            return true;
-        }
-        
-        return false;
+        return KeyBindings.invoke(keycode);
     }
 
 } // WorldInputController

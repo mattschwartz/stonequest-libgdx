@@ -53,7 +53,9 @@ public abstract class MenuScreen extends GameScreen implements InputProcessor {
 
     @Override
     public void resize(int width, int height) {
-        backgroundImage.setPosition((Gdx.graphics.getWidth() - backgroundImage.getWidth()) / 2, (Gdx.graphics.getHeight() - backgroundImage.getHeight()) / 2);
+        backgroundImage.setPosition((Gdx.graphics.getWidth()
+                - backgroundImage.getWidth()) / 2, (Gdx.graphics.getHeight()
+                - backgroundImage.getHeight()) / 2);
         GUIHelper.setSize(label, 0, 0, 250, 50);
         GUIHelper.setPosition(label, 1, 0, -255, 0);
     }
@@ -66,7 +68,7 @@ public abstract class MenuScreen extends GameScreen implements InputProcessor {
         multiplexer.addProcessor(this);
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
-        
+
         backgroundImage = new Sprite(new Texture(Gdx.files.internal("app/background.png")));
         label = new Label(Game.GAME_TITLE + "\n" + Game.GAME_VERSION, GUIHelper.createLabelStyle(16, Color.LIGHT_GRAY));
         label.setAlignment(Align.right);
@@ -80,7 +82,7 @@ public abstract class MenuScreen extends GameScreen implements InputProcessor {
         multiplexer.removeProcessor(this);
         multiplexer.removeProcessor(stage);
     }
-    
+
     public void backEvent() {
     }
 
@@ -95,7 +97,7 @@ public abstract class MenuScreen extends GameScreen implements InputProcessor {
             backEvent();
             return true;
         }
-        
+
         return false;
     }
 

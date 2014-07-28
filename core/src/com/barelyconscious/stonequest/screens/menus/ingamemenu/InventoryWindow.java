@@ -39,6 +39,7 @@ public class InventoryWindow extends InGameComponent {
     private Label holyLabel;
     private Label chaosLabel;
     private Label faithLabel;
+    private Tooltip tooltip;
     private List<ItemSlotActor> itemSlots;
 
     public InventoryWindow(InGameMenu inGameMenu) {
@@ -61,9 +62,10 @@ public class InventoryWindow extends InGameComponent {
         holyLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         chaosLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         faithLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
+        tooltip = new Tooltip();
 
         for (int i = 0; i < Inventory.INVENTORY_SLOTS; i++) {
-            itemSlots.add(new ItemSlotActor(inGameMenu.getStage()));
+            itemSlots.add(new ItemSlotActor());
         }
 
         goldAmountLabel.setAlignment(Align.right);
@@ -94,11 +96,13 @@ public class InventoryWindow extends InGameComponent {
         window.addActor(holyLabel);
         window.addActor(chaosLabel);
         window.addActor(faithLabel);
+        inGameMenu.getStage().addActor(tooltip);
 
         for (ItemSlotActor itemSlot : itemSlots) {
+            itemSlot.setTooltip(tooltip);
+            itemSlot.show(inGameMenu.getStage());
             window.addActor(itemSlot);
         }
-
 
         window.setSize(Offset.InventoryWindow.WINDOW_WIDTH,
                 Offset.InventoryWindow.WINDOW_HEIGHT);
@@ -130,7 +134,6 @@ public class InventoryWindow extends InGameComponent {
         Player player = GameWorld.getInstance().getPlayer();
 
         goldAmountLabel.setText("" + player.getInventory().getGold());
-
         hitpointsLabel.setText("" + Math.round(player.getAttribute(Attribute.HITPOINTS)));
         strengthLabel.setText("" + Math.round(player.getAttribute(Attribute.STRENGTH)));
         accuracyLabel.setText("" + Math.round(player.getAttribute(Attribute.ACCURACY)));

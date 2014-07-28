@@ -21,12 +21,17 @@ import com.barelyconscious.util.GUIHelper;
 
 public class MainMenuScreen extends MenuScreen {
 
+    private boolean loading;
     private Button playButton;
     private Button optionsButton;
     private Button exitButton;
 
     public MainMenuScreen(Game game) {
         super(game);
+    }
+
+    public boolean stillLoading() {
+        return loading;
     }
 
     @Override
@@ -42,10 +47,8 @@ public class MainMenuScreen extends MenuScreen {
         GUIHelper.setPosition(exitButton, 0, 0, 5, 50);
     }
 
-    @Override
-    public void show() {
-        super.show();
-
+    public void create() {
+        loading = true;
         playButton = GUIHelper.createTextButton("Play");
         optionsButton = GUIHelper.createTextButton("Options");
         exitButton = GUIHelper.createTextButton("Quit");
@@ -72,6 +75,13 @@ public class MainMenuScreen extends MenuScreen {
             }
         });
 
+        loading = false;
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
         stage.addActor(playButton);
         stage.addActor(optionsButton);
         stage.addActor(exitButton);
@@ -80,7 +90,7 @@ public class MainMenuScreen extends MenuScreen {
     @Override
     public void hide() {
         super.hide();
-        
+
         playButton.remove();
         exitButton.remove();
         stage.dispose();
