@@ -27,17 +27,17 @@ import java.util.Map;
 public class Tooltip extends Group {
 
     private Label tooltip;
-    private Map<Actor, ActorContents> actorMap;
+    private Map<Actor, Anchor> actorMap;
 
-    private class ActorContents {
+    private class Anchor {
 
         public boolean doNotShow;
         public String text;
 
-        public ActorContents() {
+        public Anchor() {
         }
 
-        public ActorContents(boolean doNotShow, String text) {
+        public Anchor(boolean doNotShow, String text) {
             this.doNotShow = doNotShow;
             this.text = text;
         }
@@ -56,7 +56,7 @@ public class Tooltip extends Group {
 
         if (anchor != null) {
             anchor.addListener(new AnchorListener());
-            actorMap.put(anchor, new ActorContents(false, text));
+            actorMap.put(anchor, new Anchor(false, text));
         }
 
         addActor(tooltip);
@@ -64,23 +64,21 @@ public class Tooltip extends Group {
     }
 
     public void setDoNotShow(Actor anchor, boolean doNotShow) {
-        if (!actorMap.containsKey(anchor)) return;
+        if (!actorMap.containsKey(anchor)) {
+            return;
+        }
         actorMap.get(anchor).doNotShow = doNotShow;
     }
-    
+
     public boolean shouldShow(Actor anchor) {
-        if (!actorMap.containsKey(anchor)) return false;
+        if (!actorMap.containsKey(anchor)) {
+            return false;
+        }
         return actorMap.get(anchor).doNotShow;
     }
 
-    private void setText(String text) {
-        tooltip.setText(text);
-        tooltip.setSize(tooltip.getPrefWidth(), tooltip.getPrefHeight());
-        setVisible(false);
-    }
-
     public void setText(Actor anchor, String text) {
-        actorMap.put(anchor, new ActorContents(false, text));
+        actorMap.put(anchor, new Anchor(false, text));
     }
 
     private void setText(Actor anchor) {
@@ -88,11 +86,18 @@ public class Tooltip extends Group {
             return;
         }
 
-        setText(actorMap.get(anchor).text);
+        tooltip.setText(actorMap.get(anchor).text);
+        tooltip.setSize(tooltip.getPrefWidth(), tooltip.getPrefHeight());
+        setVisible(false);
+    }
+    
+    public void addAnchor(Actor anchor) {
+        actorMap.put(anchor, null);
+        anchor.addListener(new AnchorListener());
     }
 
     public void addAnchor(Actor anchor, String text) {
-        actorMap.put(anchor, new ActorContents(false, text));
+        actorMap.put(anchor, new Anchor(false, text));
         anchor.addListener(new AnchorListener());
     }
 
@@ -133,7 +138,7 @@ public class Tooltip extends Group {
             if (shouldShow(event.getListenerActor())) {
                 return;
             }
-            
+
             setPosition();
             setText(event.getListenerActor());
             setVisible(true);

@@ -40,9 +40,9 @@ public class ItemSlotActor extends Group {
 
     public void setTooltip(Tooltip tooltip) {
         this.tooltip = tooltip;
-        this.tooltip.addAnchor(this, "item");
+        this.tooltip.addAnchor(this, null);
     }
-    
+
     public void show(Stage stage) {
 //        popupMenu = new ContextMenu(Arrays.asList(
 //                new MenuItem[]{
@@ -56,12 +56,13 @@ public class ItemSlotActor extends Group {
 
     public void setItemSlot(final ItemSlot itemSlot) {
         final ItemSlotActor actor = this; // wtf is this??
-        
+
         this.itemSlot = itemSlot;
         this.itemSlot.addItemChangeAction(new Runnable() {
 
             @Override
             public void run() {
+                Gdx.app.log("changing", "text");
                 tooltip.setText(actor, itemSlot.getItem().getName() + "\n" + itemSlot.getItem().getDescription());
             }
         });
@@ -109,6 +110,5 @@ public class ItemSlotActor extends Group {
         public boolean mouseMoved(InputEvent event, float x, float y) {
             return false;
         }
-
     }
 } // ItemSlotActor

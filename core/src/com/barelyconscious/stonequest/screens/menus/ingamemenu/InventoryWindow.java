@@ -64,8 +64,12 @@ public class InventoryWindow extends InGameComponent {
         faithLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         tooltip = new Tooltip();
 
-        for (int i = 0; i < Inventory.INVENTORY_SLOTS; i++) {
-            itemSlots.add(new ItemSlotActor());
+        Inventory inventory = GameWorld.getInstance().getPlayer().getInventory();
+        for (ItemSlot slot : inventory.getItemSlots()) {
+            ItemSlotActor itemSlotActor = new ItemSlotActor();
+            itemSlotActor.setTooltip(tooltip);
+            itemSlotActor.setItemSlot(slot);
+            itemSlots.add(itemSlotActor);
         }
 
         goldAmountLabel.setAlignment(Align.right);
@@ -99,7 +103,6 @@ public class InventoryWindow extends InGameComponent {
         inGameMenu.getStage().addActor(tooltip);
 
         for (ItemSlotActor itemSlot : itemSlots) {
-            itemSlot.setTooltip(tooltip);
             itemSlot.show(inGameMenu.getStage());
             window.addActor(itemSlot);
         }
@@ -109,9 +112,9 @@ public class InventoryWindow extends InGameComponent {
         GUIHelper.setPosition(window, 1, 1,
                 -Offset.InventoryWindow.WINDOW_WIDTH,
                 -Offset.InventoryWindow.WINDOW_HEIGHT);
-        
-        GUIHelper.setPosition(closeWindowButton, 0, 0, 
-                Offset.InventoryWindow.CLOSE_WINDOW_BUTTON_OFFS_X, 
+
+        GUIHelper.setPosition(closeWindowButton, 0, 0,
+                Offset.InventoryWindow.CLOSE_WINDOW_BUTTON_OFFS_X,
                 Offset.InventoryWindow.CLOSE_WINDOW_BUTTON_OFFS_Y);
     }
 
@@ -202,13 +205,10 @@ public class InventoryWindow extends InGameComponent {
         float x = Offset.InventoryWindow.INVENTORY_OFFS_X;
         float y = Offset.InventoryWindow.INVENTORY_OFFS_Y;
         ItemSlotActor actor;
-        Inventory inventory = GameWorld.getInstance().getPlayer().getInventory();
-        ItemSlot[] itemSlot = inventory.getItemSlots();
 
         for (int r = 0; r < Offset.InventoryWindow.INVENTORY_ROWS; r++) {
             for (int c = 0; c < Offset.InventoryWindow.INVENTORY_COLS; c++) {
                 actor = itemSlots.get(i);
-                actor.setItemSlot(itemSlot[i]);
 
                 GUIHelper.setPosition(actor, 0, 0,
                         x + c * Offset.InventoryWindow.INVENTORY_STEP_X,
@@ -231,11 +231,11 @@ public class InventoryWindow extends InGameComponent {
         holyLabel.remove();
         chaosLabel.remove();
         faithLabel.remove();
-        
+
         for (ItemSlotActor itemSlotActor : itemSlots) {
             itemSlotActor.remove();
         }
-        
+
         super.dispose();
     }
 }

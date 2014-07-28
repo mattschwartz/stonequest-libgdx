@@ -69,7 +69,7 @@ public class GameWorld {
     
     public void spawnPlayer() {
         playerObject = new PlayerObject(player);
-        ObjectManager.getInstance().spawnObject(playerObject);
+        ObjectManager.getInstance().spawnObject(playerObject, 25, 25);
     }
 
     public Player getPlayer() {

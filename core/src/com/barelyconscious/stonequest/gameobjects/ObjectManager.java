@@ -48,6 +48,16 @@ public class ObjectManager {
         spawnObject(object, object.x, object.y);
     }
 
+    public void spawnObjectAt(int index, GameObject object) {
+        spawnObjectAt(index, object, object.x, object.y);
+    }
+
+    public void spawnObjectAt(int index, GameObject object, float x, float y) {
+        gameObjects.add(index, object);
+        object.spawnObject(world, x, y);
+        inputMultiplexer.addProcessor(object);
+    }
+
     public void spawnObject(GameObject object, float x, float y) {
         object.spawnObject(world, x, y);
         gameObjects.add(object);
