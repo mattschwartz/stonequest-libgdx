@@ -12,6 +12,7 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.barelyconscious.stonequest.gui.Tooltip;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -20,6 +21,7 @@ import com.barelyconscious.stonequest.entities.Inventory;
 import com.barelyconscious.stonequest.entities.ItemSlot;
 import com.barelyconscious.stonequest.entities.player.Player;
 import com.barelyconscious.stonequest.gui.ItemSlotActor;
+import com.barelyconscious.stonequest.gui.ItemTooltip;
 import com.barelyconscious.stonequest.world.GameWorld;
 import com.barelyconscious.util.ColorHelper;
 import com.barelyconscious.util.GUIHelper;
@@ -39,7 +41,7 @@ public class InventoryWindow extends InGameComponent {
     private Label holyLabel;
     private Label chaosLabel;
     private Label faithLabel;
-    private Tooltip tooltip;
+    private ItemTooltip tooltip;
     private List<ItemSlotActor> itemSlots;
 
     public InventoryWindow(InGameMenu inGameMenu) {
@@ -62,7 +64,7 @@ public class InventoryWindow extends InGameComponent {
         holyLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         chaosLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
         faithLabel = GUIHelper.createLabel("", 14, ColorHelper.FOREST_GREEN);
-        tooltip = new Tooltip();
+        tooltip = new ItemTooltip();
 
         Inventory inventory = GameWorld.getInstance().getPlayer().getInventory();
         for (ItemSlot slot : inventory.getItemSlots()) {

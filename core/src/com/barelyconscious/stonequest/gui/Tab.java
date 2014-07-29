@@ -21,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
 import com.barelyconscious.util.GUIHelper;
 
 public class Tab extends Actor {

@@ -12,6 +12,8 @@
  ************************************************************************** */
 package com.barelyconscious.stonequest.screens.menus.ingamemenu;
 
+import com.barelyconscious.stonequest.gui.Tooltip;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -38,10 +40,7 @@ public class InGameMenu {
     private ImageButton journalButton;
     private ImageButton menuButton;
     private MessageWindow messageWindow;
-    private Tooltip inventoryTooltip;
-    private Tooltip characterTooltip;
-    private Tooltip journalTooltip;
-    private Tooltip menuTooltip;
+    private Tooltip tooltip;
 
     public Batch getSpriteBatch() {
         return stage.getSpriteBatch();
@@ -104,10 +103,12 @@ public class InGameMenu {
         menuButton = new ImageButton(GUIHelper.createImageButtonStyle("GUI_menu_window_button"));
         buttonBackground = new Image(GUIHelper.getDrawable("GUI_buttons_background"));
         messageWindow = new MessageWindow();
-        inventoryTooltip = new Tooltip("Click to view your Inventory.", inventoryButton);
-        characterTooltip = new Tooltip("Click to view your Character details.", characterButton);
-        journalTooltip = new Tooltip("Click to view your Journal.", journalButton);
-        menuTooltip = new Tooltip("Click to view the Menu.", menuButton);
+        tooltip = new Tooltip();
+        
+        tooltip.addAnchor(characterButton, "Character Details [" + Keys.toString(KeyBindings.open_characterWindow) + "]");
+        tooltip.addAnchor(inventoryButton, "Inventory & Equipment [" + Keys.toString(KeyBindings.open_inventoryWindow) + "]");
+        tooltip.addAnchor(journalButton, "Journal [" + Keys.toString(KeyBindings.open_journalWindow) + "]");
+        tooltip.addAnchor(menuButton, "Options [Esc]");
 
         inventoryWindow.create();
         characterWindow.create();
@@ -125,10 +126,7 @@ public class InGameMenu {
         stage.addActor(inventoryWindow.getWindow());
         stage.addActor(characterWindow.getWindow());
         stage.addActor(journalWindow.getWindow());
-        stage.addActor(inventoryTooltip);
-        stage.addActor(characterTooltip);
-        stage.addActor(journalTooltip);
-        stage.addActor(menuTooltip);
+        stage.addActor(tooltip);
 
         addActionListeners();
     }

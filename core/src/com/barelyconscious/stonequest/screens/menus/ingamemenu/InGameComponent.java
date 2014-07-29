@@ -84,6 +84,7 @@ public abstract class InGameComponent {
 
     public void show() {
         window.setVisible(true);
+        window.setZIndex(Integer.MAX_VALUE);
         window.setTouchable(Touchable.enabled);
         titleBounds.y = window.getHeight() - 58;
         titleBounds.width = window.getWidth() - 48;

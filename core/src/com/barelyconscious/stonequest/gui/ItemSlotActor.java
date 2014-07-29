@@ -13,16 +13,15 @@
 package com.barelyconscious.stonequest.gui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.entities.ItemSlot;
-import com.barelyconscious.stonequest.screens.menus.ingamemenu.Tooltip;
 
 public class ItemSlotActor extends Group {
 
@@ -30,7 +29,7 @@ public class ItemSlotActor extends Group {
     public static final int SLOT_HEIGHT = 50;
 
     private ItemSlot itemSlot;
-    private Tooltip tooltip;
+    private ItemTooltip tooltip;
     private ContextMenu popupMenu;
 
     public ItemSlotActor() {
@@ -38,7 +37,7 @@ public class ItemSlotActor extends Group {
         addListener(new ItemSlotInputListener());
     }
 
-    public void setTooltip(Tooltip tooltip) {
+    public void setTooltip(ItemTooltip tooltip) {
         this.tooltip = tooltip;
         this.tooltip.addAnchor(this, null);
     }
@@ -62,8 +61,7 @@ public class ItemSlotActor extends Group {
 
             @Override
             public void run() {
-                Gdx.app.log("changing", "text");
-                tooltip.setText(actor, itemSlot.getItem().getName() + "\n" + itemSlot.getItem().getDescription());
+                tooltip.setItem(actor, itemSlot.getItem());
             }
         });
     }
@@ -93,22 +91,16 @@ public class ItemSlotActor extends Group {
         img.draw(batch, parentAlpha);
     }
 
-    private class ItemSlotInputListener extends InputListener {
+    private class ItemSlotInputListener extends ClickListener {
 
+        
+        
         @Override
-        public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-            if (itemSlot == null || itemSlot.empty()) {
+        public void clicked(InputEvent event, float x, float y) {
+            if (getTapCount() >= 2) {
+                Gdx.app.log("", "doubly clicky");
             }
-
         }
 
-        @Override
-        public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        }
-
-        @Override
-        public boolean mouseMoved(InputEvent event, float x, float y) {
-            return false;
-        }
     }
 } // ItemSlotActor

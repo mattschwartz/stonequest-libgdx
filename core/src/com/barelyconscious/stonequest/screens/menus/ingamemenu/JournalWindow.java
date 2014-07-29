@@ -70,8 +70,8 @@ public class JournalWindow extends InGameComponent {
 
         GUIHelper.setPosition(window, 0, 1, 0,
                 -Offset.JournalWindow.WINDOW_HEIGHT);
-        GUIHelper.setPosition(closeWindowButton, 0, 0, 
-                Offset.JournalWindow.CLOSE_WINDOW_BUTTON_OFFS_X, 
+        GUIHelper.setPosition(closeWindowButton, 0, 0,
+                Offset.JournalWindow.CLOSE_WINDOW_BUTTON_OFFS_X,
                 Offset.JournalWindow.CLOSE_WINDOW_BUTTON_OFFS_Y);
     }
 
@@ -82,11 +82,12 @@ public class JournalWindow extends InGameComponent {
         entryList.addListener(new ClickListener() {
 
             @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 selectedEntryIndex = entryList.getSelectedIndex();
                 showSelectedEntry();
+                return super.touchDown(event, x, y, pointer, button);
             }
+
         });
     }
 
@@ -123,7 +124,7 @@ public class JournalWindow extends InGameComponent {
     @Override
     public void show() {
         super.show();
-        
+
         titleBounds.width = 302;
         showEntryDetails();
         showSelectedEntry();
@@ -153,4 +154,5 @@ public class JournalWindow extends InGameComponent {
             entryDescription.setText("No description.");
         }
     }
+
 }

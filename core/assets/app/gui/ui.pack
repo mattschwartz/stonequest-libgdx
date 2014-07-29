@@ -31,6 +31,22 @@ GUI_merchant_window_background
   orig: 393, 373
   offset: 0, 0
   index: -1
+GUI_component_item_tooltip_background
+  rotate: false
+  xy: 503, 460
+  size: 252, 54
+  split: 0, 252, 47, 6
+  orig: 252, 54
+  offset: 0, 0
+  index: -1
+GUI_component_item_tooltip_background_bottom
+  rotate: false
+  xy: 383, 52
+  size: 252, 24
+  split: 0, 252, 17, 6
+  orig: 252, 24
+  offset: 0, 0
+  index: -1
 GUI_element_tab_selector
   rotate: false
   xy: 1005, 1007
@@ -41,7 +57,7 @@ GUI_element_tab_selector
   index: -1
 outline_border
   rotate: false
-  xy: 503, 502
+  xy: 757, 502
   size: 12, 12
   split: 5, 5, 5, 5
   orig: 12, 12
@@ -49,7 +65,7 @@ outline_border
   index: -1
 scrollBarHorizontal
   rotate: false
-  xy: 383, 70
+  xy: 383, 44
   size: 12, 6
   split: 5, 5, 0, 6
   orig: 12, 6
@@ -57,7 +73,7 @@ scrollBarHorizontal
   index: -1
 scrollBarVertical
   rotate: false
-  xy: 1005, 993
+  xy: 637, 64
   size: 6, 12
   split: 0, 6, 5, 5
   orig: 6, 12
@@ -65,14 +81,14 @@ scrollBarVertical
   index: -1
 GUI_listbox_selection
   rotate: false
-  xy: 503, 492
+  xy: 1005, 997
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 GUI_component_transparent_box
   rotate: false
-  xy: 517, 508
+  xy: 757, 494
   size: 6, 6
   split: 2, 2, 2, 2
   orig: 6, 6
