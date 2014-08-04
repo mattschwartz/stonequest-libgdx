@@ -22,6 +22,7 @@ import com.barelyconscious.util.GUIHelper;
 public class MainMenuScreen extends MenuScreen {
 
     private boolean loading;
+    private Button createMapButton;
     private Button playButton;
     private Button optionsButton;
     private Button exitButton;
@@ -38,21 +39,33 @@ public class MainMenuScreen extends MenuScreen {
     public void resize(int width, int height) {
         super.resize(width, height);
 
-        GUIHelper.setSize(playButton, 0, 0, 150, 35);
-        GUIHelper.setSize(optionsButton, 0, 0, 150, 35);
-        GUIHelper.setSize(exitButton, 0, 0, 150, 35);
+        GUIHelper.setSize(playButton, 0, 0, 175, 35);
+        GUIHelper.setSize(createMapButton, 0, 0, 150, 35);
+        GUIHelper.setSize(optionsButton, 0, 0, 125, 35);
+        GUIHelper.setSize(exitButton, 0, 0, 100, 35);
 
-        GUIHelper.setPosition(playButton, 0, 0.5f, 5, 0);
-        GUIHelper.setPosition(optionsButton, 0, 0.5f, 5, -35);
-        GUIHelper.setPosition(exitButton, 0, 0, 5, 50);
+        GUIHelper.setPosition(playButton, 1, 0.15f, -175, 105);
+        GUIHelper.setPosition(createMapButton, 1, 0.15f, -150, 70);
+        GUIHelper.setPosition(optionsButton, 1, 0.15f, -125, 35);
+        GUIHelper.setPosition(exitButton, 1, 0.15f, -100, 0);
     }
 
     public void create() {
         loading = true;
+        createMapButton = GUIHelper.createTextButton("Map Creator");
         playButton = GUIHelper.createTextButton("Play");
         optionsButton = GUIHelper.createTextButton("Options");
         exitButton = GUIHelper.createTextButton("Quit");
 
+        createMapButton.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.loadingScreen.setToScreen(game.mapCreatorScreen);
+                game.setScreen(game.loadingScreen);
+            }
+            
+        });
         playButton.addListener(new ClickListener() {
 
             @Override
@@ -82,6 +95,7 @@ public class MainMenuScreen extends MenuScreen {
     public void show() {
         super.show();
 
+        stage.addActor(createMapButton);
         stage.addActor(playButton);
         stage.addActor(optionsButton);
         stage.addActor(exitButton);
@@ -91,6 +105,7 @@ public class MainMenuScreen extends MenuScreen {
     public void hide() {
         super.hide();
 
+        createMapButton.remove();
         playButton.remove();
         exitButton.remove();
         stage.dispose();

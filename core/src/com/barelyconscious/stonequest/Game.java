@@ -1,6 +1,7 @@
 package com.barelyconscious.stonequest;
 
 import com.barelyconscious.stonequest.screens.LoadingScreen;
+import com.barelyconscious.stonequest.screens.mapcreatorscreen.MapCreatorScreen;
 import com.barelyconscious.stonequest.screens.menus.MainMenuScreen;
 import com.barelyconscious.stonequest.screens.SplashScreen;
 import com.barelyconscious.stonequest.screens.WorldScreen;
@@ -18,6 +19,7 @@ public class Game extends com.badlogic.gdx.Game {
     public NewPlayerMenuScreen newPlayerMenuScreen;
     public LoadingScreen loadingScreen;
     public WorldScreen worldScreen;
+    public MapCreatorScreen mapCreatorScreen;
 
     @Override
     public void create() {
@@ -27,6 +29,7 @@ public class Game extends com.badlogic.gdx.Game {
         newPlayerMenuScreen = new NewPlayerMenuScreen(this);
         loadingScreen = new LoadingScreen(this);
         worldScreen = new WorldScreen(this);
+        mapCreatorScreen = new MapCreatorScreen(this);
 
         setScreen(splashScreen);
     }

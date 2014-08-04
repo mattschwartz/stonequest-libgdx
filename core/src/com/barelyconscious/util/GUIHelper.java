@@ -15,7 +15,6 @@ package com.barelyconscious.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -54,10 +53,11 @@ public class GUIHelper {
         skin.addRegions(atlas);
 
         DEFAULT_BUTTON_STYLE = new TextButtonStyle();
-        DEFAULT_BUTTON_STYLE.up = skin.getDrawable("button");
-        DEFAULT_BUTTON_STYLE.down = skin.getDrawable("button_pressed");
-        DEFAULT_BUTTON_STYLE.over = skin.getDrawable("button_highlighted");
-        DEFAULT_BUTTON_STYLE.font = FontFactory.getTitleFont();
+        DEFAULT_BUTTON_STYLE.up = skin.getDrawable("GUI_component_button_up");
+        DEFAULT_BUTTON_STYLE.down = skin.getDrawable("GUI_component_button_down");
+        DEFAULT_BUTTON_STYLE.over = skin.getDrawable("GUI_component_button_over");
+        DEFAULT_BUTTON_STYLE.font = FontFactory.getDefaultFont();
+        DEFAULT_BUTTON_STYLE.fontColor = Color.BLACK;
 
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/textfield.pack"));
         skin.addRegions(atlas);
@@ -67,7 +67,7 @@ public class GUIHelper {
         DEFAULT_TEXTFIELD_STYLE.focusedBackground = skin.getDrawable("textFieldFocused");
         DEFAULT_TEXTFIELD_STYLE.selection = skin.getDrawable("textFieldSelection");
         DEFAULT_TEXTFIELD_STYLE.font = FontFactory.getTitleFont();
-        DEFAULT_TEXTFIELD_STYLE.fontColor = Color.WHITE;
+        DEFAULT_TEXTFIELD_STYLE.fontColor = Color.BLACK;
         DEFAULT_TEXTFIELD_STYLE.cursor = skin.getDrawable("textFieldCursor");
 
         atlas = new TextureAtlas(Gdx.files.internal("app/gui/gui_buttons.pack"));

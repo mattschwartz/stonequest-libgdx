@@ -140,6 +140,8 @@ public class JournalWindow extends InGameComponent {
 
         entryList.setItems(new String[]{});
         entryList.setItems(entryListItems);
+        
+        entryList.setSelectedIndex(selectedEntryIndex);
     }
 
     private void showSelectedEntry() {

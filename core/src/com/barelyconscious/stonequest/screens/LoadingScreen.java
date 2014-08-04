@@ -22,11 +22,16 @@ import com.barelyconscious.util.GUIHelper;
 
 public class LoadingScreen extends GameScreen {
 
+    private GameScreen toScreen;
     private Stage stage;
     private Label loadingLabel;
 
     public LoadingScreen(Game game) {
         super(game);
+    }
+    
+    public void setToScreen(GameScreen toScreen) {
+        this.toScreen = toScreen;
     }
 
     @Override
@@ -36,13 +41,17 @@ public class LoadingScreen extends GameScreen {
         stage.act(delta);
         stage.draw();
 
-        if (!game.worldScreen.stillLoading()) {
-            game.setScreen(game.worldScreen);
+        if (!toScreen.stillLoading()) {
+            game.setScreen(toScreen);
         }
     }
 
     @Override
     public void show() {
+        if (toScreen == null) {
+            throw new IllegalStateException("toScreen cannot be null.");
+        }
+        
         stage = new Stage();
         loadingLabel = GUIHelper.createLabel("Loading", 24, Color.WHITE);
         stage.addActor(loadingLabel);
@@ -53,7 +62,7 @@ public class LoadingScreen extends GameScreen {
 
             @Override
             public void run() {
-                game.worldScreen.loadAssets();
+                toScreen.load();
             }
 
         }.start();

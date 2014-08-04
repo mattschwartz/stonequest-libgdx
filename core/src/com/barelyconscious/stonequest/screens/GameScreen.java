@@ -14,16 +14,24 @@ package com.barelyconscious.stonequest.screens;
 
 import aurelienribon.tweenengine.TweenManager;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.barelyconscious.stonequest.Game;
 
 public abstract class GameScreen implements Screen {
 
+    protected boolean loading;
     protected Game game;
     protected static final TweenManager manager = new TweenManager();
 
     public GameScreen(Game game) {
         this.game = game;
+        loading = false;
+    }
+    
+    public boolean stillLoading() {
+        return loading;
+    }
+    
+    public void load() {
     }
 
     @Override

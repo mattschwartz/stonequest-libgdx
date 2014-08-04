@@ -40,15 +40,15 @@ public class NewPlayerMenuScreen extends MenuScreen {
     public void resize(int width, int height) {
         super.resize(width, height);
 
-        GUIHelper.setSize(backButton, 0, 0, 150, 35);
-        GUIHelper.setSize(continueButton, 0, 0, 150, 35);
         GUIHelper.setSize(playerNameLabel, 0, 0, 150, 35);
         GUIHelper.setSize(playerNameTextArea, 0, 0, 200, 35);
+        GUIHelper.setSize(continueButton, 0, 0, 125, 35);
+        GUIHelper.setSize(backButton, 0, 0, 100, 35);
 
-        GUIHelper.setPosition(backButton, 0, 0, 5, 50);
-        GUIHelper.setPosition(continueButton, 0, 0.5f, 5, -(35 / 2));
-        GUIHelper.setPosition(playerNameLabel, 0.5f, 0.5f, -150, -(35 / 2));
-        GUIHelper.setPosition(playerNameTextArea, 0.5f, 0.5f, 0, -(35 / 2));
+        GUIHelper.setPosition(playerNameLabel, 1, 0.15f, -475, 35);
+        GUIHelper.setPosition(playerNameTextArea, 1, 0.15f, -325, 35);
+        GUIHelper.setPosition(continueButton, 1, 0.15f, -125, 35);
+        GUIHelper.setPosition(backButton, 1, 0.15f, -100, 0);
     }
 
     @Override
@@ -77,27 +77,6 @@ public class NewPlayerMenuScreen extends MenuScreen {
             }
 
         });
-//        
-//        TextAreaListener listener = new TextArea.TextAreaListener();
-//        
-//        
-//        playerNameTextArea.addListener(new TextAreaListener() {
-//            
-//        });
-//        
-//        playerNameTextArea.addListener(new TextArea.TextAreaListener() {
-//
-//            @Override
-//            public boolean keyDown(InputEvent event, int keycode) {
-//                if (acceptableInput(keycode)) {
-//                    return true;
-//                }
-//
-//                event.cancel();
-//                return false;
-//            }
-//
-//        });
 
         stage.addActor(backButton);
         stage.addActor(continueButton);
@@ -106,19 +85,19 @@ public class NewPlayerMenuScreen extends MenuScreen {
     }
 
     @Override
-    public void hide() {
-        super.hide();
-        
+    public void dispose() {
         playerNameLabel.remove();
         backButton.remove();
         continueButton.remove();
         playerNameTextArea.remove();
         stage.dispose();
-    }
-
-    private void continueEvent() {
         game.mainMenuScreen.dispose();
         game.playMenuScreen.dispose();
+        super.dispose();
+    }
+    
+    private void continueEvent() {
+        game.loadingScreen.setToScreen(game.worldScreen);
         game.setScreen(game.loadingScreen);
         GameWorld.getInstance().setPlayer(new Player(playerNameTextArea.getText()));
     }
@@ -127,9 +106,4 @@ public class NewPlayerMenuScreen extends MenuScreen {
     public void backEvent() {
         game.setScreen(game.playMenuScreen);
     }
-
-    private boolean acceptableInput(int keycode) {
-        return keycode >= Keys.A && keycode <= Keys.Z;
-    }
-
 } // NewPlayerMenuScreen

@@ -13,7 +13,6 @@
 package com.barelyconscious.stonequest.screens.menus;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.barelyconscious.stonequest.Game;
@@ -34,12 +33,12 @@ public class PlayMenuScreen extends MenuScreen {
         super.resize(width, height);
 
         GUIHelper.setSize(newPlayerButton, 0, 0, 150, 35);
-        GUIHelper.setSize(loadPlayerButton, 0, 0, 150, 35);
-        GUIHelper.setSize(backButton, 0, 0, 150, 35);
+        GUIHelper.setSize(loadPlayerButton, 0, 0, 125, 35);
+        GUIHelper.setSize(backButton, 0, 0, 100, 35);
 
-        GUIHelper.setPosition(newPlayerButton, 0, 0.5f, 5, 0);
-        GUIHelper.setPosition(loadPlayerButton, 0, 0.5f, 5, -35);
-        GUIHelper.setPosition(backButton, 0, 0, 5, 50);
+        GUIHelper.setPosition(newPlayerButton, 1, 0.15f, -150, 70);
+        GUIHelper.setPosition(loadPlayerButton, 1, 0.15f, -125, 35);
+        GUIHelper.setPosition(backButton, 1, 0.15f, -100, 0);
     }
 
     @Override

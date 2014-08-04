@@ -3,9 +3,33 @@ button.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+GUI_component_button_down
+  rotate: false
+  xy: 1, 31
+  size: 32, 32
+  split: 4, 4, 4, 4
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+GUI_component_button_over
+  rotate: false
+  xy: 35, 31
+  size: 32, 32
+  split: 4, 4, 4, 4
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+GUI_component_button_up
+  rotate: false
+  xy: 69, 31
+  size: 32, 32
+  split: 4, 4, 4, 4
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 button
   rotate: false
-  xy: 1, 1
+  xy: 103, 33
   size: 30, 30
   split: 3, 3, 3, 3
   orig: 30, 30
@@ -13,7 +37,7 @@ button
   index: -1
 button_highlighted
   rotate: false
-  xy: 33, 1
+  xy: 103, 1
   size: 30, 30
   split: 3, 3, 3, 3
   orig: 30, 30
@@ -21,7 +45,7 @@ button_highlighted
   index: -1
 button_pressed
   rotate: false
-  xy: 65, 1
+  xy: 135, 33
   size: 30, 30
   split: 3, 3, 3, 3
   orig: 30, 30

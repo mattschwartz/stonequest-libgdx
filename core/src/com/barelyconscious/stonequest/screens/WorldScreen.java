@@ -19,13 +19,12 @@ import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.gameobjects.LightManager;
 import com.barelyconscious.stonequest.gameobjects.LootObject;
 import com.barelyconscious.stonequest.gameobjects.ObjectManager;
-import com.barelyconscious.stonequest.input.WorldInputController;
+import com.barelyconscious.stonequest.input.WorldController;
 import com.barelyconscious.stonequest.items.Item;
 import com.barelyconscious.stonequest.world.GameWorld;
 
 public class WorldScreen extends GameScreen {
 
-    private boolean loading;
     private boolean paused;
     private InGameMenu menu;
     private InputMultiplexer inputMultiplexer;
@@ -48,18 +47,20 @@ public class WorldScreen extends GameScreen {
         menu.actAndDraw(delta);
     }
     
+    @Override
     public boolean stillLoading() {
         return loading;
     }
     
-    public void loadAssets() {
+    @Override
+    public void load() {
         paused = true;
         loading = true;
         
         inputMultiplexer = new InputMultiplexer(Gdx.input.getInputProcessor());
         menu = new InGameMenu();
         Gdx.input.setInputProcessor(inputMultiplexer);
-        inputMultiplexer.addProcessor(new WorldInputController());
+        inputMultiplexer.addProcessor(new WorldController());
         menu.load();
         
         loading = false;
@@ -74,7 +75,7 @@ public class WorldScreen extends GameScreen {
         
         paused = false;
         // Debug
-        ObjectManager.getInstance().spawnObject(new LootObject(new Item("Potion of Healing")), 50, 50);
+        ObjectManager.getInstance().spawnObject(new LootObject(new Item("Unidentified Scroll")), 50, 50);
     }
 
     @Override
@@ -84,4 +85,4 @@ public class WorldScreen extends GameScreen {
         menu.dispose();
     }
     
-} // WorldScreen
+}
