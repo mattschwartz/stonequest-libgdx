@@ -1,0 +1,11 @@
+E:\Users\matt\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.exe.config
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.csprojResolveAssemblyReference.cache
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Form1.resources
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.Properties.Resources.resources
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.csproj.GenerateResource.Cache
+E:\Users\matt\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.exe
+E:\Users\matt\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.pdb
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.exe
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.pdb
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.ucItemEditor.resources
+E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.ucObjectList.resources
