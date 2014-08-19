@@ -79,5 +79,23 @@ namespace SQEditor.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \stonequest\SQEditor\res\tiles\.
+        /// </summary>
+        internal static string TileResourceFolder {
+            get {
+                return ResourceManager.GetString("TileResourceFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment,Building,Doodad,Prop.
+        /// </summary>
+        internal static string TileTypes {
+            get {
+                return ResourceManager.GetString("TileTypes", resourceCulture);
+            }
+        }
     }
 }

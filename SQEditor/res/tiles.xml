@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tiles>
+  <tile name="grass_tile">
+    <type>environment</type>
+    <stepSound>walkGrass.wav</stepSound>
+    <collision value="false" />
+  </tile>
+  
+  <tile name="dirt_tile">
+    <type>environment</type>
+    <stepSound>walkDirt.wav</stepSound>
+    <collision value="false" />
+  </tile>
+
+  <tile name="stone_tile">
+    <type>building</type>
+    <collision value="true">
+      <polygon>
+        <x>1,2,3,4,5</x>
+        <y>6,7,8,9,0</y>
+      </polygon>
+    </collision>
+  </tile>
+</tiles>

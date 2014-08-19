@@ -16,6 +16,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.barelyconscious.stonequest.Game;
 import com.barelyconscious.stonequest.input.MapController;
 import com.barelyconscious.stonequest.screens.GameScreen;

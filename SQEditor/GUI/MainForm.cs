@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQEditor.GUI.Items;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,17 @@ using System.Windows.Forms;
 
 namespace SQEditor.GUI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void tsiNewItem_Click(object sender, EventArgs e)
         {
-            panel1.Controls.Clear();
-            panel1.Controls.Add(new ucItemEditor());
+            var itemEditor = new ItemEditor();
+            itemEditor.Show();
         }
     }
 }
