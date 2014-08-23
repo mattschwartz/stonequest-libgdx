@@ -28,64 +28,61 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Sword");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Axe");
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Mace");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Dagger");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Flail");
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("One-handed", new System.Windows.Forms.TreeNode[] {
-            treeNode55,
-            treeNode56,
-            treeNode57,
-            treeNode58,
-            treeNode59});
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Broadsword");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Battle axe");
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Spear");
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Two-handed", new System.Windows.Forms.TreeNode[] {
-            treeNode61,
-            treeNode62,
-            treeNode63});
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Weapons", new System.Windows.Forms.TreeNode[] {
-            treeNode60,
-            treeNode64});
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Helmet");
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Chest");
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Legs");
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Gloves");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Boots");
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Necklace");
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Ring");
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Equipment", new System.Windows.Forms.TreeNode[] {
-            treeNode65,
-            treeNode66,
-            treeNode67,
-            treeNode68,
-            treeNode69,
-            treeNode70,
-            treeNode71,
-            treeNode72});
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Potions");
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Cloth");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Leather");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Metal");
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Ethereal");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Crafting", new System.Windows.Forms.TreeNode[] {
-            treeNode75,
-            treeNode76,
-            treeNode77,
-            treeNode78});
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Quest Item");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Junk");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sword");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Axe");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Mace");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Dagger");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Flail");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("One-handed", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Broadsword");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Battle axe");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Spear");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Two-handed", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Weapons", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Helmet");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Chest");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Legs");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Gloves");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Boots");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Necklace");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Ring");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Equipment", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Potions");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Cloth");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Leather");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Metal");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Ethereal");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Crafting", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24});
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Quest Item");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Junk");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemEditor));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tcEffects = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lbUseEffects = new System.Windows.Forms.ListBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.lbEquipEffects = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsiNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,18 +97,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tcEffects = new System.Windows.Forms.TabControl();
+            this.tbDescription = new System.Windows.Forms.RichTextBox();
+            this.labelRemainingChars = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox3.SuspendLayout();
-            this.tcEffects.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSellValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemArtwork)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tcEffects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClear
@@ -133,10 +136,12 @@
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.tcEffects);
             this.groupBox3.Controls.Add(this.menuStrip1);
@@ -147,30 +152,9 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Effects";
             // 
-            // tcEffects
-            // 
-            this.tcEffects.Controls.Add(this.tabPage4);
-            this.tcEffects.Controls.Add(this.tabPage5);
-            this.tcEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcEffects.Location = new System.Drawing.Point(3, 16);
-            this.tcEffects.Name = "tcEffects";
-            this.tcEffects.SelectedIndex = 0;
-            this.tcEffects.Size = new System.Drawing.Size(518, 198);
-            this.tcEffects.TabIndex = 0;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.lbUseEffects);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(510, 172);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Use";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // lbUseEffects
             // 
+            this.lbUseEffects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbUseEffects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbUseEffects.FormattingEnabled = true;
             this.lbUseEffects.Location = new System.Drawing.Point(3, 3);
@@ -178,24 +162,14 @@
             this.lbUseEffects.Size = new System.Drawing.Size(504, 166);
             this.lbUseEffects.TabIndex = 0;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.lbEquipEffects);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(510, 150);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Equip";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
             // lbEquipEffects
             // 
+            this.lbEquipEffects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbEquipEffects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbEquipEffects.FormattingEnabled = true;
             this.lbEquipEffects.Location = new System.Drawing.Point(3, 3);
             this.lbEquipEffects.Name = "lbEquipEffects";
-            this.lbEquipEffects.Size = new System.Drawing.Size(504, 144);
+            this.lbEquipEffects.Size = new System.Drawing.Size(504, 166);
             this.lbEquipEffects.TabIndex = 1;
             // 
             // menuStrip1
@@ -292,73 +266,72 @@
             // 
             // tvType
             // 
-            this.tvType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tvType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvType.FullRowSelect = true;
             this.tvType.HideSelection = false;
             this.tvType.Location = new System.Drawing.Point(81, 152);
             this.tvType.Name = "tvType";
-            treeNode55.Name = "Node30";
-            treeNode55.Text = "Sword";
-            treeNode56.Name = "Node31";
-            treeNode56.Text = "Axe";
-            treeNode57.Name = "Node32";
-            treeNode57.Text = "Mace";
-            treeNode58.Name = "Node33";
-            treeNode58.Text = "Dagger";
-            treeNode59.Name = "Node34";
-            treeNode59.Text = "Flail";
-            treeNode60.Name = "Node28";
-            treeNode60.Text = "One-handed";
-            treeNode61.Name = "Node36";
-            treeNode61.Text = "Broadsword";
-            treeNode62.Name = "Node38";
-            treeNode62.Text = "Battle axe";
-            treeNode63.Name = "Node39";
-            treeNode63.Text = "Spear";
-            treeNode64.Name = "Node29";
-            treeNode64.Text = "Two-handed";
-            treeNode65.Name = "Node15";
-            treeNode65.Text = "Weapons";
-            treeNode66.Name = "Node5";
-            treeNode66.Text = "Helmet";
-            treeNode67.Name = "Node17";
-            treeNode67.Text = "Chest";
-            treeNode68.Name = "Node19";
-            treeNode68.Text = "Legs";
-            treeNode69.Name = "Node20";
-            treeNode69.Text = "Gloves";
-            treeNode70.Name = "Node21";
-            treeNode70.Text = "Boots";
-            treeNode71.Name = "Node22";
-            treeNode71.Text = "Necklace";
-            treeNode72.Name = "Node23";
-            treeNode72.Text = "Ring";
-            treeNode73.Name = "Node0";
-            treeNode73.Text = "Equipment";
-            treeNode74.Name = "Node2";
-            treeNode74.Text = "Potions";
-            treeNode75.Name = "Node42";
-            treeNode75.Text = "Cloth";
-            treeNode76.Name = "Node41";
-            treeNode76.Text = "Leather";
-            treeNode77.Name = "Node43";
-            treeNode77.Text = "Metal";
-            treeNode78.Name = "Node44";
-            treeNode78.Text = "Ethereal";
-            treeNode79.Name = "Node3";
-            treeNode79.Text = "Crafting";
-            treeNode80.Name = "Node4";
-            treeNode80.Text = "Quest Item";
-            treeNode81.Name = "Node1";
-            treeNode81.Text = "Junk";
+            treeNode1.Name = "Node30";
+            treeNode1.Text = "Sword";
+            treeNode2.Name = "Node31";
+            treeNode2.Text = "Axe";
+            treeNode3.Name = "Node32";
+            treeNode3.Text = "Mace";
+            treeNode4.Name = "Node33";
+            treeNode4.Text = "Dagger";
+            treeNode5.Name = "Node34";
+            treeNode5.Text = "Flail";
+            treeNode6.Name = "Node28";
+            treeNode6.Text = "One-handed";
+            treeNode7.Name = "Node36";
+            treeNode7.Text = "Broadsword";
+            treeNode8.Name = "Node38";
+            treeNode8.Text = "Battle axe";
+            treeNode9.Name = "Node39";
+            treeNode9.Text = "Spear";
+            treeNode10.Name = "Node29";
+            treeNode10.Text = "Two-handed";
+            treeNode11.Name = "Node15";
+            treeNode11.Text = "Weapons";
+            treeNode12.Name = "Node5";
+            treeNode12.Text = "Helmet";
+            treeNode13.Name = "Node17";
+            treeNode13.Text = "Chest";
+            treeNode14.Name = "Node19";
+            treeNode14.Text = "Legs";
+            treeNode15.Name = "Node20";
+            treeNode15.Text = "Gloves";
+            treeNode16.Name = "Node21";
+            treeNode16.Text = "Boots";
+            treeNode17.Name = "Node22";
+            treeNode17.Text = "Necklace";
+            treeNode18.Name = "Node23";
+            treeNode18.Text = "Ring";
+            treeNode19.Name = "Node0";
+            treeNode19.Text = "Equipment";
+            treeNode20.Name = "Node2";
+            treeNode20.Text = "Potions";
+            treeNode21.Name = "Node42";
+            treeNode21.Text = "Cloth";
+            treeNode22.Name = "Node41";
+            treeNode22.Text = "Leather";
+            treeNode23.Name = "Node43";
+            treeNode23.Text = "Metal";
+            treeNode24.Name = "Node44";
+            treeNode24.Text = "Ethereal";
+            treeNode25.Name = "Node3";
+            treeNode25.Text = "Crafting";
+            treeNode26.Name = "Node4";
+            treeNode26.Text = "Quest Item";
+            treeNode27.Name = "Node1";
+            treeNode27.Text = "Junk";
             this.tvType.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode73,
-            treeNode74,
-            treeNode79,
-            treeNode80,
-            treeNode81});
+            treeNode19,
+            treeNode20,
+            treeNode25,
+            treeNode26,
+            treeNode27});
             this.tvType.Size = new System.Drawing.Size(458, 94);
             this.tvType.TabIndex = 58;
             // 
@@ -398,27 +371,14 @@
             this.label3.TabIndex = 56;
             this.label3.Text = "Level:";
             // 
-            // tbDescription
-            // 
-            this.tbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDescription.Location = new System.Drawing.Point(81, 84);
-            this.tbDescription.MaxLength = 200;
-            this.tbDescription.Multiline = true;
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescription.Size = new System.Drawing.Size(458, 62);
-            this.tbDescription.TabIndex = 55;
-            this.tbDescription.Text = "A seemingly uninteresting object.";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 39);
+            this.label2.Size = new System.Drawing.Size(63, 26);
             this.label2.TabIndex = 54;
-            this.label2.Text = "Description:\r\n(200 chars)\r\n(optional)";
+            this.label2.Text = "Description:\r\n(optional)";
             // 
             // checkBox1
             // 
@@ -438,11 +398,77 @@
             this.toolTip.InitialDelay = 50;
             this.toolTip.ReshowDelay = 10;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.lbEquipEffects);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(510, 172);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Equip";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.lbUseEffects);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(510, 172);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Use";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tcEffects
+            // 
+            this.tcEffects.Controls.Add(this.tabPage4);
+            this.tcEffects.Controls.Add(this.tabPage5);
+            this.tcEffects.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcEffects.Location = new System.Drawing.Point(3, 16);
+            this.tcEffects.Name = "tcEffects";
+            this.tcEffects.SelectedIndex = 0;
+            this.tcEffects.Size = new System.Drawing.Size(518, 198);
+            this.tcEffects.TabIndex = 0;
+            // 
+            // tbDescription
+            // 
+            this.tbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbDescription.DetectUrls = false;
+            this.tbDescription.Location = new System.Drawing.Point(81, 84);
+            this.tbDescription.MaxLength = 100;
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.Size = new System.Drawing.Size(458, 62);
+            this.tbDescription.TabIndex = 65;
+            this.tbDescription.Text = "A seemingly uninteresting object.";
+            this.tbDescription.TextChanged += new System.EventHandler(this.tbDescription_TextChanged);
+            // 
+            // labelRemainingChars
+            // 
+            this.labelRemainingChars.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRemainingChars.BackColor = System.Drawing.Color.White;
+            this.labelRemainingChars.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelRemainingChars.Location = new System.Drawing.Point(469, 121);
+            this.labelRemainingChars.Name = "labelRemainingChars";
+            this.labelRemainingChars.Size = new System.Drawing.Size(68, 23);
+            this.labelRemainingChars.TabIndex = 67;
+            this.labelRemainingChars.Text = "0 / 100";
+            this.labelRemainingChars.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
+            // 
             // ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 534);
+            this.Controls.Add(this.labelRemainingChars);
+            this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.nudSellValue);
@@ -454,7 +480,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
@@ -464,16 +489,18 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Item Editor | StoneQuest";
+            this.Load += new System.EventHandler(this.ItemEditor_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tcEffects.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSellValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemArtwork)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tcEffects.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,9 +512,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TabControl tcEffects;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsiNew;
         private System.Windows.Forms.ToolStripMenuItem tsiEdit;
@@ -501,12 +525,17 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lbUseEffects;
         private System.Windows.Forms.ListBox lbEquipEffects;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TabControl tcEffects;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.RichTextBox tbDescription;
+        private System.Windows.Forms.Label labelRemainingChars;
+        private System.Windows.Forms.ErrorProvider errorProvider;
 
     }
 }

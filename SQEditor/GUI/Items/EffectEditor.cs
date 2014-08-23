@@ -1,13 +1,5 @@
-﻿using SQEditor.GameObjects;
-using SQEditor.GameObjects.ItemEffects;
+﻿using SQEditor.GameObjects.ItemEffects;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SQEditor.GUI.Items
@@ -16,47 +8,66 @@ namespace SQEditor.GUI.Items
     {
         public ItemEffect effect;
 
-        public EffectEditor(ItemEffect.EffectType effectType)
+        #region Constructor
+
+        public EffectEditor()
         {
             InitializeComponent();
 
             effect = new ItemEffect();
-            effect.Type = effectType;
-            this.Text = ItemEffect.TypeToString(effectType) + " | StoneQuest";
         }
 
-        private void tbScriptText_KeyUp(object sender, KeyEventArgs e)
-        {
-            var charCount = tbScriptText.Text.Length;
-            labelRemainingChars.Text = charCount + " / 250";
-        }
+        #endregion
 
         #region Button Clicks
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (HasErrors()) {
-                if (MessageBox.Show("", "") != DialogResult.OK) {
-                    return;
-                }
+                DialogResult = DialogResult.Cancel;
+                return;
             }
 
             effect = new ItemEffect();
             effect.Name = tbDisplayText.Text;
             effect.Script = tbScriptText.Text;
 
-            Close();
+            if (rbEquip.Checked) {
+                effect.Type = ItemEffect.EffectType.Equip;
+            } else {
+                effect.Type = ItemEffect.EffectType.Use;
+            }
+
+            DialogResult = DialogResult.OK;
         }
 
         private bool HasErrors()
         {
-            return String.IsNullOrEmpty(tbDisplayText.Text)
-                || String.IsNullOrEmpty(tbScriptText.Text);
+            bool result = false;
+
+            errorProvider.SetError(tbDisplayText, "");
+
+            if (String.IsNullOrEmpty(tbDisplayText.Text)) {
+                errorProvider.SetError(tbDisplayText, "Effect must have a display name.");
+                result = true;
+            }
+
+            return result;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        #endregion
+
+        #region Update Remaining Characters
+
+        private void tbScriptText_TextChanged(object sender, EventArgs e)
+        {
+            var charCount = tbScriptText.Text.Length;
+            labelRemainingChars.Text = charCount + " / 250";
         }
 
         #endregion

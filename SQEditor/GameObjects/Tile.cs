@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Linq;
 
 namespace SQEditor.GameObjects
 {
-    class Tile
+    class Tile : Serializable
     {
         public enum TileType
         {
@@ -22,6 +23,20 @@ namespace SQEditor.GameObjects
         public Tile()
         {
             Bounds = new List<Point>();
+        }
+
+        public override string GetType()
+        {
+            return "tiles";
+        }
+
+        public override XElement ToXML()
+        {
+            return null;
+        }
+
+        public override void Save()
+        {
         }
     }
 }

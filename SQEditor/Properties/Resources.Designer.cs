@@ -81,11 +81,11 @@ namespace SQEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \stonequest\SQEditor\res\tiles\.
+        ///   Looks up a localized string similar to \stonequest\SQEditor\res\.
         /// </summary>
-        internal static string TileResourceFolder {
+        internal static string ResourceFolder {
             get {
-                return ResourceManager.GetString("TileResourceFolder", resourceCulture);
+                return ResourceManager.GetString("ResourceFolder", resourceCulture);
             }
         }
         
@@ -95,6 +95,15 @@ namespace SQEditor.Properties {
         internal static string TileTypes {
             get {
                 return ResourceManager.GetString("TileTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \stonequest\SQEditor\xml\.
+        /// </summary>
+        internal static string XMLFolder {
+            get {
+                return ResourceManager.GetString("XMLFolder", resourceCulture);
             }
         }
     }

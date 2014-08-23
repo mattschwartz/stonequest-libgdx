@@ -51,10 +51,10 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameObjects\ItemEffects\EquipEffect.cs" />
+    <Compile Include="FileUtility.cs" />
     <Compile Include="GameObjects\Items\Item.cs" />
     <Compile Include="GameObjects\ItemEffects\ItemEffect.cs" />
-    <Compile Include="GameObjects\ItemEffects\UseEffect.cs" />
+    <Compile Include="GameObjects\Serializable.cs" />
     <Compile Include="GUI\Items\EffectEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +94,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameObjects\Tile.cs" />
+    <Compile Include="XMLUtility.cs" />
     <EmbeddedResource Include="GUI\Items\EffectEditor.resx">
       <DependentUpon>EffectEditor.cs</DependentUpon>
     </EmbeddedResource>

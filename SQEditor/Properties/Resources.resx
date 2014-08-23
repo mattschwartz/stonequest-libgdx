@@ -124,12 +124,16 @@
   <data name="close_button_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\close_button_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TileResourceFolder" xml:space="preserve">
-    <value>\stonequest\SQEditor\res\tiles\</value>
-    <comment>The resource folder containing image tiles.</comment>
-  </data>
   <data name="TileTypes" xml:space="preserve">
     <value>Environment,Building,Doodad,Prop</value>
     <comment>A list of available tile types.</comment>
+  </data>
+  <data name="ResourceFolder" xml:space="preserve">
+    <value>\stonequest\SQEditor\res\</value>
+    <comment>The resource folder for the editor.</comment>
+  </data>
+  <data name="XMLFolder" xml:space="preserve">
+    <value>\stonequest\SQEditor\xml\</value>
+    <comment>The XML folder for the editor.</comment>
   </data>
 </root>

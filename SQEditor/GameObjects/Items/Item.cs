@@ -1,6 +1,9 @@
 ﻿using SQEditor.GameObjects.ItemEffects;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,65 +12,93 @@ using System.Xml.Linq;
 
 namespace SQEditor.GameObjects.Items
 {
-    public class Item
+    public class Item : Serializable
     {
+        #region Data
+
         public string Name;
         public int Level;
         public int SellValue;
         public string Type;
         public string Description;
-        public List<EquipEffect> EquipEffects;
-        public List<UseEffect> UseEffects;
+        public Image Artwork;
+        public List<ItemEffect> EquipEffects;
+        public List<ItemEffect> UseEffects;
+
+        #endregion
+
+        #region Constructor
 
         public Item()
         {
-            EquipEffects = new List<EquipEffect>();
-            UseEffects = new List<UseEffect>();
+            EquipEffects = new List<ItemEffect>();
+            UseEffects = new List<ItemEffect>();
         }
 
-        public virtual XElement GetXML()
+        #endregion
+
+        #region XML Writing
+
+        public override string GetType()
+        {
+            return "items";
+        }
+
+        public override XElement ToXML()
         {
             var result = new XElement("item");
-            var equipEffects = new XElement("equipEffects");
-            var useEffects = new XElement("useEffects");
 
             result.Add(new XElement("name", Name));
             result.Add(new XElement("level", Level));
             result.Add(new XElement("type", Type));
             result.Add(new XElement("sellValue", SellValue));
-            result.Add(new XElement("imagePath", GetImagePath()));
             result.Add(new XElement("description", Description));
-
-            #region Item Effects
-            foreach (var effect in EquipEffects) {
-                var element = new XElement("equipEffect");
-                element.Add(new XElement("displayName", effect.Name));
-                element.Add(new XElement("script", effect.Script));
-                equipEffects.Add("equipEffect", element);
-            }
-
-            foreach (var effect in UseEffects) {
-                var element = new XElement("useEffect");
-                element.Add(new XElement("displayName", effect.Name));
-                element.Add(new XElement("script", effect.Script));
-                useEffects.Add("useEffect", element);
-            }
-
-            result.Add(equipEffects);
-            result.Add(useEffects);
-            #endregion
+            result.Add(new XElement("equipEffects", EquipEffects.Count));
+            result.Add(new XElement("useEffects", UseEffects.Count));
 
             return result;
         }
 
-        private string GetImagePath()
+        #endregion
+
+        #region Save
+
+        public override void Save()
         {
+            string dir;
             string formattedName = Name;
             Regex pattern = new Regex(@"\W|_");
 
             formattedName = pattern.Replace(Name.ToLower(), "");
+            dir = FileUtility.GetResourcesRootPath() + "items\\" + Type + "\\" + formattedName + "\\";
 
-            return "items/" + Type + "/" + formattedName + ".png";
+            if (!Directory.Exists(dir)) {
+                Directory.CreateDirectory(dir);
+            }
+
+            SaveArtwork(dir);
+            SaveEffects(dir);
         }
+
+        private void SaveArtwork(string dir)
+        {
+            dir += "artwork.png";
+            //Artwork.Save(dir, ImageFormat.Png);
+        }
+
+        private void SaveEffects(string dir)
+        {
+            int i = 0;
+            foreach (var effect in EquipEffects) {
+                File.WriteAllText(dir + "equip_" + (i++) + ".py", effect.ToFile());
+            }
+
+            i = 0;
+            foreach (var effect in UseEffects) {
+                File.WriteAllText(dir + "use_" + (i++) + ".py", effect.ToFile());
+            }
+        }
+
+        #endregion
     }
 }

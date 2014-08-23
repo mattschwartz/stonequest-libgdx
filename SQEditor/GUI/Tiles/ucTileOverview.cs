@@ -53,7 +53,7 @@ namespace SQEditor.GUI.Tiles
 
         private void InitializeWatcher()
         {
-            TileDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Resources.TileResourceFolder;
+            TileDirectoryPath = FileUtility.GetResourcesRootPath() + "tiles\\";
             tileDirectoryMonitor.Path = TileDirectoryPath;
             tileDirectoryMonitor.Filter = "*.png";
             tileDirectoryMonitor.Created += TileDirectoryChanged;
