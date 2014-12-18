@@ -12,3 +12,17 @@ E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Items.ItemEditor
 E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Tiles.TileEditor.resources
 E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Tiles.ucTileOverview.resources
 E:\Users\matt\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Items.EffectEditor.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.exe.config
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.exe
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.pdb
+C:\Users\Matthew\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.exe
+C:\Users\Matthew\GitHub\stonequest\SQEditor\bin\Debug\SQEditor.pdb
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.csprojResolveAssemblyReference.cache
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Items.EffectEditor.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.MainForm.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Items.ItemEditor.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Tiles.TileEditor.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.ucObjectList.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.GUI.Tiles.ucTileOverview.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.Properties.Resources.resources
+C:\Users\Matthew\GitHub\stonequest\SQEditor\obj\Debug\SQEditor.csproj.GenerateResource.Cache
